@@ -1,0 +1,44 @@
+# Experience template
+- company: Consulting
+  dates: 2015 - Current
+  #quote: >
+  # Short description of the company (optional)
+  description: | # this will include new lines to allow paragraphs
+    Built custom apps for clients, guided design and architecture
+
+- company: Spotify
+  link: https://www.spotify.com/
+  job_title: iOS Engineer
+  dates: 2017 - 2018
+  #quote: >
+  # Short description of the company (optional)
+  description: | # this will include new lines to allow paragraphs
+    Worked with a small, experimental team on a new audio platform building prototypes to showcase unique features, as well as some of the [tools](https://github.com/spotify/NFGrapher) and [engine](https://github.com/spotify/NFDriver) that were used to process audio.
+
+- company: Tumblr
+  link: https://www.tumblr.com/
+  job_title: iOS Engineer
+  dates: 2016 - 2017
+  #quote: >
+  # Short description of the company (optional)
+  description: | # this will include new lines to allow paragraphs
+    Led the iOS development for rearchitecting Tumblr’s [post forms](https://staff.tumblr.com/post/164751021560/announcing-three-new-features-for-posting-from) and [post format](https://engineering.tumblr.com/post/164826109535/building-the-tumblr-neue-post-format).
+
+- company: Shutterfly
+  link: https://www.shutterfly.com/
+  job_title: Staff Engineer
+  dates: 2012 - 2015
+  #quote: >
+  # Short description of the company (optional)
+  description: | # this will include new lines to allow paragraphs
+    Developed a data driven rendering library and revamped the MoPho app’s UX leading to an [acquisition by Shutterfly in 2012](https://techcrunch.com/2012/09/17/shutterfly-acquires-penguin-digital-makers-of-mobile-photo-print-shop-app-mopho/). Revamped UX and app architecture of the Shutterfly branded apps as well as introduced new features (store, collage, photo filters). Led development of the Tiny Prints app for creating, editing, and purchasing photo products with a native iOS experience.
+    
+
+- company: Gameloft
+  link: https://www.gameloft.com/
+  job_title: 3D Game Programmer
+  dates: 2010 - 2012
+  #quote: >
+  # Short description of the company (optional)
+  description: | # this will include new lines to allow paragraphs
+    Worked on assorted aspects of gameplay programming for several games including tooling, graphics, user interaction and AI.

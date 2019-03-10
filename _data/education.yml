@@ -1,0 +1,6 @@
+# Education Template
+- name: Northern Arizona University
+  dates: 2009
+  qualification: B.S. in Computer Science
+  description: | # this will include new lines to allow paragraphs
+    Focused on various Computer Science topics, my favorites include `Virtual Worlds`, `Topics in Game Production`, `Computer Graphics` and `Compilers`.

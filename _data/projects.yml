@@ -1,0 +1,9 @@
+# Project template
+- name: Melly
+  link: https://itunes.apple.com/us/app/melly-focus-meditate-relax/id1410804228?mt=8
+  icon: images/melly.png
+  #github: Github page for project (eg. sproogen/modern-resume-theme)(optional)
+  quote: >
+    Recently featured 'App of the Day' and 'New Apps We Love'
+  description: | # this will include new lines to allow paragraphs
+    Melly is an app that combines a beautiful zen garden with a focus/meditation timer. The more time you spend focusing/meditating the more rewards you will be given to enhance your garden. The hope is that by rewarding you for taking a constructive action that you are able to build healthy habits that can positively impact your life.
