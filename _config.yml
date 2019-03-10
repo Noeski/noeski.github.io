@@ -1,11 +1,12 @@
 # Site
-repository: noeski/noahhilt
+repository: noeski/noeski.github.io
 # favicon: Directory of your favicon (eg. images/favicon.ico)(optional)
 
 # Personal info
 name: Noah Hilt
 title: iOS Developer and Consultant
 email: noeski@gmail.com
+website: noeski.com
 
 # Social links
 # twitter_username: noeski
@@ -18,11 +19,10 @@ about_profile_image: images/profile.jpg
 about_content: | # this will include new lines to allow paragraphs
   Hi 👋 my name is Noah and I've been an iOS developer for the past 9 years. I have a wide range of experience in every facet of app development, building from the ground up or refactoring ancient codebases. I am a strong believer in pragmatic programming and bringing the user experience to the forefront.
   
-  
   My journey began with `C++` → `Objective-C` → `Swift`
 
 # Projects Section
-projects_title: Apps
+projects_title: My Apps
 
 # Experience Section
 # experience_title: Experience #(Use this to override about experience section title)
@@ -31,11 +31,13 @@ projects_title: Apps
 # educaton_title: Education #(Use this to override about education section title)
 
 # More Section
-# more_title: A Little More About Me #(Use this to override about more section title)
+more_title: More About Me 
 more_content: | # this will include new lines to allow paragraphs
-  This is where you can write a little more about yourself. You could title this section **Interests** and include some of your other interests.
+  I'm passionate about game design and game programming (well versed in game engine architecture and `Unity`).
 
-  Or you could title it **Skills** and write a bit more about things that make you more desirable, like *leadership* or *teamwork*
+  Cooking (and eating) delicious food.
+  
+  ❤️ Miniature Australian Shepherds.
 
 # Footer
 footer_show_references: false

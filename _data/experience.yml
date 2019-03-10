@@ -4,7 +4,7 @@
   #quote: >
   # Short description of the company (optional)
   description: | # this will include new lines to allow paragraphs
-    Built custom apps for clients, guided design and architecture
+    Guiding clients on the process and execution of building and shipping their app. Offering expertise in user design and best practices in order to make their vison a reality.
 
 - company: Spotify
   link: https://www.spotify.com/
@@ -31,9 +31,8 @@
   #quote: >
   # Short description of the company (optional)
   description: | # this will include new lines to allow paragraphs
-    Developed a data driven rendering library and revamped the MoPho app’s UX leading to an [acquisition by Shutterfly in 2012](https://techcrunch.com/2012/09/17/shutterfly-acquires-penguin-digital-makers-of-mobile-photo-print-shop-app-mopho/). Revamped UX and app architecture of the Shutterfly branded apps as well as introduced new features (store, collage, photo filters). Led development of the Tiny Prints app for creating, editing, and purchasing photo products with a native iOS experience.
+    Developed a data driven rendering library and revamped the MoPho app’s UX leading to an [acquisition by Shutterfly in 2012](https://techcrunch.com/2012/09/17/shutterfly-acquires-penguin-digital-makers-of-mobile-photo-print-shop-app-mopho/). Revamped UX and app architecture of the Shutterfly branded apps as well as introduced new features (store, collage, photo filters). Led development of the Tiny Prints app for creating, editing, and purchasing photo products with a native iOS experience. Awarded US Patent 9,153,056, [Adaptive and fast image collage creation](https://patents.google.com/patent/US20140307980).
     
-
 - company: Gameloft
   link: https://www.gameloft.com/
   job_title: 3D Game Programmer
