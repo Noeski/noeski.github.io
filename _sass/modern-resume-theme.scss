@@ -92,6 +92,12 @@ ul.icons a {
   background-repeat: repeat, no-repeat;
 }
 
+@media screen and (max-width: 768px) {
+  .app-icon {
+    margin: 0 auto 20px;
+  }
+}
+
 .into-text-1 {
   margin-top: 30px;
 }
