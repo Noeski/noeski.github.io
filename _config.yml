@@ -19,7 +19,7 @@ about_profile_image: images/profile.jpg
 about_content: | # this will include new lines to allow paragraphs
   Hi 👋, my name is Noah, and I've been an iOS developer for the past nine years. I have a wide range of experience in every facet of app development, building from the ground up or refactoring ancient codebases. I am a strong believer in pragmatic programming and bringing the user experience to the forefront.
 
-  My progression of programming langauges is `C++` → `Objective-C` → `Swift`.
+  My progression of programming languages is `C++` → `Objective-C` → `Swift`.
 
 # Projects Section
 projects_title: My Apps
