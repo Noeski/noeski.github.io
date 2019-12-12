@@ -4,7 +4,7 @@ repository: noeski/noeski.github.io
 
 # Personal info
 name: Noah Hilt
-title: iOS Developer and Consultant
+title: Game Developer, iOS Developer, Consultant
 email: noeski@gmail.com
 website: noeski.com
 
@@ -17,9 +17,9 @@ linkedin_username: noah-hilt-1b68991a
 # about_title: About Me (Use this to override about section title)
 about_profile_image: images/profile.jpg
 about_content: | # this will include new lines to allow paragraphs
-  Hi 👋, my name is Noah, and I've been an iOS developer for the past nine years. I have a wide range of experience in every facet of app development, building from the ground up or refactoring ancient codebases. I am a strong believer in pragmatic programming and bringing the user experience to the forefront.
+  Hi 👋, my name is Noah, and I've been a software developer for the past ten years. I have a wide range of experience in every facet of iOS development, building from the ground up or refactoring ancient codebases. I am also well-versed in game development, game engine architecture and `Unity`. I am a strong believer in pragmatic programming and bringing the user experience to the forefront.
 
-  My progression of programming languages is `C++` → `Objective-C` → `Swift`.
+  My progression of programming languages is `C++` → `Objective-C` → `Swift` → `C#`.
 
 # Projects Section
 projects_title: My Apps
@@ -33,8 +33,6 @@ projects_title: My Apps
 # More Section
 more_title: More About Me
 more_content: | # this will include new lines to allow paragraphs
-  Well-versed in game engine architecture and `Unity`, I'm passionate about game design and game programming.
-
   Cooking (and eating) delicious food.
 
   ❤️ Miniature Australian Shepherds.

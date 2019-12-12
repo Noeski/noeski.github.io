@@ -141,7 +141,6 @@ ul.icons a {
 
     a {
       color: inherit;
-      font-style: italic;
       font-weight: 300;
     }
 
@@ -164,6 +163,26 @@ ul.icons a {
       a {
         font-weight: 500;
       }
+    }
+  }
+}
+
+.right-column {
+  a {
+    color: inherit;
+    font-weight: 300;
+  }
+
+  h4 {
+    margin-bottom: 0.4em;
+    font-weight: 500;
+
+    @media print {
+      margin-bottom: 0.2em;
+    }
+
+    a {
+      font-weight: 500;
     }
   }
 }
