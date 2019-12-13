@@ -174,13 +174,17 @@ ul.icons a {
   }
 
   h4 {
+    margin-top: 1.0em;
     margin-bottom: 1.0em;
     font-weight: 500;
     font-size: 2.0em;
-    text-align: center;
 
     @media print {
       margin-bottom: 0.2em;
+    }
+
+    @media screen and (max-width: 768px) {
+      text-align: center;
     }
 
     a {
