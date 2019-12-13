@@ -3,15 +3,16 @@
   year: 2019
   link: https://www.frostypop.com/
   icon: images/frostypop.png
-  #github: Github page for project (eg. sproogen/modern-resume-theme)(optional)
-  #quote: >
-  #  Recently featured 'App of the Day' and 'New Apps We Love'
   description: | # this will include new lines to allow paragraphs
     #### **[Big Time Sports - iOS, tvOS, Mac](https://apps.apple.com/us/app/big-time-sports/id1455785964?mt=8)**
     
     ![Big Time Sports](images/bts-screenshots.jpg)
     
     Big Time Sports harkens back to the days of fast arcade action. With over 10 different mini-games to play there’s something for everyone. Big Time Sports is one of Apple Arcade’s exclusive launch titles available on iOS, tvOS, and Mac.
+    
+    **Responsibilities:**
+    * Sole developer
+    * Built in Unity
     
     ---
     
@@ -21,15 +22,21 @@
 
     Along with Big Time Sports, Frosty Pop has released 3 other Apple Arcade games: Don't Bug Me, The Pinball Wizard, and The Get Out Kids.
     
+    **Responsibilities:**
+    * Building and integrating plugins to work with Apple APIs such as iCloud, GameCenter leaderboards/achievements, and GameCenter multiplayer
+    * Creating build system to automate build and delivery of each game for iOS, tvOS and Mac
+    
 - name: Morgan & Morgan
   year: 2019
   link: https://www.forthepeople.com
   icon: images/morgan.png
-  #github: Github page for project (eg. sproogen/modern-resume-theme)(optional)
-  #quote: >
-  #  Recently featured 'App of the Day' and 'New Apps We Love'
   description: | # this will include new lines to allow paragraphs
     #### **[Morgan & Morgan - iOS](https://apps.apple.com/us/app/morgan-morgan/id1438461862?mt=8)**
     ![Morgan & Morgan](images/morgan-screenshots.jpg)
 
     The Morgan & Morgan app was built from the ground up to support the nations largest personal injury firm. It features content related to the firm including news, past verdicts, attorneys, and more. The app also features important drug recalls that you can subscribe to in order to stay safe and informed.
+    
+    **Responsibilities:**
+    * Sole developer
+    * Built in Swift
+    * Designed backend API and worked closely with subcontractor to deliver as per requirements
