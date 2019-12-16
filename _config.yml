@@ -19,7 +19,7 @@ about_profile_image: images/profile.jpg
 about_content: | # this will include new lines to allow paragraphs
   Hi 👋, my name is Noah, and I've been a software developer for the past ten years. I have a wide range of experience in every facet of iOS development, building from the ground up or refactoring ancient codebases. I am also well-versed in game development, game engine architecture and `Unity`. I am a strong believer in pragmatic programming and bringing the user experience to the forefront.
 
-  My progression of programming languages is `C++` → `Objective-C` → `Swift` → `C#`.
+  Most of my expertise comes from building things in `C#`, `Swift`, `Objective-C` and `C++`, but I always love exploring new languages and better ways of solving problems.
 
 # Projects Section
 projects_title: My Apps
@@ -32,10 +32,10 @@ projects_title: My Apps
 
 # More Section
 more_title: More About Me
-more_content: | # this will include new lines to allow paragraphs
-  Cooking (and eating) delicious food.
-
-  ❤️ Miniature Australian Shepherds.
+# more_content: | # this will include new lines to allow paragraphs
+#  Cooking (and eating) delicious food.
+#
+#  ❤️ Miniature Australian Shepherds.
 
 # Footer
 footer_show_references: false
