@@ -51,4 +51,4 @@ sass:
 plugins:
  - jekyll-seo-tag
 
-exclude: [modern-resume-theme.gemspec, lib, Gemfile, Gemfile.lock]
+exclude: [modern-resume-theme.gemspec, lib, vendor, Gemfile, Gemfile.lock]
