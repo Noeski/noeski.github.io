@@ -9,6 +9,9 @@
   <link rel="stylesheet" href="{{ '/assets/main.css' | relative_url }}">
   <link rel="shortcut icon" type="image/x-icon" href="{{ site.favicon | relative_url }}">
 
+  <script src="{{ '/assets/js/jquery.min.js' | relative_url %}}"></script>
+  <script src="{{ '/assets/js/gif.js' | relative_url %}}"></script>
+          
   {%- if jekyll.environment == 'production' and site.google_analytics -%}
     {%- include google-analytics.html -%}
   {%- endif -%}

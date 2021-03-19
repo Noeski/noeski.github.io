@@ -1,0 +1,77 @@
+@mixin opacity($opacity: 0.5) {
+  filter: alpha(opacity=$opacity*100);
+  filter: progid:DXImageTransform.Microsoft.Alpha(opacity=#{$opacity*100});
+  opacity: $opacity;
+}
+
+@mixin transition($args...) {
+  -webkit-transition: $args;
+  -moz-transition: $args;
+  -ms-transition: $args;
+  -o-transition: $args;
+  transition: $args;
+}
+
+@mixin box-shadow($shadow...) {
+  -webkit-box-shadow: $shadow;
+  -moz-box-shadow: $shadow;
+  box-shadow: $shadow;
+}
+
+div.animated_gif_container {
+  text-align: center
+}
+
+div.animated_gif_frame {
+  display: inline-block;
+  position: relative;
+  max-width: 100%;
+  text-align: center;
+  cursor: pointer;
+
+  &::before {
+    content: '\f215';
+    font-family: 'Ionicons';
+    position: absolute;
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    top: 50%;
+    left: 50%;
+    margin-top: -25px;
+    margin-left: -25px;
+    text-align: center;
+    font-size: 19px;
+    line-height: 45px;
+    border: 3px solid #fff;
+    border-radius: 25px;
+    color: #fff;
+    background-color: #333;
+  }
+
+  &::after {
+    content: 'GIF';
+    position: absolute;
+    display: inline-block;
+    width: 40px;
+    text-align: center;
+    top: 20px;
+    left: 20px;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 5px;
+    border-radius: 3px;
+    color: #fff;
+    background-color: #333;
+    text-transform: uppercase;
+  }
+
+  &.playing::before {
+    display: none;
+  }
+
+  &.playing::after {
+    color: #333;
+    background-color: #fff;
+  }
+}

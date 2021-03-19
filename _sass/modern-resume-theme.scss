@@ -1,5 +1,6 @@
 @import "base";
 @import "button";
+@import "gif";
 @import "type";
 
 ul.icons a:hover {
@@ -171,6 +172,12 @@ ul.icons a {
   a {
     color: inherit;
     font-weight: 300;
+  }
+
+  img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
   }
 
   h4 {

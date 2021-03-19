@@ -1,9 +1,21 @@
 # Consulting template
 - name: Frosty Pop
-  year: 2019
+  year: 2019-2021
   link: https://www.frostypop.com/
   icon: images/frostypop.png
   description: | # this will include new lines to allow paragraphs
+    #### **[Beankind - iOS, Android](https://apps.apple.com/us/app/beankind-by-ketnipz/id1515561929?mt=8)**
+    
+    ![Beankind](images/beankind-screenshots.jpg)
+    
+    Beankind is an idle game with a twist - build up 'taps' to unlock new decorations for your room, each 'tap' you contribute is shared to the world which helps unlock global characters for everyone.
+        
+    I worked with [Ketnipz](https://www.ketnipz.com) and the founder of Frosty Pop to build the Beankind app as well as the backend to support validating and synchronizing each player's 'taps',
+            
+    {% gif images/beankind.gif %}
+
+    ---
+    
     #### **[Big Time Sports - iOS, tvOS, Mac](https://apps.apple.com/us/app/big-time-sports/id1455785964?mt=8)**
     
     ![Big Time Sports](images/bts-screenshots.jpg)
@@ -18,9 +30,22 @@
     
     ![Apple Arcade Support](images/arcade-screenshots.jpg)
 
-    Along with Big Time Sports, Frosty Pop has released 3 other Apple Arcade games: Don't Bug Me, The Pinball Wizard, and The Get Out Kids.
+    Along with Big Time Sports, Frosty Pop has released 4 other Apple Arcade games: Don't Bug Me, The Pinball Wizard, Kings of the Castle, and The Get Out Kids.
     
-    Apple Arcade games take full advantage of Apple's platform to create a unified experience across all of their devices (iOS, tvOS, and Mac). To this end, I built and integrated plugins to work with Apple APIs such as iCloud, GameCenter leaderboards/achievements, and GameCenter multiplayer. I also created a build system to automate the delivery of each game for iOS, tvOS and Mac.
+    Apple Arcade games take full advantage of Apple's platform to create a unified experience across all of their devices (iOS, tvOS, and Mac). To this end, I built and integrated plugins to work with Apple APIs such as iCloud, Game Center leaderboards/achievements, and Game Center multiplayer. I also created a build system to automate the delivery of each game for iOS, tvOS and Mac.
+
+- name: Way Forward
+  year: 2019
+  link: https://www.wayforward.com/
+  icon: images/wayforward.png
+  description: | # this will include new lines to allow paragraphs
+    #### **[Marble Knights - iOS, tvOS, Mac](https://apps.apple.com/app/marble-knights/id1520992000?mt=8)**
+    
+    ![Marble Knights](images/marble-knights.jpg)
+    
+    Marble Knights is a multiplayer RPG with... Marbles! It is also one of Way Forward's first games released on Apple Arcade.
+    
+    For Marble Knights, I built plugins to support Apple's Game Center multiplayer APIs, CloudKit for sync support, and MultipeerConnectivity for connecting local devices.
     
 - name: Morgan & Morgan
   year: 2019
