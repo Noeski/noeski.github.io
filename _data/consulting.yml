@@ -1,9 +1,19 @@
 # Consulting template
 - name: Frosty Pop
-  year: 2019-2021
+  year: 2019-2022
   link: https://www.frostypop.com/
   icon: images/frostypop.png
   description: | # this will include new lines to allow paragraphs
+    #### **[Krispee Street - iOS, Android](https://apps.apple.com/us/app/krispee-street/id1597202855?mt=8)**
+    
+    ![Krispee Street](images/krispee-screenshots.jpg)
+    
+    Krispee Street is a hidden object game based on the popular [webcomic](https://www.instagram.com/hellokrispee) and published by Netflix Games.
+        
+    I led the development of Krispee Street, working with the talented artists that create the Krispee comic, composer [Sam Williams](https://www.samwilliamscomposer.com), and the founder of Frosty Pop to bring this whimsical take on the hidden object genre to life.
+    
+    ---
+    
     #### **[Beankind - iOS, Android](https://apps.apple.com/us/app/beankind-by-ketnipz/id1515561929?mt=8)**
     
     ![Beankind](images/beankind-screenshots.jpg)
@@ -57,5 +67,5 @@
 
     The Morgan & Morgan app was built from the ground up to support the nation's largest personal injury firm. It features content related to the firm including news, past verdicts, attorneys, and more. The app also features important drug recalls that you can subscribe to in order to stay safe and informed.
     
-    I worked closely with Morgan & Morgan to help bring their the app to life, creating the frontend, designing the backend API, and coordinating with a backend engineer to create the right solution that would help power the app.
+    I worked closely with Morgan & Morgan to help bring their app to life, creating the frontend, designing the backend API, and coordinating with a backend engineer to create the right solution that would help power the app.
 
