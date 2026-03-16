@@ -1,0 +1,397 @@
+---
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JLPT N5/N4 Adverbs & Expressive Words</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=DM+Sans:wght@400;500&display=swap');
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #f7f5f0;
+    --surface: #ffffff;
+    --surface2: #f0ede6;
+    --border: #e2ddd5;
+    --text: #1a1814;
+    --text2: #6b6660;
+    --text3: #9e9890;
+    --accent: #2d4a3e;
+
+    --time-bg: #e8f0f7; --time-border: #3a6fa8; --time-text: #1a3a5c;
+    --change-bg: #e4f2eb; --change-border: #2a7a50; --change-text: #14432a;
+    --degree-bg: #ede9f7; --degree-border: #6248b8; --degree-text: #2e1d6e;
+    --freq-bg: #fef3e2; --freq-border: #b07020; --freq-text: #5c3808;
+    --manner-bg: #faeae6; --manner-border: #b03a20; --manner-text: #5c1e0e;
+  }
+
+  body {
+    font-family: 'DM Sans', 'Noto Sans JP', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    padding: 2rem 1.5rem 4rem;
+  }
+
+  header {
+    max-width: 900px;
+    margin: 0 auto 2.5rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1.5px solid var(--border);
+  }
+
+  header h1 {
+    font-size: 26px;
+    font-weight: 500;
+    color: var(--text);
+    letter-spacing: -0.3px;
+    margin-bottom: 4px;
+  }
+
+  header p {
+    font-size: 14px;
+    color: var(--text2);
+  }
+
+  .controls {
+    max-width: 900px;
+    margin: 0 auto 1.5rem;
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  .controls span {
+    font-size: 12px;
+    color: var(--text3);
+    margin-right: 4px;
+  }
+
+  button {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    padding: 5px 14px;
+    border-radius: 20px;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    color: var(--text2);
+    cursor: pointer;
+    transition: all 0.15s;
+    letter-spacing: 0.2px;
+  }
+
+  button:hover { background: var(--surface2); color: var(--text); }
+
+  button.active-all    { background: var(--accent); color: #fff; border-color: var(--accent); }
+  button.active-time   { background: var(--time-bg); color: var(--time-text); border-color: var(--time-border); }
+  button.active-change { background: var(--change-bg); color: var(--change-text); border-color: var(--change-border); }
+  button.active-degree { background: var(--degree-bg); color: var(--degree-text); border-color: var(--degree-border); }
+  button.active-freq   { background: var(--freq-bg); color: var(--freq-text); border-color: var(--freq-border); }
+  button.active-manner { background: var(--manner-bg); color: var(--manner-text); border-color: var(--manner-border); }
+
+  .search-wrap {
+    max-width: 900px;
+    margin: 0 auto 1.5rem;
+  }
+
+  input[type="text"] {
+    font-family: 'DM Sans', 'Noto Sans JP', sans-serif;
+    font-size: 14px;
+    width: 100%;
+    padding: 9px 14px;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    background: var(--surface);
+    color: var(--text);
+    outline: none;
+    transition: border-color 0.15s;
+  }
+
+  input[type="text"]:focus { border-color: var(--accent); }
+  input[type="text"]::placeholder { color: var(--text3); }
+
+  .grid {
+    max-width: 900px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 12px;
+  }
+
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 14px 16px;
+    transition: transform 0.1s, box-shadow 0.1s;
+  }
+
+  .card:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 16px rgba(0,0,0,0.07);
+  }
+
+  .pill {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 500;
+    padding: 2px 9px;
+    border-radius: 20px;
+    margin-bottom: 10px;
+    letter-spacing: 0.2px;
+  }
+
+  .pill-time   { background: var(--time-bg);   color: var(--time-text);   border: 1px solid var(--time-border); }
+  .pill-change { background: var(--change-bg); color: var(--change-text); border: 1px solid var(--change-border); }
+  .pill-degree { background: var(--degree-bg); color: var(--degree-text); border: 1px solid var(--degree-border); }
+  .pill-freq   { background: var(--freq-bg);   color: var(--freq-text);   border: 1px solid var(--freq-border); }
+  .pill-manner { background: var(--manner-bg); color: var(--manner-text); border: 1px solid var(--manner-border); }
+
+  .word-jp {
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 2px;
+    line-height: 1.2;
+  }
+
+  .word-rom {
+    font-size: 12px;
+    color: var(--text3);
+    margin-bottom: 6px;
+    font-style: italic;
+  }
+
+  .word-en {
+    font-size: 13px;
+    color: var(--text2);
+    line-height: 1.5;
+    margin-bottom: 10px;
+  }
+
+  .word-ex {
+    font-size: 12px;
+    color: var(--text3);
+    font-style: italic;
+    line-height: 1.5;
+    border-top: 1px solid var(--border);
+    padding-top: 8px;
+    font-family: 'Noto Sans JP', sans-serif;
+  }
+
+  .empty {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 3rem;
+    color: var(--text3);
+    font-size: 14px;
+  }
+
+  .count {
+    max-width: 900px;
+    margin: 0 auto 1rem;
+    font-size: 12px;
+    color: var(--text3);
+  }
+
+  .notes {
+    max-width: 900px;
+    margin: 3rem auto 0;
+    border-top: 1px solid var(--border);
+    padding-top: 1.5rem;
+  }
+
+  .notes h2 {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text2);
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    font-size: 11px;
+  }
+
+  .note-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 10px;
+  }
+
+  .note-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 12px 14px;
+  }
+
+  .note-card strong {
+    font-size: 14px;
+    font-family: 'Noto Sans JP', sans-serif;
+    display: block;
+    margin-bottom: 4px;
+    color: var(--text);
+  }
+
+  .note-card p {
+    font-size: 12px;
+    color: var(--text2);
+    line-height: 1.6;
+  }
+
+  footer {
+    max-width: 900px;
+    margin: 2rem auto 0;
+    font-size: 11px;
+    color: var(--text3);
+    text-align: center;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>JLPT N5 / N4 — Adverbs &amp; Expressive Words</h1>
+  <p>30 essential adverbs grouped by category · Filter, search, or browse all</p>
+</header>
+
+<div class="search-wrap">
+  <input type="text" id="search" placeholder="Search in Japanese, romaji, or English…">
+</div>
+
+<div class="controls">
+  <span>Filter:</span>
+  <button id="btn-all" class="active-all" onclick="setFilter('all')">All (30)</button>
+  <button id="btn-time" onclick="setFilter('time')">Time</button>
+  <button id="btn-change" onclick="setFilter('change')">Change</button>
+  <button id="btn-degree" onclick="setFilter('degree')">Degree</button>
+  <button id="btn-freq" onclick="setFilter('freq')">Frequency</button>
+  <button id="btn-manner" onclick="setFilter('manner')">Manner</button>
+</div>
+
+<div class="count" id="count">Showing 30 words</div>
+<div class="grid" id="grid"></div>
+
+<div class="notes">
+  <h2>Usage notes</h2>
+  <div class="note-grid">
+    <div class="note-card">
+      <strong>なかなか</strong>
+      <p>Flips meaning with polarity. Positive sentence → "quite / rather good". Negative sentence → "just can't seem to". Both are very common.</p>
+    </div>
+    <div class="note-card">
+      <strong>やはり / やっぱり</strong>
+      <p>Same word, different register. やっぱり is casual speech; やはり is more formal or written. Meaning: "as expected / after all".</p>
+    </div>
+    <div class="note-card">
+      <strong>あまり &amp; 全然</strong>
+      <p>Both require a negative verb to complete their meaning. You will almost never see either in a positive sentence at this level.</p>
+    </div>
+    <div class="note-card">
+      <strong>どんどん vs だんだん</strong>
+      <p>Both express gradual change, but どんどん feels fast and energetic (things piling up / speeding up), while だんだん is a slow, smooth progression.</p>
+    </div>
+    <div class="note-card">
+      <strong>ずっと</strong>
+      <p>Can mean duration ("all along / the whole time") or distance ("far away"). Context usually makes it clear.</p>
+    </div>
+    <div class="note-card">
+      <strong>もう vs まだ</strong>
+      <p>もう = "already" (positive) or "not anymore" (negative). まだ = "still" (positive) or "not yet" (negative). A common pairing to master early.</p>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <p>Reference sheet · JLPT N5 &amp; N4 level · 30 words</p>
+</footer>
+
+<script>
+const words = [
+  { jp:"そろそろ", rom:"sorosoro", en:"It's about time / gradually starting", ex:"そろそろ行きましょう。(Let's get going soon.)", cat:"time", level:"N5" },
+  { jp:"もうすぐ", rom:"mō sugu", en:"Very soon, almost", ex:"もうすぐ春です。(Spring is almost here.)", cat:"time", level:"N5" },
+  { jp:"まだ", rom:"mada", en:"Still / not yet", ex:"まだ食べていません。(I haven't eaten yet.)", cat:"time", level:"N5" },
+  { jp:"もう", rom:"mō", en:"Already / (not) anymore", ex:"もう終わりました。(It's already finished.)", cat:"time", level:"N5" },
+  { jp:"やっと", rom:"yatto", en:"Finally, at last (after effort)", ex:"やっと着いた！(We finally arrived!)", cat:"time", level:"N4" },
+  { jp:"だんだん", rom:"dandan", en:"Gradually, little by little", ex:"だんだん暖かくなります。(It's gradually getting warmer.)", cat:"change", level:"N5" },
+  { jp:"どんどん", rom:"dondon", en:"Rapidly, one after another, at pace", ex:"どんどん上手になっている。(Getting better and better.)", cat:"change", level:"N4" },
+  { jp:"急に", rom:"kyū ni", en:"Suddenly, all of a sudden", ex:"急に雨が降り出した。(It suddenly started raining.)", cat:"change", level:"N4" },
+  { jp:"とても", rom:"totemo", en:"Very, extremely", ex:"とても嬉しいです。(I'm very happy.)", cat:"degree", level:"N5" },
+  { jp:"あまり", rom:"amari", en:"Not very… (requires negative verb)", ex:"あまり好きじゃない。(I don't like it very much.)", cat:"degree", level:"N5" },
+  { jp:"全然", rom:"zenzen", en:"Not at all (requires negative verb)", ex:"全然わかりません。(I don't understand at all.)", cat:"degree", level:"N5" },
+  { jp:"ちょっと", rom:"chotto", en:"A little / just a moment", ex:"ちょっと待ってください。(Please wait a moment.)", cat:"degree", level:"N5" },
+  { jp:"たくさん", rom:"takusan", en:"A lot, many, much", ex:"たくさん食べました。(I ate a lot.)", cat:"degree", level:"N5" },
+  { jp:"少し", rom:"sukoshi", en:"A little, a few", ex:"少し疲れた。(I'm a little tired.)", cat:"degree", level:"N5" },
+  { jp:"ずっと", rom:"zutto", en:"All along / the whole time / far", ex:"ずっと待っていました。(I was waiting the whole time.)", cat:"degree", level:"N5" },
+  { jp:"なかなか", rom:"nakanaka", en:"Quite / not easily (context-dependent)", ex:"なかなかうまくできない。(I just can't seem to do it well.)", cat:"degree", level:"N4" },
+  { jp:"だいたい", rom:"daitai", en:"Generally, roughly, about", ex:"だいたい30分かかります。(It takes about 30 minutes.)", cat:"degree", level:"N4" },
+  { jp:"特に", rom:"toku ni", en:"Especially, particularly", ex:"特に問題はありません。(There's no particular problem.)", cat:"degree", level:"N4" },
+  { jp:"いつも", rom:"itsumo", en:"Always, usually", ex:"いつも早く寝ます。(I always go to bed early.)", cat:"freq", level:"N5" },
+  { jp:"よく", rom:"yoku", en:"Often / well", ex:"よく映画を見ます。(I often watch movies.)", cat:"freq", level:"N5" },
+  { jp:"時々", rom:"tokidoki", en:"Sometimes, occasionally", ex:"時々雨が降ります。(It rains sometimes.)", cat:"freq", level:"N5" },
+  { jp:"たまに", rom:"tama ni", en:"Occasionally, once in a while", ex:"たまに外食します。(I eat out every now and then.)", cat:"freq", level:"N4" },
+  { jp:"たいてい", rom:"taitei", en:"Usually, generally", ex:"たいてい7時に起きます。(I usually wake up at 7.)", cat:"freq", level:"N4" },
+  { jp:"ゆっくり", rom:"yukkuri", en:"Slowly, leisurely", ex:"ゆっくり話してください。(Please speak slowly.)", cat:"manner", level:"N5" },
+  { jp:"はっきり", rom:"hakkiri", en:"Clearly, distinctly", ex:"はっきり言ってください。(Please say it clearly.)", cat:"manner", level:"N4" },
+  { jp:"きちんと", rom:"kichinto", en:"Properly, neatly, exactly", ex:"きちんと片付けた。(I tidied up properly.)", cat:"manner", level:"N4" },
+  { jp:"しっかり", rom:"shikkari", en:"Firmly, properly, reliably", ex:"しっかり食べてね。(Make sure to eat properly.)", cat:"manner", level:"N4" },
+  { jp:"もちろん", rom:"mochiron", en:"Of course, certainly", ex:"もちろん行きます！(Of course I'll go!)", cat:"manner", level:"N4" },
+  { jp:"ぜひ", rom:"zehi", en:"By all means, definitely", ex:"ぜひ来てください。(Please do come.)", cat:"manner", level:"N4" },
+  { jp:"やはり／やっぱり", rom:"yahari / yappari", en:"As expected, after all", ex:"やっぱりそうだった。(It was just as I thought.)", cat:"manner", level:"N4" },
+];
+
+const catLabel = { time:"time", change:"change", degree:"degree", freq:"frequency", manner:"manner" };
+let activeFilter = "all";
+let searchVal = "";
+
+function pillClass(cat) { return "pill pill-" + cat; }
+
+function render() {
+  const q = searchVal.toLowerCase();
+  const filtered = words.filter(w => {
+    const matchCat = activeFilter === "all" || w.cat === activeFilter;
+    const matchQ = !q || w.jp.includes(q) || w.rom.toLowerCase().includes(q) || w.en.toLowerCase().includes(q) || w.ex.toLowerCase().includes(q);
+    return matchCat && matchQ;
+  });
+
+  document.getElementById("count").textContent = "Showing " + filtered.length + " word" + (filtered.length !== 1 ? "s" : "");
+
+  const grid = document.getElementById("grid");
+  if (filtered.length === 0) {
+    grid.innerHTML = '<div class="empty">No words match your search.</div>';
+    return;
+  }
+  grid.innerHTML = filtered.map(w => `
+    <div class="card">
+      <span class="${pillClass(w.cat)}">${catLabel[w.cat]} · ${w.level}</span>
+      <div class="word-jp">${w.jp}</div>
+      <div class="word-rom">${w.rom}</div>
+      <div class="word-en">${w.en}</div>
+      <div class="word-ex">${w.ex}</div>
+    </div>
+  `).join("");
+}
+
+function setFilter(f) {
+  activeFilter = f;
+  ["all","time","change","degree","freq","manner"].forEach(c => {
+    const btn = document.getElementById("btn-" + c);
+    btn.className = (c === f) ? "active-" + c : "";
+  });
+  render();
+}
+
+document.getElementById("search").addEventListener("input", function() {
+  searchVal = this.value;
+  render();
+});
+
+render();
+</script>
+</body>
+</html>

@@ -1,0 +1,607 @@
+---
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JLPT N5/N4 Common Verbs</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=DM+Sans:wght@400;500&display=swap');
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #f7f5f0;
+    --surface: #ffffff;
+    --surface2: #f0ede6;
+    --border: #e2ddd5;
+    --text: #1a1814;
+    --text2: #6b6660;
+    --text3: #9e9890;
+    --accent: #2d4a3e;
+
+    --motion-bg: #e8f0f7;   --motion-border: #3a6fa8;  --motion-text: #1a3a5c;
+    --exist-bg: #e4f2eb;    --exist-border: #2a7a50;   --exist-text: #14432a;
+    --action-bg: #ede9f7;   --action-border: #6248b8;  --action-text: #2e1d6e;
+    --state-bg:  #fef3e2;   --state-border:  #b07020;  --state-text:  #5c3808;
+    --interact-bg: #faeae6; --interact-border: #b03a20; --interact-text: #5c1e0e;
+    --create-bg: #e6f5f5;   --create-border: #1a7a7a;  --create-text: #0d3d3d;
+
+    --g1-bg: #f0ede6; --g1-border: #8a8070; --g1-text: #3a3020;
+    --g2-bg: #e8f0e8; --g2-border: #4a7a4a; --g2-text: #1a3a1a;
+    --g3-bg: #ede8f5; --g3-border: #6a4ab0; --g3-text: #2a1a50;
+
+    --tr-bg: #e6f0fb;  --tr-border: #2a60a8;  --tr-text: #102848;
+    --itr-bg: #f0e8f8; --itr-border: #7040b0; --itr-text: #2a1050;
+  }
+
+  body {
+    font-family: 'DM Sans', 'Noto Sans JP', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    padding: 2rem 1.5rem 4rem;
+  }
+
+  header {
+    max-width: 1100px;
+    margin: 0 auto 2rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1.5px solid var(--border);
+  }
+
+  header h1 {
+    font-size: 26px;
+    font-weight: 500;
+    color: var(--text);
+    letter-spacing: -0.3px;
+    margin-bottom: 4px;
+  }
+
+  header p {
+    font-size: 14px;
+    color: var(--text2);
+  }
+
+  .toolbar {
+    max-width: 1100px;
+    margin: 0 auto 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .search-wrap input {
+    font-family: 'DM Sans', 'Noto Sans JP', sans-serif;
+    font-size: 14px;
+    width: 100%;
+    padding: 9px 14px;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    background: var(--surface);
+    color: var(--text);
+    outline: none;
+    transition: border-color 0.15s;
+  }
+
+  .search-wrap input:focus { border-color: var(--accent); }
+  .search-wrap input::placeholder { color: var(--text3); }
+
+  .filter-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    align-items: center;
+  }
+
+  .filter-row .row-label {
+    font-size: 11px;
+    color: var(--text3);
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    min-width: 60px;
+  }
+
+  button {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    padding: 4px 12px;
+    border-radius: 20px;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    color: var(--text2);
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+
+  button:hover { background: var(--surface2); color: var(--text); }
+
+  .active-all      { background: var(--accent) !important; color: #fff !important; border-color: var(--accent) !important; }
+  .active-motion   { background: var(--motion-bg) !important;   color: var(--motion-text) !important;   border-color: var(--motion-border) !important; }
+  .active-exist    { background: var(--exist-bg) !important;    color: var(--exist-text) !important;    border-color: var(--exist-border) !important; }
+  .active-action   { background: var(--action-bg) !important;   color: var(--action-text) !important;   border-color: var(--action-border) !important; }
+  .active-state    { background: var(--state-bg) !important;    color: var(--state-text) !important;    border-color: var(--state-border) !important; }
+  .active-interact { background: var(--interact-bg) !important; color: var(--interact-text) !important; border-color: var(--interact-border) !important; }
+  .active-create   { background: var(--create-bg) !important;   color: var(--create-text) !important;   border-color: var(--create-border) !important; }
+  .active-g1  { background: var(--g1-bg) !important;  color: var(--g1-text) !important;  border-color: var(--g1-border) !important; }
+  .active-g2  { background: var(--g2-bg) !important;  color: var(--g2-text) !important;  border-color: var(--g2-border) !important; }
+  .active-g3  { background: var(--g3-bg) !important;  color: var(--g3-text) !important;  border-color: var(--g3-border) !important; }
+  .active-tr  { background: var(--tr-bg) !important;  color: var(--tr-text) !important;  border-color: var(--tr-border) !important; }
+  .active-itr { background: var(--itr-bg) !important; color: var(--itr-text) !important; border-color: var(--itr-border) !important; }
+
+  .count {
+    max-width: 1100px;
+    margin: 0.5rem auto 0.75rem;
+    font-size: 12px;
+    color: var(--text3);
+  }
+
+  .grid {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 12px;
+  }
+
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 14px 16px;
+    transition: transform 0.1s, box-shadow 0.1s;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .card:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 16px rgba(0,0,0,0.07);
+  }
+
+  .card-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 8px;
+    gap: 6px;
+  }
+
+  .badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    justify-content: flex-end;
+  }
+
+  .pill {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 500;
+    padding: 2px 7px;
+    border-radius: 20px;
+    letter-spacing: 0.2px;
+    white-space: nowrap;
+  }
+
+  .pill-motion   { background: var(--motion-bg);   color: var(--motion-text);   border: 1px solid var(--motion-border); }
+  .pill-exist    { background: var(--exist-bg);    color: var(--exist-text);    border: 1px solid var(--exist-border); }
+  .pill-action   { background: var(--action-bg);   color: var(--action-text);   border: 1px solid var(--action-border); }
+  .pill-state    { background: var(--state-bg);    color: var(--state-text);    border: 1px solid var(--state-border); }
+  .pill-interact { background: var(--interact-bg); color: var(--interact-text); border: 1px solid var(--interact-border); }
+  .pill-create   { background: var(--create-bg);   color: var(--create-text);   border: 1px solid var(--create-border); }
+
+  .pill-g1 { background: var(--g1-bg); color: var(--g1-text); border: 1px solid var(--g1-border); }
+  .pill-g2 { background: var(--g2-bg); color: var(--g2-text); border: 1px solid var(--g2-border); }
+  .pill-g3 { background: var(--g3-bg); color: var(--g3-text); border: 1px solid var(--g3-border); }
+
+  .pill-tr  { background: var(--tr-bg);  color: var(--tr-text);  border: 1px solid var(--tr-border); }
+  .pill-itr { background: var(--itr-bg); color: var(--itr-text); border: 1px solid var(--itr-border); }
+
+  .level-tag {
+    font-size: 10px;
+    font-weight: 500;
+    color: var(--text3);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 2px 7px;
+  }
+
+  .word-jp {
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--text);
+    line-height: 1.2;
+    margin-bottom: 1px;
+  }
+
+  .word-rom {
+    font-size: 12px;
+    color: var(--text3);
+    font-style: italic;
+    margin-bottom: 5px;
+  }
+
+  .word-en {
+    font-size: 13px;
+    color: var(--text2);
+    line-height: 1.5;
+    margin-bottom: 8px;
+  }
+
+  .particles-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    margin-bottom: 8px;
+    align-items: center;
+  }
+
+  .particles-label {
+    font-size: 11px;
+    color: var(--text3);
+    margin-right: 2px;
+  }
+
+  .particle-chip {
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 1px 8px;
+    color: var(--text);
+  }
+
+  .word-ex {
+    font-size: 12px;
+    color: var(--text3);
+    font-style: italic;
+    line-height: 1.6;
+    border-top: 1px solid var(--border);
+    padding-top: 8px;
+    margin-top: auto;
+    font-family: 'Noto Sans JP', sans-serif;
+  }
+
+  .empty {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 3rem;
+    color: var(--text3);
+    font-size: 14px;
+  }
+
+  .legend {
+    max-width: 1100px;
+    margin: 2.5rem auto 0;
+    border-top: 1px solid var(--border);
+    padding-top: 1.5rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 10px;
+  }
+
+  .legend-section h3 {
+    font-size: 11px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.7px;
+    color: var(--text3);
+    margin-bottom: 8px;
+  }
+
+  .legend-items {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .legend-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    font-size: 12px;
+    color: var(--text2);
+    line-height: 1.5;
+  }
+
+  .legend-item .pill {
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  .notes {
+    max-width: 1100px;
+    margin: 2rem auto 0;
+    border-top: 1px solid var(--border);
+    padding-top: 1.5rem;
+  }
+
+  .notes h2 {
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--text3);
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+  }
+
+  .note-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 10px;
+  }
+
+  .note-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 12px 14px;
+  }
+
+  .note-card strong {
+    font-size: 14px;
+    font-family: 'Noto Sans JP', sans-serif;
+    display: block;
+    margin-bottom: 4px;
+    color: var(--text);
+  }
+
+  .note-card p {
+    font-size: 12px;
+    color: var(--text2);
+    line-height: 1.6;
+  }
+
+  footer {
+    max-width: 1100px;
+    margin: 2rem auto 0;
+    font-size: 11px;
+    color: var(--text3);
+    text-align: center;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>JLPT N5 / N4 — Common Verbs</h1>
+  <p>60 essential verbs · verb group · particles · transitive / intransitive · example sentences</p>
+</header>
+
+<div class="toolbar">
+  <div class="search-wrap">
+    <input type="text" id="search" placeholder="Search in Japanese, romaji, or English…">
+  </div>
+  <div class="filter-row">
+    <span class="row-label">Category</span>
+    <button id="btn-all" onclick="setCat('all')">All</button>
+    <button id="btn-motion" onclick="setCat('motion')">Motion</button>
+    <button id="btn-exist" onclick="setCat('exist')">Existence</button>
+    <button id="btn-action" onclick="setCat('action')">Action</button>
+    <button id="btn-state" onclick="setCat('state')">State / Change</button>
+    <button id="btn-interact" onclick="setCat('interact')">Interaction</button>
+    <button id="btn-create" onclick="setCat('create')">Create / Produce</button>
+  </div>
+  <div class="filter-row">
+    <span class="row-label">Group</span>
+    <button id="btn-g1" onclick="setGroup('g1')">Group 1 (う-verbs)</button>
+    <button id="btn-g2" onclick="setGroup('g2')">Group 2 (る-verbs)</button>
+    <button id="btn-g3" onclick="setGroup('g3')">Group 3 (irregular)</button>
+  </div>
+  <div class="filter-row">
+    <span class="row-label">Transitivity</span>
+    <button id="btn-tr"  onclick="setTrans('tr')">Transitive (他動詞)</button>
+    <button id="btn-itr" onclick="setTrans('itr')">Intransitive (自動詞)</button>
+  </div>
+</div>
+
+<div class="count" id="count"></div>
+<div class="grid" id="grid"></div>
+
+<div class="legend">
+  <div class="legend-section">
+    <h3>Verb group</h3>
+    <div class="legend-items">
+      <div class="legend-item"><span class="pill pill-g1">Group 1</span> う-verbs (godan). Conjugate by changing the final う-row sound. E.g. 書く → 書きます</div>
+      <div class="legend-item"><span class="pill pill-g2">Group 2</span> る-verbs (ichidan). Drop る, add ending. E.g. 食べる → 食べます</div>
+      <div class="legend-item"><span class="pill pill-g3">Group 3</span> Irregular. Only する and くる (and their compounds).</div>
+    </div>
+  </div>
+  <div class="legend-section">
+    <h3>Transitivity</h3>
+    <div class="legend-items">
+      <div class="legend-item"><span class="pill pill-tr">transitive</span> Takes a direct object marked with を. The subject acts <em>on</em> something.</div>
+      <div class="legend-item"><span class="pill pill-itr">intransitive</span> No direct object. The subject itself moves or changes state.</div>
+    </div>
+  </div>
+  <div class="legend-section">
+    <h3>Key particles</h3>
+    <div class="legend-items">
+      <div class="legend-item"><span class="particle-chip" style="display:inline-block;font-family:'Noto Sans JP',sans-serif;font-size:12px;font-weight:500;background:#f0ede6;border:1px solid #e2ddd5;border-radius:6px;padding:1px 8px;color:#1a1814;">を</span> Direct object — what is acted upon</div>
+      <div class="legend-item"><span class="particle-chip" style="display:inline-block;font-family:'Noto Sans JP',sans-serif;font-size:12px;font-weight:500;background:#f0ede6;border:1px solid #e2ddd5;border-radius:6px;padding:1px 8px;color:#1a1814;">に</span> Target, destination, time, or indirect object</div>
+      <div class="legend-item"><span class="particle-chip" style="display:inline-block;font-family:'Noto Sans JP',sans-serif;font-size:12px;font-weight:500;background:#f0ede6;border:1px solid #e2ddd5;border-radius:6px;padding:1px 8px;color:#1a1814;">で</span> Location of action, means, or instrument</div>
+      <div class="legend-item"><span class="particle-chip" style="display:inline-block;font-family:'Noto Sans JP',sans-serif;font-size:12px;font-weight:500;background:#f0ede6;border:1px solid #e2ddd5;border-radius:6px;padding:1px 8px;color:#1a1814;">へ</span> Direction (interchangeable with に for movement)</div>
+      <div class="legend-item"><span class="particle-chip" style="display:inline-block;font-family:'Noto Sans JP',sans-serif;font-size:12px;font-weight:500;background:#f0ede6;border:1px solid #e2ddd5;border-radius:6px;padding:1px 8px;color:#1a1814;">から</span> From (origin or starting point)</div>
+      <div class="legend-item"><span class="particle-chip" style="display:inline-block;font-family:'Noto Sans JP',sans-serif;font-size:12px;font-weight:500;background:#f0ede6;border:1px solid #e2ddd5;border-radius:6px;padding:1px 8px;color:#1a1814;">と</span> Together with / quotation marker</div>
+    </div>
+  </div>
+</div>
+
+<div class="notes">
+  <h2>Usage notes</h2>
+  <div class="note-grid">
+    <div class="note-card">
+      <strong>いる vs ある</strong>
+      <p>Both mean "to exist / to be". いる is for living things (people, animals). ある is for inanimate objects and abstract things. Both take に for location.</p>
+    </div>
+    <div class="note-card">
+      <strong>行く・来る・帰る</strong>
+      <p>These three motion verbs pair with に or へ for destination. 行く moves away from the speaker, 来る moves toward the speaker, 帰る means to return to a home base.</p>
+    </div>
+    <div class="note-card">
+      <strong>開ける vs 開く</strong>
+      <p>開ける (akeru) is transitive — you open something (を). 開く (aku) is intransitive — something opens on its own. This transitive/intransitive pairing is very common in Japanese.</p>
+    </div>
+    <div class="note-card">
+      <strong>着る・はく・かぶる</strong>
+      <p>Japanese uses different "wear" verbs depending on body part. 着る = upper body clothing. はく = lower body / feet. かぶる = head. All take を.</p>
+    </div>
+    <div class="note-card">
+      <strong>わかる vs しる</strong>
+      <p>わかる (to understand) takes が, not を. しる (to come to know) takes を. For current knowledge state, use 知っている (not just 知る).</p>
+    </div>
+    <div class="note-card">
+      <strong>する — the workhorse</strong>
+      <p>する can attach to many nouns to make compound verbs: 勉強する, 電話する, 結婚する, etc. It is always Group 3 (irregular) and always transitive when used with を.</p>
+    </div>
+  </div>
+</div>
+
+<footer><p>Reference sheet · JLPT N5 &amp; N4 level · 60 verbs</p></footer>
+
+<script>
+const verbs = [
+  { jp:"行く",     rom:"iku",        en:"To go",                          cat:"motion",   group:"g1", trans:"itr", particles:["に","へ"],      ex:"学校に行きます。(I go to school.)",                    level:"N5" },
+  { jp:"来る",     rom:"kuru",       en:"To come",                        cat:"motion",   group:"g3", trans:"itr", particles:["に","へ"],      ex:"家に来てください。(Please come to my house.)",          level:"N5" },
+  { jp:"帰る",     rom:"kaeru",      en:"To return, go home",             cat:"motion",   group:"g1", trans:"itr", particles:["に","へ"],      ex:"家に帰ります。(I'll return home.)",                    level:"N5" },
+  { jp:"入る",     rom:"hairu",      en:"To enter, go in",                cat:"motion",   group:"g1", trans:"itr", particles:["に","へ"],      ex:"部屋に入った。(I entered the room.)",                  level:"N5" },
+  { jp:"出る",     rom:"deru",       en:"To leave, go out, appear",       cat:"motion",   group:"g2", trans:"itr", particles:["を","から"],    ex:"家を出ました。(I left the house.)",                    level:"N5" },
+  { jp:"乗る",     rom:"noru",       en:"To ride, board",                 cat:"motion",   group:"g1", trans:"itr", particles:["に"],           ex:"電車に乗ります。(I take the train.)",                   level:"N5" },
+  { jp:"渡る",     rom:"wataru",     en:"To cross over",                  cat:"motion",   group:"g1", trans:"itr", particles:["を"],           ex:"橋を渡った。(I crossed the bridge.)",                  level:"N4" },
+  { jp:"曲がる",   rom:"magaru",     en:"To turn, bend",                  cat:"motion",   group:"g1", trans:"itr", particles:["を","に"],      ex:"角を曲がってください。(Please turn at the corner.)",    level:"N4" },
+  { jp:"止まる",   rom:"tomaru",     en:"To stop, come to a halt",        cat:"motion",   group:"g1", trans:"itr", particles:["に","で"],      ex:"バスが止まった。(The bus stopped.)",                   level:"N4" },
+  { jp:"いる",     rom:"iru",        en:"To exist, to be (animate)",      cat:"exist",    group:"g2", trans:"itr", particles:["に","が"],      ex:"猫が部屋にいます。(The cat is in the room.)",          level:"N5" },
+  { jp:"ある",     rom:"aru",        en:"To exist, to be (inanimate)",    cat:"exist",    group:"g1", trans:"itr", particles:["に","が"],      ex:"駅の近くにコンビニがある。(There's a convenience store near the station.)", level:"N5" },
+  { jp:"住む",     rom:"sumu",       en:"To live, reside",                cat:"exist",    group:"g1", trans:"itr", particles:["に","で"],      ex:"東京に住んでいます。(I live in Tokyo.)",               level:"N5" },
+  { jp:"食べる",   rom:"taberu",     en:"To eat",                         cat:"action",   group:"g2", trans:"tr",  particles:["を"],           ex:"朝ごはんを食べた。(I ate breakfast.)",                 level:"N5" },
+  { jp:"飲む",     rom:"nomu",       en:"To drink",                       cat:"action",   group:"g1", trans:"tr",  particles:["を"],           ex:"水を飲みます。(I drink water.)",                       level:"N5" },
+  { jp:"見る",     rom:"miru",       en:"To see, watch, look at",         cat:"action",   group:"g2", trans:"tr",  particles:["を"],           ex:"映画を見ました。(I watched a movie.)",                 level:"N5" },
+  { jp:"聞く",     rom:"kiku",       en:"To listen, hear, ask",           cat:"action",   group:"g1", trans:"tr",  particles:["を","に"],      ex:"音楽を聞きます。(I listen to music.)",                 level:"N5" },
+  { jp:"読む",     rom:"yomu",       en:"To read",                        cat:"action",   group:"g1", trans:"tr",  particles:["を"],           ex:"本を読みました。(I read a book.)",                     level:"N5" },
+  { jp:"書く",     rom:"kaku",       en:"To write",                       cat:"action",   group:"g1", trans:"tr",  particles:["を","に"],      ex:"手紙を書きます。(I'll write a letter.)",               level:"N5" },
+  { jp:"話す",     rom:"hanasu",     en:"To speak, talk",                 cat:"action",   group:"g1", trans:"tr",  particles:["を","と","に"], ex:"日本語を話します。(I speak Japanese.)",                level:"N5" },
+  { jp:"買う",     rom:"kau",        en:"To buy",                         cat:"action",   group:"g1", trans:"tr",  particles:["を","で","に"], ex:"スーパーで野菜を買った。(I bought vegetables at the supermarket.)", level:"N5" },
+  { jp:"使う",     rom:"tsukau",     en:"To use",                         cat:"action",   group:"g1", trans:"tr",  particles:["を"],           ex:"パソコンを使います。(I use a computer.)",              level:"N5" },
+  { jp:"開ける",   rom:"akeru",      en:"To open (something)",            cat:"action",   group:"g2", trans:"tr",  particles:["を"],           ex:"窓を開けた。(I opened the window.)",                   level:"N5" },
+  { jp:"閉める",   rom:"shimeru",    en:"To close (something)",           cat:"action",   group:"g2", trans:"tr",  particles:["を"],           ex:"ドアを閉めてください。(Please close the door.)",        level:"N5" },
+  { jp:"着る",     rom:"kiru",       en:"To wear (upper body)",           cat:"action",   group:"g2", trans:"tr",  particles:["を"],           ex:"シャツを着ます。(I put on a shirt.)",                  level:"N5" },
+  { jp:"はく",     rom:"haku",       en:"To wear (lower body / feet)",    cat:"action",   group:"g1", trans:"tr",  particles:["を"],           ex:"靴をはきます。(I put on shoes.)",                      level:"N5" },
+  { jp:"かぶる",   rom:"kaburu",     en:"To wear (on head)",              cat:"action",   group:"g1", trans:"tr",  particles:["を"],           ex:"帽子をかぶります。(I put on a hat.)",                  level:"N4" },
+  { jp:"洗う",     rom:"arau",       en:"To wash",                        cat:"action",   group:"g1", trans:"tr",  particles:["を"],           ex:"手を洗います。(I wash my hands.)",                     level:"N5" },
+  { jp:"切る",     rom:"kiru",       en:"To cut",                         cat:"action",   group:"g1", trans:"tr",  particles:["を","で"],      ex:"ハサミで紙を切る。(I cut paper with scissors.)",        level:"N5" },
+  { jp:"貸す",     rom:"kasu",       en:"To lend",                        cat:"interact", group:"g1", trans:"tr",  particles:["を","に"],      ex:"友達にお金を貸した。(I lent money to a friend.)",      level:"N4" },
+  { jp:"借りる",   rom:"kariru",     en:"To borrow",                      cat:"interact", group:"g2", trans:"tr",  particles:["を","から","に"],ex:"図書館から本を借りた。(I borrowed a book from the library.)", level:"N4" },
+  { jp:"もらう",   rom:"morau",      en:"To receive",                     cat:"interact", group:"g1", trans:"tr",  particles:["を","に","から"],ex:"友達にプレゼントをもらった。(I received a present from a friend.)", level:"N5" },
+  { jp:"あげる",   rom:"ageru",      en:"To give (to someone else)",      cat:"interact", group:"g2", trans:"tr",  particles:["を","に"],      ex:"友達に本をあげた。(I gave a book to my friend.)",      level:"N5" },
+  { jp:"くれる",   rom:"kureru",     en:"To give (to me/my group)",       cat:"interact", group:"g2", trans:"tr",  particles:["を","に"],      ex:"先生が辞書をくれた。(The teacher gave me a dictionary.)", level:"N5" },
+  { jp:"教える",   rom:"oshieru",    en:"To teach, tell",                 cat:"interact", group:"g2", trans:"tr",  particles:["を","に"],      ex:"英語を教えています。(I teach English.)",               level:"N5" },
+  { jp:"習う",     rom:"narau",      en:"To learn (from a teacher)",      cat:"interact", group:"g1", trans:"tr",  particles:["を","に","から"],ex:"先生にピアノを習っています。(I am learning piano from a teacher.)", level:"N4" },
+  { jp:"手伝う",   rom:"tetsudau",   en:"To help, assist",                cat:"interact", group:"g1", trans:"tr",  particles:["を","に"],      ex:"母の料理を手伝った。(I helped my mother cook.)",       level:"N4" },
+  { jp:"会う",     rom:"au",         en:"To meet",                        cat:"interact", group:"g1", trans:"itr", particles:["に","と"],      ex:"友達に会いました。(I met a friend.)",                   level:"N5" },
+  { jp:"待つ",     rom:"matsu",      en:"To wait",                        cat:"interact", group:"g1", trans:"tr",  particles:["を","に","で"], ex:"駅で友達を待っています。(I'm waiting for a friend at the station.)", level:"N5" },
+  { jp:"知る",     rom:"shiru",      en:"To come to know, learn of",      cat:"state",    group:"g1", trans:"tr",  particles:["を"],           ex:"その話を知っています。(I know that story.)",            level:"N5" },
+  { jp:"わかる",   rom:"wakaru",     en:"To understand",                  cat:"state",    group:"g1", trans:"itr", particles:["が"],           ex:"日本語がわかります。(I understand Japanese.)",         level:"N5" },
+  { jp:"思う",     rom:"omou",       en:"To think, feel",                 cat:"state",    group:"g1", trans:"tr",  particles:["と","が"],      ex:"そう思います。(I think so.)",                          level:"N5" },
+  { jp:"好き（な）",rom:"suki (na)", en:"To like (na-adjective used as verb with する)", cat:"state", group:"g3", trans:"tr", particles:["が"],ex:"音楽が好きです。(I like music.)",                     level:"N5" },
+  { jp:"疲れる",   rom:"tsukareru",  en:"To get tired",                   cat:"state",    group:"g2", trans:"itr", particles:["が"],           ex:"仕事で疲れた。(I got tired from work.)",               level:"N5" },
+  { jp:"困る",     rom:"komaru",     en:"To be troubled, in difficulty",  cat:"state",    group:"g1", trans:"itr", particles:["に","が"],      ex:"お金がなくて困っています。(I'm in trouble because I have no money.)", level:"N4" },
+  { jp:"開く",     rom:"aku",        en:"To open (by itself)",            cat:"state",    group:"g1", trans:"itr", particles:["が"],           ex:"ドアが開いた。(The door opened.)",                     level:"N4" },
+  { jp:"閉まる",   rom:"shimaru",    en:"To close (by itself)",           cat:"state",    group:"g1", trans:"itr", particles:["が"],           ex:"店が閉まっています。(The shop is closed.)",             level:"N4" },
+  { jp:"始まる",   rom:"hajimaru",   en:"To begin (by itself)",           cat:"state",    group:"g1", trans:"itr", particles:["が"],           ex:"授業が始まった。(The class started.)",                  level:"N4" },
+  { jp:"始める",   rom:"hajimeru",   en:"To begin (something)",           cat:"action",   group:"g2", trans:"tr",  particles:["を"],           ex:"仕事を始めます。(I'll start working.)",                level:"N4" },
+  { jp:"終わる",   rom:"owaru",      en:"To end, finish (by itself)",     cat:"state",    group:"g1", trans:"itr", particles:["が"],           ex:"映画が終わった。(The movie ended.)",                   level:"N5" },
+  { jp:"する",     rom:"suru",       en:"To do",                          cat:"action",   group:"g3", trans:"tr",  particles:["を"],           ex:"宿題をします。(I'll do my homework.)",                 level:"N5" },
+  { jp:"勉強する", rom:"benkyō suru",en:"To study",                       cat:"action",   group:"g3", trans:"tr",  particles:["を"],           ex:"日本語を勉強しています。(I'm studying Japanese.)",     level:"N5" },
+  { jp:"料理する", rom:"ryōri suru", en:"To cook",                        cat:"create",   group:"g3", trans:"tr",  particles:["を","で"],      ex:"夕食を料理した。(I cooked dinner.)",                   level:"N4" },
+  { jp:"作る",     rom:"tsukuru",    en:"To make, create",                cat:"create",   group:"g1", trans:"tr",  particles:["を","で","に"], ex:"ケーキを作りました。(I made a cake.)",                 level:"N5" },
+  { jp:"撮る",     rom:"toru",       en:"To take (a photo/video)",        cat:"create",   group:"g1", trans:"tr",  particles:["を","で","に"], ex:"写真を撮ってもいいですか。(May I take a photo?)",       level:"N5" },
+  { jp:"送る",     rom:"okuru",      en:"To send",                        cat:"interact", group:"g1", trans:"tr",  particles:["を","に"],      ex:"メールを送りました。(I sent an email.)",               level:"N4" },
+  { jp:"受ける",   rom:"ukeru",      en:"To receive, take (exam etc.)",   cat:"interact", group:"g2", trans:"tr",  particles:["を"],           ex:"試験を受けます。(I'll take the exam.)",                level:"N4" },
+  { jp:"起きる",   rom:"okiru",      en:"To wake up, get up",             cat:"state",    group:"g2", trans:"itr", particles:["に"],           ex:"7時に起きます。(I wake up at 7.)",                     level:"N5" },
+  { jp:"寝る",     rom:"neru",       en:"To sleep, go to bed",            cat:"state",    group:"g2", trans:"itr", particles:["に","で"],      ex:"早く寝てください。(Please go to sleep early.)",        level:"N5" },
+  { jp:"座る",     rom:"suwaru",     en:"To sit down",                    cat:"motion",   group:"g1", trans:"itr", particles:["に","で"],      ex:"椅子に座ってください。(Please sit in the chair.)",     level:"N5" },
+  { jp:"立つ",     rom:"tatsu",      en:"To stand up",                    cat:"motion",   group:"g1", trans:"itr", particles:["に","で"],      ex:"立ってください。(Please stand up.)",                   level:"N5" },
+  { jp:"持つ",     rom:"motsu",      en:"To hold, carry, have",           cat:"action",   group:"g1", trans:"tr",  particles:["を"],           ex:"荷物を持ちましょうか。(Shall I carry your luggage?)",  level:"N5" },
+];
+
+const catLabels = { motion:"motion", exist:"existence", action:"action", state:"state / change", interact:"interaction", create:"create / produce" };
+let activeCat = "all", activeGroup = null, activeTrans = null, searchVal = "";
+
+function render() {
+  const q = searchVal.toLowerCase();
+  const filtered = verbs.filter(w => {
+    if (activeCat !== "all" && w.cat !== activeCat) return false;
+    if (activeGroup && w.group !== activeGroup) return false;
+    if (activeTrans && w.trans !== activeTrans) return false;
+    if (q && !(w.jp.includes(q) || w.rom.toLowerCase().includes(q) || w.en.toLowerCase().includes(q) || w.ex.includes(q))) return false;
+    return true;
+  });
+
+  document.getElementById("count").textContent = "Showing " + filtered.length + " verb" + (filtered.length !== 1 ? "s" : "");
+
+  const grid = document.getElementById("grid");
+  if (!filtered.length) { grid.innerHTML = '<div class="empty">No verbs match your filters.</div>'; return; }
+
+  grid.innerHTML = filtered.map(w => {
+    const groupLabel = { g1:"Group 1", g2:"Group 2", g3:"Group 3" }[w.group];
+    const transLabel = w.trans === "tr" ? "transitive" : "intransitive";
+    const particles = w.particles.map(p => `<span class="particle-chip">${p}</span>`).join("");
+    return `<div class="card">
+      <div class="card-top">
+        <span class="level-tag">${w.level}</span>
+        <div class="badges">
+          <span class="pill pill-${w.cat}">${catLabels[w.cat]}</span>
+          <span class="pill pill-${w.group}">${groupLabel}</span>
+          <span class="pill pill-${w.trans}">${transLabel}</span>
+        </div>
+      </div>
+      <div class="word-jp">${w.jp}</div>
+      <div class="word-rom">${w.rom}</div>
+      <div class="word-en">${w.en}</div>
+      <div class="particles-row"><span class="particles-label">particles:</span>${particles}</div>
+      <div class="word-ex">${w.ex}</div>
+    </div>`;
+  }).join("");
+}
+
+function setCat(c) {
+  activeCat = c;
+  ["all","motion","exist","action","state","interact","create"].forEach(x => {
+    document.getElementById("btn-" + x).className = (x === c) ? "active-" + c : "";
+  });
+  render();
+}
+
+function setGroup(g) {
+  activeGroup = (activeGroup === g) ? null : g;
+  ["g1","g2","g3"].forEach(x => {
+    document.getElementById("btn-" + x).className = (activeGroup === x) ? "active-" + x : "";
+  });
+  render();
+}
+
+function setTrans(t) {
+  activeTrans = (activeTrans === t) ? null : t;
+  ["tr","itr"].forEach(x => {
+    document.getElementById("btn-" + x).className = (activeTrans === x) ? "active-" + x : "";
+  });
+  render();
+}
+
+document.getElementById("search").addEventListener("input", function() {
+  searchVal = this.value;
+  render();
+});
+
+setCat("all");
+</script>
+</body>
+</html>
