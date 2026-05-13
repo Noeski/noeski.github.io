@@ -1,0 +1,2494 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>できる日本語 初中級 — チャレンジ スクリプト集</title>
+<style>
+  :root {
+    --bg: #ffffff;
+    --surface: #fafafa;
+    --text: #1a1a1a;
+    --text-soft: #444;
+    --text-muted: #767676;
+    --accent: #b8392e;
+    --rule: #e5e5e5;
+    --rule-soft: #f0f0f0;
+    --kana-color: #555;
+    --en-color: #3a3a3a;
+    --font-base: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", "Hiragino Sans", "Yu Gothic", "Meiryo", sans-serif;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-base);
+    line-height: 1.65;
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+    font-size: 16px;
+  }
+
+  main {
+    max-width: 820px;
+    margin: 0 auto;
+    padding: 60px 40px;
+  }
+
+  /* ─── CHAPTER ──────────────────────────────── */
+  .chapter {
+    margin-bottom: 80px;
+  }
+
+  .chapter-head {
+    margin-bottom: 40px;
+    padding-bottom: 24px;
+    border-bottom: 2px solid var(--text);
+  }
+
+  .chapter-mark {
+    display: inline-block;
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+    margin-bottom: 12px;
+    text-transform: uppercase;
+  }
+
+  .chapter-title-jp {
+    font-size: 2rem;
+    font-weight: 700;
+    line-height: 1.2;
+    color: var(--text);
+    margin-bottom: 6px;
+  }
+
+  .chapter-title-en {
+    font-size: 1.1rem;
+    color: var(--text-muted);
+    font-weight: 400;
+  }
+
+  /* ─── ST BLOCK ────────────────────────────── */
+  .st-block { margin-bottom: 56px; }
+
+  .st-header {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 28px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .st-label {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 42px;
+    height: 28px;
+    padding: 0 10px;
+    background: var(--text);
+    color: var(--bg);
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    border-radius: 4px;
+  }
+
+  .st-titles {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .st-jp {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--text);
+    line-height: 1.3;
+  }
+  .st-en {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    margin-top: 2px;
+    font-weight: 400;
+  }
+  .st-source {
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    text-align: right;
+    line-height: 1.4;
+  }
+
+  /* Exchange number */
+  .exchange-head {
+    margin: 32px 0 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .exchange-head::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--rule);
+  }
+  .ex-num {
+    font-size: 0.92rem;
+    font-weight: 600;
+    color: var(--accent);
+    letter-spacing: 0.02em;
+  }
+
+  /* ─── DIALOGUE LINE ───────────────────────── */
+  .line {
+    margin: 18px 0;
+    padding: 14px 18px;
+    border-left: 3px solid var(--rule);
+    background: var(--surface);
+    border-radius: 0 6px 6px 0;
+    transition: border-left-color 0.2s ease;
+  }
+  .line:hover {
+    border-left-color: var(--accent);
+  }
+
+  .speaker-jp {
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+
+  .jp-kanji {
+    font-size: 1.05rem;
+    line-height: 1.7;
+    color: var(--text);
+    margin-bottom: 4px;
+    font-weight: 500;
+  }
+
+  .jp-kana {
+    font-size: 0.95rem;
+    line-height: 1.7;
+    color: var(--kana-color);
+    margin-bottom: 6px;
+    font-weight: 400;
+  }
+  .kana-spk {
+    color: var(--text-muted);
+    margin-right: 4px;
+    font-size: 0.88rem;
+  }
+  .kana-spk::after { content: '：'; }
+
+  .en {
+    font-size: 0.98rem;
+    line-height: 1.55;
+    color: var(--en-color);
+    padding-left: 2px;
+  }
+  .en-spk {
+    font-weight: 600;
+    color: var(--text);
+    margin-right: 4px;
+  }
+
+  .ellipsis {
+    text-align: center;
+    font-size: 1.3rem;
+    color: var(--text-muted);
+    margin: 16px 0;
+    letter-spacing: 0.4em;
+  }
+
+  /* ─── PAYWALL ─────────────────────────────── */
+  .locked-wrap {
+    position: relative;
+    margin-top: 40px;
+  }
+
+  .locked-content {
+    filter: blur(7px) saturate(0.7);
+    pointer-events: none;
+    user-select: none;
+    max-height: 900px;
+    overflow: hidden;
+    -webkit-mask-image: linear-gradient(to bottom, black 0%, black 25%, transparent 90%);
+    mask-image: linear-gradient(to bottom, black 0%, black 25%, transparent 90%);
+  }
+
+  .paywall {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding-top: 140px;
+    z-index: 10;
+  }
+
+  .paywall-card {
+    background: var(--bg);
+    border: 1px solid var(--rule);
+    border-radius: 12px;
+    max-width: 440px;
+    width: calc(100% - 32px);
+    padding: 44px 36px;
+    text-align: center;
+    box-shadow:
+      0 20px 50px -15px rgba(0, 0, 0, 0.15),
+      0 0 0 1px rgba(0, 0, 0, 0.02);
+  }
+
+  .paywall h2 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    line-height: 1.3;
+    color: var(--text);
+    margin-bottom: 8px;
+  }
+
+  .paywall .h2-en {
+    font-size: 0.98rem;
+    color: var(--text-muted);
+    margin-bottom: 32px;
+    font-weight: 400;
+  }
+
+  .price {
+    margin: 24px 0 32px;
+  }
+  .price-amount {
+    font-size: 2.6rem;
+    font-weight: 700;
+    line-height: 1;
+    color: var(--text);
+    letter-spacing: -0.01em;
+  }
+  .price-currency {
+    font-weight: 600;
+    font-size: 1.6rem;
+    color: var(--text);
+    margin-left: 2px;
+  }
+
+  .unlock-btn {
+    display: block;
+    width: 100%;
+    padding: 16px 32px;
+    background: var(--accent);
+    color: var(--bg);
+    border: none;
+    border-radius: 8px;
+    font-family: inherit;
+    font-weight: 600;
+    font-size: 1rem;
+    letter-spacing: 0.02em;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.1s ease;
+  }
+  .unlock-btn:hover {
+    background: #9d2e25;
+  }
+  .unlock-btn:active {
+    transform: translateY(1px);
+  }
+
+  /* ─── RESPONSIVE ──────────────────────────── */
+  @media (max-width: 720px) {
+    main { padding: 40px 20px; }
+    .chapter-title-jp { font-size: 1.6rem; }
+    .st-jp { font-size: 1.1rem; }
+    .st-source { width: 100%; text-align: left; }
+    .paywall { padding-top: 80px; }
+    .paywall-card { padding: 32px 24px; }
+    .paywall h2 { font-size: 1.3rem; }
+    .price-amount { font-size: 2.2rem; }
+    .line { padding: 12px 14px; }
+  }
+</style>
+</head>
+<body>
+
+<main>
+<article class="chapter ch-1">
+<header class="chapter-head">
+  <div class="chapter-mark">第1課</div>
+  <h2 class="chapter-title-jp">新しい一歩</h2>
+  <p class="chapter-title-en">A New Step</p>
+</header>
+<section class="st-block">
+  <div class="st-header">
+    <span class="st-label">ST1</span>
+    <div class="st-titles">
+      <h3 class="st-jp">アルバイトを探す</h3>
+      <p class="st-en">Looking for a Part-Time Job</p>
+    </div>
+    <span class="st-source">本冊 16ページ スクリプト</span>
+  </div>
+<div class="exchange-head"><span class="ex-num">① (002)</span></div>
+<article class="line">
+  <div class="speaker-jp">店員</div>
+  <p class="jp-kanji">はい、なごみ屋です。</p>
+  <p class="jp-kana"><span class="kana-spk">てんいん</span>はい、なごみやです。</p>
+  <p class="en"><span class="en-spk">Clerk:</span> Hello, this is Nagomi-ya.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">パク</div>
+  <p class="jp-kanji">あのう、アルバイトの雑誌を見て、電話している者ですが、山田さんはいらっしゃいますか。</p>
+  <p class="jp-kana"><span class="kana-spk">パク</span>あのう、アルバイトのざっしをみて、でんわしているものですが、やまださんはいらっしゃいますか。</p>
+  <p class="en"><span class="en-spk">Park:</span> Um, I&#x27;m calling because I saw the part-time job in a magazine — is Mr. Yamada there?</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">店員</div>
+  <p class="jp-kanji">あ、アルバイト希望の方ですね。少々お待ちください。</p>
+  <p class="jp-kana"><span class="kana-spk">てんいん</span>あ、アルバイトきぼうのかたですね。しょうしょうおまちください。</p>
+  <p class="en"><span class="en-spk">Clerk:</span> Ah, you&#x27;re applying for the part-time job, right? Please wait a moment.</p>
+</article>
+<div class="exchange-head"><span class="ex-num">② (003)</span></div>
+<article class="line">
+  <div class="speaker-jp">店長</div>
+  <p class="jp-kanji">はい、店長の山田です。アルバイト希望の方ですね。</p>
+  <p class="jp-kana"><span class="kana-spk">てんちょう</span>はい、てんちょうのやまだです。アルバイトきぼうのかたですね。</p>
+  <p class="en"><span class="en-spk">Manager:</span> Yes, this is Yamada, the manager. You&#x27;re applying for the part-time job, right?</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">パク</div>
+  <p class="jp-kanji">はい、パクと申します。アルバイトの雑誌を見て、電話しました。</p>
+  <p class="jp-kana"><span class="kana-spk">パク</span>はい、パクともうします。アルバイトのざっしをみて、でんわしました。</p>
+  <p class="en"><span class="en-spk">Park:</span> Yes, my name is Park. I&#x27;m calling because I saw the part-time job in a magazine.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">店長</div>
+  <p class="jp-kanji">そうですか。じゃ、あさっての午後、面接に来てください。</p>
+  <p class="jp-kana"><span class="kana-spk">てんちょう</span>そうですか。じゃ、あさってのごご、めんせつにきてください。</p>
+  <p class="en"><span class="en-spk">Manager:</span> I see. Then please come for an interview the day after tomorrow in the afternoon.</p>
+</article>
+<div class="exchange-head"><span class="ex-num">③ (004)</span></div>
+<article class="line">
+  <div class="speaker-jp">パク</div>
+  <p class="jp-kanji">あ、午後は……あのう、すみません。午後は授業があるので、午前でもいいですか。</p>
+  <p class="jp-kana"><span class="kana-spk">パク</span>あ、ごごは……あのう、すみません。ごごはじゅぎょうがあるので、ごぜんでもいいですか。</p>
+  <p class="en"><span class="en-spk">Park:</span> Ah, in the afternoon… um, I&#x27;m sorry. I have class in the afternoon, so would the morning be okay?</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">店長</div>
+  <p class="jp-kanji">そうですか。授業は何時から何時までですか。</p>
+  <p class="jp-kana"><span class="kana-spk">てんちょう</span>そうですか。じゅぎょうはなんじからなんじまでですか。</p>
+  <p class="en"><span class="en-spk">Manager:</span> I see. From what time to what time is your class?</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">パク</div>
+  <p class="jp-kanji">午後1時から5時までです。</p>
+  <p class="jp-kana"><span class="kana-spk">パク</span>ごごいちじからごじまでです。</p>
+  <p class="en"><span class="en-spk">Park:</span> From 1 p.m. to 5 p.m.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">店長</div>
+  <p class="jp-kanji">そうですか。じゃ、午前10時はどうですか。</p>
+  <p class="jp-kana"><span class="kana-spk">てんちょう</span>そうですか。じゃ、ごぜんじゅうじはどうですか。</p>
+  <p class="en"><span class="en-spk">Manager:</span> I see. Then how about 10 a.m.?</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">パク</div>
+  <p class="jp-kanji">はい、わかりました。午前10時ですね。ありがとうございます。</p>
+  <p class="jp-kana"><span class="kana-spk">パク</span>はい、わかりました。ごぜんじゅうじですね。ありがとうございます。</p>
+  <p class="en"><span class="en-spk">Park:</span> Yes, understood. 10 a.m., right? Thank you.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">店長</div>
+  <p class="jp-kanji">はい。それでは、あさって、待っています。</p>
+  <p class="jp-kana"><span class="kana-spk">てんちょう</span>はい。それでは、あさって、まっています。</p>
+  <p class="en"><span class="en-spk">Manager:</span> Yes. Then I&#x27;ll be waiting the day after tomorrow.</p>
+</article>
+<div class="exchange-head"><span class="ex-num">④ (005) — Arriving for the interview</span></div>
+<article class="line">
+  <div class="speaker-jp">店員</div>
+  <p class="jp-kanji">店長、アルバイト希望のパクさんです。</p>
+  <p class="jp-kana"><span class="kana-spk">てんいん</span>てんちょう、アルバイトきぼうのパクさんです。</p>
+  <p class="en"><span class="en-spk">Clerk:</span> Manager, this is Mr. Park, applying for the part-time job.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">店長</div>
+  <p class="jp-kanji">はい、どうぞ。</p>
+  <p class="jp-kana"><span class="kana-spk">てんちょう</span>はい、どうぞ。</p>
+  <p class="en"><span class="en-spk">Manager:</span> Yes, please come in.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">パク</div>
+  <p class="jp-kanji">失礼します。</p>
+  <p class="jp-kana"><span class="kana-spk">パク</span>しつれいします。</p>
+  <p class="en"><span class="en-spk">Park:</span> Excuse me. (entering)</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">店長</div>
+  <p class="jp-kanji">はい、座ってください。</p>
+  <p class="jp-kana"><span class="kana-spk">てんちょう</span>はい、すわってください。</p>
+  <p class="en"><span class="en-spk">Manager:</span> Yes, please sit down.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">パク</div>
+  <p class="jp-kanji">はい。よろしくお願いします。</p>
+  <p class="jp-kana"><span class="kana-spk">パク</span>はい。よろしくおねがいします。</p>
+  <p class="en"><span class="en-spk">Park:</span> Yes. Pleased to meet you.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">店長</div>
+  <p class="jp-kanji">はい。パクさんですね。パクさんはいつ日本へいらっしゃいましたか。</p>
+  <p class="jp-kana"><span class="kana-spk">てんちょう</span>はい。パクさんですね。パクさんはいつにほんへいらっしゃいましたか。</p>
+  <p class="en"><span class="en-spk">Manager:</span> Yes. Mr. Park, right? When did you come to Japan?</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">パク</div>
+  <p class="jp-kanji">今年の4月に参りました。</p>
+  <p class="jp-kana"><span class="kana-spk">パク</span>ことしのしがつにまいりました。</p>
+  <p class="en"><span class="en-spk">Park:</span> I came in April this year.</p>
+</article>
+<div class="exchange-head"><span class="ex-num">⑤ (006)</span></div>
+<article class="line">
+  <p class="jp-kanji full">店長:パクさん、メニューの日本語が読めますか。</p>
+  <p class="jp-kana"><span class="kana-spk">てんちょう</span>パクさん、メニューのにほんごがよめますか。</p>
+  <p class="en"><span class="en-spk">Manager:</span> Mr. Park, can you read the Japanese on the menu?</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">パク</div>
+  <p class="jp-kanji">はい、だいたい読めますが……。まだ、日本の料理の名前がよくわかりません。でも、頑張ります。</p>
+  <p class="jp-kana"><span class="kana-spk">パク</span>はい、だいたいよめますが……。まだ、にほんのりょうりのなまえがよくわかりません。でも、がんばります。</p>
+  <p class="en"><span class="en-spk">Park:</span> Yes, I can mostly read it… But I don&#x27;t really know the names of Japanese dishes yet. I&#x27;ll do my best, though.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">店長</div>
+  <p class="jp-kanji">そうですか。</p>
+  <p class="jp-kana"><span class="kana-spk">てんちょう</span>そうですか。</p>
+  <p class="en"><span class="en-spk">Manager:</span> I see.</p>
+</article>
+<div class="exchange-head"><span class="ex-num">⑥</span></div>
+<article class="line">
+  <div class="speaker-jp">店長</div>
+  <p class="jp-kanji">それから、パクさんは料理が作れますか。</p>
+  <p class="jp-kana"><span class="kana-spk">てんちょう</span>それから、パクさんはりょうりがつくれますか。</p>
+  <p class="en"><span class="en-spk">Manager:</span> Also, Mr. Park, can you cook?</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">パク</div>
+  <p class="jp-kanji">簡単な料理なら作れます。</p>
+  <p class="jp-kana"><span class="kana-spk">パク</span>かんたんなりょうりならつくれます。</p>
+  <p class="en"><span class="en-spk">Park:</span> If it&#x27;s simple cooking, I can do it.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">店長</div>
+  <p class="jp-kanji">そうですか。じゃ、来週から来てください。</p>
+  <p class="jp-kana"><span class="kana-spk">てんちょう</span>そうですか。じゃ、らいしゅうからきてください。</p>
+  <p class="en"><span class="en-spk">Manager:</span> I see. Then please start coming from next week.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">パク</div>
+  <p class="jp-kanji">はい、わかりました。ありがとうございます。</p>
+  <p class="jp-kana"><span class="kana-spk">パク</span>はい、わかりました。ありがとうございます。</p>
+  <p class="en"><span class="en-spk">Park:</span> Yes, understood. Thank you.</p>
+</article>
+</section>
+<section class="st-block">
+  <div class="st-header">
+    <span class="st-label">ST2</span>
+    <div class="st-titles">
+      <h3 class="st-jp">新しい友達</h3>
+      <p class="st-en">New Friends</p>
+    </div>
+    <span class="st-source">本冊 22ページ スクリプト</span>
+  </div>
+<div class="exchange-head"><span class="ex-num">1-1 (012) — Hobbies</span></div>
+<article class="line">
+  <p class="jp-kanji full">山本:パクさん、趣味は何ですか。</p>
+  <p class="jp-kana"><span class="kana-spk">やまもと</span>パクさん、しゅみはなんですか。</p>
+  <p class="en"><span class="en-spk">Yamamoto:</span> Mr. Park, what&#x27;s your hobby?</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">パク</div>
+  <p class="jp-kanji">映画です。映画を見るのが好きです。</p>
+  <p class="jp-kana"><span class="kana-spk">パク</span>えいがです。えいがをみるのがすきです。</p>
+  <p class="en"><span class="en-spk">Park:</span> Movies. I like watching movies.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">山本</div>
+  <p class="jp-kanji">日本の映画も見ますか。</p>
+  <p class="jp-kana"><span class="kana-spk">やまもと</span>にほんのえいがもみますか。</p>
+  <p class="en"><span class="en-spk">Yamamoto:</span> Do you watch Japanese movies too?</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">パク</div>
+  <p class="jp-kanji">はい、よく見ます。</p>
+  <p class="jp-kana"><span class="kana-spk">パク</span>はい、よくみます。</p>
+  <p class="en"><span class="en-spk">Park:</span> Yes, I watch them often.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">山本</div>
+  <p class="jp-kanji">へえ。いいですね。</p>
+  <p class="jp-kana"><span class="kana-spk">やまもと</span>へえ。いいですね。</p>
+  <p class="en"><span class="en-spk">Yamamoto:</span> Oh, that&#x27;s nice.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">パク</div>
+  <p class="jp-kanji">山本さんの趣味は何ですか。</p>
+  <p class="jp-kana"><span class="kana-spk">パク</span>やまもとさんのしゅみはなんですか。</p>
+  <p class="en"><span class="en-spk">Park:</span> Mr. Yamamoto, what&#x27;s your hobby?</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">山本</div>
+  <p class="jp-kanji">私の趣味は山に登ることです。</p>
+  <p class="jp-kana"><span class="kana-spk">やまもと</span>わたしのしゅみはやまにのぼることです。</p>
+  <p class="en"><span class="en-spk">Yamamoto:</span> My hobby is climbing mountains.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">パク</div>
+  <p class="jp-kanji">へえ。</p>
+  <p class="jp-kana"><span class="kana-spk">パク</span>へえ。</p>
+  <p class="en"><span class="en-spk">Park:</span> Oh, really.</p>
+</article>
+<div class="exchange-head"><span class="ex-num">1-2 (013) — Adjusting to life in Japan</span></div>
+<article class="line">
+  <div class="speaker-jp">山本</div>
+  <p class="jp-kanji">パクさんはもう日本の生活に慣れましたか。</p>
+  <p class="jp-kana"><span class="kana-spk">やまもと</span>パクさんはもうにほんのせいかつになれましたか。</p>
+  <p class="en"><span class="en-spk">Yamamoto:</span> Have you gotten used to life in Japan yet?</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">パク</div>
+  <p class="jp-kanji">はい。でも、朝早く起きるのが苦手なので、毎朝大変です。</p>
+  <p class="jp-kana"><span class="kana-spk">パク</span>はい。でも、あさはやくおきるのがにがてなので、まいあさたいへんです。</p>
+  <p class="en"><span class="en-spk">Park:</span> Yes. But I&#x27;m bad at getting up early in the morning, so every morning is rough.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">山本</div>
+  <p class="jp-kanji">そうですか。私も朝は苦手です。</p>
+  <p class="jp-kana"><span class="kana-spk">やまもと</span>そうですか。わたしもあさはにがてです。</p>
+  <p class="en"><span class="en-spk">Yamamoto:</span> I see. I&#x27;m bad at mornings too.</p>
+</article>
+<div class="exchange-head"><span class="ex-num">2 (014) — An invitation to Mt. Takao</span></div>
+<article class="line">
+  <div class="speaker-jp">山本</div>
+  <p class="jp-kanji">パクさん、高尾山を知っていますか。</p>
+  <p class="jp-kana"><span class="kana-spk">やまもと</span>パクさん、たかおさんをしっていますか。</p>
+  <p class="en"><span class="en-spk">Yamamoto:</span> Mr. Park, do you know Mt. Takao?</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">パク</div>
+  <p class="jp-kanji">いいえ。</p>
+  <p class="jp-kana"><span class="kana-spk">パク</span>いいえ。</p>
+  <p class="en"><span class="en-spk">Park:</span> No.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">山本</div>
+  <p class="jp-kanji">東京にある山で、とても人気がありますよ。</p>
+  <p class="jp-kana"><span class="kana-spk">やまもと</span>とうきょうにあるやまで、とてもにんきがありますよ。</p>
+  <p class="en"><span class="en-spk">Yamamoto:</span> It&#x27;s a mountain in Tokyo, and it&#x27;s very popular.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">パク</div>
+  <p class="jp-kanji">へえ。いいですね。</p>
+  <p class="jp-kana"><span class="kana-spk">パク</span>へえ。いいですね。</p>
+  <p class="en"><span class="en-spk">Park:</span> Oh, that sounds nice.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">山本</div>
+  <p class="jp-kanji">今度、一緒に行きませんか。高尾山の上から景色を見るのは気持ちがいいですよ。</p>
+  <p class="jp-kana"><span class="kana-spk">やまもと</span>こんど、いっしょにいきませんか。たかおさんのうえからけしきをみるのはきもちがいいですよ。</p>
+  <p class="en"><span class="en-spk">Yamamoto:</span> Would you like to go together sometime? Looking at the view from the top of Mt. Takao feels great.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">パク</div>
+  <p class="jp-kanji">いいですね。</p>
+  <p class="jp-kana"><span class="kana-spk">パク</span>いいですね。</p>
+  <p class="en"><span class="en-spk">Park:</span> That sounds great.</p>
+</article>
+<div class="exchange-head"><span class="ex-num">3 (015) — Rohan&#x27;s progress</span></div>
+<article class="line">
+  <div class="speaker-jp">鈴木</div>
+  <p class="jp-kanji">ロハンさん、日本の生活にはもう慣れましたか。</p>
+  <p class="jp-kana"><span class="kana-spk">すずき</span>ロハンさん、にほんのせいかつにはもうなれましたか。</p>
+  <p class="en"><span class="en-spk">Suzuki:</span> Mr. Rohan, have you gotten used to life in Japan yet?</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">ロハン</div>
+  <p class="jp-kanji">はい。だいたい慣れました。日本へ来たときは全然日本語が話せませんでしたが、今はだいたい話せるようになりました。</p>
+  <p class="jp-kana"><span class="kana-spk">ロハン</span>はい。だいたいなれました。にほんへきたときはぜんぜんにほんごがはなせませんでしたが、いまはだいたいはなせるようになりました。</p>
+  <p class="en"><span class="en-spk">Rohan:</span> Yes. I&#x27;ve mostly gotten used to it. When I came to Japan I couldn&#x27;t speak Japanese at all, but now I can mostly speak it.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">鈴木</div>
+  <p class="jp-kanji">そうですか。それはよかったですね。</p>
+  <p class="jp-kana"><span class="kana-spk">すずき</span>そうですか。それはよかったですね。</p>
+  <p class="en"><span class="en-spk">Suzuki:</span> I see. That&#x27;s wonderful.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">ロハン</div>
+  <p class="jp-kanji">でも、まだ日本語で小説を読んだことがありません。日本語で小説が読めるようになりたいです。</p>
+  <p class="jp-kana"><span class="kana-spk">ロハン</span>でも、まだにほんごでしょうせつをよんだことがありません。にほんごでしょうせつがよめるようになりたいです。</p>
+  <p class="en"><span class="en-spk">Rohan:</span> But I&#x27;ve never read a novel in Japanese yet. I want to be able to read novels in Japanese.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">鈴木</div>
+  <p class="jp-kanji">へえ。</p>
+  <p class="jp-kana"><span class="kana-spk">すずき</span>へえ。</p>
+  <p class="en"><span class="en-spk">Suzuki:</span> Oh, I see.</p>
+</article>
+</section>
+</article>
+
+  <div class="locked-wrap">
+    <div class="locked-content" aria-hidden="true">
+<article class="chapter ch-2">
+<header class="chapter-head">
+  <div class="chapter-mark">第2課</div>
+  <h2 class="chapter-title-jp">楽しいショッピング</h2>
+  <p class="chapter-title-en">Fun Shopping</p>
+</header>
+<section class="st-block">
+  <div class="st-header">
+    <span class="st-label">ST1</span>
+    <div class="st-titles">
+      <h3 class="st-jp">上手に買い物</h3>
+      <p class="st-en">Shopping Smart</p>
+    </div>
+    <span class="st-source">本冊 30ページ スクリプト</span>
+  </div>
+<div class="exchange-head"><span class="ex-num">1 (020)</span></div>
+<article class="line">
+  <div class="speaker-jp">パク</div>
+  <p class="jp-kanji">いろいろなカメラがありますね。</p>
+  <p class="jp-kana"><span class="kana-spk">パク</span>いろいろなカメラがありますね。</p>
+  <p class="en"><span class="en-spk">Park:</span> There are all sorts of cameras here.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">メアリー</div>
+  <p class="jp-kanji">そうですね。</p>
+  <p class="jp-kana"><span class="kana-spk">メアリー</span>そうですね。</p>
+  <p class="en"><span class="en-spk">Mary:</span> Yes, there are.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">パク</div>
+  <p class="jp-kanji">メアリーさん、あのカメラはどうですか。</p>
+  <p class="jp-kana"><span class="kana-spk">パク</span>メアリーさん、あのカメラはどうですか。</p>
+  <p class="en"><span class="en-spk">Park:</span> Mary, how about that camera?</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">メアリー</div>
+  <p class="jp-kanji">あのカメラですか。あれは高そうです。</p>
+  <p class="jp-kana"><span class="kana-spk">メアリー</span>あのカメラですか。あれはたかそうです。</p>
+  <p class="en"><span class="en-spk">Mary:</span> That one? It looks expensive.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">パク</div>
+  <p class="jp-kanji">……あっ、メアリーさん、29,800円ですよ。ほら。</p>
+  <p class="jp-kana"><span class="kana-spk">パク</span>……あっ、メアリーさん、にまんきゅうせんはっぴゃくえんですよ。ほら。</p>
+  <p class="en"><span class="en-spk">Park:</span> …Oh, Mary, it&#x27;s 29,800 yen. Look.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">メアリー</div>
+  <p class="jp-kanji">あっ、安いですね。</p>
+  <p class="jp-kana"><span class="kana-spk">メアリー</span>あっ、やすいですね。</p>
+  <p class="en"><span class="en-spk">Mary:</span> Oh, that&#x27;s cheap.</p>
+</article>
+<div class="exchange-head"><span class="ex-num">2 (021)</span></div>
+<article class="line">
+  <div class="speaker-jp">パク</div>
+  <p class="jp-kanji">このカメラ、かわいいですね。</p>
+  <p class="jp-kana"><span class="kana-spk">パク</span>このカメラ、かわいいですね。</p>
+  <p class="en"><span class="en-spk">Park:</span> This camera is cute.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">店員</div>
+  <p class="jp-kanji">よかったら、このカメラで写真を撮ってみますか。</p>
+  <p class="jp-kana"><span class="kana-spk">てんいん</span>よかったら、このカメラでしゃしんをとってみますか。</p>
+  <p class="en"><span class="en-spk">Clerk:</span> If you&#x27;d like, would you try taking a photo with this camera?</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">メアリー</div>
+  <p class="jp-kanji">え、撮ってみてもいいですか。</p>
+  <p class="jp-kana"><span class="kana-spk">メアリー</span>え、とってみてもいいですか。</p>
+  <p class="en"><span class="en-spk">Mary:</span> Oh, may I try taking one?</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">店員</div>
+  <p class="jp-kanji">ええ、どうぞ、どうぞ。</p>
+  <p class="jp-kana"><span class="kana-spk">てんいん</span>ええ、どうぞ、どうぞ。</p>
+  <p class="en"><span class="en-spk">Clerk:</span> Yes, please, go ahead.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">メアリー</div>
+  <p class="jp-kanji">……わあ、小さくて軽いですね。パクさんも持ってみて。</p>
+  <p class="jp-kana"><span class="kana-spk">メアリー</span>……わあ、ちいさくてかるいですね。パクさんももってみて。</p>
+  <p class="en"><span class="en-spk">Mary:</span> …Wow, it&#x27;s small and light. Park, you try holding it too.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">パク</div>
+  <p class="jp-kanji">わあ、本当だ。</p>
+  <p class="jp-kana"><span class="kana-spk">パク</span>わあ、ほんとうだ。</p>
+  <p class="en"><span class="en-spk">Park:</span> Wow, really.</p>
+</article>
+<div class="exchange-head"><span class="ex-num">3 (022)</span></div>
+<article class="line">
+  <div class="speaker-jp">メアリー</div>
+  <p class="jp-kanji">あのう、そのカメラを見せてもらえませんか。</p>
+  <p class="jp-kana"><span class="kana-spk">メアリー</span>あのう、そのカメラをみせてもらえませんか。</p>
+  <p class="en"><span class="en-spk">Mary:</span> Um, could you show me that camera?</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">店員</div>
+  <p class="jp-kanji">はい、こちらはおすすめですよ。暗いところでもきれいな写真を撮ることができます。夜、写真を撮りたいとき、このボタンを押してください。</p>
+  <p class="jp-kana"><span class="kana-spk">てんいん</span>はい、こちらはおすすめですよ。くらいところでもきれいなしゃしんをとることができます。よる、しゃしんをとりたいとき、このボタンをおしてください。</p>
+  <p class="en"><span class="en-spk">Clerk:</span> Yes, this one is recommended. You can take beautiful photos even in dark places. When you want to take a photo at night, press this button.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">メアリー</div>
+  <p class="jp-kanji">はい。</p>
+  <p class="jp-kana"><span class="kana-spk">メアリー</span>はい。</p>
+  <p class="en"><span class="en-spk">Mary:</span> Okay.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">パク</div>
+  <p class="jp-kanji">このカメラはいろいろなことができますから、いいと思いますよ。</p>
+  <p class="jp-kana"><span class="kana-spk">パク</span>このカメラはいろいろなことができますから、いいとおもいますよ。</p>
+  <p class="en"><span class="en-spk">Park:</span> This camera can do all sorts of things, so I think it&#x27;s good.</p>
+</article>
+<div class="exchange-head"><span class="ex-num">4 (023)</span></div>
+<article class="line">
+  <div class="speaker-jp">メアリー</div>
+  <p class="jp-kanji">でも、ボタンが多いですから、ちょっとわかりにくいです。</p>
+  <p class="jp-kana"><span class="kana-spk">メアリー</span>でも、ボタンがおおいですから、ちょっとわかりにくいです。</p>
+  <p class="en"><span class="en-spk">Mary:</span> But there are a lot of buttons, so it&#x27;s a bit hard to figure out.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">パク</div>
+  <p class="jp-kanji">ああ、そうですね。ボタンが多すぎますね。</p>
+  <p class="jp-kana"><span class="kana-spk">パク</span>ああ、そうですね。ボタンがおおすぎますね。</p>
+  <p class="en"><span class="en-spk">Park:</span> Ah, you&#x27;re right. There are too many buttons.</p>
+</article>
+<div class="exchange-head"><span class="ex-num">5 (024)</span></div>
+<article class="line">
+  <div class="speaker-jp">メアリー</div>
+  <p class="jp-kanji">はい。もっと使い方が簡単なのがいいです。</p>
+  <p class="jp-kana"><span class="kana-spk">メアリー</span>はい。もっとつかいかたがかんたんなのがいいです。</p>
+  <p class="en"><span class="en-spk">Mary:</span> Yes. I&#x27;d prefer one that&#x27;s easier to use.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">パク</div>
+  <p class="jp-kanji">あ、メアリーさん、これはどうですか。</p>
+  <p class="jp-kana"><span class="kana-spk">パク</span>あ、メアリーさん、これはどうですか。</p>
+  <p class="en"><span class="en-spk">Park:</span> Oh, Mary, how about this one?</p>
+</article>
+<div class="exchange-head"><span class="ex-num">6</span></div>
+<article class="line">
+  <div class="speaker-jp">メアリー</div>
+  <p class="jp-kanji">あ、よさそうですね。</p>
+  <p class="jp-kana"><span class="kana-spk">メアリー</span>あ、よさそうですね。</p>
+  <p class="en"><span class="en-spk">Mary:</span> Oh, that looks good.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">店員</div>
+  <p class="jp-kanji">こちらは今、大変人気がありますよ。</p>
+  <p class="jp-kana"><span class="kana-spk">てんいん</span>こちらはいま、たいへんにんきがありますよ。</p>
+  <p class="en"><span class="en-spk">Clerk:</span> This one is very popular right now.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">メアリー</div>
+  <p class="jp-kanji">あ、画面が大きいので、見やすいです。</p>
+  <p class="jp-kana"><span class="kana-spk">メアリー</span>あ、がめんがおおきいので、みやすいです。</p>
+  <p class="en"><span class="en-spk">Mary:</span> Oh, the screen is big, so it&#x27;s easy to see.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">パク</div>
+  <p class="jp-kanji">いいですね。</p>
+  <p class="jp-kana"><span class="kana-spk">パク</span>いいですね。</p>
+  <p class="en"><span class="en-spk">Park:</span> Nice.</p>
+</article>
+</section>
+<section class="st-block">
+  <div class="st-header">
+    <span class="st-label">ST2</span>
+    <div class="st-titles">
+      <h3 class="st-jp">一緒に食事</h3>
+      <p class="st-en">Eating Together</p>
+    </div>
+    <span class="st-source">本冊 34ページ スクリプト</span>
+  </div>
+<div class="exchange-head"><span class="ex-num">1 (029)</span></div>
+<article class="line">
+  <div class="speaker-jp">ナタポン</div>
+  <p class="jp-kanji">おなかがすきましたね。</p>
+  <p class="jp-kana"><span class="kana-spk">ナタポン</span>おなかがすきましたね。</p>
+  <p class="en"><span class="en-spk">Natapon:</span> I&#x27;m hungry.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">ワン</div>
+  <p class="jp-kanji">何を食べますか。</p>
+  <p class="jp-kana"><span class="kana-spk">ワン</span>なにをたべますか。</p>
+  <p class="en"><span class="en-spk">Wang:</span> What shall we eat?</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">ナタポン</div>
+  <p class="jp-kanji">そうですねえ。あ、ここにメニューが置いてありますよ。</p>
+  <p class="jp-kana"><span class="kana-spk">ナタポン</span>そうですねえ。あ、ここにメニューがおいてありますよ。</p>
+  <p class="en"><span class="en-spk">Natapon:</span> Hmm, let&#x27;s see. Oh, there&#x27;s a menu placed here.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">ワン</div>
+  <p class="jp-kanji">わあ、全部おいしそうですね。</p>
+  <p class="jp-kana"><span class="kana-spk">ワン</span>わあ、ぜんぶおいしそうですね。</p>
+  <p class="en"><span class="en-spk">Wang:</span> Wow, it all looks delicious.</p>
+</article>
+<div class="exchange-head"><span class="ex-num">2 (030)</span></div>
+<article class="line">
+  <div class="speaker-jp">ナタポン</div>
+  <p class="jp-kanji">ワンさん、これは何と読みますか。</p>
+  <p class="jp-kana"><span class="kana-spk">ナタポン</span>ワンさん、これはなんとよみますか。</p>
+  <p class="en"><span class="en-spk">Natapon:</span> Wang, how do you read this?</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">ワン</div>
+  <p class="jp-kanji">ええと、「むりょう」と読みますよ。</p>
+  <p class="jp-kana"><span class="kana-spk">ワン</span>ええと、「むりょう」とよみますよ。</p>
+  <p class="en"><span class="en-spk">Wang:</span> Um, it&#x27;s read &quot;muryō&quot; (free of charge).</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">ナタポン</div>
+  <p class="jp-kanji">ああ、無料。今日、このお店はご飯が無料ですか。</p>
+  <p class="jp-kana"><span class="kana-spk">ナタポン</span>ああ、むりょう。きょう、このおみせはごはんがむりょうですか。</p>
+  <p class="en"><span class="en-spk">Natapon:</span> Oh, &quot;muryō.&quot; Is rice free today at this shop?</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">ワン</div>
+  <p class="jp-kanji">はい。</p>
+  <p class="jp-kana"><span class="kana-spk">ワン</span>はい。</p>
+  <p class="en"><span class="en-spk">Wang:</span> Yes.</p>
+</article>
+<div class="exchange-head"><span class="ex-num">3 / 4 (031 / 032)</span></div>
+<article class="line">
+  <div class="speaker-jp">ナタポン</div>
+  <p class="jp-kanji">あ、ワンさん、「ドリンクバー」と書いてありますよ。</p>
+  <p class="jp-kana"><span class="kana-spk">ナタポン</span>あ、ワンさん、「ドリンクバー」とかいてありますよ。</p>
+  <p class="en"><span class="en-spk">Natapon:</span> Oh, Wang, it says &quot;drink bar.&quot;</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">ワン</div>
+  <p class="jp-kanji">「ドリンクバー」はどういう意味ですか。</p>
+  <p class="jp-kana"><span class="kana-spk">ワン</span>「ドリンクバー」はどういういみですか。</p>
+  <p class="en"><span class="en-spk">Wang:</span> What does &quot;drink bar&quot; mean?</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">ナタポン</div>
+  <p class="jp-kanji">コーヒーやジュースなどの飲み物が飲み放題という意味です。</p>
+  <p class="jp-kana"><span class="kana-spk">ナタポン</span>コーヒーやジュースなどのみものがのみほうだいといういみです。</p>
+  <p class="en"><span class="en-spk">Natapon:</span> It means all-you-can-drink for things like coffee, juice, and so on.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">ワン</div>
+  <p class="jp-kanji">そうですか。</p>
+  <p class="jp-kana"><span class="kana-spk">ワン</span>そうですか。</p>
+  <p class="en"><span class="en-spk">Wang:</span> I see.</p>
+</article>
+<div class="exchange-head"><span class="ex-num">5 (033)</span></div>
+<article class="line">
+  <div class="speaker-jp">ナタポン</div>
+  <p class="jp-kanji">ワンさん、あちらの店もおいしそうです。</p>
+  <p class="jp-kana"><span class="kana-spk">ナタポン</span>ワンさん、あちらのみせもおいしそうです。</p>
+  <p class="en"><span class="en-spk">Natapon:</span> Wang, that shop over there also looks tasty.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">ワン</div>
+  <p class="jp-kanji">そうですね。あ、でも、この店もよさそうですよ。</p>
+  <p class="jp-kana"><span class="kana-spk">ワン</span>そうですね。あ、でも、このみせもよさそうですよ。</p>
+  <p class="en"><span class="en-spk">Wang:</span> True. Oh, but this shop also looks good.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">ナタポン</div>
+  <p class="jp-kanji">じゃ、この店にしましょう。</p>
+  <p class="jp-kana"><span class="kana-spk">ナタポン</span>じゃ、このみせにしましょう。</p>
+  <p class="en"><span class="en-spk">Natapon:</span> Then let&#x27;s go with this shop.</p>
+</article>
+<div class="exchange-head"><span class="ex-num">6 (034)</span></div>
+<article class="line">
+  <div class="speaker-jp">ナタポン</div>
+  <p class="jp-kanji">すみませーん。ご飯、お願いします。</p>
+  <p class="jp-kana"><span class="kana-spk">ナタポン</span>すみませーん。ごはん、おねがいします。</p>
+  <p class="en"><span class="en-spk">Natapon:</span> Excuse me—. Rice, please.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">店員</div>
+  <p class="jp-kanji">はい。</p>
+  <p class="jp-kana"><span class="kana-spk">てんいん</span>はい。</p>
+  <p class="en"><span class="en-spk">Clerk:</span> Yes.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">ワン</div>
+  <p class="jp-kanji">ナタポンさん、またおかわりですか。食べすぎですよ。</p>
+  <p class="jp-kana"><span class="kana-spk">ワン</span>ナタポンさん、またおかわりですか。たべすぎですよ。</p>
+  <p class="en"><span class="en-spk">Wang:</span> Natapon, another refill? You&#x27;re eating too much.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">ナタポン</div>
+  <p class="jp-kanji">あ、はい。</p>
+  <p class="jp-kana"><span class="kana-spk">ナタポン</span>あ、はい。</p>
+  <p class="en"><span class="en-spk">Natapon:</span> Oh, yes…</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">店員</div>
+  <p class="jp-kanji">お待たせしました。ご飯です。</p>
+  <p class="jp-kana"><span class="kana-spk">てんいん</span>おまたせしました。ごはんです。</p>
+  <p class="en"><span class="en-spk">Clerk:</span> Sorry to keep you waiting. Here&#x27;s your rice.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">ナタポン</div>
+  <p class="jp-kanji">……あれ、このご飯は多すぎますね。</p>
+  <p class="jp-kana"><span class="kana-spk">ナタポン</span>……あれ、このごはんはおおすぎますね。</p>
+  <p class="en"><span class="en-spk">Natapon:</span> …Huh, this rice is too much.</p>
+</article>
+<div class="exchange-head"><span class="ex-num">7 (035)</span></div>
+<article class="line">
+  <div class="speaker-jp">店員</div>
+  <p class="jp-kanji">ありがとうございました。またお越しください。</p>
+  <p class="jp-kana"><span class="kana-spk">てんいん</span>ありがとうございました。またおこしください。</p>
+  <p class="en"><span class="en-spk">Clerk:</span> Thank you very much. Please come again.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">ワン</div>
+  <p class="jp-kanji">おいしかったですね。</p>
+  <p class="jp-kana"><span class="kana-spk">ワン</span>おいしかったですね。</p>
+  <p class="en"><span class="en-spk">Wang:</span> It was delicious, wasn&#x27;t it.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">ナタポン</div>
+  <p class="jp-kanji">そうですね。食べすぎました。おなかがいっぱいです。ふーっ。</p>
+  <p class="jp-kana"><span class="kana-spk">ナタポン</span>そうですね。たべすぎました。おなかがいっぱいです。ふーっ。</p>
+  <p class="en"><span class="en-spk">Natapon:</span> Yes. I ate too much. My stomach is full. Phew.</p>
+</article>
+</section>
+</article>
+<article class="chapter ch-3">
+<header class="chapter-head">
+  <div class="chapter-mark">第3課</div>
+  <h2 class="chapter-title-jp">私の目標</h2>
+  <p class="chapter-title-en">My Goals</p>
+</header>
+<section class="st-block">
+  <div class="st-header">
+    <span class="st-label">ST1</span>
+    <div class="st-titles">
+      <h3 class="st-jp">これからの計画</h3>
+      <p class="st-en">Plans Ahead</p>
+    </div>
+    <span class="st-source">本冊 44ページ スクリプト</span>
+  </div>
+<div class="exchange-head"><span class="ex-num">1 (041)</span></div>
+<article class="line">
+  <div class="speaker-jp">パク</div>
+  <p class="jp-kanji">もうすぐ夏休みですね。</p>
+  <p class="jp-kana"><span class="kana-spk">パク</span>もうすぐなつやすみですね。</p>
+  <p class="en"><span class="en-spk">Park:</span> Summer vacation is almost here.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">ナタポン</div>
+  <p class="jp-kanji">そうですね。</p>
+  <p class="jp-kana"><span class="kana-spk">ナタポン</span>そうですね。</p>
+  <p class="en"><span class="en-spk">Natapon:</span> Yes, it is.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">パク</div>
+  <p class="jp-kanji">ナタポンさんは、夏休みになったら、何をしますか。</p>
+  <p class="jp-kana"><span class="kana-spk">パク</span>ナタポンさんは、なつやすみになったら、なにをしますか。</p>
+  <p class="en"><span class="en-spk">Park:</span> Natapon, what will you do once summer vacation starts?</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">ナタポン</div>
+  <p class="jp-kanji">夏休みになったら、国へ帰ります。</p>
+  <p class="jp-kana"><span class="kana-spk">ナタポン</span>なつやすみになったら、くにへかえります。</p>
+  <p class="en"><span class="en-spk">Natapon:</span> When summer vacation comes, I&#x27;ll go back to my country.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">パク</div>
+  <p class="jp-kanji">へえ。いいですね。</p>
+  <p class="jp-kana"><span class="kana-spk">パク</span>へえ。いいですね。</p>
+  <p class="en"><span class="en-spk">Park:</span> Oh, that&#x27;s nice.</p>
+</article>
+<div class="exchange-head"><span class="ex-num">2 (042)</span></div>
+<article class="line">
+  <div class="speaker-jp">ナタポン</div>
+  <p class="jp-kanji">パクさんは？</p>
+  <p class="jp-kana"><span class="kana-spk">ナタポン</span>パクさんは？</p>
+  <p class="en"><span class="en-spk">Natapon:</span> How about you, Park?</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">パク</div>
+  <p class="jp-kanji">私は専門学校の見学に行こうと思っています。</p>
+  <p class="jp-kana"><span class="kana-spk">パク</span>わたしはせんもんがっこうのけんがくにいこうとおもっています。</p>
+  <p class="en"><span class="en-spk">Park:</span> I&#x27;m thinking of going to look around a vocational school.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">ナタポン</div>
+  <p class="jp-kanji">専門学校ですか。何の専門学校ですか。</p>
+  <p class="jp-kana"><span class="kana-spk">ナタポン</span>せんもんがっこうですか。なんのせんもんがっこうですか。</p>
+  <p class="en"><span class="en-spk">Natapon:</span> A vocational school? A school for what?</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">パク</div>
+  <p class="jp-kanji">映画の専門学校です。私は映画が好きなので、映画の勉強をしようと思っています。</p>
+  <p class="jp-kana"><span class="kana-spk">パク</span>えいがのせんもんがっこうです。わたしはえいががすきなので、えいがのべんきょうをしようとおもっています。</p>
+  <p class="en"><span class="en-spk">Park:</span> A film school. I like movies, so I&#x27;m thinking of studying film.</p>
+</article>
+<div class="exchange-head"><span class="ex-num">3 (043)</span></div>
+<article class="line">
+  <div class="speaker-jp">パク</div>
+  <p class="jp-kanji">ナタポンさんは卒業したら、どうしますか。</p>
+  <p class="jp-kana"><span class="kana-spk">パク</span>ナタポンさんはそつぎょうしたら、どうしますか。</p>
+  <p class="en"><span class="en-spk">Park:</span> Natapon, what will you do after you graduate?</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">ナタポン</div>
+  <p class="jp-kanji">私は国で父の会社を手伝うつもりです。</p>
+  <p class="jp-kana"><span class="kana-spk">ナタポン</span>わたしはくにでちちのかいしゃをてつだうつもりです。</p>
+  <p class="en"><span class="en-spk">Natapon:</span> I plan to help out at my father&#x27;s company back home.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">パク</div>
+  <p class="jp-kanji">そうですか。</p>
+  <p class="jp-kana"><span class="kana-spk">パク</span>そうですか。</p>
+  <p class="en"><span class="en-spk">Park:</span> I see.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">ナタポン</div>
+  <p class="jp-kanji">それで、今、日本語を一生懸命、勉強しています。</p>
+  <p class="jp-kana"><span class="kana-spk">ナタポン</span>それで、いま、にほんごをいっしょうけんめい、べんきょうしています。</p>
+  <p class="en"><span class="en-spk">Natapon:</span> So right now, I&#x27;m studying Japanese hard.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">パク</div>
+  <p class="jp-kanji">へえ。</p>
+  <p class="jp-kana"><span class="kana-spk">パク</span>へえ。</p>
+  <p class="en"><span class="en-spk">Park:</span> Oh, I see.</p>
+</article>
+<div class="exchange-head"><span class="ex-num">4 (044)</span></div>
+<article class="line">
+  <div class="speaker-jp">ワン</div>
+  <p class="jp-kanji">あ、マリヤムさん、マリヤムさんはこの学校を卒業したら、どうしますか。</p>
+  <p class="jp-kana"><span class="kana-spk">ワン</span>あ、マリヤムさん、マリヤムさんはこのがっこうをそつぎょうしたら、どうしますか。</p>
+  <p class="en"><span class="en-spk">Wang:</span> Oh, Mariyam, what are you going to do after you graduate from this school?</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">マリヤム</div>
+  <p class="jp-kanji">進学しようと思っています。でも、何を勉強するか、迷っています。それで、いろいろな学校を見に行こうと思っています。</p>
+  <p class="jp-kana"><span class="kana-spk">マリヤム</span>しんがくしようとおもっています。でも、なにをべんきょうするか、まよっています。それで、いろいろながっこうをみにいこうとおもっています。</p>
+  <p class="en"><span class="en-spk">Mariyam:</span> I&#x27;m thinking of continuing my studies. But I&#x27;m not sure what to study. So I&#x27;m planning to go check out various schools.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">ワン</div>
+  <p class="jp-kanji">そうですか。</p>
+  <p class="jp-kana"><span class="kana-spk">ワン</span>そうですか。</p>
+  <p class="en"><span class="en-spk">Wang:</span> I see.</p>
+</article>
+<div class="exchange-head"><span class="ex-num">5</span></div>
+<article class="line">
+  <div class="speaker-jp">ワン</div>
+  <p class="jp-kanji">あ、マリヤムさんは夏休み、何をしますか。</p>
+  <p class="jp-kana"><span class="kana-spk">ワン</span>あ、マリヤムさんはなつやすみ、なにをしますか。</p>
+  <p class="en"><span class="en-spk">Wang:</span> Oh, Mariyam, what will you do during summer vacation?</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">マリヤム</div>
+  <p class="jp-kanji">国へ帰りたいです。でも、チケットが高いので、帰るかどうか、今考えています。</p>
+  <p class="jp-kana"><span class="kana-spk">マリヤム</span>くにへかえりたいです。でも、チケットがたかいので、かえるかどうか、いまかんがえています。</p>
+  <p class="en"><span class="en-spk">Mariyam:</span> I&#x27;d like to go back to my country. But the tickets are expensive, so I&#x27;m still thinking about whether to go.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">ワン</div>
+  <p class="jp-kanji">そうですか。</p>
+  <p class="jp-kana"><span class="kana-spk">ワン</span>そうですか。</p>
+  <p class="en"><span class="en-spk">Wang:</span> I see.</p>
+</article>
+</section>
+<section class="st-block">
+  <div class="st-header">
+    <span class="st-label">ST2</span>
+    <div class="st-titles">
+      <h3 class="st-jp">夢に向かって</h3>
+      <p class="st-en">Toward My Dream</p>
+    </div>
+    <span class="st-source">本冊 48ページ スクリプト</span>
+  </div>
+<div class="exchange-head"><span class="ex-num">1 (048)</span></div>
+<article class="line">
+  <div class="speaker-jp">ダニエル</div>
+  <p class="jp-kanji">パクさんの将来の夢は何ですか。</p>
+  <p class="jp-kana"><span class="kana-spk">ダニエル</span>パクさんのしょうらいのゆめはなんですか。</p>
+  <p class="en"><span class="en-spk">Daniel:</span> Park, what&#x27;s your dream for the future?</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">パク</div>
+  <p class="jp-kanji">映画を作ることです。私は映画の勉強をするために、日本へ来ました。</p>
+  <p class="jp-kana"><span class="kana-spk">パク</span>えいがをつくることです。わたしはえいがのべんきょうをするために、にほんへきました。</p>
+  <p class="en"><span class="en-spk">Park:</span> To make movies. I came to Japan in order to study film.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">ダニエル</div>
+  <p class="jp-kanji">へえ。</p>
+  <p class="jp-kana"><span class="kana-spk">ダニエル</span>へえ。</p>
+  <p class="en"><span class="en-spk">Daniel:</span> Oh.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">パク</div>
+  <p class="jp-kanji">この学校を卒業したら専門学校で映画の勉強をしたいので、明日、専門学校のオープンキャンパスに行こうと思っています。</p>
+  <p class="jp-kana"><span class="kana-spk">パク</span>このがっこうをそつぎょうしたらせんもんがっこうでえいがのべんきょうをしたいので、あした、せんもんがっこうのオープンキャンパスにいこうとおもっています。</p>
+  <p class="en"><span class="en-spk">Park:</span> After I graduate from this school, I want to study film at a vocational school, so tomorrow I&#x27;m thinking of going to a vocational school open campus.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">ダニエル</div>
+  <p class="jp-kanji">そうですか。</p>
+  <p class="jp-kana"><span class="kana-spk">ダニエル</span>そうですか。</p>
+  <p class="en"><span class="en-spk">Daniel:</span> I see.</p>
+</article>
+<div class="exchange-head"><span class="ex-num">2-1 (049) — At the open campus</span></div>
+<article class="line">
+  <div class="speaker-jp">リン</div>
+  <p class="jp-kanji">はじめまして。リンと申します。</p>
+  <p class="jp-kana"><span class="kana-spk">リン</span>はじめまして。リンともうします。</p>
+  <p class="en"><span class="en-spk">Lin:</span> Nice to meet you. My name is Lin.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">パク</div>
+  <p class="jp-kanji">パクと申します。よろしくお願いします。</p>
+  <p class="jp-kana"><span class="kana-spk">パク</span>パクともうします。よろしくおねがいします。</p>
+  <p class="en"><span class="en-spk">Park:</span> My name is Park. Pleased to meet you.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">リン</div>
+  <p class="jp-kanji">パクさん、こちらへどうぞ。授業で作った映画です。これから始まります。</p>
+  <p class="jp-kana"><span class="kana-spk">リン</span>パクさん、こちらへどうぞ。じゅぎょうでつくったえいがです。これからはじまります。</p>
+  <p class="en"><span class="en-spk">Lin:</span> Park, this way please. This is a movie we made in class. It&#x27;s starting now.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">パク</div>
+  <p class="jp-kanji">あのう、この映画はリンさんが撮ったんですか。</p>
+  <p class="jp-kana"><span class="kana-spk">パク</span>あのう、このえいがはリンさんがとったんですか。</p>
+  <p class="en"><span class="en-spk">Park:</span> Um, did you shoot this movie?</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">リン</div>
+  <p class="jp-kanji">はい。クラスメイトと一緒に作りました。ゆっくり見てください。</p>
+  <p class="jp-kana"><span class="kana-spk">リン</span>はい。クラスメイトといっしょにつくりました。ゆっくりみてください。</p>
+  <p class="en"><span class="en-spk">Lin:</span> Yes. I made it with my classmates. Please enjoy watching it.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">パク</div>
+  <p class="jp-kanji">ありがとうございます。</p>
+  <p class="jp-kana"><span class="kana-spk">パク</span>ありがとうございます。</p>
+  <p class="en"><span class="en-spk">Park:</span> Thank you.</p>
+</article>
+<div class="exchange-head"><span class="ex-num">2-2 (050)</span></div>
+<article class="line">
+  <div class="speaker-jp">リン</div>
+  <p class="jp-kanji">映画はどうでしたか。</p>
+  <p class="jp-kana"><span class="kana-spk">リン</span>えいがはどうでしたか。</p>
+  <p class="en"><span class="en-spk">Lin:</span> How was the movie?</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">パク</div>
+  <p class="jp-kanji">とてもおもしろかったです。あのう、リンさん、少し質問してもいいですか。</p>
+  <p class="jp-kana"><span class="kana-spk">パク</span>とてもおもしろかったです。あのう、リンさん、すこししつもんしてもいいですか。</p>
+  <p class="en"><span class="en-spk">Park:</span> It was really interesting. Um, Lin, can I ask a few questions?</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">リン</div>
+  <p class="jp-kanji">はい、何ですか。</p>
+  <p class="jp-kana"><span class="kana-spk">リン</span>はい、なんですか。</p>
+  <p class="en"><span class="en-spk">Lin:</span> Sure, what is it?</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">パク</div>
+  <p class="jp-kanji">リンさんは、いつ日本へ来たんですか。</p>
+  <p class="jp-kana"><span class="kana-spk">パク</span>リンさんは、いつにほんへきたんですか。</p>
+  <p class="en"><span class="en-spk">Park:</span> When did you come to Japan?</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">リン</div>
+  <p class="jp-kanji">去年の4月に来て、日本語学校で1年勉強しました。</p>
+  <p class="jp-kana"><span class="kana-spk">リン</span>きょねんのしがつにきて、にほんごがっこうでいちねんべんきょうしました。</p>
+  <p class="en"><span class="en-spk">Lin:</span> I came last April and studied at a Japanese language school for a year.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">パク</div>
+  <p class="jp-kanji">そうですか。私も今、日本語学校で勉強しています。あのう、どうしてこの学校を選んだんですか。</p>
+  <p class="jp-kana"><span class="kana-spk">パク</span>そうですか。わたしもいま、にほんごがっこうでべんきょうしています。あのう、どうしてこのがっこうをえらんだんですか。</p>
+  <p class="en"><span class="en-spk">Park:</span> I see. I&#x27;m currently studying at a Japanese language school too. Um, why did you choose this school?</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">リン</div>
+  <p class="jp-kanji">そうですねえ。映画の専門学校はいくつかありますが、この学校の体験授業がいちばんおもしろかったんです。</p>
+  <p class="jp-kana"><span class="kana-spk">リン</span>そうですねえ。えいがのせんもんがっこうはいくつかありますが、このがっこうのたいけんじゅぎょうがいちばんおもしろかったんです。</p>
+  <p class="en"><span class="en-spk">Lin:</span> Well, there are a few film schools, but the trial class at this school was the most interesting.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">パク</div>
+  <p class="jp-kanji">へえ。</p>
+  <p class="jp-kana"><span class="kana-spk">パク</span>へえ。</p>
+  <p class="en"><span class="en-spk">Park:</span> Oh.</p>
+</article>
+<div class="exchange-head"><span class="ex-num">3 (051)</span></div>
+<article class="line">
+  <div class="speaker-jp">ダニエル</div>
+  <p class="jp-kanji">あ、パクさん、専門学校の説明会はどうでしたか。</p>
+  <p class="jp-kana"><span class="kana-spk">ダニエル</span>あ、パクさん、せんもんがっこうのせつめいかいはどうでしたか。</p>
+  <p class="en"><span class="en-spk">Daniel:</span> Oh, Park, how was the information session at the vocational school?</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">パク</div>
+  <p class="jp-kanji">とてもよかったです。先輩からたくさん話が聞けました。</p>
+  <p class="jp-kana"><span class="kana-spk">パク</span>とてもよかったです。せんぱいからたくさんはなしがききました。</p>
+  <p class="en"><span class="en-spk">Park:</span> It was great. I got to hear a lot from senior students.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">ダニエル</div>
+  <p class="jp-kanji">そうですか。よかったですね。あ、それは何ですか。</p>
+  <p class="jp-kana"><span class="kana-spk">ダニエル</span>そうですか。よかったですね。あ、それはなんですか。</p>
+  <p class="en"><span class="en-spk">Daniel:</span> I see. That&#x27;s great. Oh, what&#x27;s that?</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">パク</div>
+  <p class="jp-kanji">作文です。</p>
+  <p class="jp-kana"><span class="kana-spk">パク</span>さくぶんです。</p>
+  <p class="en"><span class="en-spk">Park:</span> It&#x27;s an essay/composition.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">ダニエル</div>
+  <p class="jp-kanji">へえ。</p>
+  <p class="jp-kana"><span class="kana-spk">ダニエル</span>へえ。</p>
+  <p class="en"><span class="en-spk">Daniel:</span> Oh.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">パク</div>
+  <p class="jp-kanji">私は作文が苦手ですが、入学試験で作文があるので、書く練習をたくさんしなければならないんです。</p>
+  <p class="jp-kana"><span class="kana-spk">パク</span>わたしはさくぶんがにがてですが、にゅうがくしけんでさくぶんがあるので、かくれんしゅうをたくさんしなければならないんです。</p>
+  <p class="en"><span class="en-spk">Park:</span> I&#x27;m bad at writing essays, but there&#x27;s an essay on the entrance exam, so I have to practice writing a lot.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">ダニエル</div>
+  <p class="jp-kanji">そうですか。頑張ってくださいね。</p>
+  <p class="jp-kana"><span class="kana-spk">ダニエル</span>そうですか。がんばってくださいね。</p>
+  <p class="en"><span class="en-spk">Daniel:</span> I see. Good luck.</p>
+</article>
+</section>
+</article>
+<article class="chapter ch-4">
+<header class="chapter-head">
+  <div class="chapter-mark">第4課</div>
+  <h2 class="chapter-title-jp">住んでいる町で</h2>
+  <p class="chapter-title-en">In the Town You Live In</p>
+</header>
+<section class="st-block">
+  <div class="st-header">
+    <span class="st-label">ST1</span>
+    <div class="st-titles">
+      <h3 class="st-jp">生活を楽しむ</h3>
+      <p class="st-en">Enjoying Life</p>
+    </div>
+    <span class="st-source">本冊 56ページ スクリプト</span>
+  </div>
+<div class="exchange-head"><span class="ex-num">1 (056)</span></div>
+<article class="line">
+  <div class="speaker-jp">マルコ</div>
+  <p class="jp-kanji">ダニエルさん。ちょっと聞いてもいいですか。</p>
+  <p class="jp-kana"><span class="kana-spk">マルコ</span>ダニエルさん。ちょっときいてもいいですか。</p>
+  <p class="en"><span class="en-spk">Marco:</span> Daniel, can I ask you something?</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">ダニエル</div>
+  <p class="jp-kanji">はい、何ですか。</p>
+  <p class="jp-kana"><span class="kana-spk">ダニエル</span>はい、なんですか。</p>
+  <p class="en"><span class="en-spk">Daniel:</span> Sure, what is it?</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">マルコ</div>
+  <p class="jp-kanji">今度バスケットボールをしたいんですが、どこかバスケットボールができるところを知りませんか。</p>
+  <p class="jp-kana"><span class="kana-spk">マルコ</span>こんどバスケットボールをしたいんですが、どこかバスケットボールができるところをしりませんか。</p>
+  <p class="en"><span class="en-spk">Marco:</span> I want to play basketball sometime — do you know anywhere I can play basketball?</p>
+</article>
+<div class="exchange-head"><span class="ex-num">2 (057)</span></div>
+<article class="line">
+  <div class="speaker-jp">ダニエル</div>
+  <p class="jp-kanji">バスケットボールをするなら、市民運動公園がいいですよ。とても広くて、いろいろなスポーツができますよ。</p>
+  <p class="jp-kana"><span class="kana-spk">ダニエル</span>バスケットボールをするなら、しみんうんどうこうえんがいいですよ。とてもひろくて、いろいろなスポーツができますよ。</p>
+  <p class="en"><span class="en-spk">Daniel:</span> If you want to play basketball, the Citizens&#x27; Sports Park is good. It&#x27;s very spacious, and you can play various sports there.</p>
+</article>
+<div class="exchange-head"><span class="ex-num">3 (058)</span></div>
+<article class="line">
+  <div class="speaker-jp">マルコ</div>
+  <p class="jp-kanji">そうですか。わかりました。市民運動公園へどうやって行ったらいいですか。</p>
+  <p class="jp-kana"><span class="kana-spk">マルコ</span>そうですか。わかりました。しみんうんどうこうえんへどうやっていったらいいですか。</p>
+  <p class="en"><span class="en-spk">Marco:</span> I see. Got it. How should I get to Citizens&#x27; Sports Park?</p>
+</article>
+<div class="exchange-head"><span class="ex-num">4 (059)</span></div>
+<article class="line">
+  <div class="speaker-jp">ダニエル</div>
+  <p class="jp-kanji">あさひ駅の西口からバスが出ているので、バスで行くといいですよ。6番のバスに乗って、さくらセンターで降ります。さくらセンターの近くにありますよ。</p>
+  <p class="jp-kana"><span class="kana-spk">ダニエル</span>あさひえきのにしぐちからバスがでているので、バスでいくといいですよ。ろくばんのバスにのって、さくらセンターでおります。さくらセンターのちかくにありますよ。</p>
+  <p class="en"><span class="en-spk">Daniel:</span> There&#x27;s a bus from the west exit of Asahi Station, so it&#x27;s good to go by bus. Take bus number 6 and get off at Sakura Center. It&#x27;s near Sakura Center.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">マルコ</div>
+  <p class="jp-kanji">6番のバスに乗って、さくらセンターで降りるんですね。</p>
+  <p class="jp-kana"><span class="kana-spk">マルコ</span>ろくばんのバスにのって、さくらセンターでおりるんですね。</p>
+  <p class="en"><span class="en-spk">Marco:</span> Take bus 6 and get off at Sakura Center, right?</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">ダニエル</div>
+  <p class="jp-kanji">はい。</p>
+  <p class="jp-kana"><span class="kana-spk">ダニエル</span>はい。</p>
+  <p class="en"><span class="en-spk">Daniel:</span> Yes.</p>
+</article>
+<div class="exchange-head"><span class="ex-num">5 (060)</span></div>
+<article class="line">
+  <div class="speaker-jp">ダニエル</div>
+  <p class="jp-kanji">あ、マルコさん。行く前に、予約が必要ですよ。市役所のホームページでできます。</p>
+  <p class="jp-kana"><span class="kana-spk">ダニエル</span>あ、マルコさん。いくまえに、よやくがひつようですよ。しやくしょのホームページでできます。</p>
+  <p class="en"><span class="en-spk">Daniel:</span> Oh, Marco. Before you go, you need a reservation. You can do it on the city hall website.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">マルコ</div>
+  <p class="jp-kanji">そうですか。予約はいつまでにしなければなりませんか。</p>
+  <p class="jp-kana"><span class="kana-spk">マルコ</span>そうですか。よやくはいつまでにしなければなりませんか。</p>
+  <p class="en"><span class="en-spk">Marco:</span> I see. By when do I have to make the reservation?</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">ダニエル</div>
+  <p class="jp-kanji">1週間前までに予約しなければなりません。</p>
+  <p class="jp-kana"><span class="kana-spk">ダニエル</span>いっしゅうかんまえによやくしなければなりません。</p>
+  <p class="en"><span class="en-spk">Daniel:</span> You have to reserve one week in advance.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">マルコ</div>
+  <p class="jp-kanji">そうですか。わかりました。どうもありがとうございます。</p>
+  <p class="jp-kana"><span class="kana-spk">マルコ</span>そうですか。わかりました。どうもありがとうございます。</p>
+  <p class="en"><span class="en-spk">Marco:</span> I see. Got it. Thank you very much.</p>
+</article>
+</section>
+<section class="st-block">
+  <div class="st-header">
+    <span class="st-label">ST2</span>
+    <div class="st-titles">
+      <h3 class="st-jp">行き方を教える</h3>
+      <p class="st-en">Giving Directions</p>
+    </div>
+    <span class="st-source">本冊 60ページ スクリプト</span>
+  </div>
+<div class="exchange-head"><span class="ex-num">1 (063)</span></div>
+<article class="line">
+  <div class="speaker-jp">マルコ</div>
+  <p class="jp-kanji">今、さくらブックスという本屋の前にいるんですが、ここから市民運動公園までどうやって行ったらいいですか。</p>
+  <p class="jp-kana"><span class="kana-spk">マルコ</span>いま、さくらブックスというほんやのまえにいるんですが、ここからしみんうんどうこうえんまでどうやっていったらいいですか。</p>
+  <p class="en"><span class="en-spk">Marco:</span> I&#x27;m in front of a bookstore called Sakura Books right now — how should I get to Citizens&#x27; Sports Park from here?</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">ダニエル</div>
+  <p class="jp-kanji">ああ、さくらブックスですね。そこから大きい郵便局が見えませんか。</p>
+  <p class="jp-kana"><span class="kana-spk">ダニエル</span>ああ、さくらブックスですね。そこからおおきいゆうびんきょくがみえませんか。</p>
+  <p class="en"><span class="en-spk">Daniel:</span> Ah, Sakura Books, got it. Can you see a big post office from there?</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">マルコ</div>
+  <p class="jp-kanji">えっと、あ、ありました。さくら郵便局と書いてあります。</p>
+  <p class="jp-kana"><span class="kana-spk">マルコ</span>えっと、あ、ありました。さくらゆうびんきょくとかいてあります。</p>
+  <p class="en"><span class="en-spk">Marco:</span> Um, oh, there it is. It says &quot;Sakura Post Office.&quot;</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">ダニエル</div>
+  <p class="jp-kanji">よかった。さくら郵便局まで行って、さくら郵便局の角を左に曲がってください。100メートルくらいまっすぐ行くと、右に市民運動公園がありますよ。</p>
+  <p class="jp-kana"><span class="kana-spk">ダニエル</span>よかった。さくらゆうびんきょくまでいって、さくらゆうびんきょくのかどをひだりにまがってください。ひゃくメートルくらいまっすぐいくと、みぎにしみんうんどうこうえんがありますよ。</p>
+  <p class="en"><span class="en-spk">Daniel:</span> Good. Go to Sakura Post Office, then turn left at the corner of Sakura Post Office. Go straight for about 100 meters, and Citizens&#x27; Sports Park will be on your right.</p>
+</article>
+<div class="exchange-head"><span class="ex-num">2</span></div>
+<article class="line">
+  <div class="speaker-jp">マルコ</div>
+  <p class="jp-kanji">さくら郵便局の角を右に曲がるんですね。</p>
+  <p class="jp-kana"><span class="kana-spk">マルコ</span>さくらゆうびんきょくのかどをみぎにまがるんですね。</p>
+  <p class="en"><span class="en-spk">Marco:</span> Turn right at the corner of Sakura Post Office, right?</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">ダニエル</div>
+  <p class="jp-kanji">右じゃなくて、左ですよ。</p>
+  <p class="jp-kana"><span class="kana-spk">ダニエル</span>みぎじゃなくて、ひだりですよ。</p>
+  <p class="en"><span class="en-spk">Daniel:</span> Not right — left.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">マルコ</div>
+  <p class="jp-kanji">あ、左ですね。わかりました。ここからどのくらいかかりますか。</p>
+  <p class="jp-kana"><span class="kana-spk">マルコ</span>あ、ひだりですね。わかりました。ここからどのくらいかかりますか。</p>
+  <p class="en"><span class="en-spk">Marco:</span> Oh, left. Got it. How long does it take from here?</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">ダニエル</div>
+  <p class="jp-kanji">そうですねえ。だいたい5分くらいですよ。</p>
+  <p class="jp-kana"><span class="kana-spk">ダニエル</span>そうですねえ。だいたいごふんくらいですよ。</p>
+  <p class="en"><span class="en-spk">Daniel:</span> Let&#x27;s see… about 5 minutes.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">マルコ</div>
+  <p class="jp-kanji">はい、わかりました。ありがとうございました。</p>
+  <p class="jp-kana"><span class="kana-spk">マルコ</span>はい、わかりました。ありがとうございました。</p>
+  <p class="en"><span class="en-spk">Marco:</span> Okay, got it. Thank you.</p>
+</article>
+</section>
+</article>
+<article class="chapter ch-5">
+<header class="chapter-head">
+  <div class="chapter-mark">第5課</div>
+  <h2 class="chapter-title-jp">大変な1日</h2>
+  <p class="chapter-title-en">A Tough Day</p>
+</header>
+<section class="st-block">
+  <div class="st-header">
+    <span class="st-label">ST1</span>
+    <div class="st-titles">
+      <h3 class="st-jp">困ったな……</h3>
+      <p class="st-en">Oh No…</p>
+    </div>
+    <span class="st-source">本冊 68ページ スクリプト</span>
+  </div>
+<div class="exchange-head"><span class="ex-num">1 (070)</span></div>
+<article class="line">
+  <div class="speaker-jp">パク</div>
+  <p class="jp-kanji">あれ？</p>
+  <p class="jp-kana"><span class="kana-spk">パク</span>あれ？</p>
+  <p class="en"><span class="en-spk">Park:</span> Huh?</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">ダニエル</div>
+  <p class="jp-kanji">パクさん、どうしたんですか。</p>
+  <p class="jp-kana"><span class="kana-spk">ダニエル</span>パクさん、どうしたんですか。</p>
+  <p class="en"><span class="en-spk">Daniel:</span> Park, what&#x27;s wrong?</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">パク</div>
+  <p class="jp-kanji">財布が……。</p>
+  <p class="jp-kana"><span class="kana-spk">パク</span>さいふが……。</p>
+  <p class="en"><span class="en-spk">Park:</span> My wallet…</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">ダニエル</div>
+  <p class="jp-kanji">えっ？</p>
+  <p class="jp-kana"><span class="kana-spk">ダニエル</span>えっ？</p>
+  <p class="en"><span class="en-spk">Daniel:</span> What?</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">パク</div>
+  <p class="jp-kanji">財布をなくしてしまいました。</p>
+  <p class="jp-kana"><span class="kana-spk">パク</span>さいふをなくしてしまいました。</p>
+  <p class="en"><span class="en-spk">Park:</span> I&#x27;ve lost my wallet.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">ダニエル</div>
+  <p class="jp-kanji">えっ？本当？</p>
+  <p class="jp-kana"><span class="kana-spk">ダニエル</span>えっ？ほんとう？</p>
+  <p class="en"><span class="en-spk">Daniel:</span> What? Really?</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">パク</div>
+  <p class="jp-kanji">どうしよう。</p>
+  <p class="jp-kana"><span class="kana-spk">パク</span>どうしよう。</p>
+  <p class="en"><span class="en-spk">Park:</span> What should I do?</p>
+</article>
+<div class="exchange-head"><span class="ex-num">2 (071) — Back at the café</span></div>
+<article class="line">
+  <div class="speaker-jp">ダニエル</div>
+  <p class="jp-kanji">さっき行った喫茶店にあるかもしれませんよ。</p>
+  <p class="jp-kana"><span class="kana-spk">ダニエル</span>さっきいったきっさてんにあるかもしれませんよ。</p>
+  <p class="en"><span class="en-spk">Daniel:</span> It might be at the café we went to earlier.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">パク</div>
+  <p class="jp-kanji">そうですね。じゃ、ちょっと戻ってみてもいいですか。</p>
+  <p class="jp-kana"><span class="kana-spk">パク</span>そうですね。じゃ、ちょっともどってみてもいいですか。</p>
+  <p class="en"><span class="en-spk">Park:</span> Yes. Then can we go back for a moment?</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">ダニエル</div>
+  <p class="jp-kanji">はい、いいですよ。そうしましょう。</p>
+  <p class="jp-kana"><span class="kana-spk">ダニエル</span>はい、いいですよ。そうしましょう。</p>
+  <p class="en"><span class="en-spk">Daniel:</span> Sure, no problem. Let&#x27;s do that.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">パク</div>
+  <p class="jp-kanji">すみません。さっきこちらへ来た者ですが、財布の忘れ物はありませんでしたか。</p>
+  <p class="jp-kana"><span class="kana-spk">パク</span>すみません。さっきこちらへきたものですが、さいふのわすれものはありませんでしたか。</p>
+  <p class="en"><span class="en-spk">Park:</span> Excuse me. I was here a little while ago — has a lost wallet been turned in?</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">店員</div>
+  <p class="jp-kanji">財布ですか。少々お待ちください。……ああ、ちょっとこちらには……。</p>
+  <p class="jp-kana"><span class="kana-spk">てんいん</span>さいふですか。しょうしょうおまちください。……ああ、ちょっとこちらには……。</p>
+  <p class="en"><span class="en-spk">Clerk:</span> A wallet? Please wait a moment. ...Ah, it doesn&#x27;t seem to be here…</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">パク</div>
+  <p class="jp-kanji">そうですか。わかりました。ありがとうございます。はあ。</p>
+  <p class="jp-kana"><span class="kana-spk">パク</span>そうですか。わかりました。ありがとうございます。はあ。</p>
+  <p class="en"><span class="en-spk">Park:</span> I see. Understood. Thank you. *sigh*</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">ダニエル</div>
+  <p class="jp-kanji">じゃ、交番へ行ってみましょう。</p>
+  <p class="jp-kana"><span class="kana-spk">ダニエル</span>じゃ、こうばんへいってみましょう。</p>
+  <p class="en"><span class="en-spk">Daniel:</span> Then let&#x27;s try going to the police box.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">パク</div>
+  <p class="jp-kanji">はい。</p>
+  <p class="jp-kana"><span class="kana-spk">パク</span>はい。</p>
+  <p class="en"><span class="en-spk">Park:</span> Okay.</p>
+</article>
+<div class="exchange-head"><span class="ex-num">3-1 (072) — At the police box</span></div>
+<article class="line">
+  <div class="speaker-jp">パク</div>
+  <p class="jp-kanji">あのう、すみません。財布をなくしてしまったんですが……。</p>
+  <p class="jp-kana"><span class="kana-spk">パク</span>あのう、すみません。さいふをなくしてしまったんですが……。</p>
+  <p class="en"><span class="en-spk">Park:</span> Um, excuse me. I&#x27;ve lost my wallet…</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">警官</div>
+  <p class="jp-kanji">そうですか。どの辺でなくしたんですか。</p>
+  <p class="jp-kana"><span class="kana-spk">けいかん</span>そうですか。どのへんでなくしたんですか。</p>
+  <p class="en"><span class="en-spk">Officer:</span> I see. Around where did you lose it?</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">パク</div>
+  <p class="jp-kanji">それが……よくわからないんです。買い物したあとで、駅ビルの近くの喫茶店へ行きました。そのときは確かにあったんですが……。</p>
+  <p class="jp-kana"><span class="kana-spk">パク</span>それが……よくわからないんです。かいものしたあとで、えきビルのちかくのきっさてんへいきました。そのときはたしかにあったんですが……。</p>
+  <p class="en"><span class="en-spk">Park:</span> Well… I&#x27;m not really sure. After shopping, I went to a café near the station building. I definitely had it then, but…</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">パク</div>
+  <p class="jp-kanji">駅に着いたあとで、ないことに気がつきました。</p>
+  <p class="jp-kana"><span class="kana-spk">パク</span>えきについたあとで、ないことにきがつきました。</p>
+  <p class="en"><span class="en-spk">Park:</span> After I got to the station, I noticed it was gone.</p>
+</article>
+<div class="exchange-head"><span class="ex-num">3-2</span></div>
+<article class="line">
+  <div class="speaker-jp">警官</div>
+  <p class="jp-kanji">そうですか。どんな財布ですか。</p>
+  <p class="jp-kana"><span class="kana-spk">けいかん</span>そうですか。どんなさいふですか。</p>
+  <p class="en"><span class="en-spk">Officer:</span> I see. What kind of wallet is it?</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">パク</div>
+  <p class="jp-kanji">黒い財布で、犬の絵が描いてあります。中にお金が2万円くらいとカードが4枚、入っています。</p>
+  <p class="jp-kana"><span class="kana-spk">パク</span>くろいさいふで、いぬのえがかいてあります。なかにおかねがにまんえんくらいとカードがよんまい、はいっています。</p>
+  <p class="en"><span class="en-spk">Park:</span> It&#x27;s a black wallet with a picture of a dog drawn on it. Inside there&#x27;s about 20,000 yen and 4 cards.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">警官</div>
+  <p class="jp-kanji">今、ここにはありませんね。ここに名前と住所、電話番号を書いてください。見つかったら、すぐに連絡します。</p>
+  <p class="jp-kana"><span class="kana-spk">けいかん</span>いま、ここにはありませんね。ここになまえとじゅうしょ、でんわばんごうをかいてください。みつかったら、すぐにれんらくします。</p>
+  <p class="en"><span class="en-spk">Officer:</span> It&#x27;s not here at the moment. Please write your name, address, and phone number here. If it&#x27;s found, we&#x27;ll contact you right away.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">パク</div>
+  <p class="jp-kanji">はい。よろしくお願いします。</p>
+  <p class="jp-kana"><span class="kana-spk">パク</span>はい。よろしくおねがいします。</p>
+  <p class="en"><span class="en-spk">Park:</span> Yes. Thank you very much.</p>
+</article>
+</section>
+<section class="st-block">
+  <div class="st-header">
+    <span class="st-label">ST2</span>
+    <div class="st-titles">
+      <h3 class="st-jp">駅で</h3>
+      <p class="st-en">At the Station</p>
+    </div>
+    <span class="st-source">本冊 72ページ スクリプト</span>
+  </div>
+<div class="exchange-head"><span class="ex-num">1 (077)</span></div>
+<article class="line">
+  <div class="speaker-jp">ワン</div>
+  <p class="jp-kanji">……あのう、すみません。</p>
+  <p class="jp-kana"><span class="kana-spk">ワン</span>……あのう、すみません。</p>
+  <p class="en"><span class="en-spk">Wang:</span> …Um, excuse me.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">女の人</div>
+  <p class="jp-kanji">はい。</p>
+  <p class="jp-kana"><span class="kana-spk">おんなのひと</span>はい。</p>
+  <p class="en"><span class="en-spk">Woman:</span> Yes?</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">ワン</div>
+  <p class="jp-kanji">今のアナウンス、よくわからなかったんですが、何と言ったか教えていただけませんか。</p>
+  <p class="jp-kana"><span class="kana-spk">ワン</span>いまのアナウンス、よくわからなかったんですが、なんといったかおしえていただけませんか。</p>
+  <p class="en"><span class="en-spk">Wang:</span> I didn&#x27;t really understand that announcement just now — could you tell me what it said?</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">女の人</div>
+  <p class="jp-kanji">事故で電車が止まっているそうですよ。</p>
+  <p class="jp-kana"><span class="kana-spk">おんなのひと</span>じこででんしゃがとまっているそうですよ。</p>
+  <p class="en"><span class="en-spk">Woman:</span> They say the trains are stopped because of an accident.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">ワン</div>
+  <p class="jp-kanji">え？じゃ、しばらく動かないんですか。</p>
+  <p class="jp-kana"><span class="kana-spk">ワン</span>え？じゃ、しばらくうごかないんですか。</p>
+  <p class="en"><span class="en-spk">Wang:</span> What? So they won&#x27;t run for a while?</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">女の人</div>
+  <p class="jp-kanji">そうですね。時間がかかるかもしれませんね。</p>
+  <p class="jp-kana"><span class="kana-spk">おんなのひと</span>そうですね。じかんがかかるかもしれませんね。</p>
+  <p class="en"><span class="en-spk">Woman:</span> That&#x27;s right. It may take some time.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">ワン</div>
+  <p class="jp-kanji">そうですか。</p>
+  <p class="jp-kana"><span class="kana-spk">ワン</span>そうですか。</p>
+  <p class="en"><span class="en-spk">Wang:</span> I see.</p>
+</article>
+<div class="exchange-head"><span class="ex-num">(Phone call to Natapon)</span></div>
+<article class="line">
+  <div class="speaker-jp">ナタポン</div>
+  <p class="jp-kanji">はい。</p>
+  <p class="jp-kana"><span class="kana-spk">ナタポン</span>はい。</p>
+  <p class="en"><span class="en-spk">Natapon:</span> Hello.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">ワン</div>
+  <p class="jp-kanji">もしもし、ナタポンさん。実は今、電車が止まってしまったんです。</p>
+  <p class="jp-kana"><span class="kana-spk">ワン</span>もしもし、ナタポンさん。じつはいま、でんしゃがとまってしまったんです。</p>
+  <p class="en"><span class="en-spk">Wang:</span> Hello, Natapon. Actually, the trains have stopped right now.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">ナタポン</div>
+  <p class="jp-kanji">ああ、そうですか。</p>
+  <p class="jp-kana"><span class="kana-spk">ナタポン</span>ああ、そうですか。</p>
+  <p class="en"><span class="en-spk">Natapon:</span> Ah, I see.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">ワン</div>
+  <p class="jp-kanji">ちょっと遅れますが、いいですか。</p>
+  <p class="jp-kana"><span class="kana-spk">ワン</span>ちょっとおくれますが、いいですか。</p>
+  <p class="en"><span class="en-spk">Wang:</span> I&#x27;ll be a little late — is that okay?</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">ナタポン</div>
+  <p class="jp-kanji">大丈夫ですよ。待っています。</p>
+  <p class="jp-kana"><span class="kana-spk">ナタポン</span>だいじょうぶですよ。まっています。</p>
+  <p class="en"><span class="en-spk">Natapon:</span> It&#x27;s fine. I&#x27;ll wait.</p>
+</article>
+<div class="exchange-head"><span class="ex-num">2 (078) — After meeting up</span></div>
+<article class="line">
+  <div class="speaker-jp">ワン</div>
+  <p class="jp-kanji">遅れてすみません。</p>
+  <p class="jp-kana"><span class="kana-spk">ワン</span>おくれてすみません。</p>
+  <p class="en"><span class="en-spk">Wang:</span> Sorry I&#x27;m late.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">ナタポン</div>
+  <p class="jp-kanji">いいえ。</p>
+  <p class="jp-kana"><span class="kana-spk">ナタポン</span>いいえ。</p>
+  <p class="en"><span class="en-spk">Natapon:</span> No problem.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">ワン</div>
+  <p class="jp-kanji">電車が止まってしまって、困りました。</p>
+  <p class="jp-kana"><span class="kana-spk">ワン</span>でんしゃがとまってしまって、こまりました。</p>
+  <p class="en"><span class="en-spk">Wang:</span> The trains stopped, and it was a problem.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">ナタポン</div>
+  <p class="jp-kanji">そうですか。</p>
+  <p class="jp-kana"><span class="kana-spk">ナタポン</span>そうですか。</p>
+  <p class="en"><span class="en-spk">Natapon:</span> I see.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">ワン</div>
+  <p class="jp-kanji">駅のアナウンスが速くて、よくわかりませんでした。</p>
+  <p class="jp-kana"><span class="kana-spk">ワン</span>えきのアナウンスがはやくて、よくわかりませんでした。</p>
+  <p class="en"><span class="en-spk">Wang:</span> The station announcement was fast, and I didn&#x27;t understand it well.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">ナタポン</div>
+  <p class="jp-kanji">ああ。</p>
+  <p class="jp-kana"><span class="kana-spk">ナタポン</span>ああ。</p>
+  <p class="en"><span class="en-spk">Natapon:</span> Ah.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">ワン</div>
+  <p class="jp-kanji">それから、地下鉄の駅へ行ったら、とても混んでいました。</p>
+  <p class="jp-kana"><span class="kana-spk">ワン</span>それから、ちかてつのえきへいったら、とてもこんでいました。</p>
+  <p class="en"><span class="en-spk">Wang:</span> Then when I went to the subway station, it was really crowded.</p>
+</article>
+<div class="exchange-head"><span class="ex-num">3</span></div>
+<article class="line">
+  <div class="speaker-jp">ナタポン</div>
+  <p class="jp-kanji">それは大変でしたね。どこかで少し休みましょう。</p>
+  <p class="jp-kana"><span class="kana-spk">ナタポン</span>それはたいへんでしたね。どこかですこしやすみましょう。</p>
+  <p class="en"><span class="en-spk">Natapon:</span> That sounds rough. Let&#x27;s rest somewhere for a bit.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">ワン</div>
+  <p class="jp-kanji">はい。</p>
+  <p class="jp-kana"><span class="kana-spk">ワン</span>はい。</p>
+  <p class="en"><span class="en-spk">Wang:</span> Okay.</p>
+</article>
+</section>
+</article>
+<article class="chapter ch-6">
+<header class="chapter-head">
+  <div class="chapter-mark">第6課</div>
+  <h2 class="chapter-title-jp">旅行に行こう</h2>
+  <p class="chapter-title-en">Let&#x27;s Go on a Trip</p>
+</header>
+<section class="st-block">
+  <div class="st-header">
+    <span class="st-label">ST1</span>
+    <div class="st-titles">
+      <h3 class="st-jp">旅行の計画</h3>
+      <p class="st-en">Planning a Trip</p>
+    </div>
+    <span class="st-source">本冊 80ページ スクリプト</span>
+  </div>
+<div class="exchange-head"><span class="ex-num">1 (085)</span></div>
+<article class="line">
+  <div class="speaker-jp">パク</div>
+  <p class="jp-kanji">今度の休みにどこか旅行に行きませんか。</p>
+  <p class="jp-kana"><span class="kana-spk">パク</span>こんどのやすみにどこかりょこうにいきませんか。</p>
+  <p class="en"><span class="en-spk">Park:</span> Shall we go on a trip somewhere on the next break?</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">ワン</div>
+  <p class="jp-kanji">いいですね。どこへ行きましょうか。</p>
+  <p class="jp-kana"><span class="kana-spk">ワン</span>いいですね。どこへいきましょうか。</p>
+  <p class="en"><span class="en-spk">Wang:</span> Sounds good. Where shall we go?</p>
+</article>
+<div class="exchange-head"><span class="ex-num">2 (086)</span></div>
+<article class="line">
+  <div class="speaker-jp">マルコ</div>
+  <p class="jp-kanji">うーん、北海道はどうですか。スキーもできるし、有名な動物園もありますよ。それに、新鮮なカニも食べられるそうです。</p>
+  <p class="jp-kana"><span class="kana-spk">マルコ</span>うーん、ほっかいどうはどうですか。スキーもできるし、ゆうめいなどうぶつえんもありますよ。それに、しんせんなカニもたべられるそうです。</p>
+  <p class="en"><span class="en-spk">Marco:</span> Hmm, how about Hokkaido? You can ski, and there&#x27;s a famous zoo too. Plus, I hear you can eat fresh crab.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">ワン</div>
+  <p class="jp-kanji">へえ、そうなんですか。楽しそうですね。</p>
+  <p class="jp-kana"><span class="kana-spk">ワン</span>へえ、そうなんですか。たのしそうですね。</p>
+  <p class="en"><span class="en-spk">Wang:</span> Oh, really? Sounds fun.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">ナタポン</div>
+  <p class="jp-kanji">いいですね。北海道にしましょう。</p>
+  <p class="jp-kana"><span class="kana-spk">ナタポン</span>いいですね。ほっかいどうにしましょう。</p>
+  <p class="en"><span class="en-spk">Natapon:</span> Great. Let&#x27;s go with Hokkaido.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">マルコ</div>
+  <p class="jp-kanji">じゃ、インターネットで調べてみませんか。</p>
+  <p class="jp-kana"><span class="kana-spk">マルコ</span>じゃ、インターネットでしらべてみませんか。</p>
+  <p class="en"><span class="en-spk">Marco:</span> Then shall we look it up online?</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">ナタポン</div>
+  <p class="jp-kanji">そうしましょう。</p>
+  <p class="jp-kana"><span class="kana-spk">ナタポン</span>そうしましょう。</p>
+  <p class="en"><span class="en-spk">Natapon:</span> Let&#x27;s do that.</p>
+</article>
+<div class="exchange-head"><span class="ex-num">3 (087)</span></div>
+<article class="line">
+  <div class="speaker-jp">ワン</div>
+  <p class="jp-kanji">どのツアーがいいですか。</p>
+  <p class="jp-kana"><span class="kana-spk">ワン</span>どのツアーがいいですか。</p>
+  <p class="en"><span class="en-spk">Wang:</span> Which tour looks good?</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">パク</div>
+  <p class="jp-kanji">ニコニコツアーはどうですか。安いですよ。</p>
+  <p class="jp-kana"><span class="kana-spk">パク</span>ニコニコツアーはどうですか。やすいですよ。</p>
+  <p class="en"><span class="en-spk">Park:</span> How about Niko-niko Tour? It&#x27;s cheap.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">ナタポン</div>
+  <p class="jp-kanji">いいですね。</p>
+  <p class="jp-kana"><span class="kana-spk">ナタポン</span>いいですね。</p>
+  <p class="en"><span class="en-spk">Natapon:</span> Nice.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">マルコ</div>
+  <p class="jp-kanji">あ、でも、わくわくツアーもいいですよ。</p>
+  <p class="jp-kana"><span class="kana-spk">マルコ</span>あ、でも、わくわくツアーもいいですよ。</p>
+  <p class="en"><span class="en-spk">Marco:</span> Oh, but Waku-waku Tour also looks good.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">ワン</div>
+  <p class="jp-kanji">あ、いいですね。じゃ、ニコニコツアーとわくわくツアーとどっちがいいですか。</p>
+  <p class="jp-kana"><span class="kana-spk">ワン</span>あ、いいですね。じゃ、ニコニコツアーとわくわくツアーとどっちがいいですか。</p>
+  <p class="en"><span class="en-spk">Wang:</span> Oh, nice. So, which is better — Niko-niko Tour or Waku-waku Tour?</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">パク</div>
+  <p class="jp-kanji">そうですねえ。値段が安いのはニコニコツアーですね。でも、食事がいいのはわくわくツアーですね。</p>
+  <p class="jp-kana"><span class="kana-spk">パク</span>そうですねえ。ねだんがやすいのはニコニコツアーですね。でも、しょくじがいいのはわくわくツアーですね。</p>
+  <p class="en"><span class="en-spk">Park:</span> Hmm, the cheaper one is Niko-niko Tour. But the one with better meals is Waku-waku Tour.</p>
+</article>
+<div class="exchange-head"><span class="ex-num">4 (088)</span></div>
+<article class="line">
+  <div class="speaker-jp">ナタポン</div>
+  <p class="jp-kanji">うーん、どっちもいいですね。</p>
+  <p class="jp-kana"><span class="kana-spk">ナタポン</span>うーん、どっちもいいですね。</p>
+  <p class="en"><span class="en-spk">Natapon:</span> Hmm, both look good.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">マルコ</div>
+  <p class="jp-kanji">じゃ、ニコニコツアーは温泉もあるし、スキーもできるし、こっちにしませんか。</p>
+  <p class="jp-kana"><span class="kana-spk">マルコ</span>じゃ、ニコニコツアーはおんせんもあるし、スキーもできるし、こっちにしませんか。</p>
+  <p class="en"><span class="en-spk">Marco:</span> Well, Niko-niko Tour has hot springs and you can ski too — shall we go with this one?</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">ワン</div>
+  <p class="jp-kanji">そうですね。そっちにしましょう。</p>
+  <p class="jp-kana"><span class="kana-spk">ワン</span>そうですね。そっちにしましょう。</p>
+  <p class="en"><span class="en-spk">Wang:</span> Sure. Let&#x27;s go with that one.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">パク</div>
+  <p class="jp-kanji">そうしましょう。</p>
+  <p class="jp-kana"><span class="kana-spk">パク</span>そうしましょう。</p>
+  <p class="en"><span class="en-spk">Park:</span> Let&#x27;s do that.</p>
+</article>
+</section>
+<section class="st-block">
+  <div class="st-header">
+    <span class="st-label">ST2</span>
+    <div class="st-titles">
+      <h3 class="st-jp">旅行の準備</h3>
+      <p class="st-en">Trip Preparations</p>
+    </div>
+    <span class="st-source">本冊 84ページ スクリプト</span>
+  </div>
+<div class="exchange-head"><span class="ex-num">1 (090)</span></div>
+<article class="line">
+  <div class="speaker-jp">マルコ</div>
+  <p class="jp-kanji">旅行は何日からにしますか。</p>
+  <p class="jp-kana"><span class="kana-spk">マルコ</span>りょこうはなんにちからにしますか。</p>
+  <p class="en"><span class="en-spk">Marco:</span> What day shall we start the trip?</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">パク</div>
+  <p class="jp-kanji">28日からはどうですか。</p>
+  <p class="jp-kana"><span class="kana-spk">パク</span>にじゅうはちにちからはどうですか。</p>
+  <p class="en"><span class="en-spk">Park:</span> How about from the 28th?</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">ワン</div>
+  <p class="jp-kanji">いいですね。でも、年末は混みそうですよ。</p>
+  <p class="jp-kana"><span class="kana-spk">ワン</span>いいですね。でも、ねんまつはこみそうですよ。</p>
+  <p class="en"><span class="en-spk">Wang:</span> Good. But year-end will probably be crowded.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">パク</div>
+  <p class="jp-kanji">じゃ、早く予約したほうがいいですね。</p>
+  <p class="jp-kana"><span class="kana-spk">パク</span>じゃ、はやくよやくしたほうがいいですね。</p>
+  <p class="en"><span class="en-spk">Park:</span> Then we should book early.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">ナタポン</div>
+  <p class="jp-kanji">そうですね。</p>
+  <p class="jp-kana"><span class="kana-spk">ナタポン</span>そうですね。</p>
+  <p class="en"><span class="en-spk">Natapon:</span> Right.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">マルコ</div>
+  <p class="jp-kanji">じゃ、私が予約しておきますね。</p>
+  <p class="jp-kana"><span class="kana-spk">マルコ</span>じゃ、わたしがよやくしておきますね。</p>
+  <p class="en"><span class="en-spk">Marco:</span> Then I&#x27;ll go ahead and make the booking.</p>
+</article>
+<div class="exchange-head"><span class="ex-num">2 (091)</span></div>
+<article class="line">
+  <div class="speaker-jp">ワン</div>
+  <p class="jp-kanji">お願いします。北海道は食べ物がおいしいそうなので、私は旅行の前においしい店を探しておきますね。</p>
+  <p class="jp-kana"><span class="kana-spk">ワン</span>おねがいします。ほっかいどうはたべものがおいしいそうなので、わたしはりょこうのまえにおいしいみせをさがしておきますね。</p>
+  <p class="en"><span class="en-spk">Wang:</span> Please do. I hear the food in Hokkaido is delicious, so I&#x27;ll look up good restaurants before the trip.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">ナタポン</div>
+  <p class="jp-kanji">お願いします。</p>
+  <p class="jp-kana"><span class="kana-spk">ナタポン</span>おねがいします。</p>
+  <p class="en"><span class="en-spk">Natapon:</span> Please do.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">パク</div>
+  <p class="jp-kanji">私はガイドブックを買っておきましょうか。</p>
+  <p class="jp-kana"><span class="kana-spk">パク</span>わたしはガイドブックをかっておきましょうか。</p>
+  <p class="en"><span class="en-spk">Park:</span> Shall I buy a guidebook ahead of time?</p>
+</article>
+<div class="exchange-head"><span class="ex-num">3</span></div>
+<article class="line">
+  <div class="speaker-jp">ワン</div>
+  <p class="jp-kanji">あ、もう友達から借りてありますから、大丈夫ですよ。</p>
+  <p class="jp-kana"><span class="kana-spk">ワン</span>あ、もうともだちからかりてありますから、だいじょうぶですよ。</p>
+  <p class="en"><span class="en-spk">Wang:</span> Oh, I&#x27;ve already borrowed one from a friend, so it&#x27;s fine.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">パク</div>
+  <p class="jp-kanji">そうですか、ありがとうございます。</p>
+  <p class="jp-kana"><span class="kana-spk">パク</span>そうですか、ありがとうございます。</p>
+  <p class="en"><span class="en-spk">Park:</span> Oh, I see. Thanks.</p>
+</article>
+</section>
+</article>
+<article class="chapter ch-7">
+<header class="chapter-head">
+  <div class="chapter-mark">第7課</div>
+  <h2 class="chapter-title-jp">西川さんの家へ</h2>
+  <p class="chapter-title-en">To the Nishikawa Family&#x27;s Home</p>
+</header>
+<section class="st-block">
+  <div class="st-header">
+    <span class="st-label">ST1</span>
+    <div class="st-titles">
+      <h3 class="st-jp">初めての訪問</h3>
+      <p class="st-en">A First Visit</p>
+    </div>
+    <span class="st-source">本冊 92ページ スクリプト</span>
+  </div>
+<div class="exchange-head"><span class="ex-num">1 (096)</span></div>
+<article class="line">
+  <div class="speaker-jp">ワン、パク、アンナ</div>
+  <p class="jp-kanji">こんにちは。</p>
+  <p class="jp-kana"><span class="kana-spk">ワン、パク、アンナ</span>こんにちは。</p>
+  <p class="en"><span class="en-spk">Wang, Park, Anna:</span> Hello.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">西川</div>
+  <p class="jp-kanji">ああ、ワンさん、こんにちは。お父さん、こちら、交流会で友達になったワンさんとパクさんとアンナさん。</p>
+  <p class="jp-kana"><span class="kana-spk">にしかわ</span>ああ、ワンさん、こんにちは。おとうさん、こちら、こうりゅうかいでともだちになったワンさんとパクさんとアンナさん。</p>
+  <p class="en"><span class="en-spk">Nishikawa:</span> Ah, Wang, hello. Dad, these are Wang, Park, and Anna, who I became friends with at the exchange meet.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">ワン</div>
+  <p class="jp-kanji">はじめまして。</p>
+  <p class="jp-kana"><span class="kana-spk">ワン</span>はじめまして。</p>
+  <p class="en"><span class="en-spk">Wang:</span> Nice to meet you.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">西川父</div>
+  <p class="jp-kanji">皆さん、よくいらっしゃいました。</p>
+  <p class="jp-kana"><span class="kana-spk">にしかわちち</span>みなさん、よくいらっしゃいました。</p>
+  <p class="en"><span class="en-spk">Nishikawa&#x27;s father:</span> Welcome, everyone.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">ワン、パク、アンナ</div>
+  <p class="jp-kanji">お邪魔します。</p>
+  <p class="jp-kana"><span class="kana-spk">ワン、パク、アンナ</span>おじゃまします。</p>
+  <p class="en"><span class="en-spk">Wang, Park, Anna:</span> Excuse us for intruding.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">西川父</div>
+  <p class="jp-kanji">ワンさん、日本の生活はいかがですか。</p>
+  <p class="jp-kana"><span class="kana-spk">にしかわちち</span>ワンさん、にほんのせいかつはいかがですか。</p>
+  <p class="en"><span class="en-spk">Nishikawa&#x27;s father:</span> Wang, how&#x27;s life in Japan?</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">ワン</div>
+  <p class="jp-kanji">中国とはいろいろなことが違って、とてもおもしろいです。</p>
+  <p class="jp-kana"><span class="kana-spk">ワン</span>ちゅうごくとはいろいろなことがちがって、とてもおもしろいです。</p>
+  <p class="en"><span class="en-spk">Wang:</span> A lot of things are different from China, and it&#x27;s very interesting.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">西川父</div>
+  <p class="jp-kanji">そうですか。今は何をなさっているんですか。</p>
+  <p class="jp-kana"><span class="kana-spk">にしかわちち</span>そうですか。いまはなにをなさっているんですか。</p>
+  <p class="en"><span class="en-spk">Nishikawa&#x27;s father:</span> I see. What are you doing now?</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">ワン</div>
+  <p class="jp-kanji">学生です。日本語学校で日本語を勉強しています。</p>
+  <p class="jp-kana"><span class="kana-spk">ワン</span>がくせいです。にほんごがっこうでにほんごをべんきょうしています。</p>
+  <p class="en"><span class="en-spk">Wang:</span> I&#x27;m a student. I&#x27;m studying Japanese at a Japanese language school.</p>
+</article>
+<div class="exchange-head"><span class="ex-num">2 (097)</span></div>
+<article class="line">
+  <div class="speaker-jp">ワン</div>
+  <p class="jp-kanji">お父さんは、お休みの日、どんなことをなさっているんですか。</p>
+  <p class="jp-kana"><span class="kana-spk">ワン</span>おとうさんは、おやすみのひ、どんなことをなさっているんですか。</p>
+  <p class="en"><span class="en-spk">Wang:</span> Sir, what do you do on your days off?</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">西川父</div>
+  <p class="jp-kanji">私は音楽を聞くのが好きで、ときどき、コンサートに行きます。</p>
+  <p class="jp-kana"><span class="kana-spk">にしかわちち</span>わたしはおんがくをきくのがすきで、ときどき、コンサートにいきます。</p>
+  <p class="en"><span class="en-spk">Nishikawa&#x27;s father:</span> I like listening to music, and I sometimes go to concerts.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">ワン</div>
+  <p class="jp-kanji">そうなんですか。私も好きです！どんな音楽をお聞きになりますか。</p>
+  <p class="jp-kana"><span class="kana-spk">ワン</span>そうなんですか。わたしもすきです！どんなおんがくをおききになりますか。</p>
+  <p class="en"><span class="en-spk">Wang:</span> Really? I like it too! What kind of music do you listen to?</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">西川父</div>
+  <p class="jp-kanji">よくクラシックを聞きます。ワンさんはクラシックをお聞きになりますか。</p>
+  <p class="jp-kana"><span class="kana-spk">にしかわちち</span>よくクラシックをききます。ワンさんはクラシックをおききになりますか。</p>
+  <p class="en"><span class="en-spk">Nishikawa&#x27;s father:</span> I often listen to classical music. Do you listen to classical music, Wang?</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">ワン</div>
+  <p class="jp-kanji">はい、大好きです。</p>
+  <p class="jp-kana"><span class="kana-spk">ワン</span>はい、だいすきです。</p>
+  <p class="en"><span class="en-spk">Wang:</span> Yes, I love it.</p>
+</article>
+<div class="exchange-head"><span class="ex-num">3 (098)</span></div>
+<article class="line">
+  <div class="speaker-jp">パク</div>
+  <p class="jp-kanji">あ、旅行の写真がありますね。どちらへ行かれたんですか。</p>
+  <p class="jp-kana"><span class="kana-spk">パク</span>あ、りょこうのしゃしんがありますね。どちらへいかれたんですか。</p>
+  <p class="en"><span class="en-spk">Park:</span> Oh, there are travel photos. Where did you go?</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">西川姉</div>
+  <p class="jp-kanji">長野です。山に登ったり、温泉に入ったりしました。いいところですよ。また行きたいです。</p>
+  <p class="jp-kana"><span class="kana-spk">にしかわあね</span>ながのです。やまにのぼったり、おんせんにはいったりしました。いいところですよ。またいきたいです。</p>
+  <p class="en"><span class="en-spk">Nishikawa&#x27;s older sister:</span> Nagano. We climbed mountains, went to hot springs, things like that. It&#x27;s a nice place. I&#x27;d like to go again.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">パク</div>
+  <p class="jp-kanji">私も行ったことがあります！</p>
+  <p class="jp-kana"><span class="kana-spk">パク</span>わたしもいったことがあります！</p>
+  <p class="en"><span class="en-spk">Park:</span> I&#x27;ve been there too!</p>
+</article>
+<div class="exchange-head"><span class="ex-num">4 (099)</span></div>
+<article class="line">
+  <div class="speaker-jp">西川母</div>
+  <p class="jp-kanji">料理ができましたよ。</p>
+  <p class="jp-kana"><span class="kana-spk">にしかわはは</span>りょうりができましたよ。</p>
+  <p class="en"><span class="en-spk">Nishikawa&#x27;s mother:</span> The food is ready.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">アンナ</div>
+  <p class="jp-kanji">あっ、お手伝いします。</p>
+  <p class="jp-kana"><span class="kana-spk">アンナ</span>あっ、おてつだいします。</p>
+  <p class="en"><span class="en-spk">Anna:</span> Oh, I&#x27;ll help.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">西川母</div>
+  <p class="jp-kanji">ありがとう。じゃ、これを持って行ってもらえませんか。</p>
+  <p class="jp-kana"><span class="kana-spk">にしかわはは</span>ありがとう。じゃ、これをもっていってもらえませんか。</p>
+  <p class="en"><span class="en-spk">Nishikawa&#x27;s mother:</span> Thank you. Then could you carry this over?</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">アンナ</div>
+  <p class="jp-kanji">はい。どこに置きましょうか。</p>
+  <p class="jp-kana"><span class="kana-spk">アンナ</span>はい。どこにおきましょうか。</p>
+  <p class="en"><span class="en-spk">Anna:</span> Sure. Where shall I put it?</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">西川</div>
+  <p class="jp-kanji">あ、アンナさん、ここにお願いします。</p>
+  <p class="jp-kana"><span class="kana-spk">にしかわ</span>あ、アンナさん、ここにおねがいします。</p>
+  <p class="en"><span class="en-spk">Nishikawa:</span> Ah, Anna, here please.</p>
+</article>
+</section>
+<section class="st-block">
+  <div class="st-header">
+    <span class="st-label">ST2</span>
+    <div class="st-titles">
+      <h3 class="st-jp">一緒に作りましょう</h3>
+      <p class="st-en">Let&#x27;s Make It Together</p>
+    </div>
+    <span class="st-source">本冊 96ページ スクリプト</span>
+  </div>
+<div class="exchange-head"><span class="ex-num">1 (103)</span></div>
+<article class="line">
+  <div class="speaker-jp">西川母</div>
+  <p class="jp-kanji">アンナさん、今日はよろしくお願いします。</p>
+  <p class="jp-kana"><span class="kana-spk">にしかわはは</span>アンナさん、きょうはよろしくおねがいします。</p>
+  <p class="en"><span class="en-spk">Nishikawa&#x27;s mother:</span> Anna, thank you in advance for today.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">アンナ</div>
+  <p class="jp-kanji">今日の料理はシチーという家庭料理です。おいしいですよ。まず、肉を小さく切ります。</p>
+  <p class="jp-kana"><span class="kana-spk">アンナ</span>きょうのりょうりはシチーというかていりょうりです。おいしいですよ。まず、にくをちいさくきります。</p>
+  <p class="en"><span class="en-spk">Anna:</span> Today&#x27;s dish is a home-style dish called shchi. It&#x27;s delicious. First, cut the meat into small pieces.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">西川母</div>
+  <p class="jp-kanji">……このくらいでいいですか。</p>
+  <p class="jp-kana"><span class="kana-spk">にしかわはは</span>……このくらいでいいですか。</p>
+  <p class="en"><span class="en-spk">Nishikawa&#x27;s mother:</span> …Is this about right?</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">アンナ</div>
+  <p class="jp-kanji">はい。切った肉と水、ローリエを鍋に入れて、肉がやわらかくなるまでゆでます。だいたい30分くらいです。</p>
+  <p class="jp-kana"><span class="kana-spk">アンナ</span>はい。きったにくとみず、ローリエをなべにいれて、にくがやわらかくなるまでゆでます。だいたいさんじゅっぷんくらいです。</p>
+  <p class="en"><span class="en-spk">Anna:</span> Yes. Put the cut meat, water, and bay leaves into a pot and boil until the meat becomes tender. About 30 minutes.</p>
+</article>
+<div class="exchange-head"><span class="ex-num">2 (104)</span></div>
+<article class="line">
+  <div class="speaker-jp">アンナ</div>
+  <p class="jp-kanji">……肉をゆでている間に、野菜を切りましょう。タマネギは薄く切ります。ニンジンとジャガイモは細く切ります。タマネギとニンジンはフライパンで少し炒めます。</p>
+  <p class="jp-kana"><span class="kana-spk">アンナ</span>……にくをゆでているあいだに、やさいをきりましょう。タマネギはうすくきります。ニンジンとジャガイモはほそくきります。タマネギとニンジンはフライパンですこしいためます。</p>
+  <p class="en"><span class="en-spk">Anna:</span> …While the meat boils, let&#x27;s cut the vegetables. Slice the onion thinly. Cut the carrot and potato finely. Lightly sauté the onion and carrot in a frying pan.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">西川母</div>
+  <p class="jp-kanji">アンナさん、これは何ですか。</p>
+  <p class="jp-kana"><span class="kana-spk">にしかわはは</span>アンナさん、これはなんですか。</p>
+  <p class="en"><span class="en-spk">Nishikawa&#x27;s mother:</span> Anna, what&#x27;s this?</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">アンナ</div>
+  <p class="jp-kanji">これはキャベツの漬物です。あとで一緒に煮ます。</p>
+  <p class="jp-kana"><span class="kana-spk">アンナ</span>これはキャベツのつけものです。あとでいっしょににます。</p>
+  <p class="en"><span class="en-spk">Anna:</span> This is pickled cabbage. We&#x27;ll simmer it together with everything later.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">西川母</div>
+  <p class="jp-kanji">そうですか。</p>
+  <p class="jp-kana"><span class="kana-spk">にしかわはは</span>そうですか。</p>
+  <p class="en"><span class="en-spk">Nishikawa&#x27;s mother:</span> I see.</p>
+</article>
+<div class="exchange-head"><span class="ex-num">3-1 (105)</span></div>
+<article class="line">
+  <div class="speaker-jp">西川母</div>
+  <p class="jp-kanji">肉はそろそろいいですか。</p>
+  <p class="jp-kana"><span class="kana-spk">にしかわはは</span>にくはそろそろいいですか。</p>
+  <p class="en"><span class="en-spk">Nishikawa&#x27;s mother:</span> Is the meat about ready?</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">アンナ</div>
+  <p class="jp-kanji">はい、そうですね。じゃ、キャベツとほかの野菜も入れましょう。沸騰したら、弱火にして、野菜がやわらかくなるまで煮ます。7分くらいです。</p>
+  <p class="jp-kana"><span class="kana-spk">アンナ</span>はい、そうですね。じゃ、キャベツとほかのやさいもいれましょう。ふっとうしたら、よわびにして、やさいがやわらかくなるまでにます。ななふんくらいです。</p>
+  <p class="en"><span class="en-spk">Anna:</span> Yes, it looks ready. Then let&#x27;s add the cabbage and other vegetables. When it boils, lower the heat and simmer until the vegetables are soft. About 7 minutes.</p>
+</article>
+<div class="exchange-head"><span class="ex-num">3-2 (106)</span></div>
+<article class="line">
+  <div class="speaker-jp">アンナ</div>
+  <p class="jp-kanji">……そろそろ見てみましょう。</p>
+  <p class="jp-kana"><span class="kana-spk">アンナ</span>……そろそろみてみましょう。</p>
+  <p class="en"><span class="en-spk">Anna:</span> …Let&#x27;s check on it.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">西川母</div>
+  <p class="jp-kanji">おいしそうですね。</p>
+  <p class="jp-kana"><span class="kana-spk">にしかわはは</span>おいしそうですね。</p>
+  <p class="en"><span class="en-spk">Nishikawa&#x27;s mother:</span> It looks delicious.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">アンナ</div>
+  <p class="jp-kanji">じゃ、最後に、塩、コショウで味をつけましょう。ちょっと食べてみてください。</p>
+  <p class="jp-kana"><span class="kana-spk">アンナ</span>じゃ、さいごに、しお、コショウであじをつけましょう。ちょっとたべてみてください。</p>
+  <p class="en"><span class="en-spk">Anna:</span> Then finally, let&#x27;s season with salt and pepper. Please have a taste.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">西川母</div>
+  <p class="jp-kanji">おいしいです。</p>
+  <p class="jp-kana"><span class="kana-spk">にしかわはは</span>おいしいです。</p>
+  <p class="en"><span class="en-spk">Nishikawa&#x27;s mother:</span> It&#x27;s delicious.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">アンナ</div>
+  <p class="jp-kanji">もっとすっぱくしたかったら、お酢を入れるといいですよ。</p>
+  <p class="jp-kana"><span class="kana-spk">アンナ</span>もっとすっぱくしたかったら、おすをいれるといいですよ。</p>
+  <p class="en"><span class="en-spk">Anna:</span> If you want it more sour, you can add vinegar.</p>
+</article>
+</section>
+</article>
+<article class="chapter ch-8">
+<header class="chapter-head">
+  <div class="chapter-mark">第8課</div>
+  <h2 class="chapter-title-jp">ありがとう</h2>
+  <p class="chapter-title-en">Thank You</p>
+</header>
+<section class="st-block">
+  <div class="st-header">
+    <span class="st-label">ST1</span>
+    <div class="st-titles">
+      <h3 class="st-jp">うれしい出来事</h3>
+      <p class="st-en">Happy Events</p>
+    </div>
+    <span class="st-source">本冊 104ページ スクリプト</span>
+  </div>
+<div class="exchange-head"><span class="ex-num">1 (110)</span></div>
+<article class="line">
+  <div class="speaker-jp">マリヤム</div>
+  <p class="jp-kanji">アンナさん、週末、何した？</p>
+  <p class="jp-kana"><span class="kana-spk">マリヤム</span>アンナさん、しゅうまつ、なにした？</p>
+  <p class="en"><span class="en-spk">Mariyam:</span> Anna, what did you do over the weekend?</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">アンナ</div>
+  <p class="jp-kanji">木村さんの家へ遊びに行った。</p>
+  <p class="jp-kana"><span class="kana-spk">アンナ</span>きむらさんのいえへあそびにいった。</p>
+  <p class="en"><span class="en-spk">Anna:</span> I went to Kimura&#x27;s place to hang out.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">マリヤム</div>
+  <p class="jp-kanji">へえ、何したの？</p>
+  <p class="jp-kana"><span class="kana-spk">マリヤム</span>へえ、なにしたの？</p>
+  <p class="en"><span class="en-spk">Mariyam:</span> Oh, what did you do?</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">アンナ</div>
+  <p class="jp-kanji">木村さんに料理を習った。</p>
+  <p class="jp-kana"><span class="kana-spk">アンナ</span>きむらさんにりょうりをならった。</p>
+  <p class="en"><span class="en-spk">Anna:</span> Kimura taught me how to cook.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">マリヤム</div>
+  <p class="jp-kanji">どんな料理？</p>
+  <p class="jp-kana"><span class="kana-spk">マリヤム</span>どんなりょうり？</p>
+  <p class="en"><span class="en-spk">Mariyam:</span> What kind of dish?</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">アンナ</div>
+  <p class="jp-kanji">肉じゃが。とてもおいしかったよ。</p>
+  <p class="jp-kana"><span class="kana-spk">アンナ</span>にくじゃが。とてもおいしかったよ。</p>
+  <p class="en"><span class="en-spk">Anna:</span> Nikujaga (meat and potato stew). It was really good.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">マリヤム</div>
+  <p class="jp-kanji">へえ、私も食べてみたい。</p>
+  <p class="jp-kana"><span class="kana-spk">マリヤム</span>へえ、わたしもたべてみたい。</p>
+  <p class="en"><span class="en-spk">Mariyam:</span> Oh, I want to try it too.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">アンナ</div>
+  <p class="jp-kanji">じゃ、今度作ってあげる。</p>
+  <p class="jp-kana"><span class="kana-spk">アンナ</span>じゃ、こんどつくってあげる。</p>
+  <p class="en"><span class="en-spk">Anna:</span> Then I&#x27;ll make some for you next time.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">マリヤム</div>
+  <p class="jp-kanji">うれしい。ありがとう。</p>
+  <p class="jp-kana"><span class="kana-spk">マリヤム</span>うれしい。ありがとう。</p>
+  <p class="en"><span class="en-spk">Mariyam:</span> Yay. Thanks.</p>
+</article>
+<div class="exchange-head"><span class="ex-num">2 (111)</span></div>
+<article class="line">
+  <div class="speaker-jp">マルコ</div>
+  <p class="jp-kanji">ワンさん、週末、何した？</p>
+  <p class="jp-kana"><span class="kana-spk">マルコ</span>ワンさん、しゅうまつ、なにした？</p>
+  <p class="en"><span class="en-spk">Marco:</span> Wang, what did you do over the weekend?</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">ワン</div>
+  <p class="jp-kanji">ナタポンさんにタイ料理の店へ連れて行ってもらった。</p>
+  <p class="jp-kana"><span class="kana-spk">ワン</span>ナタポンさんにタイりょうりのみせへつれていってもらった。</p>
+  <p class="en"><span class="en-spk">Wang:</span> Natapon took me to a Thai restaurant.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">マルコ</div>
+  <p class="jp-kanji">へえ、どうだった？</p>
+  <p class="jp-kana"><span class="kana-spk">マルコ</span>へえ、どうだった？</p>
+  <p class="en"><span class="en-spk">Marco:</span> Oh, how was it?</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">ワン</div>
+  <p class="jp-kanji">おいしかったよ。サービスもよかったし、値段もそんなに高くなかったよ。今度一緒に行かない？</p>
+  <p class="jp-kana"><span class="kana-spk">ワン</span>おいしかったよ。サービスもよかったし、ねだんもそんなにたかくなかったよ。こんどいっしょにいかない？</p>
+  <p class="en"><span class="en-spk">Wang:</span> Delicious. The service was great and the prices weren&#x27;t that high. Want to go together sometime?</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">マルコ</div>
+  <p class="jp-kanji">うん、行きたい。</p>
+  <p class="jp-kana"><span class="kana-spk">マルコ</span>うん、いきたい。</p>
+  <p class="en"><span class="en-spk">Marco:</span> Yeah, I&#x27;d like to.</p>
+</article>
+<div class="exchange-head"><span class="ex-num">3 (112)</span></div>
+<article class="line">
+  <div class="speaker-jp">アンナ</div>
+  <p class="jp-kanji">パクさん、週末、何した？</p>
+  <p class="jp-kana"><span class="kana-spk">アンナ</span>パクさん、しゅうまつ、なにした？</p>
+  <p class="en"><span class="en-spk">Anna:</span> Park, what did you do over the weekend?</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">パク</div>
+  <p class="jp-kanji">新宿へ映画を見に行った。</p>
+  <p class="jp-kana"><span class="kana-spk">パク</span>しんじゅくへえいがをみにいった。</p>
+  <p class="en"><span class="en-spk">Park:</span> I went to Shinjuku to see a movie.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">アンナ</div>
+  <p class="jp-kanji">へえ、いいね。</p>
+  <p class="jp-kana"><span class="kana-spk">アンナ</span>へえ、いいね。</p>
+  <p class="en"><span class="en-spk">Anna:</span> Oh, nice.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">パク</div>
+  <p class="jp-kanji">それが、財布をなくしちゃって大変だった。</p>
+  <p class="jp-kana"><span class="kana-spk">パク</span>それが、さいふをなくしちゃってたいへんだった。</p>
+  <p class="en"><span class="en-spk">Park:</span> But, I lost my wallet — it was rough.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">アンナ</div>
+  <p class="jp-kanji">えっ？</p>
+  <p class="jp-kana"><span class="kana-spk">アンナ</span>えっ？</p>
+  <p class="en"><span class="en-spk">Anna:</span> What?</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">パク</div>
+  <p class="jp-kanji">あ、でも拾った人が交番に届けてくれた。</p>
+  <p class="jp-kana"><span class="kana-spk">パク</span>あ、でもひろったひとがこうばんにとどけてくれた。</p>
+  <p class="en"><span class="en-spk">Park:</span> Oh, but the person who picked it up turned it in to the police box.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">アンナ</div>
+  <p class="jp-kanji">よかったね。</p>
+  <p class="jp-kana"><span class="kana-spk">アンナ</span>よかったね。</p>
+  <p class="en"><span class="en-spk">Anna:</span> That&#x27;s good to hear.</p>
+</article>
+</section>
+<section class="st-block">
+  <div class="st-header">
+    <span class="st-label">ST2</span>
+    <div class="st-titles">
+      <h3 class="st-jp">お世話になりました</h3>
+      <p class="st-en">Thank You for Everything</p>
+    </div>
+    <span class="st-source">本冊 110ページ スクリプト</span>
+  </div>
+<div class="exchange-head"><span class="ex-num">1 (116)</span></div>
+<article class="line">
+  <div class="speaker-jp">アンナ</div>
+  <p class="jp-kanji">あ、木村さん。こんにちは。</p>
+  <p class="jp-kana"><span class="kana-spk">アンナ</span>あ、きむらさん。こんにちは。</p>
+  <p class="en"><span class="en-spk">Anna:</span> Oh, Kimura. Hello.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">木村</div>
+  <p class="jp-kanji">こんにちは。</p>
+  <p class="jp-kana"><span class="kana-spk">きむら</span>こんにちは。</p>
+  <p class="en"><span class="en-spk">Kimura:</span> Hello.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">アンナ</div>
+  <p class="jp-kanji">どうぞ、入ってください。</p>
+  <p class="jp-kana"><span class="kana-spk">アンナ</span>どうぞ、はいってください。</p>
+  <p class="en"><span class="en-spk">Anna:</span> Please, come in.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">木村</div>
+  <p class="jp-kanji">はい、失礼します。わあ、きれいな絵ですね。アンナさんが描いたんですか。</p>
+  <p class="jp-kana"><span class="kana-spk">きむら</span>はい、しつれいします。わあ、きれいなえですね。アンナさんがかいたんですか。</p>
+  <p class="en"><span class="en-spk">Kimura:</span> Yes, excuse me. Wow, what a beautiful painting. Did you paint it, Anna?</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">アンナ</div>
+  <p class="jp-kanji">いいえ、その絵は、西川さんのお母さんにいただきました。</p>
+  <p class="jp-kana"><span class="kana-spk">アンナ</span>いいえ、そのえは、にしかわさんのおかあさんにいただきました。</p>
+  <p class="en"><span class="en-spk">Anna:</span> No, I received that painting from Nishikawa&#x27;s mother.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">木村</div>
+  <p class="jp-kanji">そうですか。</p>
+  <p class="jp-kana"><span class="kana-spk">きむら</span>そうですか。</p>
+  <p class="en"><span class="en-spk">Kimura:</span> Oh, I see.</p>
+</article>
+<div class="exchange-head"><span class="ex-num">2 (117)</span></div>
+<article class="line">
+  <div class="speaker-jp">木村</div>
+  <p class="jp-kanji">わあ、素敵なテーブルですね。</p>
+  <p class="jp-kana"><span class="kana-spk">きむら</span>わあ、すてきなテーブルですね。</p>
+  <p class="en"><span class="en-spk">Kimura:</span> Wow, what a lovely table.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">アンナ</div>
+  <p class="jp-kanji">このテーブルも西川さんのお母さんがくださいました。</p>
+  <p class="jp-kana"><span class="kana-spk">アンナ</span>このテーブルもにしかわさんのおかあさんがくださいました。</p>
+  <p class="en"><span class="en-spk">Anna:</span> Nishikawa&#x27;s mother gave me this table too.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">木村</div>
+  <p class="jp-kanji">へえ、そうですか。</p>
+  <p class="jp-kana"><span class="kana-spk">きむら</span>へえ、そうですか。</p>
+  <p class="en"><span class="en-spk">Kimura:</span> Oh, really.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">アンナ</div>
+  <p class="jp-kanji">とても使いやすくて便利です。</p>
+  <p class="jp-kana"><span class="kana-spk">アンナ</span>とてもつかいやすくてべんりです。</p>
+  <p class="en"><span class="en-spk">Anna:</span> It&#x27;s very easy to use and convenient.</p>
+</article>
+<div class="exchange-head"><span class="ex-num">3 (118)</span></div>
+<article class="line">
+  <div class="speaker-jp">アンナ</div>
+  <p class="jp-kanji">木村さん、お茶をどうぞ。</p>
+  <p class="jp-kana"><span class="kana-spk">アンナ</span>きむらさん、おちゃをどうぞ。</p>
+  <p class="en"><span class="en-spk">Anna:</span> Kimura, please have some tea.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">木村</div>
+  <p class="jp-kanji">あ、どうもありがとうございます。このお菓子、おいしいですね。アンナさんが作ったんですか。</p>
+  <p class="jp-kana"><span class="kana-spk">きむら</span>あ、どうもありがとうございます。このおかし、おいしいですね。アンナさんがつくったんですか。</p>
+  <p class="en"><span class="en-spk">Kimura:</span> Oh, thank you very much. These sweets are delicious. Did you make them?</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">アンナ</div>
+  <p class="jp-kanji">はい。西川さんのお母さんに作り方を教えていただきました。</p>
+  <p class="jp-kana"><span class="kana-spk">アンナ</span>はい。にしかわさんのおかあさんにつくりかたをおしえていただきました。</p>
+  <p class="en"><span class="en-spk">Anna:</span> Yes. Nishikawa&#x27;s mother taught me how to make them.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">木村</div>
+  <p class="jp-kanji">そうですか。本当においしいです。</p>
+  <p class="jp-kana"><span class="kana-spk">きむら</span>そうですか。ほんとうにおいしいです。</p>
+  <p class="en"><span class="en-spk">Kimura:</span> I see. They&#x27;re really delicious.</p>
+</article>
+<div class="exchange-head"><span class="ex-num">4 (119)</span></div>
+<article class="line">
+  <div class="speaker-jp">アンナ</div>
+  <p class="jp-kanji">あ、西川さん、こんにちは。</p>
+  <p class="jp-kana"><span class="kana-spk">アンナ</span>あ、にしかわさん、こんにちは。</p>
+  <p class="en"><span class="en-spk">Anna:</span> Oh, Nishikawa, hello.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">西川母</div>
+  <p class="jp-kanji">あ、アンナさん、こんにちは。</p>
+  <p class="jp-kana"><span class="kana-spk">にしかわはは</span>あ、アンナさん、こんにちは。</p>
+  <p class="en"><span class="en-spk">Nishikawa&#x27;s mother:</span> Oh, Anna, hello.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">アンナ</div>
+  <p class="jp-kanji">西川さん、この間はお菓子の作り方を教えてくださって、ありがとうございました。</p>
+  <p class="jp-kana"><span class="kana-spk">アンナ</span>にしかわさん、このあいだはおかしのつくりかたをおしえてくださって、ありがとうございました。</p>
+  <p class="en"><span class="en-spk">Anna:</span> Nishikawa, thank you for teaching me how to make those sweets the other day.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">西川母</div>
+  <p class="jp-kanji">いいえ、どういたしまして。</p>
+  <p class="jp-kana"><span class="kana-spk">にしかわはは</span>いいえ、どういたしまして。</p>
+  <p class="en"><span class="en-spk">Nishikawa&#x27;s mother:</span> Not at all, you&#x27;re welcome.</p>
+</article>
+</section>
+</article>
+    </div>
+
+    <div class="paywall">
+      <div class="paywall-card">
+        <h2>残りの章をアンロック</h2>
+        <p class="h2-en">Unlock the remaining chapters</p>
+
+        <div class="price">
+          <span class="price-amount">10,000</span><span class="price-currency">円</span>
+        </div>
+
+        <button class="unlock-btn" onclick="alert(':)')">
+          今すぐアンロック ／ Unlock Now
+        </button>
+      </div>
+    </div>
+  </div>
+</main>
+
+</body>
+</html>
