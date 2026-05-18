@@ -8,6 +8,7 @@
   :root {
     --bg: #ffffff;
     --surface: #fafafa;
+    --surface-2: #f5f5f5;
     --text: #1a1a1a;
     --text-soft: #444;
     --text-muted: #767676;
@@ -128,6 +129,37 @@
     to { opacity: 1; transform: translateY(0); }
   }
 
+  /* ─── TABS ─────────────────────────────────── */
+  .chapter-tabs {
+    display: flex;
+    gap: 4px;
+    margin-bottom: 32px;
+    border-bottom: 1px solid var(--rule);
+    padding-bottom: 0;
+  }
+  .tab-btn {
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid transparent;
+    padding: 12px 20px;
+    font-family: inherit;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    cursor: pointer;
+    transition: color 0.15s ease, border-color 0.15s ease;
+    margin-bottom: -1px;
+  }
+  .tab-btn:hover { color: var(--text); }
+  .tab-btn.active {
+    color: var(--text);
+    border-bottom-color: var(--accent);
+  }
+
+  .tab-pane { display: none; }
+  .tab-pane.active { display: block; animation: fadeIn 0.2s ease-out; }
+
+  /* ─── DIALOGUE CONTENT ────────────────────── */
   .chapter-head {
     margin-bottom: 40px;
     padding-bottom: 24px;
@@ -158,7 +190,6 @@
     font-weight: 400;
   }
 
-  /* ─── ST BLOCK ────────────────────────────── */
   .st-block { margin-bottom: 56px; }
 
   .st-header {
@@ -186,10 +217,7 @@
     border-radius: 4px;
   }
 
-  .st-titles {
-    flex: 1;
-    min-width: 0;
-  }
+  .st-titles { flex: 1; min-width: 0; }
 
   .st-jp {
     font-size: 1.25rem;
@@ -210,7 +238,6 @@
     line-height: 1.4;
   }
 
-  /* Exchange number */
   .exchange-head {
     margin: 32px 0 16px;
     display: flex;
@@ -230,7 +257,6 @@
     letter-spacing: 0.02em;
   }
 
-  /* ─── DIALOGUE LINE ───────────────────────── */
   .line {
     margin: 18px 0;
     padding: 14px 18px;
@@ -239,9 +265,7 @@
     border-radius: 0 6px 6px 0;
     transition: border-left-color 0.2s ease;
   }
-  .line:hover {
-    border-left-color: var(--accent);
-  }
+  .line:hover { border-left-color: var(--accent); }
 
   .speaker-jp {
     font-size: 0.78rem;
@@ -294,6 +318,58 @@
     letter-spacing: 0.4em;
   }
 
+  /* ─── VOCABULARY CONTENT ──────────────────── */
+  .vocab-section { margin-bottom: 40px; }
+
+  .vocab-section-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--text);
+    padding: 10px 16px;
+    background: var(--text);
+    color: var(--bg);
+    border-radius: 6px;
+    margin-bottom: 16px;
+    letter-spacing: 0.02em;
+  }
+
+  .vocab-table {
+    display: grid;
+    grid-template-columns: 1fr;
+    border: 1px solid var(--rule);
+    border-radius: 8px;
+    overflow: hidden;
+    background: var(--bg);
+  }
+
+  .vocab-row {
+    display: grid;
+    grid-template-columns: 1.4fr 1.4fr 2fr;
+    gap: 16px;
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--rule-soft);
+    transition: background 0.12s ease;
+  }
+  .vocab-row:last-child { border-bottom: none; }
+  .vocab-row:hover { background: var(--surface); }
+
+  .vocab-jp {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text);
+    line-height: 1.45;
+  }
+  .vocab-kana {
+    font-size: 0.92rem;
+    color: var(--kana-color);
+    line-height: 1.45;
+  }
+  .vocab-en {
+    font-size: 0.92rem;
+    color: var(--en-color);
+    line-height: 1.45;
+  }
+
   /* ─── RESPONSIVE ──────────────────────────── */
   @media (max-width: 720px) {
     main { padding: 30px 20px 60px; }
@@ -304,6 +380,16 @@
     .st-jp { font-size: 1.1rem; }
     .st-source { width: 100%; text-align: left; }
     .line { padding: 12px 14px; }
+    .tab-btn { padding: 10px 14px; font-size: 0.9rem; }
+
+    .vocab-row {
+      grid-template-columns: 1fr;
+      gap: 4px;
+      padding: 14px 14px;
+    }
+    .vocab-kana { font-size: 0.88rem; }
+    .vocab-en { font-size: 0.9rem; padding-top: 2px; }
+    .vocab-section-title { font-size: 1rem; padding: 8px 12px; }
   }
 </style>
 </head>
@@ -324,6 +410,11 @@
 
 <main>
 <article class="chapter ch-1 active" data-chapter="1">
+  <div class="chapter-tabs" role="tablist">
+    <button class="tab-btn active" data-tab="dialogues" data-ch="1">Dialogues</button>
+    <button class="tab-btn" data-tab="vocabulary" data-ch="1">Vocabulary</button>
+  </div>
+  <div class="tab-pane dialogues-pane active" data-pane="dialogues">
 <header class="chapter-head">
   <div class="chapter-mark">第1課</div>
   <h2 class="chapter-title-jp">新しい一歩</h2>
@@ -645,8 +736,298 @@
   <p class="en"><span class="en-spk">Suzuki:</span> Oh, I see.</p>
 </article>
 </section>
+  </div>
+  <div class="tab-pane vocab-pane" data-pane="vocabulary">
+<div class="vocab-content">
+<section class="vocab-section">
+  <h3 class="vocab-section-title">話読聞書</h3>
+  <div class="vocab-table">
+    <div class="vocab-row">
+      <div class="vocab-jp">自己紹介</div>
+      <div class="vocab-kana">じこしょうかい</div>
+      <div class="vocab-en">self-introduction</div>
+    </div>
+  </div>
+</section>
+<section class="vocab-section">
+  <h3 class="vocab-section-title">1 アルバイトを探す</h3>
+  <div class="vocab-table">
+    <div class="vocab-row">
+      <div class="vocab-jp">方</div>
+      <div class="vocab-kana">かた</div>
+      <div class="vocab-en">person (respectful language referring to someone else)</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">者</div>
+      <div class="vocab-kana">もの</div>
+      <div class="vocab-en">person (humble language referring to oneself)</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">(お)刺身</div>
+      <div class="vocab-kana">(お)さしみ</div>
+      <div class="vocab-en">sashimi (thinly sliced, raw seafood)</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">チラシ</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">leaflet, flyer</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">問い合わせ</div>
+      <div class="vocab-kana">といあわせ</div>
+      <div class="vocab-en">inquiry</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">日常会話</div>
+      <div class="vocab-kana">にちじょうかいわ</div>
+      <div class="vocab-en">daily conversation</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">半年</div>
+      <div class="vocab-kana">はんとし</div>
+      <div class="vocab-en">half-year</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">ホームページ</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">website</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">面接</div>
+      <div class="vocab-kana">めんせつ</div>
+      <div class="vocab-en">interview</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">履歴書</div>
+      <div class="vocab-kana">りれきしょ</div>
+      <div class="vocab-en">resume, CV</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">思い出す</div>
+      <div class="vocab-kana">おもいだす</div>
+      <div class="vocab-en">remember, recall</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">希望・する</div>
+      <div class="vocab-kana">きぼう・する</div>
+      <div class="vocab-en">desire</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">募集・する</div>
+      <div class="vocab-kana">ぼしゅう・する</div>
+      <div class="vocab-en">recruit, put out a call for</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">入力・する</div>
+      <div class="vocab-kana">にゅうりょく・する</div>
+      <div class="vocab-en">input</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">それでは</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">well, then (at beginning of a sentence)</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">では</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">in that case, if so</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">いらっしゃいます</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">go, come (respectful language referring to someone else)</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">参りました</div>
+      <div class="vocab-kana">まいりました</div>
+      <div class="vocab-en">go, come (humble language referring to oneself; past form of 参ります)</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">~と申します</div>
+      <div class="vocab-kana">~ともうします</div>
+      <div class="vocab-en">&quot;My name is ~.&quot; (humble language)</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">お先に失礼します</div>
+      <div class="vocab-kana">おさきにしつれいします</div>
+      <div class="vocab-en">&quot;Excuse me for going ahead of you&quot;</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">こちらへどうぞ</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">&quot;Please come this way&quot;</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">失礼します</div>
+      <div class="vocab-kana">しつれいします</div>
+      <div class="vocab-en">&quot;Excuse me&quot;</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">少々お待ちください</div>
+      <div class="vocab-kana">しょうしょうおまちください</div>
+      <div class="vocab-en">&quot;Please wait a moment&quot;</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">よろしくお願いいたします</div>
+      <div class="vocab-kana">よろしくおねがいいたします</div>
+      <div class="vocab-en">&quot;I am looking forward to knowing you&quot;</div>
+    </div>
+  </div>
+</section>
+<section class="vocab-section">
+  <h3 class="vocab-section-title">2 新しい友達</h3>
+  <div class="vocab-table">
+    <div class="vocab-row">
+      <div class="vocab-jp">意見</div>
+      <div class="vocab-kana">いけん</div>
+      <div class="vocab-en">opinion</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">お年寄り</div>
+      <div class="vocab-kana">おとしより</div>
+      <div class="vocab-en">elderly person</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">楽器</div>
+      <div class="vocab-kana">がっき</div>
+      <div class="vocab-en">musical instrument</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">言葉</div>
+      <div class="vocab-kana">ことば</div>
+      <div class="vocab-en">words, language</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">自分</div>
+      <div class="vocab-kana">じぶん</div>
+      <div class="vocab-en">oneself</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">出身</div>
+      <div class="vocab-kana">しゅっしん</div>
+      <div class="vocab-en">hometown, home country</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">建物</div>
+      <div class="vocab-kana">たてもの</div>
+      <div class="vocab-en">building</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">話</div>
+      <div class="vocab-kana">はなし</div>
+      <div class="vocab-en">conversation</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">野外ライブ</div>
+      <div class="vocab-kana">やがいライブ</div>
+      <div class="vocab-en">live outdoor concert</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">歴史</div>
+      <div class="vocab-kana">れきし</div>
+      <div class="vocab-en">history</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">~個</div>
+      <div class="vocab-kana">~こ</div>
+      <div class="vocab-en">things (counter word)</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">~地 (例:観光地)</div>
+      <div class="vocab-kana">~ち (れい:かんこうち)</div>
+      <div class="vocab-en">place, spot (example: &quot;sightseeing spot&quot;)</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">聞き取る</div>
+      <div class="vocab-kana">ききとる</div>
+      <div class="vocab-en">hear and understand</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">覚える</div>
+      <div class="vocab-kana">おぼえる</div>
+      <div class="vocab-en">remember, memorize</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">応援・する</div>
+      <div class="vocab-kana">おうえん・する</div>
+      <div class="vocab-en">encourage, cheer on</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">サイクリング・する</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">do cycling</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">遅い</div>
+      <div class="vocab-kana">おそい</div>
+      <div class="vocab-en">slow</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">速い</div>
+      <div class="vocab-kana">はやい</div>
+      <div class="vocab-en">fast</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">つまらない</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">boring</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">得意 (な)</div>
+      <div class="vocab-kana">とくい (な)</div>
+      <div class="vocab-en">good at (something)</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">苦手 (な)</div>
+      <div class="vocab-kana">にがて (な)</div>
+      <div class="vocab-en">bad at (something)</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">無理 (な)</div>
+      <div class="vocab-kana">むり (な)</div>
+      <div class="vocab-en">unable to do (something)</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">朝早く</div>
+      <div class="vocab-kana">あさはやく</div>
+      <div class="vocab-en">early morning</div>
+    </div>
+  </div>
+</section>
+<section class="vocab-section">
+  <h3 class="vocab-section-title">もう一度聞こう</h3>
+  <div class="vocab-table">
+    <div class="vocab-row">
+      <div class="vocab-jp">字幕</div>
+      <div class="vocab-kana">じまく</div>
+      <div class="vocab-en">subtitles</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">大好き (な)</div>
+      <div class="vocab-kana">だいすき (な)</div>
+      <div class="vocab-en">favorite</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">だいたい</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">mostly, most of the time</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">まず</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">at first (at beginning of a sentence)</div>
+    </div>
+  </div>
+</section>
+</div>
+  </div>
 </article>
 <article class="chapter ch-2" data-chapter="2">
+  <div class="chapter-tabs" role="tablist">
+    <button class="tab-btn active" data-tab="dialogues" data-ch="2">Dialogues</button>
+    <button class="tab-btn" data-tab="vocabulary" data-ch="2">Vocabulary</button>
+  </div>
+  <div class="tab-pane dialogues-pane active" data-pane="dialogues">
 <header class="chapter-head">
   <div class="chapter-mark">第2課</div>
   <h2 class="chapter-title-jp">楽しいショッピング</h2>
@@ -972,8 +1353,403 @@
   <p class="en"><span class="en-spk">Natapon:</span> Yes. I ate too much. My stomach is full. Phew.</p>
 </article>
 </section>
+  </div>
+  <div class="tab-pane vocab-pane" data-pane="vocabulary">
+<div class="vocab-content">
+<section class="vocab-section">
+  <h3 class="vocab-section-title">話読聞書</h3>
+  <div class="vocab-table">
+    <div class="vocab-row">
+      <div class="vocab-jp">うれしい</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">happy, glad</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">恥ずかしい</div>
+      <div class="vocab-kana">はずかしい</div>
+      <div class="vocab-en">embarrassing</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">次</div>
+      <div class="vocab-kana">つぎ</div>
+      <div class="vocab-en">next</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">もう一度</div>
+      <div class="vocab-kana">もういちど</div>
+      <div class="vocab-en">one more time, again</div>
+    </div>
+  </div>
+</section>
+<section class="vocab-section">
+  <h3 class="vocab-section-title">1 上手に買い物</h3>
+  <div class="vocab-table">
+    <div class="vocab-row">
+      <div class="vocab-jp">腕時計</div>
+      <div class="vocab-kana">うでどけい</div>
+      <div class="vocab-en">wristwatch</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">指輪</div>
+      <div class="vocab-kana">ゆびわ</div>
+      <div class="vocab-en">ring</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">コート</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">coat</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">コートを着る。</div>
+      <div class="vocab-kana">コートをきる。</div>
+      <div class="vocab-en">&quot;put on a coat&quot;</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">ジーンズ</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">jeans</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">セーター</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">sweater</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">画面</div>
+      <div class="vocab-kana">がめん</div>
+      <div class="vocab-en">screen</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">サイズ</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">size</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">数字</div>
+      <div class="vocab-kana">すうじ</div>
+      <div class="vocab-en">number</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">スーツケース</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">suitcase</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">棚</div>
+      <div class="vocab-kana">たな</div>
+      <div class="vocab-en">shelf</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">取っ手</div>
+      <div class="vocab-kana">とって</div>
+      <div class="vocab-en">handle, knob</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">ヒール</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">(high) heels</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">ファスナー</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">fastener (example: zipper, velcro, etc.)</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">ボタン</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">button</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">動く</div>
+      <div class="vocab-kana">うごく</div>
+      <div class="vocab-en">move</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">違う</div>
+      <div class="vocab-kana">ちがう</div>
+      <div class="vocab-en">differ from, be different</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">イメージ・する</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">imagine, visualize</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">説明・する</div>
+      <div class="vocab-kana">せつめい・する</div>
+      <div class="vocab-en">explain</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">配達・する</div>
+      <div class="vocab-kana">はいたつ・する</div>
+      <div class="vocab-en">deliver</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">重い</div>
+      <div class="vocab-kana">おもい</div>
+      <div class="vocab-en">heavy (weight)</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">軽い</div>
+      <div class="vocab-kana">かるい</div>
+      <div class="vocab-en">light (weight)</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">ちょうどいい</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">perfect</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">丈夫 (な)</div>
+      <div class="vocab-kana">じょうぶ (な)</div>
+      <div class="vocab-en">sturdy</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">もっと</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">more</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">もっと大きいかばんがほしい。</div>
+      <div class="vocab-kana">もっとおおきいかばんがほしい。</div>
+      <div class="vocab-en">&quot;I want a larger bag&quot;</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">ちょっと</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">a little</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">いかがですか</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">&quot;How is it?&quot;</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">かしこまりました</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">&quot;I understand&quot; (humble language)</div>
+    </div>
+  </div>
+</section>
+<section class="vocab-section">
+  <h3 class="vocab-section-title">2 一緒に食事</h3>
+  <div class="vocab-table">
+    <div class="vocab-row">
+      <div class="vocab-jp">意味</div>
+      <div class="vocab-kana">いみ</div>
+      <div class="vocab-en">meaning</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">営業中</div>
+      <div class="vocab-kana">えいぎょうちゅう</div>
+      <div class="vocab-en">open (for business)</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">定休日</div>
+      <div class="vocab-kana">ていきゅうび</div>
+      <div class="vocab-en">regular holiday</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">大盛り</div>
+      <div class="vocab-kana">おおもり</div>
+      <div class="vocab-en">extra-large helping</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">おかわり</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">refill, second helping</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">親子丼</div>
+      <div class="vocab-kana">おやこどん</div>
+      <div class="vocab-en">oyako-don (bowl of rice topped with boiled chicken and eggs)</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">牛丼</div>
+      <div class="vocab-kana">ぎゅうどん</div>
+      <div class="vocab-en">gyu-don (bowl of rice topped with seasoned beef)</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">サンドイッチ</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">Sandwich</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">ソース</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">Sauce</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">とんかつにソースをかける。</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">&quot;put sauce on pork cutlet&quot;</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">セット</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">set</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">ドリンクバー</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">self-service drink area in a restaurant</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">壁</div>
+      <div class="vocab-kana">かべ</div>
+      <div class="vocab-en">wall</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">カレンダー</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">calendar</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">期間限定</div>
+      <div class="vocab-kana">きかんげんてい</div>
+      <div class="vocab-en">limited period</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">最新</div>
+      <div class="vocab-kana">さいしん</div>
+      <div class="vocab-en">latest, newest</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">商品</div>
+      <div class="vocab-kana">しょうひん</div>
+      <div class="vocab-en">product, goods</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">世界地図</div>
+      <div class="vocab-kana">せかいちず</div>
+      <div class="vocab-en">world map</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">送料</div>
+      <div class="vocab-kana">そうりょう</div>
+      <div class="vocab-en">shipping charges</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">タイムサービス</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">limited time offer</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">半額</div>
+      <div class="vocab-kana">はんがく</div>
+      <div class="vocab-en">half-price</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">フロアガイド</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">floor guide</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">本日</div>
+      <div class="vocab-kana">ほんじつ</div>
+      <div class="vocab-en">today</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">量</div>
+      <div class="vocab-kana">りょう</div>
+      <div class="vocab-en">amount</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">~券 (例:割引券)</div>
+      <div class="vocab-kana">~けん (れい:わりびきけん)</div>
+      <div class="vocab-en">ticket (example: discount ticket, coupon)</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">~放題 (例:飲み放題)</div>
+      <div class="vocab-kana">~ほうだい (れい:のみほうだい)</div>
+      <div class="vocab-en">all-you-can ~ (example: &quot;all-you-can-drink&quot;)</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">貼る</div>
+      <div class="vocab-kana">はる</div>
+      <div class="vocab-en">affix</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">かける</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">hang, attach, put on (something)</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">カレンダーをかける。</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">hang up a calendar</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">ソースをかける。</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">put sauce on (something)</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">両替・する</div>
+      <div class="vocab-kana">りょうがえ・する</div>
+      <div class="vocab-en">exchange for small money</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">割引・する</div>
+      <div class="vocab-kana">わりびき・する</div>
+      <div class="vocab-en">discount</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">得 (な)</div>
+      <div class="vocab-kana">とく (な)</div>
+      <div class="vocab-en">good at (something)</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">どういう</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">what kind of</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">もう~ (例:もう一杯)</div>
+      <div class="vocab-kana">もう~ (れい:もういっぱい)</div>
+      <div class="vocab-en">another ~, more ~ (example: &quot;one more drink&quot;)</div>
+    </div>
+  </div>
+</section>
+<section class="vocab-section">
+  <h3 class="vocab-section-title">もう一度聞こう</h3>
+  <div class="vocab-table">
+    <div class="vocab-row">
+      <div class="vocab-jp">折りたたみ傘</div>
+      <div class="vocab-kana">おりたたみがさ</div>
+      <div class="vocab-en">folding umbrella</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">リュックサック</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">rucksack, backpack</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">デザート</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">dessert</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">背負う</div>
+      <div class="vocab-kana">せおう</div>
+      <div class="vocab-en">carry on one&#x27;s back</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">大変</div>
+      <div class="vocab-kana">たいへん</div>
+      <div class="vocab-en">very</div>
+    </div>
+  </div>
+</section>
+</div>
+  </div>
 </article>
 <article class="chapter ch-3" data-chapter="3">
+  <div class="chapter-tabs" role="tablist">
+    <button class="tab-btn active" data-tab="dialogues" data-ch="3">Dialogues</button>
+    <button class="tab-btn" data-tab="vocabulary" data-ch="3">Vocabulary</button>
+  </div>
+  <div class="tab-pane dialogues-pane active" data-pane="dialogues">
 <header class="chapter-head">
   <div class="chapter-mark">第3課</div>
   <h2 class="chapter-title-jp">私の目標</h2>
@@ -1284,8 +2060,383 @@
   <p class="en"><span class="en-spk">Daniel:</span> I see. Good luck.</p>
 </article>
 </section>
+  </div>
+  <div class="tab-pane vocab-pane" data-pane="vocabulary">
+<div class="vocab-content">
+<section class="vocab-section">
+  <h3 class="vocab-section-title">話読聞書</h3>
+  <div class="vocab-table">
+    <div class="vocab-row">
+      <div class="vocab-jp">笑顔</div>
+      <div class="vocab-kana">えがお</div>
+      <div class="vocab-en">smile</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">悲しい</div>
+      <div class="vocab-kana">かなしい</div>
+      <div class="vocab-en">sad</div>
+    </div>
+  </div>
+</section>
+<section class="vocab-section">
+  <h3 class="vocab-section-title">1 これからの計画</h3>
+  <div class="vocab-table">
+    <div class="vocab-row">
+      <div class="vocab-jp">アクセサリー</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">jewelry</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">学部</div>
+      <div class="vocab-kana">がくぶ</div>
+      <div class="vocab-en">academic department</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">カナダ</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">Canada</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">給料</div>
+      <div class="vocab-kana">きゅうりょう</div>
+      <div class="vocab-en">salary</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">計画</div>
+      <div class="vocab-kana">けいかく</div>
+      <div class="vocab-en">plan, program, project</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">経済</div>
+      <div class="vocab-kana">けいざい</div>
+      <div class="vocab-en">economics, economy</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">見学会</div>
+      <div class="vocab-kana">けんがくかい</div>
+      <div class="vocab-en">observation tour</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">答え</div>
+      <div class="vocab-kana">こたえ</div>
+      <div class="vocab-en">answer, response</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">サークル</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">club, group</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">試験</div>
+      <div class="vocab-kana">しけん</div>
+      <div class="vocab-en">examination</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">将来</div>
+      <div class="vocab-kana">しょうらい</div>
+      <div class="vocab-en">future</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">説明会</div>
+      <div class="vocab-kana">せつめいかい</div>
+      <div class="vocab-en">explanatory meeting</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">専門学校</div>
+      <div class="vocab-kana">せんもんがっこう</div>
+      <div class="vocab-en">vocational school</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">聴解</div>
+      <div class="vocab-kana">ちょうかい</div>
+      <div class="vocab-en">listening comprehension</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">日本語能力試験</div>
+      <div class="vocab-kana">にほんごのうりょくしけん</div>
+      <div class="vocab-en">Japanese Language Proficiency Test</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">ビジネス</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">business</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">法律</div>
+      <div class="vocab-kana">ほうりつ</div>
+      <div class="vocab-en">law</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">間違い</div>
+      <div class="vocab-kana">まちがい</div>
+      <div class="vocab-en">mistake</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">目標</div>
+      <div class="vocab-kana">もくひょう</div>
+      <div class="vocab-en">goal, target</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">寮</div>
+      <div class="vocab-kana">りょう</div>
+      <div class="vocab-en">dormitory</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">~会社 (例:旅行会社)</div>
+      <div class="vocab-kana">~がいしゃ (れい:りょこうがいしゃ)</div>
+      <div class="vocab-en">~ company (example: travel company)</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">~料 (例:授業料)</div>
+      <div class="vocab-kana">~りょう (れい:じゅぎょうりょう)</div>
+      <div class="vocab-en">charges, fees (example: tuition)</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">選ぶ</div>
+      <div class="vocab-kana">えらぶ</div>
+      <div class="vocab-en">select, choose</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">悩む</div>
+      <div class="vocab-kana">なやむ</div>
+      <div class="vocab-en">be troubled over, be worried about</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">開く</div>
+      <div class="vocab-kana">ひらく</div>
+      <div class="vocab-en">open</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">自分の店を開く。</div>
+      <div class="vocab-kana">じぶんのみせをひらく。</div>
+      <div class="vocab-en">open your own store</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">迷う</div>
+      <div class="vocab-kana">まよう</div>
+      <div class="vocab-en">waver, hesitate</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">国へ帰るかどうか迷っている。</div>
+      <div class="vocab-kana">くにへかえるかどうかまよっている。</div>
+      <div class="vocab-en">&quot;wavering whether to return to my country or not&quot;</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">受ける</div>
+      <div class="vocab-kana">うける</div>
+      <div class="vocab-en">receive, take</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">入学試験を受ける。</div>
+      <div class="vocab-kana">にゅうがくしけんをうける。</div>
+      <div class="vocab-en">take an entrance examination</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">考える</div>
+      <div class="vocab-kana">かんがえる</div>
+      <div class="vocab-en">think about</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">決める</div>
+      <div class="vocab-kana">きめる</div>
+      <div class="vocab-en">decide</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">調べる</div>
+      <div class="vocab-kana">しらべる</div>
+      <div class="vocab-en">examine</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">続ける</div>
+      <div class="vocab-kana">つづける</div>
+      <div class="vocab-en">continue</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">辞める</div>
+      <div class="vocab-kana">やめる</div>
+      <div class="vocab-en">stop, quit</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">案内・する</div>
+      <div class="vocab-kana">あんない・する</div>
+      <div class="vocab-en">guide</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">確認・する</div>
+      <div class="vocab-kana">かくにん・する</div>
+      <div class="vocab-en">confirm, check</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">見学・する</div>
+      <div class="vocab-kana">けんがく・する</div>
+      <div class="vocab-en">tour, observe</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">合格・する</div>
+      <div class="vocab-kana">ごうかく・する</div>
+      <div class="vocab-en">pass (an examination)</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">進学・する</div>
+      <div class="vocab-kana">しんがく・する</div>
+      <div class="vocab-en">proceed to higher education</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">就職・する</div>
+      <div class="vocab-kana">しゅうしょく・する</div>
+      <div class="vocab-en">find a job</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">専攻・する</div>
+      <div class="vocab-kana">せんこう・する</div>
+      <div class="vocab-en">specialize in, major in</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">相談・する</div>
+      <div class="vocab-kana">そうだん・する</div>
+      <div class="vocab-en">consult with, ask someone&#x27;s advice</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">貯金・する</div>
+      <div class="vocab-kana">ちょきん・する</div>
+      <div class="vocab-en">save up money</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">通学・する</div>
+      <div class="vocab-kana">つうがく・する</div>
+      <div class="vocab-en">commute to school</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">翻訳・する</div>
+      <div class="vocab-kana">ほんやく・する</div>
+      <div class="vocab-en">translate</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">正しい</div>
+      <div class="vocab-kana">ただしい</div>
+      <div class="vocab-en">correct</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">一生懸命</div>
+      <div class="vocab-kana">いっしょうけんめい</div>
+      <div class="vocab-en">(do) one&#x27;s very best</div>
+    </div>
+  </div>
+</section>
+<section class="vocab-section">
+  <h3 class="vocab-section-title">2 夢に向かって</h3>
+  <div class="vocab-table">
+    <div class="vocab-row">
+      <div class="vocab-jp">願書</div>
+      <div class="vocab-kana">がんしょ</div>
+      <div class="vocab-en">application</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">建築家</div>
+      <div class="vocab-kana">けんちくか</div>
+      <div class="vocab-en">architect</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">事務室</div>
+      <div class="vocab-kana">じむしつ</div>
+      <div class="vocab-en">office</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">書類</div>
+      <div class="vocab-kana">しょるい</div>
+      <div class="vocab-en">documents</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">スーツ</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">business suit</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">デザイナー</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">designer</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">夢</div>
+      <div class="vocab-kana">ゆめ</div>
+      <div class="vocab-en">dream (here: aspiration)</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">将来の夢</div>
+      <div class="vocab-kana">しょうらいのゆめ</div>
+      <div class="vocab-en">(one&#x27;s) future dream</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">~中 (例:今日中)</div>
+      <div class="vocab-kana">~ちゅう/じゅう (れい:きょうじゅう)</div>
+      <div class="vocab-en">during (a period) (example: during today)</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">頑張る</div>
+      <div class="vocab-kana">がんばる</div>
+      <div class="vocab-en">do one&#x27;s best</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">経営・する</div>
+      <div class="vocab-kana">けいえい・する</div>
+      <div class="vocab-en">manage (a business)</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">受験・する</div>
+      <div class="vocab-kana">じゅけん・する</div>
+      <div class="vocab-en">take an examination</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">スピーチ・する</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">give a speech</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">体験・する</div>
+      <div class="vocab-kana">たいけん・する</div>
+      <div class="vocab-en">experience</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">デッサン・する</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">produce a drawing</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">復習・する</div>
+      <div class="vocab-kana">ふくしゅう・する</div>
+      <div class="vocab-en">review (a lesson)</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">予習・する</div>
+      <div class="vocab-kana">よしゅう・する</div>
+      <div class="vocab-en">prepare for (a lesson)</div>
+    </div>
+  </div>
+</section>
+<section class="vocab-section">
+  <h3 class="vocab-section-title">もう一度聞こう</h3>
+  <div class="vocab-table">
+    <div class="vocab-row">
+      <div class="vocab-jp">パティシエ</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">pastry baker (from the French word pâtissier)</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">通訳・する</div>
+      <div class="vocab-kana">つうやく・する</div>
+      <div class="vocab-en">interpret (translate orally)</div>
+    </div>
+  </div>
+</section>
+</div>
+  </div>
 </article>
 <article class="chapter ch-4" data-chapter="4">
+  <div class="chapter-tabs" role="tablist">
+    <button class="tab-btn active" data-tab="dialogues" data-ch="4">Dialogues</button>
+    <button class="tab-btn" data-tab="vocabulary" data-ch="4">Vocabulary</button>
+  </div>
+  <div class="tab-pane dialogues-pane active" data-pane="dialogues">
 <header class="chapter-head">
   <div class="chapter-mark">第4課</div>
   <h2 class="chapter-title-jp">住んでいる町で</h2>
@@ -1444,8 +2595,313 @@
   <p class="en"><span class="en-spk">Marco:</span> Okay, got it. Thank you.</p>
 </article>
 </section>
+  </div>
+  <div class="tab-pane vocab-pane" data-pane="vocabulary">
+<div class="vocab-content">
+<section class="vocab-section">
+  <h3 class="vocab-section-title">話読聞書</h3>
+  <div class="vocab-table">
+    <div class="vocab-row">
+      <div class="vocab-jp">味</div>
+      <div class="vocab-kana">あじ</div>
+      <div class="vocab-en">taste, flavor</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">おばさん</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">ma&#x27;am (familiar term for an older woman or one&#x27;s own aunt)</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">タコ</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">octopus</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">たこ焼き</div>
+      <div class="vocab-kana">たこやき</div>
+      <div class="vocab-en">takoyaki (fried octopus dumpling balls)</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">におい</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">smell</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">通る</div>
+      <div class="vocab-kana">とおる</div>
+      <div class="vocab-en">pass through</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">似る</div>
+      <div class="vocab-kana">にる</div>
+      <div class="vocab-en">be similar to</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">丸い</div>
+      <div class="vocab-kana">まるい</div>
+      <div class="vocab-en">round</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">小さな</div>
+      <div class="vocab-kana">ちいさな</div>
+      <div class="vocab-en">small</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">~がする</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">make a (noise, smell)</div>
+    </div>
+  </div>
+</section>
+<section class="vocab-section">
+  <h3 class="vocab-section-title">1 生活を楽しむ</h3>
+  <div class="vocab-table">
+    <div class="vocab-row">
+      <div class="vocab-jp">空港</div>
+      <div class="vocab-kana">くうこう</div>
+      <div class="vocab-en">airport</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">歯科</div>
+      <div class="vocab-kana">しか</div>
+      <div class="vocab-en">dentist</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">市役所</div>
+      <div class="vocab-kana">しやくしょ</div>
+      <div class="vocab-en">city hall</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">小学校</div>
+      <div class="vocab-kana">しょうがっこう</div>
+      <div class="vocab-en">elementary school</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">美容院</div>
+      <div class="vocab-kana">びよういん</div>
+      <div class="vocab-en">beauty salon</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">不動産</div>
+      <div class="vocab-kana">ふどうさん</div>
+      <div class="vocab-en">real estate</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">交流会</div>
+      <div class="vocab-kana">こうりゅうかい</div>
+      <div class="vocab-en">(cultural) exchange meeting</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">茶道</div>
+      <div class="vocab-kana">さどう</div>
+      <div class="vocab-en">sado (traditional Japanese tea ceremony)</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">三味線</div>
+      <div class="vocab-kana">しゃみせん</div>
+      <div class="vocab-en">shamisen (three-stringed Japanese musical instrument)</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">市民</div>
+      <div class="vocab-kana">しみん</div>
+      <div class="vocab-en">citizen</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">種類</div>
+      <div class="vocab-kana">しゅるい</div>
+      <div class="vocab-en">type</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">情報</div>
+      <div class="vocab-kana">じょうほう</div>
+      <div class="vocab-en">information</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">水道</div>
+      <div class="vocab-kana">すいどう</div>
+      <div class="vocab-en">waterworks, waterway</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">タオル</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">towel</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">てんぷら</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">tempura (battered and deep-fried vegetables and seafood)</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">方法</div>
+      <div class="vocab-kana">ほうほう</div>
+      <div class="vocab-en">method, technique, way of doing something</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">理由</div>
+      <div class="vocab-kana">りゆう</div>
+      <div class="vocab-en">reason</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">~場 (例:サッカー場)</div>
+      <div class="vocab-kana">~じょう (れい:サッカーじょう)</div>
+      <div class="vocab-en">place, location (example: soccer field)</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">~センター (例:市民センター)</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">~ center (example: community center)</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">~口 (例:西口)</div>
+      <div class="vocab-kana">~ぐち (れい:にしぐち)</div>
+      <div class="vocab-en">entrance, exit (example: west exit)</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">着く</div>
+      <div class="vocab-kana">つく</div>
+      <div class="vocab-en">arrive</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">止まる</div>
+      <div class="vocab-kana">とまる</div>
+      <div class="vocab-en">stop</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">水が止まる。</div>
+      <div class="vocab-kana">みずがとまる。</div>
+      <div class="vocab-en">the water has stopped running</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">知らせる</div>
+      <div class="vocab-kana">しらせる</div>
+      <div class="vocab-en">notify, inform</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">出る</div>
+      <div class="vocab-kana">でる</div>
+      <div class="vocab-en">operate</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">バスが出る。</div>
+      <div class="vocab-kana">バスがでる。</div>
+      <div class="vocab-en">(They) run a bus service.</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">カット・する</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">cut</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">質問・する</div>
+      <div class="vocab-kana">しつもん・する</div>
+      <div class="vocab-en">ask a question</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">修理・する</div>
+      <div class="vocab-kana">しゅうり・する</div>
+      <div class="vocab-en">repair</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">利用・する</div>
+      <div class="vocab-kana">りよう・する</div>
+      <div class="vocab-en">use</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">必要 (な)</div>
+      <div class="vocab-kana">ひつよう (な)</div>
+      <div class="vocab-en">needed, necessary</div>
+    </div>
+  </div>
+</section>
+<section class="vocab-section">
+  <h3 class="vocab-section-title">2 行き方を教える</h3>
+  <div class="vocab-table">
+    <div class="vocab-row">
+      <div class="vocab-jp">区役所</div>
+      <div class="vocab-kana">くやくしょ</div>
+      <div class="vocab-en">ward office</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">大使館</div>
+      <div class="vocab-kana">たいしかん</div>
+      <div class="vocab-en">embassy</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">坂</div>
+      <div class="vocab-kana">さか</div>
+      <div class="vocab-en">hill, slope</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">次</div>
+      <div class="vocab-kana">つぎ</div>
+      <div class="vocab-en">next</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">~階建て</div>
+      <div class="vocab-kana">~かいだて</div>
+      <div class="vocab-en">building with ~ floors</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">~番線</div>
+      <div class="vocab-kana">~ばんせん</div>
+      <div class="vocab-en">number ~ train/subway line</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">~メートル</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">meter (units of measurement)</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">~行き (例:新宿行き)</div>
+      <div class="vocab-kana">~いき (れい:しんじゅくいき)</div>
+      <div class="vocab-en">destination (example: train/subway heading to Shinjuku)</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">上る</div>
+      <div class="vocab-kana">のぼる</div>
+      <div class="vocab-en">move upward</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">下りる</div>
+      <div class="vocab-kana">おりる</div>
+      <div class="vocab-en">move downward</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">駐車・する</div>
+      <div class="vocab-kana">ちゅうしゃ・する</div>
+      <div class="vocab-en">park (a vehicle)</div>
+    </div>
+  </div>
+</section>
+<section class="vocab-section">
+  <h3 class="vocab-section-title">もう一度聞こう</h3>
+  <div class="vocab-table">
+    <div class="vocab-row">
+      <div class="vocab-jp">中学校</div>
+      <div class="vocab-kana">ちゅうがっこう</div>
+      <div class="vocab-en">middle school, junior high school</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">方</div>
+      <div class="vocab-kana">ほう</div>
+      <div class="vocab-en">towards, side</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">ラケット</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">racket</div>
+    </div>
+  </div>
+</section>
+</div>
+  </div>
 </article>
 <article class="chapter ch-5" data-chapter="5">
+  <div class="chapter-tabs" role="tablist">
+    <button class="tab-btn active" data-tab="dialogues" data-ch="5">Dialogues</button>
+    <button class="tab-btn" data-tab="vocabulary" data-ch="5">Vocabulary</button>
+  </div>
+  <div class="tab-pane dialogues-pane active" data-pane="dialogues">
 <header class="chapter-head">
   <div class="chapter-mark">第5課</div>
   <h2 class="chapter-title-jp">大変な1日</h2>
@@ -1743,8 +3199,448 @@
   <p class="en"><span class="en-spk">Wang:</span> Okay.</p>
 </article>
 </section>
+  </div>
+  <div class="tab-pane vocab-pane" data-pane="vocabulary">
+<div class="vocab-content">
+<section class="vocab-section">
+  <h3 class="vocab-section-title">話読聞書</h3>
+  <div class="vocab-table">
+    <div class="vocab-row">
+      <div class="vocab-jp">失敗・する</div>
+      <div class="vocab-kana">しっぱい・する</div>
+      <div class="vocab-en">fail, make a mistake</div>
+    </div>
+  </div>
+</section>
+<section class="vocab-section">
+  <h3 class="vocab-section-title">1 困ったな……</h3>
+  <div class="vocab-table">
+    <div class="vocab-row">
+      <div class="vocab-jp">池</div>
+      <div class="vocab-kana">いけ</div>
+      <div class="vocab-en">pond</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">色</div>
+      <div class="vocab-kana">いろ</div>
+      <div class="vocab-en">color</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">ピンク</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">pink</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">緑</div>
+      <div class="vocab-kana">みどり</div>
+      <div class="vocab-en">green</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">駅員</div>
+      <div class="vocab-kana">えきいん</div>
+      <div class="vocab-en">station employee</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">警官</div>
+      <div class="vocab-kana">けいかん</div>
+      <div class="vocab-en">policeman</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">大きさ</div>
+      <div class="vocab-kana">おおきさ</div>
+      <div class="vocab-en">size</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">カード</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">card</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">財布にカードが入っている。</div>
+      <div class="vocab-kana">さいふにカードがはいっている。</div>
+      <div class="vocab-en">&quot;The card is in my wallet.&quot;</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">階段</div>
+      <div class="vocab-kana">かいだん</div>
+      <div class="vocab-en">stairs</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">鍵</div>
+      <div class="vocab-kana">かぎ</div>
+      <div class="vocab-en">key</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">形</div>
+      <div class="vocab-kana">かたち</div>
+      <div class="vocab-en">shape</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">ハート</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">heart</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">星</div>
+      <div class="vocab-kana">ほし</div>
+      <div class="vocab-en">star</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">革</div>
+      <div class="vocab-kana">かわ</div>
+      <div class="vocab-en">leather</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">切符</div>
+      <div class="vocab-kana">きっぷ</div>
+      <div class="vocab-en">ticket</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">教科書</div>
+      <div class="vocab-kana">きょうかしょ</div>
+      <div class="vocab-en">textbook</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">ケース</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">case</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">線路</div>
+      <div class="vocab-kana">せんろ</div>
+      <div class="vocab-en">(train, subway) line</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">途中</div>
+      <div class="vocab-kana">とちゅう</div>
+      <div class="vocab-en">in the middle of (doing something)</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">窓口</div>
+      <div class="vocab-kana">まどぐち</div>
+      <div class="vocab-en">(ticket) counter</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">横長</div>
+      <div class="vocab-kana">よこなが</div>
+      <div class="vocab-en">long from side to side</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">忘れ物</div>
+      <div class="vocab-kana">わすれもの</div>
+      <div class="vocab-en">lost items, lost-and-found</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">ICカード</div>
+      <div class="vocab-kana">アイシーカード</div>
+      <div class="vocab-en">IC card, smart card (plastic card with an embedded IC chip)</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">~辺 (例:どの辺)</div>
+      <div class="vocab-kana">~へん (れい:どのへん)</div>
+      <div class="vocab-en">somewhere around ~ (example: &quot;Whereabouts?&quot;, &quot;Around where?&quot;)</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">落とす</div>
+      <div class="vocab-kana">おとす</div>
+      <div class="vocab-en">drop</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">困る</div>
+      <div class="vocab-kana">こまる</div>
+      <div class="vocab-en">be in trouble</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">転ぶ</div>
+      <div class="vocab-kana">ころぶ</div>
+      <div class="vocab-en">fall down</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">壊す</div>
+      <div class="vocab-kana">こわす</div>
+      <div class="vocab-en">break, destroy</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">付く</div>
+      <div class="vocab-kana">つく</div>
+      <div class="vocab-en">attach</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">ポケットが付いている。</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">&quot;A pocket is attached.&quot;</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">なくなる</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">lose (something)</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">自転車がなくなった。</div>
+      <div class="vocab-kana">じてんしゃがなくなった。</div>
+      <div class="vocab-en">&quot;I lost my bicycle.&quot;</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">乗り過ごす</div>
+      <div class="vocab-kana">のりすごす</div>
+      <div class="vocab-en">miss one&#x27;s stop</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">迷う</div>
+      <div class="vocab-kana">まよう</div>
+      <div class="vocab-en">lose (one&#x27;s way)</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">道に迷う。</div>
+      <div class="vocab-kana">みちにまよう。</div>
+      <div class="vocab-en">get lost</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">見つかる</div>
+      <div class="vocab-kana">みつかる</div>
+      <div class="vocab-en">find</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">出る</div>
+      <div class="vocab-kana">でる</div>
+      <div class="vocab-en">go out, leave</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">駅を出る。</div>
+      <div class="vocab-kana">えきをでる。</div>
+      <div class="vocab-en">leave a station</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">乗り換える</div>
+      <div class="vocab-kana">のりかえる</div>
+      <div class="vocab-en">change (trains, planes)</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">間違える</div>
+      <div class="vocab-kana">まちがえる</div>
+      <div class="vocab-en">make a mistake</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">心配・する</div>
+      <div class="vocab-kana">しんぱい・する</div>
+      <div class="vocab-en">worry</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">連絡・する</div>
+      <div class="vocab-kana">れんらく・する</div>
+      <div class="vocab-en">contact</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">気がつく</div>
+      <div class="vocab-kana">きがつく</div>
+      <div class="vocab-en">notice, realize</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">急に</div>
+      <div class="vocab-kana">きゅうに</div>
+      <div class="vocab-en">suddenly</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">さっき</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">a moment ago</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">しばらく</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">in a little while</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">全部で</div>
+      <div class="vocab-kana">ぜんぶで</div>
+      <div class="vocab-en">altogether</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">確かに</div>
+      <div class="vocab-kana">たしかに</div>
+      <div class="vocab-en">I am certain that</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">それが……</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">That is ....</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">どうしよう</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">What should I do?</div>
+    </div>
+  </div>
+</section>
+<section class="vocab-section">
+  <h3 class="vocab-section-title">2 駅で</h3>
+  <div class="vocab-table">
+    <div class="vocab-row">
+      <div class="vocab-jp">急行</div>
+      <div class="vocab-kana">きゅうこう</div>
+      <div class="vocab-en">express (train)</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">特急</div>
+      <div class="vocab-kana">とっきゅう</div>
+      <div class="vocab-en">limited express (train)</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">コインロッカー</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">coin locker</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">終点</div>
+      <div class="vocab-kana">しゅうてん</div>
+      <div class="vocab-en">final stop</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">終電</div>
+      <div class="vocab-kana">しゅうでん</div>
+      <div class="vocab-en">final train</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">タクシー</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">taxi</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">定期券</div>
+      <div class="vocab-kana">ていきけん</div>
+      <div class="vocab-en">commuter pass</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">箱</div>
+      <div class="vocab-kana">はこ</div>
+      <div class="vocab-en">box</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">文字</div>
+      <div class="vocab-kana">もじ</div>
+      <div class="vocab-en">character</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">~点 (例:100点)</div>
+      <div class="vocab-kana">~てん (れい:100てん)</div>
+      <div class="vocab-en">point(s) (e.g., 100 points)</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">預かる</div>
+      <div class="vocab-kana">あずかる</div>
+      <div class="vocab-en">leave (something, someone) in someone&#x27;s care, check in (baggage)</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">取る</div>
+      <div class="vocab-kana">とる</div>
+      <div class="vocab-en">take, get</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">100点を取る。</div>
+      <div class="vocab-kana">100てんをとる。</div>
+      <div class="vocab-en">get 100 points</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">戻る</div>
+      <div class="vocab-kana">もどる</div>
+      <div class="vocab-en">return</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">変える</div>
+      <div class="vocab-kana">かえる</div>
+      <div class="vocab-en">change</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">アナウンス・する</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">announce</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">安心・する</div>
+      <div class="vocab-kana">あんしん・する</div>
+      <div class="vocab-en">relieve (someone&#x27;s fears), give peace of mind</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">遅刻・する</div>
+      <div class="vocab-kana">ちこく・する</div>
+      <div class="vocab-en">be late</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">寝坊・する</div>
+      <div class="vocab-kana">ねぼう・する</div>
+      <div class="vocab-en">sleep late</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">びっくり・する</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">be surprised</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">薄い</div>
+      <div class="vocab-kana">うすい</div>
+      <div class="vocab-en">thin, weak, faint</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">この料理は味が薄い。</div>
+      <div class="vocab-kana">このりょうりはあじがうすい。</div>
+      <div class="vocab-en">&quot;This cooking has a weak flavor.&quot;</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">すぐ</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">immediately</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">本当に</div>
+      <div class="vocab-kana">ほんとうに</div>
+      <div class="vocab-en">really, truly</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">もう少し</div>
+      <div class="vocab-kana">もうすこし</div>
+      <div class="vocab-en">a little more</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">ゆっくり</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">slowly</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">ゆっくり話してください。</div>
+      <div class="vocab-kana">ゆっくりはなしてください。</div>
+      <div class="vocab-en">&quot;Please speak slowly.&quot;</div>
+    </div>
+  </div>
+</section>
+<section class="vocab-section">
+  <h3 class="vocab-section-title">もう一度聞こう</h3>
+  <div class="vocab-table">
+    <div class="vocab-row">
+      <div class="vocab-jp">白</div>
+      <div class="vocab-kana">しろ</div>
+      <div class="vocab-en">white</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">~号車</div>
+      <div class="vocab-kana">~ごうしゃ</div>
+      <div class="vocab-en">number ~ train</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">~ずつ</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">every ~</div>
+    </div>
+  </div>
+</section>
+</div>
+  </div>
 </article>
 <article class="chapter ch-6" data-chapter="6">
+  <div class="chapter-tabs" role="tablist">
+    <button class="tab-btn active" data-tab="dialogues" data-ch="6">Dialogues</button>
+    <button class="tab-btn" data-tab="vocabulary" data-ch="6">Vocabulary</button>
+  </div>
+  <div class="tab-pane dialogues-pane active" data-pane="dialogues">
 <header class="chapter-head">
   <div class="chapter-mark">第6課</div>
   <h2 class="chapter-title-jp">旅行に行こう</h2>
@@ -1945,8 +3841,368 @@
   <p class="en"><span class="en-spk">Park:</span> Oh, I see. Thanks.</p>
 </article>
 </section>
+  </div>
+  <div class="tab-pane vocab-pane" data-pane="vocabulary">
+<div class="vocab-content">
+<section class="vocab-section">
+  <h3 class="vocab-section-title">話読聞書</h3>
+  <div class="vocab-table">
+    <div class="vocab-row">
+      <div class="vocab-jp">ウニ</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">sea urchin</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">カヌー</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">canoe</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">自然</div>
+      <div class="vocab-kana">しぜん</div>
+      <div class="vocab-en">nature</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">湿原</div>
+      <div class="vocab-kana">しつげん</div>
+      <div class="vocab-en">marsh</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">ジャガイモ</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">potato</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">乗馬</div>
+      <div class="vocab-kana">じょうば</div>
+      <div class="vocab-en">horseback riding</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">トウモロコシ</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">corn</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">牧場</div>
+      <div class="vocab-kana">ぼくじょう</div>
+      <div class="vocab-en">ranch</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">ラベンダー畑</div>
+      <div class="vocab-kana">ラベンダーばたけ</div>
+      <div class="vocab-en">Lavender Farm</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">楽しむ</div>
+      <div class="vocab-kana">たのしむ</div>
+      <div class="vocab-en">enjoy</div>
+    </div>
+  </div>
+</section>
+<section class="vocab-section">
+  <h3 class="vocab-section-title">1 旅行の計画</h3>
+  <div class="vocab-table">
+    <div class="vocab-row">
+      <div class="vocab-jp">大人</div>
+      <div class="vocab-kana">おとな</div>
+      <div class="vocab-en">adult</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">カニ</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">crab</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">着物</div>
+      <div class="vocab-kana">きもの</div>
+      <div class="vocab-en">clothing</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">こっち</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">this way (informal)</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">そっち</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">that way (informal)</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">最後</div>
+      <div class="vocab-kana">さいご</div>
+      <div class="vocab-en">last</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">市内</div>
+      <div class="vocab-kana">しない</div>
+      <div class="vocab-en">within the city</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">ショッピングセンター</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">shopping center, mall</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">宿泊</div>
+      <div class="vocab-kana">しゅくはく</div>
+      <div class="vocab-en">lodging</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">水族館</div>
+      <div class="vocab-kana">すいぞくかん</div>
+      <div class="vocab-en">aquarium</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">スノーボード</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">snowboard</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">代金</div>
+      <div class="vocab-kana">だいきん</div>
+      <div class="vocab-en">charges, fees</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">朝食</div>
+      <div class="vocab-kana">ちょうしょく</div>
+      <div class="vocab-en">breakfast</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">夕食</div>
+      <div class="vocab-kana">ゆうしょく</div>
+      <div class="vocab-en">dinner</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">登山</div>
+      <div class="vocab-kana">とざん</div>
+      <div class="vocab-en">mountain climbing</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">内容</div>
+      <div class="vocab-kana">ないよう</div>
+      <div class="vocab-en">details</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">なし</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">none</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">値段</div>
+      <div class="vocab-kana">ねだん</div>
+      <div class="vocab-en">price</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">船</div>
+      <div class="vocab-kana">ふね</div>
+      <div class="vocab-en">ship, boat</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">プラン</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">plan</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">雰囲気</div>
+      <div class="vocab-kana">ふんいき</div>
+      <div class="vocab-en">atmosphere, mood</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">街</div>
+      <div class="vocab-kana">まち</div>
+      <div class="vocab-en">town</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">虫</div>
+      <div class="vocab-kana">むし</div>
+      <div class="vocab-en">bugs, insects</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">旅館</div>
+      <div class="vocab-kana">りょかん</div>
+      <div class="vocab-en">Japanese-style inn</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">~付き (例:朝食付き)</div>
+      <div class="vocab-kana">~つき (れい:ちょうしょくつき)</div>
+      <div class="vocab-en">~ included (example: breakfast included)</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">~泊~日 (例:2泊3日)</div>
+      <div class="vocab-kana">~はく~か (れい:2はく3か)</div>
+      <div class="vocab-en">~ nights ~ days (example: 2 nights 3 days)</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">~費 (例:交通費)</div>
+      <div class="vocab-kana">~ひ (れい:こうつうひ)</div>
+      <div class="vocab-en">~ fee (example: transportation fee)</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">どっち</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">which</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">待ち合わせる</div>
+      <div class="vocab-kana">まちあわせる</div>
+      <div class="vocab-en">meet with</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">ガイド・する</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">guide</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">観光・する</div>
+      <div class="vocab-kana">かんこう・する</div>
+      <div class="vocab-en">go sightseeing, tour</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">キャンプ・する</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">camp</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">出発・する</div>
+      <div class="vocab-kana">しゅっぱつ・する</div>
+      <div class="vocab-en">leave, depart</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">チェックイン・する</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">check in (at a hotel)</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">レンタル・する</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">rent (a car, office, etc.)</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">珍しい</div>
+      <div class="vocab-kana">めずらしい</div>
+      <div class="vocab-en">unusual</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">伝統的 (な)</div>
+      <div class="vocab-kana">でんとうてき (な)</div>
+      <div class="vocab-en">traditional</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">それに</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">also, in addition</div>
+    </div>
+  </div>
+</section>
+<section class="vocab-section">
+  <h3 class="vocab-section-title">2 旅行の準備</h3>
+  <div class="vocab-table">
+    <div class="vocab-row">
+      <div class="vocab-jp">イルカ</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">dolphin</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">ガイドブック</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">guidebook</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">ショー</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">show</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">手袋</div>
+      <div class="vocab-kana">てぶくろ</div>
+      <div class="vocab-en">gloves</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">年末</div>
+      <div class="vocab-kana">ねんまつ</div>
+      <div class="vocab-en">end of year</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">マフラー</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">scarf</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">~中 (例:旅行中)</div>
+      <div class="vocab-kana">~ちゅう (れい:りょこうちゅう)</div>
+      <div class="vocab-en">during ~ (example: during travel)</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">取る</div>
+      <div class="vocab-kana">とる</div>
+      <div class="vocab-en">take</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">休みを取る。</div>
+      <div class="vocab-kana">やすみをとる。</div>
+      <div class="vocab-en">take a vacation</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">なくなる</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">run out, disappear, be missing</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">席がなくなる。</div>
+      <div class="vocab-kana">せきがなくなる。</div>
+      <div class="vocab-en">&quot;There are no more seats left.&quot;</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">伝える</div>
+      <div class="vocab-kana">つたえる</div>
+      <div class="vocab-en">tell (someone something)</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">ぬれる</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">get wet</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">コピー・する</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">make a photocopy</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">到着・する</div>
+      <div class="vocab-kana">とうちゃく・する</div>
+      <div class="vocab-en">to arrive</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">用意・する</div>
+      <div class="vocab-kana">ようい・する</div>
+      <div class="vocab-en">prepare</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">お願いします</div>
+      <div class="vocab-kana">おねがいします</div>
+      <div class="vocab-en">&quot;Please (do it).&quot;</div>
+    </div>
+  </div>
+</section>
+<section class="vocab-section">
+  <h3 class="vocab-section-title">もう一度聞こう</h3>
+  <div class="vocab-table">
+    <div class="vocab-row">
+      <div class="vocab-jp">あとで</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">later</div>
+    </div>
+  </div>
+</section>
+</div>
+  </div>
 </article>
 <article class="chapter ch-7" data-chapter="7">
+  <div class="chapter-tabs" role="tablist">
+    <button class="tab-btn active" data-tab="dialogues" data-ch="7">Dialogues</button>
+    <button class="tab-btn" data-tab="vocabulary" data-ch="7">Vocabulary</button>
+  </div>
+  <div class="tab-pane dialogues-pane active" data-pane="dialogues">
 <header class="chapter-head">
   <div class="chapter-mark">第7課</div>
   <h2 class="chapter-title-jp">西川さんの家へ</h2>
@@ -2202,8 +4458,418 @@
   <p class="en"><span class="en-spk">Anna:</span> If you want it more sour, you can add vinegar.</p>
 </article>
 </section>
+  </div>
+  <div class="tab-pane vocab-pane" data-pane="vocabulary">
+<div class="vocab-content">
+<section class="vocab-section">
+  <h3 class="vocab-section-title">話読聞書</h3>
+  <div class="vocab-table">
+    <div class="vocab-row">
+      <div class="vocab-jp">相手</div>
+      <div class="vocab-kana">あいて</div>
+      <div class="vocab-en">the other person</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">習慣</div>
+      <div class="vocab-kana">しゅうかん</div>
+      <div class="vocab-en">custom, tradition, habit</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">違い</div>
+      <div class="vocab-kana">ちがい</div>
+      <div class="vocab-en">difference</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">驚く</div>
+      <div class="vocab-kana">おどろく</div>
+      <div class="vocab-en">surprise</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">失礼 (な)</div>
+      <div class="vocab-kana">しつれい (な)</div>
+      <div class="vocab-en">rude, impolite</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">もう一度</div>
+      <div class="vocab-kana">もういちど</div>
+      <div class="vocab-en">one more time, again</div>
+    </div>
+  </div>
+</section>
+<section class="vocab-section">
+  <h3 class="vocab-section-title">1 初めての訪問</h3>
+  <div class="vocab-table">
+    <div class="vocab-row">
+      <div class="vocab-jp">会議</div>
+      <div class="vocab-kana">かいぎ</div>
+      <div class="vocab-en">conference, meeting</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">課長</div>
+      <div class="vocab-kana">かちょう</div>
+      <div class="vocab-en">section chief</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">社長</div>
+      <div class="vocab-kana">しゃちょう</div>
+      <div class="vocab-en">company president</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">ご存じ</div>
+      <div class="vocab-kana">ごぞんじ</div>
+      <div class="vocab-en">know (respectful language)</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">ミステリー</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">Mystery</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">~頃 (例:9時頃)</div>
+      <div class="vocab-kana">~ごろ (れい:9じごろ)</div>
+      <div class="vocab-en">around ~ (example; around 9:00)</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">どなた</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">who (polite)</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">いらっしゃる</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">come, go, be (respectful language)</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">おっしゃる</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">say (respectful language)</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">ご覧になる</div>
+      <div class="vocab-kana">ごらんになる</div>
+      <div class="vocab-en">look at, see (respectful language)</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">なさる</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">do (respectful language)</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">召し上がる</div>
+      <div class="vocab-kana">めしあがる</div>
+      <div class="vocab-en">eat, drink (respectful language)</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">出席・する</div>
+      <div class="vocab-kana">しゅっせき・する</div>
+      <div class="vocab-en">attend</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">退院・する</div>
+      <div class="vocab-kana">たいいん・する</div>
+      <div class="vocab-en">leave the hospital, be discharged</div>
+    </div>
+  </div>
+</section>
+<section class="vocab-section">
+  <h3 class="vocab-section-title">2 一緒に作りましょう</h3>
+  <div class="vocab-table">
+    <div class="vocab-row">
+      <div class="vocab-jp">味</div>
+      <div class="vocab-kana">あじ</div>
+      <div class="vocab-en">taste, flavor</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">カップ</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">cup</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">皮</div>
+      <div class="vocab-kana">かわ</div>
+      <div class="vocab-en">skin, peel</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">キャベツ</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">cabbage</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">ジャガイモ</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">potato</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">大根</div>
+      <div class="vocab-kana">だいこん</div>
+      <div class="vocab-en">Japanese radish</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">タマネギ</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">onion</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">ニンジン</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">carrot</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">ネギ</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">green onion</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">クリーム</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">cream</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">コショウ</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">black pepper</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">酢</div>
+      <div class="vocab-kana">す</div>
+      <div class="vocab-en">vinegar</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">調味料</div>
+      <div class="vocab-kana">ちょうみりょう</div>
+      <div class="vocab-en">seasonings</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">このくらい</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">this much</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">ゼリー</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">jello, gelatin</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">ソース</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">sauce</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">パスタのソースを作る。</div>
+      <div class="vocab-kana">パスタのソースをつくる。</div>
+      <div class="vocab-en">make pasta sauce</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">漬物</div>
+      <div class="vocab-kana">つけもの</div>
+      <div class="vocab-en">pickled vegetables</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">できあがり</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">finished</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">鍋</div>
+      <div class="vocab-kana">なべ</div>
+      <div class="vocab-en">pan</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">パスタ</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">pasta</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">ハチミツ</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">honey</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">火</div>
+      <div class="vocab-kana">ひ</div>
+      <div class="vocab-en">heat</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">強火</div>
+      <div class="vocab-kana">つよび</div>
+      <div class="vocab-en">strong heat</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">弱火</div>
+      <div class="vocab-kana">よわび</div>
+      <div class="vocab-en">low heat</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">半分</div>
+      <div class="vocab-kana">はんぶん</div>
+      <div class="vocab-en">half</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">みそ汁</div>
+      <div class="vocab-kana">みそしる</div>
+      <div class="vocab-en">miso soup (traditional Japanese bean paste soup)</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">ルー</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">roux, thickening agent for soup or sauce</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">ローリエ</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">bay leaf (from the French word laurier)</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">~グラム</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">~gram</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">変わる</div>
+      <div class="vocab-kana">かわる</div>
+      <div class="vocab-en">change</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">冷やす</div>
+      <div class="vocab-kana">ひやす</div>
+      <div class="vocab-en">cool</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">むく</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">peel</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">焼く</div>
+      <div class="vocab-kana">やく</div>
+      <div class="vocab-en">fry, grill, toast, bake, roast</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">沸かす</div>
+      <div class="vocab-kana">わかす</div>
+      <div class="vocab-en">boil (water)</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">炒める</div>
+      <div class="vocab-kana">いためる</div>
+      <div class="vocab-en">fry</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">煮る</div>
+      <div class="vocab-kana">にる</div>
+      <div class="vocab-en">boil (food in water)</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">ゆでる</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">boil (food, mostly vegetables or eggs, in water)</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">沸騰・する</div>
+      <div class="vocab-kana">ふっとう・する</div>
+      <div class="vocab-en">bring to a boil</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">厚い</div>
+      <div class="vocab-kana">あつい</div>
+      <div class="vocab-en">thick, having wide thickness</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">薄い</div>
+      <div class="vocab-kana">うすい</div>
+      <div class="vocab-en">thin, weak</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">薄く切る。</div>
+      <div class="vocab-kana">うすくきる。</div>
+      <div class="vocab-en">&quot;Cut thinly.&quot;</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">濃い</div>
+      <div class="vocab-kana">こい</div>
+      <div class="vocab-en">dense, rich, thick</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">細かい</div>
+      <div class="vocab-kana">こまかい</div>
+      <div class="vocab-en">fine, small</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">細い</div>
+      <div class="vocab-kana">ほそい</div>
+      <div class="vocab-en">narrow</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">弱い</div>
+      <div class="vocab-kana">よわい</div>
+      <div class="vocab-en">weak</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">まず</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">at first (at beginning of a sentence)</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">次に</div>
+      <div class="vocab-kana">つぎに</div>
+      <div class="vocab-en">next</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">最後に</div>
+      <div class="vocab-kana">さいごに</div>
+      <div class="vocab-en">finally, lastly</div>
+    </div>
+  </div>
+</section>
+<section class="vocab-section">
+  <h3 class="vocab-section-title">もう一度聞こう</h3>
+  <div class="vocab-table">
+    <div class="vocab-row">
+      <div class="vocab-jp">肉じゃが</div>
+      <div class="vocab-kana">にくじゃが</div>
+      <div class="vocab-en">(simmered) meat and potatoes</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">ラケット</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">racket</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">遠慮・する</div>
+      <div class="vocab-kana">えんりょ・する</div>
+      <div class="vocab-en">refrain from, hesitate</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">だいたい</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">mostly, most of the time</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">もちろん</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">of course</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">お邪魔します</div>
+      <div class="vocab-kana">おじゃまします</div>
+      <div class="vocab-en">excuse me for interrupting, excuse me for intruding</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">よくいらっしゃいました</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">thank you for coming</div>
+    </div>
+  </div>
+</section>
+</div>
+  </div>
 </article>
 <article class="chapter ch-8" data-chapter="8">
+  <div class="chapter-tabs" role="tablist">
+    <button class="tab-btn active" data-tab="dialogues" data-ch="8">Dialogues</button>
+    <button class="tab-btn" data-tab="vocabulary" data-ch="8">Vocabulary</button>
+  </div>
+  <div class="tab-pane dialogues-pane active" data-pane="dialogues">
 <header class="chapter-head">
   <div class="chapter-mark">第8課</div>
   <h2 class="chapter-title-jp">ありがとう</h2>
@@ -2470,6 +5136,251 @@
   <p class="en"><span class="en-spk">Nishikawa&#x27;s mother:</span> Not at all, you&#x27;re welcome.</p>
 </article>
 </section>
+  </div>
+  <div class="tab-pane vocab-pane" data-pane="vocabulary">
+<div class="vocab-content">
+<section class="vocab-section">
+  <h3 class="vocab-section-title">話読聞書</h3>
+  <div class="vocab-table">
+    <div class="vocab-row">
+      <div class="vocab-jp">明るい</div>
+      <div class="vocab-kana">あかるい</div>
+      <div class="vocab-en">bright</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">やっと</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">finally</div>
+    </div>
+  </div>
+</section>
+<section class="vocab-section">
+  <h3 class="vocab-section-title">1 うれしい出来事</h3>
+  <div class="vocab-table">
+    <div class="vocab-row">
+      <div class="vocab-jp">お巡りさん</div>
+      <div class="vocab-kana">おまわりさん</div>
+      <div class="vocab-en">policeman</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">クッキー</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">cookie</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">(お)団子</div>
+      <div class="vocab-kana">(お)だんご</div>
+      <div class="vocab-en">rice dumpling</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">肉じゃが</div>
+      <div class="vocab-kana">にくじゃが</div>
+      <div class="vocab-en">(simmered) meat and potatoes</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">湖</div>
+      <div class="vocab-kana">みずうみ</div>
+      <div class="vocab-en">lake</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">~さん (例:駅員さん)</div>
+      <div class="vocab-kana">~さん (れい:えきいんさん)</div>
+      <div class="vocab-en">Mr./Mrs./Miss/Ms., added to certain professions as a term of respect (example: station employee)</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">送る</div>
+      <div class="vocab-kana">おくる</div>
+      <div class="vocab-en">send off, take (someone somewhere)</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">車でうちまで送る。</div>
+      <div class="vocab-kana">くるまでうちまでおくる。</div>
+      <div class="vocab-en">take someone home by car</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">連れて行く</div>
+      <div class="vocab-kana">つれていく</div>
+      <div class="vocab-en">take someone along</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">捕る</div>
+      <div class="vocab-kana">とる</div>
+      <div class="vocab-en">catch</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">直す</div>
+      <div class="vocab-kana">なおす</div>
+      <div class="vocab-en">fix, correct, repair</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">拾う</div>
+      <div class="vocab-kana">ひろう</div>
+      <div class="vocab-en">pick up</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">譲る</div>
+      <div class="vocab-kana">ゆずる</div>
+      <div class="vocab-en">pass on, transfer to</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">助ける</div>
+      <div class="vocab-kana">たすける</div>
+      <div class="vocab-en">help, save</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">届ける</div>
+      <div class="vocab-kana">とどける</div>
+      <div class="vocab-en">send, deliver</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">迎えに来る</div>
+      <div class="vocab-kana">むかえにくる</div>
+      <div class="vocab-en">come get (someone)</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">そんなに</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">like that, so much</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">ふーん</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">well ...</div>
+    </div>
+  </div>
+</section>
+<section class="vocab-section">
+  <h3 class="vocab-section-title">2 お世話になりました</h3>
+  <div class="vocab-table">
+    <div class="vocab-row">
+      <div class="vocab-jp">鏡</div>
+      <div class="vocab-kana">かがみ</div>
+      <div class="vocab-en">mirror</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">花瓶</div>
+      <div class="vocab-kana">かびん</div>
+      <div class="vocab-en">flower vase</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">教授</div>
+      <div class="vocab-kana">きょうじゅ</div>
+      <div class="vocab-en">professor</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">近所</div>
+      <div class="vocab-kana">きんじょ</div>
+      <div class="vocab-en">neighborhood</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">この間</div>
+      <div class="vocab-kana">このあいだ</div>
+      <div class="vocab-en">the other day, during this time</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">資料</div>
+      <div class="vocab-kana">しりょう</div>
+      <div class="vocab-en">documents, information materials</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">(お)茶碗</div>
+      <div class="vocab-kana">(お)ちゃわん</div>
+      <div class="vocab-en">china cup, china bowl</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">机</div>
+      <div class="vocab-kana">つくえ</div>
+      <div class="vocab-en">desk</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">人形</div>
+      <div class="vocab-kana">にんぎょう</div>
+      <div class="vocab-en">doll, figure</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">部長</div>
+      <div class="vocab-kana">ぶちょう</div>
+      <div class="vocab-en">department manager</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">本棚</div>
+      <div class="vocab-kana">ほんだな</div>
+      <div class="vocab-en">bookshelf</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">(お)礼</div>
+      <div class="vocab-kana">(お)れい</div>
+      <div class="vocab-en">thanks, appreciation</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">~先 (例:アルバイト先)</div>
+      <div class="vocab-kana">~さき (れい:アルバイトさき)</div>
+      <div class="vocab-en">place where ~ (example: place where you work part-time)</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">いただく</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">(gratefully) receive (humble language referring to oneself)</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">くださる</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">(gratefully) receive from someone (respectful language referring to someone else)</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">うれしい</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">happy</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">気持ちいい</div>
+      <div class="vocab-kana">きもちいい</div>
+      <div class="vocab-en">comfortable, pleasant</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">素敵 (な)</div>
+      <div class="vocab-kana">すてき (な)</div>
+      <div class="vocab-en">splendid/wonderful</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">どういたしまして</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">You&#x27;re welcome</div>
+    </div>
+  </div>
+</section>
+<section class="vocab-section">
+  <h3 class="vocab-section-title">もう一度聞こう</h3>
+  <div class="vocab-table">
+    <div class="vocab-row">
+      <div class="vocab-jp">チヂミ</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">chijimi (Korean-style pancake)</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">におい</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">smell</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">飾る</div>
+      <div class="vocab-kana">かざる</div>
+      <div class="vocab-en">decorate</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">いろんな</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">various</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">乾杯</div>
+      <div class="vocab-kana">かんぱい</div>
+      <div class="vocab-en">&quot;Bottoms up!&quot;, &quot;Cheers&quot;</div>
+    </div>
+  </div>
+</section>
+</div>
+  </div>
 </article>
 </main>
 
@@ -2481,14 +5392,11 @@
     function showChapter(num) {
       chapters.forEach(c => c.classList.toggle('active', c.dataset.chapter === String(num)));
       buttons.forEach(b => b.classList.toggle('active', b.dataset.target === String(num)));
-      // Scroll active button into view in the nav
       const activeBtn = document.querySelector('.ch-btn.active');
       if (activeBtn) {
         activeBtn.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
       }
-      // Update URL hash
       history.replaceState(null, '', '#ch' + num);
-      // Scroll to top of content
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
@@ -2496,7 +5404,16 @@
       btn.addEventListener('click', () => showChapter(btn.dataset.target));
     });
 
-    // Open via hash on load (e.g. #ch3)
+    // Tab switching within each chapter
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const chapter = btn.closest('.chapter');
+        const tabName = btn.dataset.tab;
+        chapter.querySelectorAll('.tab-btn').forEach(b => b.classList.toggle('active', b.dataset.tab === tabName));
+        chapter.querySelectorAll('.tab-pane').forEach(p => p.classList.toggle('active', p.dataset.pane === tabName));
+      });
+    });
+
     const m = window.location.hash.match(/^#ch(\d+)$/);
     if (m) {
       const n = parseInt(m[1], 10);
