@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>漢字たまご — Kanji &amp; Vocabulary (Ch. 1–8)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Zen+Kaku+Gothic+New:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+  :root{--bg:#faf8f1;--grid:rgba(43,58,103,.055);--ink:#1f2740;--indigo:#2b3a67;--shu:#c8462c;--shu-soft:#f4e3dc;--muted:#6a7187;--rule:#e4ddcb;--card:#fffdf7;
+    --jp:"Zen Kaku Gothic New",-apple-system,"Hiragino Kaku Gothic ProN","Yu Gothic",sans-serif;--disp:"Space Grotesk",var(--jp);}
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;font-family:var(--jp);color:var(--ink);background-color:var(--bg);
+    background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);
+    background-size:26px 26px;line-height:1.7;-webkit-font-smoothing:antialiased;}
+  ruby rt{font-size:.5em;font-weight:500;color:var(--indigo);letter-spacing:.02em;transition:opacity .25s ease;user-select:none}
+  body.hide-furigana rt,body.hide-furigana .rdg{opacity:0}
+  .wrap{max-width:980px;margin:0 auto;padding:0 22px}
+  header.top{padding:56px 0 30px;border-bottom:2px solid var(--ink)}
+  .eyebrow{font-family:var(--disp);font-size:.72rem;letter-spacing:.32em;text-transform:uppercase;color:var(--shu);font-weight:600;margin:0 0 14px}
+  h1.title{font-weight:900;font-size:clamp(2rem,5.5vw,2.9rem);line-height:1.12;margin:0;letter-spacing:.01em}
+  h1.title .lvl{display:block;font-family:var(--disp);font-weight:500;font-size:clamp(.85rem,2.4vw,1.05rem);letter-spacing:.16em;color:var(--muted);margin-top:12px;text-transform:uppercase}
+  .lede{color:var(--muted);max-width:60ch;margin:18px 0 0;font-size:.98rem}
+  .controls{display:flex;align-items:center;gap:12px;margin-top:26px;flex-wrap:wrap}
+  .toggle{appearance:none;border:1.5px solid var(--ink);background:var(--card);font-family:var(--disp);font-weight:600;font-size:.8rem;letter-spacing:.06em;color:var(--ink);padding:9px 16px 9px 14px;border-radius:2px;cursor:pointer;display:inline-flex;align-items:center;gap:9px;transition:.18s ease}
+  .toggle:hover{background:var(--ink);color:var(--bg)}
+  .toggle:focus-visible{outline:3px solid var(--shu);outline-offset:2px}
+  .toggle .dot{width:9px;height:9px;border-radius:50%;background:var(--shu)}
+  body.hide-furigana .toggle .dot{background:var(--muted);opacity:.5}
+  .toggle-note{font-size:.78rem;color:var(--muted)}
+  .legend{margin-top:16px;font-size:.8rem;color:var(--muted);display:flex;gap:18px;flex-wrap:wrap;align-items:center}
+  .legend .tg{position:relative;top:-1px}
+  .stats{margin-top:16px;display:flex;gap:22px;flex-wrap:wrap;font-family:var(--disp);font-size:.82rem;color:var(--muted)}
+  .stats b{color:var(--shu);font-weight:700;font-size:1.15rem;margin-right:5px}
+  nav.index{margin:24px 0 8px;display:flex;flex-wrap:wrap;gap:8px}
+  nav.index a{font-family:var(--disp);font-weight:500;font-size:.82rem;text-decoration:none;color:var(--indigo);border:1px solid var(--rule);background:var(--card);padding:6px 11px;border-radius:2px;transition:.15s ease;display:inline-flex;gap:7px;align-items:baseline}
+  nav.index a b{font-weight:700}
+  nav.index a:hover{border-color:var(--shu);color:var(--shu)}
+  nav.index a rt{font-size:.4em}
+  .chapter{padding:42px 0 8px;border-top:1px solid var(--rule)}
+  .chapter:first-of-type{border-top:none}
+  .ch-head{display:flex;gap:18px;align-items:flex-start}
+  .ch-num{font-family:var(--disp);font-weight:700;font-size:2.3rem;line-height:1;color:var(--shu);min-width:1.5em}
+  .parts .ch-num{font-family:var(--jp);font-size:1.7rem;padding-top:.12em}
+  .ch-titles h2{margin:0;font-size:1.45rem;font-weight:700;line-height:1.25}
+  .ch-titles h2 rt{font-size:.42em}
+  .ch-titles .en{color:var(--muted);font-family:var(--disp);font-weight:500;font-size:.9rem;letter-spacing:.03em;margin-top:3px}
+  .kgroup{margin-top:22px}
+  .ghead{display:flex;align-items:baseline;gap:10px;border-bottom:1px solid var(--rule);padding-bottom:6px}
+  .gtag{font-weight:700;font-size:1rem}
+  .gtag.read{color:var(--indigo)} .gtag.sight{color:var(--muted)}
+  .gen{font-family:var(--disp);font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+  .kgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(258px,1fr));gap:12px;margin-top:14px}
+  .kcard{background:var(--card);border:1px solid var(--rule);border-radius:4px;padding:14px 16px;display:flex;flex-direction:column}
+  .khead{display:flex;gap:13px;align-items:flex-start;border-bottom:1px solid var(--rule);padding-bottom:10px;margin-bottom:11px}
+  .khead .k{font-size:2.5rem;font-weight:700;line-height:.95;color:var(--ink)}
+  .khead .kinfo{flex:1;min-width:0}
+  .khead .rdg{font-size:.72rem;color:var(--indigo);min-height:1em;transition:opacity .25s ease;line-height:1.4}
+  .khead .mean{font-size:.8rem;color:var(--muted);margin-top:3px;line-height:1.35}
+  .kwords{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px}
+  .kwords li{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap;font-size:.96rem}
+  .kwords .w{font-weight:500}
+  .kwords .g{font-size:.71rem;color:var(--muted);font-style:italic}
+  .tags{display:inline-flex;gap:4px;margin-left:auto}
+  .tg{font-family:var(--disp);font-size:.66rem;font-weight:700;padding:1px 5px;border-radius:2px;line-height:1.7;white-space:nowrap}
+  .tg.same{background:var(--shu);color:#fff}
+  .tg.set{background:var(--shu-soft);color:#7a3322;border:1px solid #e6c4b8}
+  .tg.set i{font-style:normal;font-size:.78em;opacity:.65;margin-left:1px}
+  .vocab{display:flex;flex-wrap:wrap;gap:9px;margin-top:12px}
+  .vchip{background:var(--card);border:1px solid var(--rule);border-radius:3px;padding:8px 12px;font-size:1.02rem;font-weight:500}
+  .vchip .m{display:block;font-size:.72rem;color:var(--muted);font-style:italic;font-weight:400;margin-top:3px}
+  footer{padding:40px 0 60px;color:var(--muted);font-size:.8rem;text-align:center}
+  footer .top-link{font-family:var(--disp);color:var(--indigo);text-decoration:none;font-weight:600}
+  footer .top-link:hover{color:var(--shu)}
+  @media (max-width:560px){.ch-num{font-size:1.9rem}.ch-head{gap:12px}.kgrid{grid-template-columns:1fr}}
+  @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+</style>
+</head>
+<body>
+<div class="wrap" id="top">
+  <header class="top">
+    <p class="eyebrow">Kanji &amp; Vocab · 漢字たまご</p>
+    <h1 class="title">漢字<ruby>一覧<rt>いちらん</rt></ruby><span class="lvl">Kanji Tamago — Chapters 1 to 8</span></h1>
+    <p class="lede">Every new kanji with common words built from it. Words are ordered so that combinations with another kanji <em>from the same chapter</em> come first, then combinations with kanji elsewhere in chapters 1–8, then standalone words. Flip the switch to hide readings and test yourself.</p>
+    <div class="controls">
+      <button class="toggle" id="furiToggle" aria-pressed="true"><span class="dot" aria-hidden="true"></span><span id="toggleText">Readings: On</span></button>
+      <span class="toggle-note">Hide readings to quiz yourself; meanings stay visible.</span>
+    </div>
+    <div class="legend">
+      <span><span class="tg same">事</span> combines within this chapter</span>
+      <span><span class="tg set">室<i>8</i></span> combines with a kanji from another chapter (no.)</span>
+    </div>
+    <div class="stats"><span><b>85</b>new kanji</span><span><b>253</b>example words</span><span><b>28</b>read-aloud</span><span><b>17</b>sight words</span></div>
+    <nav class="index" aria-label="Chapters">
+      <a href="#ch1"><b>1</b> <ruby>始<rt>はじ</rt></ruby>めよう！</a>
+      <a href="#ch2"><b>2</b> ショッピング</a>
+      <a href="#ch3"><b>3</b> <ruby>目標<rt>もくひょう</rt></ruby>に<ruby>向<rt>む</rt></ruby>かって</a>
+      <a href="#ch4"><b>4</b> <ruby>申<rt>もう</rt></ruby>し<ruby>込<rt>こ</rt></ruby>んでみよう！</a>
+      <a href="#ch5"><b>5</b> <ruby>住<rt>す</rt></ruby>んでいる<ruby>町<rt>まち</rt></ruby>で</a>
+      <a href="#parts"><b>部</b> パーツ</a>
+      <a href="#ch6"><b>6</b> <ruby>旅行<rt>りょこう</rt></ruby>の<ruby>計画<rt>けいかく</rt></ruby></a>
+      <a href="#ch7"><b>7</b> <ruby>料理<rt>りょうり</rt></ruby>を<ruby>作<rt>つく</rt></ruby>ろう！</a>
+      <a href="#ch8"><b>8</b> <ruby>引<rt>ひ</rt></ruby>っ<ruby>越<rt>こ</rt></ruby>し</a>
+    </nav>
+  </header>
+
+  <section class="chapter" id="ch1">
+    <div class="ch-head"><div class="ch-num">1</div>
+      <div class="ch-titles"><h2><ruby>始<rt>はじ</rt></ruby>めよう！</h2><div class="en">Let's get started · jobs & work</div></div></div>
+    <div class="kgroup">
+      <div class="ghead"><span class="gtag">新出漢字</span><span class="gen">New kanji · 10</span></div>
+      <div class="kgrid">
+        <div class="kcard"><div class="khead"><span class="k">仕</span><div class="kinfo"><div class="rdg">シ・つか(える)</div><div class="mean">serve</div></div></div><ul class="kwords"><li><span class="w"><ruby>仕事<rt>しごと</rt></ruby></span><span class="g">work, job</span><span class="tags"><span class="tg same">事</span></span></li><li><span class="w"><ruby>仕方<rt>しかた</rt></ruby></span><span class="g">way of doing</span><span class="tags"><span class="tg same">方</span></span></li></ul></div>
+        <div class="kcard"><div class="khead"><span class="k">事</span><div class="kinfo"><div class="rdg">ジ・こと</div><div class="mean">thing, matter</div></div></div><ul class="kwords"><li><span class="w"><ruby>仕事<rt>しごと</rt></ruby></span><span class="g">work, job</span><span class="tags"><span class="tg same">仕</span></span></li><li><span class="w"><ruby>無事<rt>ぶじ</rt></ruby></span><span class="g">safe, OK</span><span class="tags"><span class="tg set">無<i>4</i></span></span></li><li><span class="w"><ruby>用事<rt>ようじ</rt></ruby></span><span class="g">errand</span></li></ul></div>
+        <div class="kcard"><div class="khead"><span class="k">働</span><div class="kinfo"><div class="rdg">ドウ・はたら(く)</div><div class="mean">work, labor</div></div></div><ul class="kwords"><li><span class="w"><ruby>働<rt>はたら</rt></ruby>く</span><span class="g">to work</span></li><li><span class="w"><ruby>労働<rt>ろうどう</rt></ruby></span><span class="g">labor</span></li></ul></div>
+        <div class="kcard"><div class="khead"><span class="k">教</span><div class="kinfo"><div class="rdg">キョウ・おし(える)</div><div class="mean">teach</div></div></div><ul class="kwords"><li><span class="w"><ruby>教科書<rt>きょうかしょ</rt></ruby></span><span class="g">textbook</span><span class="tags"><span class="tg set">科<i>3</i></span></span></li><li><span class="w"><ruby>教室<rt>きょうしつ</rt></ruby></span><span class="g">classroom</span><span class="tags"><span class="tg set">室<i>8</i></span></span></li><li><span class="w"><ruby>教<rt>おし</rt></ruby>える</span><span class="g">to teach</span></li></ul></div>
+        <div class="kcard"><div class="khead"><span class="k">泳</span><div class="kinfo"><div class="rdg">エイ・およ(ぐ)</div><div class="mean">swim</div></div></div><ul class="kwords"><li><span class="w"><ruby>泳<rt>およ</rt></ruby>ぐ</span><span class="g">to swim</span></li><li><span class="w"><ruby>水泳<rt>すいえい</rt></ruby></span><span class="g">swimming</span></li></ul></div>
+        <div class="kcard"><div class="khead"><span class="k">英</span><div class="kinfo"><div class="rdg">エイ</div><div class="mean">England, English</div></div></div><ul class="kwords"><li><span class="w"><ruby>英語<rt>えいご</rt></ruby></span><span class="g">English (language)</span></li><li><span class="w"><ruby>英会話<rt>えいかいわ</rt></ruby></span><span class="g">English conversation</span></li></ul></div>
+        <div class="kcard"><div class="khead"><span class="k">運</span><div class="kinfo"><div class="rdg">ウン・はこ(ぶ)</div><div class="mean">carry; luck</div></div></div><ul class="kwords"><li><span class="w"><ruby>運転<rt>うんてん</rt></ruby></span><span class="g">driving</span><span class="tags"><span class="tg same">転</span></span></li><li><span class="w"><ruby>運動<rt>うんどう</rt></ruby></span><span class="g">exercise</span></li><li><span class="w"><ruby>運<rt>はこ</rt></ruby>ぶ</span><span class="g">to carry</span></li></ul></div>
+        <div class="kcard"><div class="khead"><span class="k">転</span><div class="kinfo"><div class="rdg">テン・ころ(がる)</div><div class="mean">roll, turn</div></div></div><ul class="kwords"><li><span class="w"><ruby>運転<rt>うんてん</rt></ruby></span><span class="g">driving</span><span class="tags"><span class="tg same">運</span></span></li><li><span class="w"><ruby>自転車<rt>じてんしゃ</rt></ruby></span><span class="g">bicycle</span><span class="tags"><span class="tg set">自<i>6</i></span></span></li><li><span class="w"><ruby>転<rt>ころ</rt></ruby>ぶ</span><span class="g">to fall over</span></li></ul></div>
+        <div class="kcard"><div class="khead"><span class="k">方</span><div class="kinfo"><div class="rdg">ホウ・かた</div><div class="mean">direction, way; person</div></div></div><ul class="kwords"><li><span class="w"><ruby>仕方<rt>しかた</rt></ruby></span><span class="g">way of doing</span><span class="tags"><span class="tg same">仕</span></span></li><li><span class="w"><ruby>方法<rt>ほうほう</rt></ruby></span><span class="g">method</span></li><li><span class="w"><ruby>使<rt>つか</rt></ruby>い<ruby>方<rt>かた</rt></ruby></span><span class="g">how to use</span></li></ul></div>
+        <div class="kcard"><div class="khead"><span class="k">留</span><div class="kinfo"><div class="rdg">リュウ・ル・と(める)</div><div class="mean">stay, detain</div></div></div><ul class="kwords"><li><span class="w"><ruby>留学<rt>りゅうがく</rt></ruby></span><span class="g">study abroad</span></li><li><span class="w"><ruby>留守<rt>るす</rt></ruby></span><span class="g">absence (from home)</span></li></ul></div>
+      </div>
+    </div>
+    <div class="kgroup">
+      <div class="ghead"><span class="gtag read">読める言葉</span><span class="gen">Read these · 4</span></div>
+      <div class="vocab">
+        <div class="vchip"><ruby>可<rt>か</rt></ruby><span class="m">possible, OK</span></div>
+        <div class="vchip"><ruby>不可<rt>ふか</rt></ruby><span class="m">not allowed, fail</span></div>
+        <div class="vchip"><ruby>時給<rt>じきゅう</rt></ruby><span class="m">hourly wage</span></div>
+        <div class="vchip"><ruby>履歴書<rt>りれきしょ</rt></ruby><span class="m">résumé, CV</span></div>
+      </div>
+    </div>
+    <div class="kgroup">
+      <div class="ghead"><span class="gtag sight">見てわかる言葉</span><span class="gen">Recognize on sight · 1</span></div>
+      <div class="vocab">
+        <div class="vchip"><ruby>要<rt>よう</rt></ruby>～<span class="m">~ required (e.g. 要相談)</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="chapter" id="ch2">
+    <div class="ch-head"><div class="ch-num">2</div>
+      <div class="ch-titles"><h2>ショッピング</h2><div class="en">Shopping</div></div></div>
+    <div class="kgroup">
+      <div class="ghead"><span class="gtag">新出漢字</span><span class="gen">New kanji · 10</span></div>
+      <div class="kgrid">
+        <div class="kcard"><div class="khead"><span class="k">服</span><div class="kinfo"><div class="rdg">フク</div><div class="mean">clothes</div></div></div><ul class="kwords"><li><span class="w"><ruby>洋服<rt>ようふく</rt></ruby></span><span class="g">clothes</span><span class="tags"><span class="tg set">洋<i>8</i></span></span></li><li><span class="w"><ruby>和服<rt>わふく</rt></ruby></span><span class="g">Japanese clothing</span><span class="tags"><span class="tg set">和<i>8</i></span></span></li><li><span class="w"><ruby>制服<rt>せいふく</rt></ruby></span><span class="g">uniform</span></li></ul></div>
+        <div class="kcard"><div class="khead"><span class="k">品</span><div class="kinfo"><div class="rdg">ヒン・しな</div><div class="mean">goods, article</div></div></div><ul class="kwords"><li><span class="w"><ruby>商品<rt>しょうひん</rt></ruby></span><span class="g">product</span></li><li><span class="w"><ruby>品物<rt>しなもの</rt></ruby></span><span class="g">goods</span></li><li><span class="w"><ruby>食品<rt>しょくひん</rt></ruby></span><span class="g">foodstuff</span></li></ul></div>
+        <div class="kcard"><div class="khead"><span class="k">電</span><div class="kinfo"><div class="rdg">デン</div><div class="mean">electricity</div></div></div><ul class="kwords"><li><span class="w"><ruby>電車<rt>でんしゃ</rt></ruby></span><span class="g">train</span></li><li><span class="w"><ruby>電話<rt>でんわ</rt></ruby></span><span class="g">telephone</span></li><li><span class="w"><ruby>電気<rt>でんき</rt></ruby></span><span class="g">electricity, lights</span></li></ul></div>
+        <div class="kcard"><div class="khead"><span class="k">別</span><div class="kinfo"><div class="rdg">ベツ・わか(れる)</div><div class="mean">separate, different</div></div></div><ul class="kwords"><li><span class="w"><ruby>特別<rt>とくべつ</rt></ruby></span><span class="g">special</span><span class="tags"><span class="tg set">特<i>5</i></span></span></li><li><span class="w"><ruby>別々<rt>べつべつ</rt></ruby></span><span class="g">separately</span></li><li><span class="w"><ruby>別<rt>わか</rt></ruby>れる</span><span class="g">to part</span></li></ul></div>
+        <div class="kcard"><div class="khead"><span class="k">引</span><div class="kinfo"><div class="rdg">イン・ひ(く)</div><div class="mean">pull</div></div></div><ul class="kwords"><li><span class="w"><ruby>引<rt>ひ</rt></ruby>く</span><span class="g">to pull</span></li><li><span class="w"><ruby>割引<rt>わりびき</rt></ruby></span><span class="g">discount</span></li><li><span class="w"><ruby>引<rt>ひ</rt></ruby>っ<ruby>越<rt>こ</rt></ruby>し</span><span class="g">moving house</span></li></ul></div>
+        <div class="kcard"><div class="khead"><span class="k">送</span><div class="kinfo"><div class="rdg">ソウ・おく(る)</div><div class="mean">send</div></div></div><ul class="kwords"><li><span class="w"><ruby>送<rt>おく</rt></ruby>る</span><span class="g">to send</span></li><li><span class="w"><ruby>送料<rt>そうりょう</rt></ruby></span><span class="g">shipping fee</span></li></ul></div>
+        <div class="kcard"><div class="khead"><span class="k">切</span><div class="kinfo"><div class="rdg">セツ・き(る)</div><div class="mean">cut</div></div></div><ul class="kwords"><li><span class="w"><ruby>親切<rt>しんせつ</rt></ruby></span><span class="g">kind</span><span class="tags"><span class="tg set">親<i>6</i></span></span></li><li><span class="w"><ruby>大切<rt>たいせつ</rt></ruby></span><span class="g">important</span></li><li><span class="w"><ruby>切<rt>き</rt></ruby>る</span><span class="g">to cut</span></li></ul></div>
+        <div class="kcard"><div class="khead"><span class="k">安</span><div class="kinfo"><div class="rdg">アン・やす(い)</div><div class="mean">cheap; peaceful</div></div></div><ul class="kwords"><li><span class="w"><ruby>安心<rt>あんしん</rt></ruby></span><span class="g">relief, ease</span><span class="tags"><span class="tg set">心<i></i></span></span></li><li><span class="w"><ruby>安<rt>やす</rt></ruby>い</span><span class="g">cheap</span></li><li><span class="w"><ruby>安全<rt>あんぜん</rt></ruby></span><span class="g">safety</span></li></ul></div>
+        <div class="kcard"><div class="khead"><span class="k">開</span><div class="kinfo"><div class="rdg">カイ・あ(く)・ひら(く)</div><div class="mean">open</div></div></div><ul class="kwords"><li><span class="w"><ruby>開発<rt>かいはつ</rt></ruby></span><span class="g">development</span><span class="tags"><span class="tg set">発<i>6</i></span></span></li><li><span class="w"><ruby>開<rt>あ</rt></ruby>ける</span><span class="g">to open (vt)</span></li><li><span class="w"><ruby>開<rt>あ</rt></ruby>く</span><span class="g">to open (vi)</span></li></ul></div>
+        <div class="kcard"><div class="khead"><span class="k">閉</span><div class="kinfo"><div class="rdg">ヘイ・し(まる)・と(じる)</div><div class="mean">close</div></div></div><ul class="kwords"><li><span class="w"><ruby>開閉<rt>かいへい</rt></ruby></span><span class="g">opening & closing</span><span class="tags"><span class="tg same">開</span></span></li><li><span class="w"><ruby>閉<rt>し</rt></ruby>める</span><span class="g">to close (vt)</span></li><li><span class="w"><ruby>閉<rt>し</rt></ruby>まる</span><span class="g">to close (vi)</span></li></ul></div>
+      </div>
+    </div>
+    <div class="kgroup">
+      <div class="ghead"><span class="gtag read">読める言葉</span><span class="gen">Read these · 3</span></div>
+      <div class="vocab">
+        <div class="vchip"><ruby>払<rt>はら</rt></ruby>う<span class="m">to pay</span></div>
+        <div class="vchip"><ruby>返品<rt>へんぴん</rt></ruby><span class="m">returning goods</span></div>
+        <div class="vchip"><ruby>無料<rt>むりょう</rt></ruby><span class="m">free of charge</span></div>
+      </div>
+    </div>
+    <div class="kgroup">
+      <div class="ghead"><span class="gtag sight">見てわかる言葉</span><span class="gen">Recognize on sight · 3</span></div>
+      <div class="vocab">
+        <div class="vchip"><ruby>価格<rt>かかく</rt></ruby><span class="m">price</span></div>
+        <div class="vchip"><ruby>税<rt>ぜい</rt></ruby><span class="m">tax</span></div>
+        <div class="vchip">～<ruby>込<rt>こみ</rt></ruby><span class="m">including (e.g. 税込)</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="chapter" id="ch3">
+    <div class="ch-head"><div class="ch-num">3</div>
+      <div class="ch-titles"><h2><ruby>目標<rt>もくひょう</rt></ruby>に<ruby>向<rt>む</rt></ruby>かって</h2><div class="en">Toward your goal</div></div></div>
+    <div class="kgroup">
+      <div class="ghead"><span class="gtag">新出漢字</span><span class="gen">New kanji · 12</span></div>
+      <div class="kgrid">
+        <div class="kcard"><div class="khead"><span class="k">進</span><div class="kinfo"><div class="rdg">シン・すす(む)</div><div class="mean">advance, proceed</div></div></div><ul class="kwords"><li><span class="w"><ruby>進<rt>すす</rt></ruby>む</span><span class="g">to advance</span></li><li><span class="w"><ruby>進学<rt>しんがく</rt></ruby></span><span class="g">going on to school</span></li><li><span class="w"><ruby>進路<rt>しんろ</rt></ruby></span><span class="g">career path</span></li></ul></div>
+        <div class="kcard"><div class="khead"><span class="k">試</span><div class="kinfo"><div class="rdg">シ・ため(す)</div><div class="mean">try, test</div></div></div><ul class="kwords"><li><span class="w"><ruby>試験<rt>しけん</rt></ruby></span><span class="g">exam</span><span class="tags"><span class="tg same">験</span></span></li><li><span class="w"><ruby>試合<rt>しあい</rt></ruby></span><span class="g">match, game</span><span class="tags"><span class="tg set">合<i>4</i></span></span></li><li><span class="w"><ruby>試<rt>ため</rt></ruby>す</span><span class="g">to try</span></li></ul></div>
+        <div class="kcard"><div class="khead"><span class="k">験</span><div class="kinfo"><div class="rdg">ケン</div><div class="mean">test, verify</div></div></div><ul class="kwords"><li><span class="w"><ruby>試験<rt>しけん</rt></ruby></span><span class="g">exam</span><span class="tags"><span class="tg same">試</span></span></li><li><span class="w"><ruby>受験<rt>じゅけん</rt></ruby></span><span class="g">taking an exam</span></li><li><span class="w"><ruby>経験<rt>けいけん</rt></ruby></span><span class="g">experience</span></li></ul></div>
+        <div class="kcard"><div class="khead"><span class="k">卒</span><div class="kinfo"><div class="rdg">ソツ</div><div class="mean">graduate</div></div></div><ul class="kwords"><li><span class="w"><ruby>卒業<rt>そつぎょう</rt></ruby></span><span class="g">graduation</span><span class="tags"><span class="tg same">業</span></span></li><li><span class="w"><ruby>卒業式<rt>そつぎょうしき</rt></ruby></span><span class="g">graduation ceremony</span><span class="tags"><span class="tg same">業</span></span></li></ul></div>
+        <div class="kcard"><div class="khead"><span class="k">業</span><div class="kinfo"><div class="rdg">ギョウ・わざ</div><div class="mean">business; studies</div></div></div><ul class="kwords"><li><span class="w"><ruby>卒業<rt>そつぎょう</rt></ruby></span><span class="g">graduation</span><span class="tags"><span class="tg same">卒</span></span></li><li><span class="w"><ruby>残業<rt>ざんぎょう</rt></ruby></span><span class="g">overtime</span><span class="tags"><span class="tg set">残<i>5</i></span></span></li><li><span class="w"><ruby>授業<rt>じゅぎょう</rt></ruby></span><span class="g">class, lesson</span></li></ul></div>
+        <div class="kcard"><div class="khead"><span class="k">説</span><div class="kinfo"><div class="rdg">セツ・と(く)</div><div class="mean">explain; theory</div></div></div><ul class="kwords"><li><span class="w"><ruby>説明<rt>せつめい</rt></ruby></span><span class="g">explanation</span><span class="tags"><span class="tg same">明</span></span></li><li><span class="w"><ruby>説明書<rt>せつめいしょ</rt></ruby></span><span class="g">instruction manual</span><span class="tags"><span class="tg same">明</span></span></li><li><span class="w"><ruby>小説<rt>しょうせつ</rt></ruby></span><span class="g">novel</span></li></ul></div>
+        <div class="kcard"><div class="khead"><span class="k">明</span><div class="kinfo"><div class="rdg">メイ・あか(るい)</div><div class="mean">bright, clear</div></div></div><ul class="kwords"><li><span class="w"><ruby>説明<rt>せつめい</rt></ruby></span><span class="g">explanation</span><span class="tags"><span class="tg same">説</span></span></li><li><span class="w"><ruby>発明<rt>はつめい</rt></ruby></span><span class="g">invention</span><span class="tags"><span class="tg set">発<i>6</i></span></span></li><li><span class="w"><ruby>明<rt>あか</rt></ruby>るい</span><span class="g">bright</span></li></ul></div>
+        <div class="kcard"><div class="khead"><span class="k">写</span><div class="kinfo"><div class="rdg">シャ・うつ(す)</div><div class="mean">copy; photograph</div></div></div><ul class="kwords"><li><span class="w"><ruby>写真<rt>しゃしん</rt></ruby></span><span class="g">photo</span><span class="tags"><span class="tg same">真</span></span></li><li><span class="w"><ruby>写<rt>うつ</rt></ruby>す</span><span class="g">to copy, photograph</span></li></ul></div>
+        <div class="kcard"><div class="khead"><span class="k">真</span><div class="kinfo"><div class="rdg">シン・ま</div><div class="mean">true, real</div></div></div><ul class="kwords"><li><span class="w"><ruby>写真<rt>しゃしん</rt></ruby></span><span class="g">photo</span><span class="tags"><span class="tg same">写</span></span></li><li><span class="w"><ruby>真<rt>ま</rt></ruby>ん<ruby>中<rt>なか</rt></ruby></span><span class="g">the middle</span></li><li><span class="w"><ruby>真面目<rt>まじめ</rt></ruby></span><span class="g">serious, diligent</span></li></ul></div>
+        <div class="kcard"><div class="khead"><span class="k">願</span><div class="kinfo"><div class="rdg">ガン・ねが(う)</div><div class="mean">wish, request</div></div></div><ul class="kwords"><li><span class="w">お<ruby>願<rt>ねが</rt></ruby>い</span><span class="g">request; please</span></li><li><span class="w"><ruby>願<rt>ねが</rt></ruby>う</span><span class="g">to wish</span></li><li><span class="w"><ruby>願書<rt>がんしょ</rt></ruby></span><span class="g">application form</span></li></ul></div>
+        <div class="kcard"><div class="khead"><span class="k">部</span><div class="kinfo"><div class="rdg">ブ</div><div class="mean">part; club; dept.</div></div></div><ul class="kwords"><li><span class="w"><ruby>部屋<rt>へや</rt></ruby></span><span class="g">room</span><span class="tags"><span class="tg set">屋<i>6</i></span></span></li><li><span class="w"><ruby>部活<rt>ぶかつ</rt></ruby></span><span class="g">club activity</span></li><li><span class="w"><ruby>全部<rt>ぜんぶ</rt></ruby></span><span class="g">all, whole</span></li></ul></div>
+        <div class="kcard"><div class="khead"><span class="k">科</span><div class="kinfo"><div class="rdg">カ</div><div class="mean">section, subject</div></div></div><ul class="kwords"><li><span class="w"><ruby>教科書<rt>きょうかしょ</rt></ruby></span><span class="g">textbook</span><span class="tags"><span class="tg set">教<i>1</i></span></span></li><li><span class="w"><ruby>内科<rt>ないか</rt></ruby></span><span class="g">internal medicine</span><span class="tags"><span class="tg set">内<i>6</i></span></span></li><li><span class="w"><ruby>科目<rt>かもく</rt></ruby></span><span class="g">(school) subject</span></li></ul></div>
+      </div>
+    </div>
+    <div class="kgroup">
+      <div class="ghead"><span class="gtag read">読める言葉</span><span class="gen">Read these · 3</span></div>
+      <div class="vocab">
+        <div class="vchip"><ruby>専門<rt>せんもん</rt></ruby><span class="m">specialty, major</span></div>
+        <div class="vchip"><ruby>就職<rt>しゅうしょく</rt></ruby><span class="m">getting a job</span></div>
+        <div class="vchip"><ruby>受験<rt>じゅけん</rt></ruby><span class="m">taking an exam</span></div>
+      </div>
+    </div>
+    <div class="kgroup">
+      <div class="ghead"><span class="gtag sight">見てわかる言葉</span><span class="gen">Recognize on sight · 1</span></div>
+      <div class="vocab">
+        <div class="vchip"><ruby>必着<rt>ひっちゃく</rt></ruby><span class="m">must arrive by (deadline)</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="chapter" id="ch4">
+    <div class="ch-head"><div class="ch-num">4</div>
+      <div class="ch-titles"><h2><ruby>申<rt>もう</rt></ruby>し<ruby>込<rt>こ</rt></ruby>んでみよう！</h2><div class="en">Let's apply!</div></div></div>
+    <div class="kgroup">
+      <div class="ghead"><span class="gtag">新出漢字</span><span class="gen">New kanji · 12</span></div>
+      <div class="kgrid">
+        <div class="kcard"><div class="khead"><span class="k">住</span><div class="kinfo"><div class="rdg">ジュウ・す(む)</div><div class="mean">live, reside</div></div></div><ul class="kwords"><li><span class="w"><ruby>住所<rt>じゅうしょ</rt></ruby></span><span class="g">address</span><span class="tags"><span class="tg same">所</span></span></li><li><span class="w"><ruby>住民<rt>じゅうみん</rt></ruby></span><span class="g">resident</span><span class="tags"><span class="tg same">民</span></span></li><li><span class="w"><ruby>住<rt>す</rt></ruby>む</span><span class="g">to live</span></li></ul></div>
+        <div class="kcard"><div class="khead"><span class="k">所</span><div class="kinfo"><div class="rdg">ショ・ところ</div><div class="mean">place</div></div></div><ul class="kwords"><li><span class="w"><ruby>住所<rt>じゅうしょ</rt></ruby></span><span class="g">address</span><span class="tags"><span class="tg same">住</span></span></li><li><span class="w"><ruby>役所<rt>やくしょ</rt></ruby></span><span class="g">government office</span><span class="tags"><span class="tg same">役</span></span></li><li><span class="w"><ruby>近所<rt>きんじょ</rt></ruby></span><span class="g">neighborhood</span><span class="tags"><span class="tg set">近<i>8</i></span></span></li></ul></div>
+        <div class="kcard"><div class="khead"><span class="k">民</span><div class="kinfo"><div class="rdg">ミン・たみ</div><div class="mean">people, citizen</div></div></div><ul class="kwords"><li><span class="w"><ruby>住民<rt>じゅうみん</rt></ruby></span><span class="g">resident</span><span class="tags"><span class="tg same">住</span></span></li><li><span class="w"><ruby>国民<rt>こくみん</rt></ruby></span><span class="g">citizen, nation</span></li><li><span class="w"><ruby>市民<rt>しみん</rt></ruby></span><span class="g">citizen</span></li></ul></div>
+        <div class="kcard"><div class="khead"><span class="k">役</span><div class="kinfo"><div class="rdg">ヤク・エキ</div><div class="mean">role; public office</div></div></div><ul class="kwords"><li><span class="w"><ruby>役所<rt>やくしょ</rt></ruby></span><span class="g">government office</span><span class="tags"><span class="tg same">所</span></span></li><li><span class="w"><ruby>役員<rt>やくいん</rt></ruby></span><span class="g">officer, board member</span><span class="tags"><span class="tg same">員</span></span></li><li><span class="w"><ruby>役<rt>やく</rt></ruby>に<ruby>立<rt>た</rt></ruby>つ</span><span class="g">to be useful</span></li></ul></div>
+        <div class="kcard"><div class="khead"><span class="k">知</span><div class="kinfo"><div class="rdg">チ・し(る)</div><div class="mean">know</div></div></div><ul class="kwords"><li><span class="w"><ruby>知<rt>し</rt></ruby>り<ruby>合<rt>あ</rt></ruby>い</span><span class="g">acquaintance</span><span class="tags"><span class="tg same">合</span></span></li><li><span class="w"><ruby>知<rt>し</rt></ruby>る</span><span class="g">to know</span></li><li><span class="w"><ruby>知識<rt>ちしき</rt></ruby></span><span class="g">knowledge</span></li></ul></div>
+        <div class="kcard"><div class="khead"><span class="k">問</span><div class="kinfo"><div class="rdg">モン・と(う)</div><div class="mean">question, ask</div></div></div><ul class="kwords"><li><span class="w"><ruby>問<rt>と</rt></ruby>い<ruby>合<rt>あ</rt></ruby>わせ</span><span class="g">inquiry</span><span class="tags"><span class="tg same">合</span></span></li><li><span class="w"><ruby>問題<rt>もんだい</rt></ruby></span><span class="g">problem, question</span></li><li><span class="w"><ruby>質問<rt>しつもん</rt></ruby></span><span class="g">question</span></li></ul></div>
+        <div class="kcard"><div class="khead"><span class="k">合</span><div class="kinfo"><div class="rdg">ゴウ・あ(う)</div><div class="mean">fit, join, suit</div></div></div><ul class="kwords"><li><span class="w"><ruby>問<rt>と</rt></ruby>い<ruby>合<rt>あ</rt></ruby>わせ</span><span class="g">inquiry</span><span class="tags"><span class="tg same">問</span></span></li><li><span class="w"><ruby>知<rt>し</rt></ruby>り<ruby>合<rt>あ</rt></ruby>い</span><span class="g">acquaintance</span><span class="tags"><span class="tg same">知</span></span></li><li><span class="w"><ruby>試合<rt>しあい</rt></ruby></span><span class="g">match, game</span><span class="tags"><span class="tg set">試<i>3</i></span></span></li></ul></div>
+        <div class="kcard"><div class="khead"><span class="k">定</span><div class="kinfo"><div class="rdg">テイ・さだ(める)</div><div class="mean">fix, decide</div></div></div><ul class="kwords"><li><span class="w"><ruby>定員<rt>ていいん</rt></ruby></span><span class="g">capacity</span><span class="tags"><span class="tg same">員</span></span></li><li><span class="w"><ruby>特定<rt>とくてい</rt></ruby></span><span class="g">specific</span><span class="tags"><span class="tg set">特<i>5</i></span></span></li><li><span class="w"><ruby>予定<rt>よてい</rt></ruby></span><span class="g">plan, schedule</span></li></ul></div>
+        <div class="kcard"><div class="khead"><span class="k">員</span><div class="kinfo"><div class="rdg">イン</div><div class="mean">member, staff</div></div></div><ul class="kwords"><li><span class="w"><ruby>定員<rt>ていいん</rt></ruby></span><span class="g">capacity</span><span class="tags"><span class="tg same">定</span></span></li><li><span class="w"><ruby>役員<rt>やくいん</rt></ruby></span><span class="g">officer</span><span class="tags"><span class="tg same">役</span></span></li><li><span class="w"><ruby>店員<rt>てんいん</rt></ruby></span><span class="g">shop clerk</span></li></ul></div>
+        <div class="kcard"><div class="khead"><span class="k">無</span><div class="kinfo"><div class="rdg">ム・ブ・な(い)</div><div class="mean">nothing, none</div></div></div><ul class="kwords"><li><span class="w"><ruby>無事<rt>ぶじ</rt></ruby></span><span class="g">safe, without incident</span><span class="tags"><span class="tg set">事<i>1</i></span></span></li><li><span class="w"><ruby>無料<rt>むりょう</rt></ruby></span><span class="g">free of charge</span></li><li><span class="w"><ruby>無理<rt>むり</rt></ruby></span><span class="g">impossible, overdoing</span></li></ul></div>
+        <div class="kcard"><div class="khead"><span class="k">集</span><div class="kinfo"><div class="rdg">シュウ・あつ(まる)</div><div class="mean">gather, collect</div></div></div><ul class="kwords"><li><span class="w"><ruby>集合<rt>しゅうごう</rt></ruby></span><span class="g">gathering, meet-up</span><span class="tags"><span class="tg same">合</span></span></li><li><span class="w"><ruby>集<rt>あつ</rt></ruby>まる</span><span class="g">to gather (vi)</span></li><li><span class="w"><ruby>集<rt>あつ</rt></ruby>める</span><span class="g">to collect (vt)</span></li></ul></div>
+        <div class="kcard"><div class="khead"><span class="k">友</span><div class="kinfo"><div class="rdg">ユウ・とも</div><div class="mean">friend</div></div></div><ul class="kwords"><li><span class="w"><ruby>親友<rt>しんゆう</rt></ruby></span><span class="g">close friend</span><span class="tags"><span class="tg set">親<i>6</i></span></span></li><li><span class="w"><ruby>友達<rt>ともだち</rt></ruby></span><span class="g">friend</span></li><li><span class="w"><ruby>友人<rt>ゆうじん</rt></ruby></span><span class="g">friend (formal)</span></li></ul></div>
+      </div>
+    </div>
+    <div class="kgroup">
+      <div class="ghead"><span class="gtag read">読める言葉</span><span class="gen">Read these · 3</span></div>
+      <div class="vocab">
+        <div class="vchip"><ruby>申<rt>もう</rt></ruby>し<ruby>込<rt>こ</rt></ruby>み<span class="m">application</span></div>
+        <div class="vchip"><ruby>参加<rt>さんか</rt></ruby><span class="m">participation</span></div>
+        <div class="vchip"><ruby>他<rt>た</rt></ruby><span class="m">other (た／ほか)</span></div>
+      </div>
+    </div>
+    <div class="kgroup">
+      <div class="ghead"><span class="gtag sight">見てわかる言葉</span><span class="gen">Recognize on sight · 4</span></div>
+      <div class="vocab">
+        <div class="vchip">～<ruby>費<rt>ひ</rt></ruby><span class="m">~ fee/cost (e.g. 参加費)</span></div>
+        <div class="vchip"><ruby>在住<rt>ざいじゅう</rt></ruby><span class="m">residing in</span></div>
+        <div class="vchip"><ruby>在学<rt>ざいがく</rt></ruby><span class="m">enrolled (in school)</span></div>
+        <div class="vchip"><ruby>在勤<rt>ざいきん</rt></ruby><span class="m">employed at</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="chapter" id="ch5">
+    <div class="ch-head"><div class="ch-num">5</div>
+      <div class="ch-titles"><h2><ruby>住<rt>す</rt></ruby>んでいる<ruby>町<rt>まち</rt></ruby>で</h2><div class="en">In the town you live</div></div></div>
+    <div class="kgroup">
+      <div class="ghead"><span class="gtag">新出漢字</span><span class="gen">New kanji · 10</span></div>
+      <div class="kgrid">
+        <div class="kcard"><div class="khead"><span class="k">急</span><div class="kinfo"><div class="rdg">キュウ・いそ(ぐ)</div><div class="mean">hurry, urgent</div></div></div><ul class="kwords"><li><span class="w"><ruby>特急<rt>とっきゅう</rt></ruby></span><span class="g">limited express</span><span class="tags"><span class="tg same">特</span></span></li><li><span class="w"><ruby>急<rt>いそ</rt></ruby>ぐ</span><span class="g">to hurry</span></li><li><span class="w"><ruby>急行<rt>きゅうこう</rt></ruby></span><span class="g">express train</span></li></ul></div>
+        <div class="kcard"><div class="khead"><span class="k">特</span><div class="kinfo"><div class="rdg">トク</div><div class="mean">special</div></div></div><ul class="kwords"><li><span class="w"><ruby>特急<rt>とっきゅう</rt></ruby></span><span class="g">limited express</span><span class="tags"><span class="tg same">急</span></span></li><li><span class="w"><ruby>特別<rt>とくべつ</rt></ruby></span><span class="g">special</span><span class="tags"><span class="tg set">別<i>2</i></span></span></li><li><span class="w"><ruby>特<rt>とく</rt></ruby>に</span><span class="g">especially</span></li></ul></div>
+        <div class="kcard"><div class="khead"><span class="k">線</span><div class="kinfo"><div class="rdg">セン</div><div class="mean">line</div></div></div><ul class="kwords"><li><span class="w"><ruby>新幹線<rt>しんかんせん</rt></ruby></span><span class="g">bullet train</span></li><li><span class="w"><ruby>路線<rt>ろせん</rt></ruby></span><span class="g">(train) line, route</span></li><li><span class="w"><ruby>～号線<rt>ごうせん</rt></ruby></span><span class="g">route no. ~</span></li></ul></div>
+        <div class="kcard"><div class="khead"><span class="k">回</span><div class="kinfo"><div class="rdg">カイ・まわ(る)</div><div class="mean">turn; times</div></div></div><ul class="kwords"><li><span class="w"><ruby>～回<rt>かい</rt></ruby></span><span class="g">~ times (counter)</span></li><li><span class="w"><ruby>回<rt>まわ</rt></ruby>る</span><span class="g">to go around</span></li><li><span class="w"><ruby>今回<rt>こんかい</rt></ruby></span><span class="g">this time</span></li></ul></div>
+        <div class="kcard"><div class="khead"><span class="k">遅</span><div class="kinfo"><div class="rdg">チ・おく(れる)・おそ(い)</div><div class="mean">late, slow</div></div></div><ul class="kwords"><li><span class="w"><ruby>遅<rt>おく</rt></ruby>れる</span><span class="g">to be late</span></li><li><span class="w"><ruby>遅<rt>おそ</rt></ruby>い</span><span class="g">slow, late</span></li><li><span class="w"><ruby>遅刻<rt>ちこく</rt></ruby></span><span class="g">tardiness</span></li></ul></div>
+        <div class="kcard"><div class="khead"><span class="k">忘</span><div class="kinfo"><div class="rdg">ボウ・わす(れる)</div><div class="mean">forget</div></div></div><ul class="kwords"><li><span class="w"><ruby>忘<rt>わす</rt></ruby>れる</span><span class="g">to forget</span></li><li><span class="w"><ruby>忘<rt>わす</rt></ruby>れ<ruby>物<rt>もの</rt></ruby></span><span class="g">forgotten item</span></li></ul></div>
+        <div class="kcard"><div class="khead"><span class="k">待</span><div class="kinfo"><div class="rdg">タイ・ま(つ)</div><div class="mean">wait</div></div></div><ul class="kwords"><li><span class="w"><ruby>待合室<rt>まちあいしつ</rt></ruby></span><span class="g">waiting room</span><span class="tags"><span class="tg set">合<i>4</i></span><span class="tg set">室<i>8</i></span></span></li><li><span class="w"><ruby>待<rt>ま</rt></ruby>ち<ruby>合<rt>あ</rt></ruby>わせ</span><span class="g">meeting up</span><span class="tags"><span class="tg set">合<i>4</i></span></span></li><li><span class="w"><ruby>待<rt>ま</rt></ruby>つ</span><span class="g">to wait</span></li></ul></div>
+        <div class="kcard"><div class="khead"><span class="k">取</span><div class="kinfo"><div class="rdg">シュ・と(る)</div><div class="mean">take</div></div></div><ul class="kwords"><li><span class="w"><ruby>取<rt>と</rt></ruby>り<ruby>消<rt>け</rt></ruby>し</span><span class="g">cancellation</span><span class="tags"><span class="tg same">消</span></span></li><li><span class="w"><ruby>取引<rt>とりひき</rt></ruby></span><span class="g">transaction, deal</span><span class="tags"><span class="tg set">引<i>2</i></span></span></li><li><span class="w"><ruby>取<rt>と</rt></ruby>る</span><span class="g">to take</span></li></ul></div>
+        <div class="kcard"><div class="khead"><span class="k">消</span><div class="kinfo"><div class="rdg">ショウ・け(す)</div><div class="mean">erase, turn off</div></div></div><ul class="kwords"><li><span class="w"><ruby>取<rt>と</rt></ruby>り<ruby>消<rt>け</rt></ruby>し</span><span class="g">cancellation</span><span class="tags"><span class="tg same">取</span></span></li><li><span class="w"><ruby>消<rt>け</rt></ruby>す</span><span class="g">to turn off, erase</span></li><li><span class="w"><ruby>消<rt>き</rt></ruby>える</span><span class="g">to disappear</span></li></ul></div>
+        <div class="kcard"><div class="khead"><span class="k">残</span><div class="kinfo"><div class="rdg">ザン・のこ(る)</div><div class="mean">remain</div></div></div><ul class="kwords"><li><span class="w"><ruby>残業<rt>ざんぎょう</rt></ruby></span><span class="g">overtime</span><span class="tags"><span class="tg set">業<i>3</i></span></span></li><li><span class="w"><ruby>残念<rt>ざんねん</rt></ruby></span><span class="g">regrettable, too bad</span></li><li><span class="w"><ruby>残<rt>のこ</rt></ruby>る</span><span class="g">to remain</span></li></ul></div>
+      </div>
+    </div>
+    <div class="kgroup">
+      <div class="ghead"><span class="gtag read">読める言葉</span><span class="gen">Read these · 4</span></div>
+      <div class="vocab">
+        <div class="vchip"><ruby>各駅停車<rt>かくえきていしゃ</rt></ruby><span class="m">local train (all stations)</span></div>
+        <div class="vchip"><ruby>暗証番号<rt>あんしょうばんごう</rt></ruby><span class="m">PIN</span></div>
+        <div class="vchip"><ruby>確認<rt>かくにん</rt></ruby><span class="m">confirmation</span></div>
+        <div class="vchip"><ruby>預<rt>あず</rt></ruby>ける<span class="m">to deposit, entrust</span></div>
+      </div>
+    </div>
+    <div class="kgroup">
+      <div class="ghead"><span class="gtag sight">見てわかる言葉</span><span class="gen">Recognize on sight · 3</span></div>
+      <div class="vocab">
+        <div class="vchip"><ruby>精算機<rt>せいさんき</rt></ruby><span class="m">fare-adjustment machine</span></div>
+        <div class="vchip"><ruby>訂正<rt>ていせい</rt></ruby><span class="m">correction</span></div>
+        <div class="vchip"><ruby>振込<rt>ふりこみ</rt></ruby><span class="m">bank transfer</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="chapter parts" id="parts">
+    <div class="ch-head"><div class="ch-num">部</div>
+      <div class="ch-titles"><h2>漢字のパーツ</h2><div class="en">Kanji parts &amp; radicals (between ch. 5 and 6)</div></div></div>
+    <div class="kgroup">
+      <div class="ghead"><span class="gtag">パーツ</span><span class="gen">Building blocks · 4</span></div>
+      <div class="kgrid">
+        <div class="kcard"><div class="khead"><span class="k">心</span><div class="kinfo"><div class="rdg">こころ・シン</div><div class="mean">heart</div></div></div><ul class="kwords"><li><span class="w"><ruby>安心<rt>あんしん</rt></ruby></span><span class="g">relief, ease</span><span class="tags"><span class="tg set">安<i>2</i></span></span></li><li><span class="w"><ruby>心配<rt>しんぱい</rt></ruby></span><span class="g">worry</span></li><li><span class="w"><ruby>中心<rt>ちゅうしん</rt></ruby></span><span class="g">center</span></li></ul></div>
+        <div class="kcard"><div class="khead"><span class="k">主</span><div class="kinfo"><div class="rdg">シュ・ぬし</div><div class="mean">main, master</div></div></div><ul class="kwords"><li><span class="w"><ruby>主人<rt>しゅじん</rt></ruby></span><span class="g">husband; master</span></li><li><span class="w"><ruby>主<rt>おも</rt></ruby>に</span><span class="g">mainly</span></li></ul></div>
+        <div class="kcard"><div class="khead"><span class="k">糸</span><div class="kinfo"><div class="rdg">いと・シ</div><div class="mean">thread</div></div></div><ul class="kwords"><li><span class="w"><ruby>糸<rt>いと</rt></ruby></span><span class="g">thread</span></li><li><span class="w"><ruby>毛糸<rt>けいと</rt></ruby></span><span class="g">wool, yarn</span></li></ul></div>
+        <div class="kcard"><div class="khead"><span class="k">刀</span><div class="kinfo"><div class="rdg">かたな・トウ</div><div class="mean">sword, blade</div></div></div><ul class="kwords"><li><span class="w"><ruby>刀<rt>かたな</rt></ruby></span><span class="g">sword</span></li><li><span class="w"><ruby>日本刀<rt>にほんとう</rt></ruby></span><span class="g">Japanese sword</span></li></ul></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="chapter" id="ch6">
+    <div class="ch-head"><div class="ch-num">6</div>
+      <div class="ch-titles"><h2><ruby>旅行<rt>りょこう</rt></ruby>の<ruby>計画<rt>けいかく</rt></ruby></h2><div class="en">Trip planning</div></div></div>
+    <div class="kgroup">
+      <div class="ghead"><span class="gtag">新出漢字</span><span class="gen">New kanji · 10</span></div>
+      <div class="kgrid">
+        <div class="kcard"><div class="khead"><span class="k">子</span><div class="kinfo"><div class="rdg">シ・こ</div><div class="mean">child</div></div></div><ul class="kwords"><li><span class="w"><ruby>親子<rt>おやこ</rt></ruby></span><span class="g">parent & child</span><span class="tags"><span class="tg same">親</span></span></li><li><span class="w"><ruby>子供<rt>こども</rt></ruby></span><span class="g">child</span></li><li><span class="w"><ruby>女子<rt>じょし</rt></ruby></span><span class="g">girl, female</span></li></ul></div>
+        <div class="kcard"><div class="khead"><span class="k">親</span><div class="kinfo"><div class="rdg">シン・おや・した(しい)</div><div class="mean">parent; intimate</div></div></div><ul class="kwords"><li><span class="w"><ruby>親子<rt>おやこ</rt></ruby></span><span class="g">parent & child</span><span class="tags"><span class="tg same">子</span></span></li><li><span class="w"><ruby>親切<rt>しんせつ</rt></ruby></span><span class="g">kind</span><span class="tags"><span class="tg set">切<i>2</i></span></span></li><li><span class="w"><ruby>両親<rt>りょうしん</rt></ruby></span><span class="g">parents</span></li></ul></div>
+        <div class="kcard"><div class="khead"><span class="k">代</span><div class="kinfo"><div class="rdg">ダイ・か(わる)</div><div class="mean">generation; fee</div></div></div><ul class="kwords"><li><span class="w"><ruby>～代<rt>だい</rt></ruby></span><span class="g">~ fee, charge</span></li><li><span class="w"><ruby>時代<rt>じだい</rt></ruby></span><span class="g">era, period</span></li><li><span class="w"><ruby>代<rt>か</rt></ruby>わりに</span><span class="g">instead</span></li></ul></div>
+        <div class="kcard"><div class="khead"><span class="k">屋</span><div class="kinfo"><div class="rdg">オク・や</div><div class="mean">shop; roof</div></div></div><ul class="kwords"><li><span class="w"><ruby>部屋<rt>へや</rt></ruby></span><span class="g">room</span><span class="tags"><span class="tg set">部<i>3</i></span></span></li><li><span class="w"><ruby>～屋<rt>や</rt></ruby></span><span class="g">~ shop</span></li><li><span class="w"><ruby>本屋<rt>ほんや</rt></ruby></span><span class="g">bookstore</span></li></ul></div>
+        <div class="kcard"><div class="khead"><span class="k">内</span><div class="kinfo"><div class="rdg">ナイ・うち</div><div class="mean">inside</div></div></div><ul class="kwords"><li><span class="w"><ruby>内科<rt>ないか</rt></ruby></span><span class="g">internal medicine</span><span class="tags"><span class="tg set">科<i>3</i></span></span></li><li><span class="w"><ruby>室内<rt>しつない</rt></ruby></span><span class="g">indoors</span><span class="tags"><span class="tg set">室<i>8</i></span></span></li><li><span class="w"><ruby>案内<rt>あんない</rt></ruby></span><span class="g">guidance</span></li></ul></div>
+        <div class="kcard"><div class="khead"><span class="k">自</span><div class="kinfo"><div class="rdg">ジ</div><div class="mean">self</div></div></div><ul class="kwords"><li><span class="w"><ruby>自由<rt>じゆう</rt></ruby></span><span class="g">freedom</span><span class="tags"><span class="tg same">由</span></span></li><li><span class="w"><ruby>自転車<rt>じてんしゃ</rt></ruby></span><span class="g">bicycle</span><span class="tags"><span class="tg set">転<i>1</i></span></span></li><li><span class="w"><ruby>自分<rt>じぶん</rt></ruby></span><span class="g">oneself</span></li></ul></div>
+        <div class="kcard"><div class="khead"><span class="k">由</span><div class="kinfo"><div class="rdg">ユ・ユウ</div><div class="mean">reason</div></div></div><ul class="kwords"><li><span class="w"><ruby>自由<rt>じゆう</rt></ruby></span><span class="g">freedom</span><span class="tags"><span class="tg same">自</span></span></li><li><span class="w"><ruby>理由<rt>りゆう</rt></ruby></span><span class="g">reason</span></li><li><span class="w"><ruby>経由<rt>けいゆ</rt></ruby></span><span class="g">via</span></li></ul></div>
+        <div class="kcard"><div class="khead"><span class="k">発</span><div class="kinfo"><div class="rdg">ハツ</div><div class="mean">depart; emit</div></div></div><ul class="kwords"><li><span class="w"><ruby>発着<rt>はっちゃく</rt></ruby></span><span class="g">departure & arrival</span><span class="tags"><span class="tg same">着</span></span></li><li><span class="w"><ruby>開発<rt>かいはつ</rt></ruby></span><span class="g">development</span><span class="tags"><span class="tg set">開<i>2</i></span></span></li><li><span class="w"><ruby>発明<rt>はつめい</rt></ruby></span><span class="g">invention</span><span class="tags"><span class="tg set">明<i>3</i></span></span></li></ul></div>
+        <div class="kcard"><div class="khead"><span class="k">着</span><div class="kinfo"><div class="rdg">チャク・つ(く)・き(る)</div><div class="mean">arrive; wear</div></div></div><ul class="kwords"><li><span class="w"><ruby>発着<rt>はっちゃく</rt></ruby></span><span class="g">departure & arrival</span><span class="tags"><span class="tg same">発</span></span></li><li><span class="w"><ruby>着<rt>つ</rt></ruby>く</span><span class="g">to arrive</span></li><li><span class="w"><ruby>着<rt>き</rt></ruby>る</span><span class="g">to wear</span></li></ul></div>
+        <div class="kcard"><div class="khead"><span class="k">遠</span><div class="kinfo"><div class="rdg">エン・とお(い)</div><div class="mean">far</div></div></div><ul class="kwords"><li><span class="w"><ruby>遠回<rt>とおまわ</rt></ruby>り</span><span class="g">detour, long way</span><span class="tags"><span class="tg set">回<i>5</i></span></span></li><li><span class="w"><ruby>遠<rt>とお</rt></ruby>い</span><span class="g">far</span></li><li><span class="w"><ruby>遠<rt>とお</rt></ruby>く</span><span class="g">far away</span></li></ul></div>
+      </div>
+    </div>
+    <div class="kgroup">
+      <div class="ghead"><span class="gtag read">読める言葉</span><span class="gen">Read these · 3</span></div>
+      <div class="vocab">
+        <div class="vchip"><ruby>泊<rt>と</rt></ruby>まる<span class="m">to stay overnight</span></div>
+        <div class="vchip"><ruby>送迎<rt>そうげい</rt></ruby><span class="m">pick-up & drop-off</span></div>
+        <div class="vchip"><ruby>温泉<rt>おんせん</rt></ruby><span class="m">hot spring</span></div>
+      </div>
+    </div>
+    <div class="kgroup">
+      <div class="ghead"><span class="gtag sight">見てわかる言葉</span><span class="gen">Recognize on sight · 1</span></div>
+      <div class="vocab">
+        <div class="vchip"><ruby>往復<rt>おうふく</rt></ruby><span class="m">round trip</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="chapter" id="ch7">
+    <div class="ch-head"><div class="ch-num">7</div>
+      <div class="ch-titles"><h2><ruby>料理<rt>りょうり</rt></ruby>を<ruby>作<rt>つく</rt></ruby>ろう！</h2><div class="en">Let's cook!</div></div></div>
+    <div class="kgroup">
+      <div class="ghead"><span class="gtag">新出漢字</span><span class="gen">New kanji · 11</span></div>
+      <div class="kgrid">
+        <div class="kcard"><div class="khead"><span class="k">牛</span><div class="kinfo"><div class="rdg">ギュウ・うし</div><div class="mean">cow</div></div></div><ul class="kwords"><li><span class="w"><ruby>牛肉<rt>ぎゅうにく</rt></ruby></span><span class="g">beef</span></li><li><span class="w"><ruby>牛乳<rt>ぎゅうにゅう</rt></ruby></span><span class="g">milk</span></li></ul></div>
+        <div class="kcard"><div class="khead"><span class="k">魚</span><div class="kinfo"><div class="rdg">ギョ・さかな</div><div class="mean">fish</div></div></div><ul class="kwords"><li><span class="w"><ruby>魚屋<rt>さかなや</rt></ruby></span><span class="g">fish shop</span><span class="tags"><span class="tg set">屋<i>6</i></span></span></li><li><span class="w"><ruby>魚<rt>さかな</rt></ruby></span><span class="g">fish</span></li><li><span class="w"><ruby>焼<rt>や</rt></ruby>き<ruby>魚<rt>ざかな</rt></ruby></span><span class="g">grilled fish</span></li></ul></div>
+        <div class="kcard"><div class="khead"><span class="k">飯</span><div class="kinfo"><div class="rdg">ハン・めし</div><div class="mean">cooked rice, meal</div></div></div><ul class="kwords"><li><span class="w">ご<ruby>飯<rt>はん</rt></ruby></span><span class="g">cooked rice, meal</span></li><li><span class="w"><ruby>朝<rt>あさ</rt></ruby>ご<ruby>飯<rt>はん</rt></ruby></span><span class="g">breakfast</span></li><li><span class="w"><ruby>晩<rt>ばん</rt></ruby>ご<ruby>飯<rt>はん</rt></ruby></span><span class="g">dinner</span></li></ul></div>
+        <div class="kcard"><div class="khead"><span class="k">菜</span><div class="kinfo"><div class="rdg">サイ・な</div><div class="mean">vegetable, greens</div></div></div><ul class="kwords"><li><span class="w"><ruby>野菜<rt>やさい</rt></ruby></span><span class="g">vegetable</span></li><li><span class="w"><ruby>白菜<rt>はくさい</rt></ruby></span><span class="g">Chinese cabbage</span></li></ul></div>
+        <div class="kcard"><div class="khead"><span class="k">味</span><div class="kinfo"><div class="rdg">ミ・あじ</div><div class="mean">taste, flavor</div></div></div><ul class="kwords"><li><span class="w"><ruby>味<rt>あじ</rt></ruby></span><span class="g">taste, flavor</span></li><li><span class="w"><ruby>意味<rt>いみ</rt></ruby></span><span class="g">meaning</span></li><li><span class="w"><ruby>趣味<rt>しゅみ</rt></ruby></span><span class="g">hobby</span></li></ul></div>
+        <div class="kcard"><div class="khead"><span class="k">色</span><div class="kinfo"><div class="rdg">ショク・いろ</div><div class="mean">color</div></div></div><ul class="kwords"><li><span class="w"><ruby>茶色<rt>ちゃいろ</rt></ruby></span><span class="g">brown</span><span class="tags"><span class="tg same">茶</span></span></li><li><span class="w"><ruby>色<rt>いろ</rt></ruby></span><span class="g">color</span></li><li><span class="w"><ruby>色々<rt>いろいろ</rt></ruby></span><span class="g">various</span></li></ul></div>
+        <div class="kcard"><div class="khead"><span class="k">茶</span><div class="kinfo"><div class="rdg">チャ・サ</div><div class="mean">tea</div></div></div><ul class="kwords"><li><span class="w"><ruby>茶色<rt>ちゃいろ</rt></ruby></span><span class="g">brown</span><span class="tags"><span class="tg same">色</span></span></li><li><span class="w">お<ruby>茶<rt>ちゃ</rt></ruby></span><span class="g">tea</span></li><li><span class="w"><ruby>紅茶<rt>こうちゃ</rt></ruby></span><span class="g">black tea</span></li></ul></div>
+        <div class="kcard"><div class="khead"><span class="k">少</span><div class="kinfo"><div class="rdg">ショウ・すく(ない)・すこ(し)</div><div class="mean">few, little</div></div></div><ul class="kwords"><li><span class="w"><ruby>少<rt>すこ</rt></ruby>し</span><span class="g">a little</span></li><li><span class="w"><ruby>少<rt>すく</rt></ruby>ない</span><span class="g">few, scarce</span></li><li><span class="w"><ruby>少々<rt>しょうしょう</rt></ruby></span><span class="g">a little (polite)</span></li></ul></div>
+        <div class="kcard"><div class="khead"><span class="k">洗</span><div class="kinfo"><div class="rdg">セン・あら(う)</div><div class="mean">wash</div></div></div><ul class="kwords"><li><span class="w"><ruby>洗面所<rt>せんめんじょ</rt></ruby></span><span class="g">washroom</span><span class="tags"><span class="tg set">所<i>4</i></span></span></li><li><span class="w"><ruby>洗<rt>あら</rt></ruby>う</span><span class="g">to wash</span></li><li><span class="w"><ruby>洗濯<rt>せんたく</rt></ruby></span><span class="g">laundry</span></li></ul></div>
+        <div class="kcard"><div class="khead"><span class="k">弱</span><div class="kinfo"><div class="rdg">ジャク・よわ(い)</div><div class="mean">weak</div></div></div><ul class="kwords"><li><span class="w"><ruby>弱<rt>よわ</rt></ruby>い</span><span class="g">weak</span></li><li><span class="w"><ruby>弱火<rt>よわび</rt></ruby></span><span class="g">low heat</span></li><li><span class="w"><ruby>弱点<rt>じゃくてん</rt></ruby></span><span class="g">weak point</span></li></ul></div>
+        <div class="kcard"><div class="khead"><span class="k">暗</span><div class="kinfo"><div class="rdg">アン・くら(い)</div><div class="mean">dark</div></div></div><ul class="kwords"><li><span class="w"><ruby>暗<rt>くら</rt></ruby>い</span><span class="g">dark</span></li><li><span class="w"><ruby>明暗<rt>めいあん</rt></ruby></span><span class="g">light & dark</span><span class="tags"><span class="tg set">明<i>3</i></span></span></li><li><span class="w"><ruby>暗記<rt>あんき</rt></ruby></span><span class="g">memorization</span></li></ul></div>
+      </div>
+    </div>
+    <div class="kgroup">
+      <div class="ghead"><span class="gtag read">読める言葉</span><span class="gen">Read these · 4</span></div>
+      <div class="vocab">
+        <div class="vchip"><ruby>砂糖<rt>さとう</rt></ruby><span class="m">sugar</span></div>
+        <div class="vchip"><ruby>塩<rt>しお</rt></ruby><span class="m">salt</span></div>
+        <div class="vchip"><ruby>油<rt>あぶら</rt></ruby><span class="m">oil</span></div>
+        <div class="vchip"><ruby>卵<rt>たまご</rt></ruby><span class="m">egg</span></div>
+      </div>
+    </div>
+    <div class="kgroup">
+      <div class="ghead"><span class="gtag sight">見てわかる言葉</span><span class="gen">Recognize on sight · 1</span></div>
+      <div class="vocab">
+        <div class="vchip"><ruby>限定<rt>げんてい</rt></ruby><span class="m">limited (edition/quantity)</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="chapter" id="ch8">
+    <div class="ch-head"><div class="ch-num">8</div>
+      <div class="ch-titles"><h2><ruby>引<rt>ひ</rt></ruby>っ<ruby>越<rt>こ</rt></ruby>し</h2><div class="en">Moving house</div></div></div>
+    <div class="kgroup">
+      <div class="ghead"><span class="gtag">新出漢字</span><span class="gen">New kanji · 10</span></div>
+      <div class="kgrid">
+        <div class="kcard"><div class="khead"><span class="k">広</span><div class="kinfo"><div class="rdg">コウ・ひろ(い)</div><div class="mean">wide, spacious</div></div></div><ul class="kwords"><li><span class="w"><ruby>広<rt>ひろ</rt></ruby>い</span><span class="g">spacious, wide</span></li><li><span class="w"><ruby>広場<rt>ひろば</rt></ruby></span><span class="g">plaza, open space</span></li><li><span class="w"><ruby>広告<rt>こうこく</rt></ruby></span><span class="g">advertisement</span></li></ul></div>
+        <div class="kcard"><div class="khead"><span class="k">便</span><div class="kinfo"><div class="rdg">ベン・ビン</div><div class="mean">convenience; mail/flight</div></div></div><ul class="kwords"><li><span class="w"><ruby>便利<rt>べんり</rt></ruby></span><span class="g">convenient</span><span class="tags"><span class="tg same">利</span></span></li><li><span class="w"><ruby>郵便<rt>ゆうびん</rt></ruby></span><span class="g">mail, post</span></li><li><span class="w"><ruby>便<rt>びん</rt></ruby></span><span class="g">flight; mail service</span></li></ul></div>
+        <div class="kcard"><div class="khead"><span class="k">利</span><div class="kinfo"><div class="rdg">リ・き(く)</div><div class="mean">advantage, profit</div></div></div><ul class="kwords"><li><span class="w"><ruby>便利<rt>べんり</rt></ruby></span><span class="g">convenient</span><span class="tags"><span class="tg same">便</span></span></li><li><span class="w"><ruby>有利<rt>ゆうり</rt></ruby></span><span class="g">advantageous</span><span class="tags"><span class="tg same">有</span></span></li><li><span class="w"><ruby>利用<rt>りよう</rt></ruby></span><span class="g">use, utilize</span></li></ul></div>
+        <div class="kcard"><div class="khead"><span class="k">建</span><div class="kinfo"><div class="rdg">ケン・た(てる)</div><div class="mean">build</div></div></div><ul class="kwords"><li><span class="w"><ruby>建物<rt>たてもの</rt></ruby></span><span class="g">building</span></li><li><span class="w"><ruby>建<rt>た</rt></ruby>てる</span><span class="g">to build</span></li><li><span class="w"><ruby>建築<rt>けんちく</rt></ruby></span><span class="g">architecture</span></li></ul></div>
+        <div class="kcard"><div class="khead"><span class="k">近</span><div class="kinfo"><div class="rdg">キン・ちか(い)</div><div class="mean">near</div></div></div><ul class="kwords"><li><span class="w"><ruby>近所<rt>きんじょ</rt></ruby></span><span class="g">neighborhood</span><span class="tags"><span class="tg set">所<i>4</i></span></span></li><li><span class="w"><ruby>近<rt>ちか</rt></ruby>い</span><span class="g">near</span></li><li><span class="w"><ruby>最近<rt>さいきん</rt></ruby></span><span class="g">recently</span></li></ul></div>
+        <div class="kcard"><div class="khead"><span class="k">空</span><div class="kinfo"><div class="rdg">クウ・そら・あ(く)・から</div><div class="mean">sky; empty</div></div></div><ul class="kwords"><li><span class="w"><ruby>空室<rt>くうしつ</rt></ruby></span><span class="g">vacant room</span><span class="tags"><span class="tg same">室</span></span></li><li><span class="w"><ruby>空<rt>そら</rt></ruby></span><span class="g">sky</span></li><li><span class="w"><ruby>空港<rt>くうこう</rt></ruby></span><span class="g">airport</span></li></ul></div>
+        <div class="kcard"><div class="khead"><span class="k">室</span><div class="kinfo"><div class="rdg">シツ・むろ</div><div class="mean">room</div></div></div><ul class="kwords"><li><span class="w"><ruby>空室<rt>くうしつ</rt></ruby></span><span class="g">vacant room</span><span class="tags"><span class="tg same">空</span></span></li><li><span class="w"><ruby>教室<rt>きょうしつ</rt></ruby></span><span class="g">classroom</span><span class="tags"><span class="tg set">教<i>1</i></span></span></li><li><span class="w"><ruby>室内<rt>しつない</rt></ruby></span><span class="g">indoors</span><span class="tags"><span class="tg set">内<i>6</i></span></span></li></ul></div>
+        <div class="kcard"><div class="khead"><span class="k">和</span><div class="kinfo"><div class="rdg">ワ・やわ(らぐ)</div><div class="mean">harmony; Japanese-style</div></div></div><ul class="kwords"><li><span class="w"><ruby>和室<rt>わしつ</rt></ruby></span><span class="g">Japanese-style room</span><span class="tags"><span class="tg same">室</span></span></li><li><span class="w"><ruby>和服<rt>わふく</rt></ruby></span><span class="g">Japanese clothing</span><span class="tags"><span class="tg set">服<i>2</i></span></span></li><li><span class="w"><ruby>和食<rt>わしょく</rt></ruby></span><span class="g">Japanese food</span></li></ul></div>
+        <div class="kcard"><div class="khead"><span class="k">洋</span><div class="kinfo"><div class="rdg">ヨウ</div><div class="mean">ocean; Western-style</div></div></div><ul class="kwords"><li><span class="w"><ruby>洋室<rt>ようしつ</rt></ruby></span><span class="g">Western-style room</span><span class="tags"><span class="tg same">室</span></span></li><li><span class="w"><ruby>洋服<rt>ようふく</rt></ruby></span><span class="g">clothes</span><span class="tags"><span class="tg set">服<i>2</i></span></span></li><li><span class="w"><ruby>洋食<rt>ようしょく</rt></ruby></span><span class="g">Western food</span></li></ul></div>
+        <div class="kcard"><div class="khead"><span class="k">有</span><div class="kinfo"><div class="rdg">ユウ・ウ・あ(る)</div><div class="mean">exist, have</div></div></div><ul class="kwords"><li><span class="w"><ruby>有利<rt>ゆうり</rt></ruby></span><span class="g">advantageous</span><span class="tags"><span class="tg same">利</span></span></li><li><span class="w"><ruby>有名<rt>ゆうめい</rt></ruby></span><span class="g">famous</span></li><li><span class="w"><ruby>有無<rt>うむ</rt></ruby></span><span class="g">presence/absence</span><span class="tags"><span class="tg set">無<i>4</i></span></span></li></ul></div>
+      </div>
+    </div>
+    <div class="kgroup">
+      <div class="ghead"><span class="gtag read">読める言葉</span><span class="gen">Read these · 4</span></div>
+      <div class="vocab">
+        <div class="vchip">～<ruby>階<rt>かい</rt></ruby><span class="m">floor, story (counter)</span></div>
+        <div class="vchip"><ruby>家賃<rt>やちん</rt></ruby><span class="m">rent</span></div>
+        <div class="vchip"><ruby>保証人<rt>ほしょうにん</rt></ruby><span class="m">guarantor</span></div>
+        <div class="vchip"><ruby>引<rt>ひ</rt></ruby>っ<ruby>越<rt>こ</rt></ruby>し<span class="m">moving (house)</span></div>
+      </div>
+    </div>
+    <div class="kgroup">
+      <div class="ghead"><span class="gtag sight">見てわかる言葉</span><span class="gen">Recognize on sight · 3</span></div>
+      <div class="vocab">
+        <div class="vchip"><ruby>敷金<rt>しききん</rt></ruby><span class="m">security deposit</span></div>
+        <div class="vchip"><ruby>礼金<rt>れいきん</rt></ruby><span class="m">key money</span></div>
+        <div class="vchip"><ruby>収納<rt>しゅうのう</rt></ruby><span class="m">storage</span></div>
+      </div>
+    </div>
+  </section>
+
+  <footer>Compiled from the 漢字リスト · 漢字たまご 課1–8 · <a class="top-link" href="#top">↑ Back to top</a></footer>
+</div>
+<script>
+  (function(){
+    var btn=document.getElementById('furiToggle'),txt=document.getElementById('toggleText');
+    btn.addEventListener('click',function(){
+      var hidden=document.body.classList.toggle('hide-furigana');
+      btn.setAttribute('aria-pressed',String(!hidden));
+      txt.textContent=hidden?'Readings: Off':'Readings: On';
+    });
+  })();
+</script>
+</body>
+</html>
