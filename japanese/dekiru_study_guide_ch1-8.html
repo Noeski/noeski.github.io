@@ -1,0 +1,833 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>できる日本語 初中級 — Study Guide (Ch. 1–8)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Zen+Kaku+Gothic+New:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#faf8f1;
+    --grid:rgba(43,58,103,.055);
+    --ink:#1f2740;
+    --indigo:#2b3a67;
+    --shu:#c8462c;          /* hanko vermilion */
+    --shu-soft:#f4e3dc;
+    --muted:#6a7187;
+    --rule:#e4ddcb;
+    --card:#fffdf7;
+    --jp:"Zen Kaku Gothic New",-apple-system,"Hiragino Kaku Gothic ProN","Yu Gothic",sans-serif;
+    --disp:"Space Grotesk",var(--jp);
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0;
+    font-family:var(--jp);
+    color:var(--ink);
+    background-color:var(--bg);
+    background-image:
+      linear-gradient(var(--grid) 1px,transparent 1px),
+      linear-gradient(90deg,var(--grid) 1px,transparent 1px);
+    background-size:26px 26px;
+    line-height:1.75;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  /* ---- furigana ---- */
+  ruby rt{
+    font-size:.5em;
+    font-weight:500;
+    color:var(--indigo);
+    letter-spacing:.02em;
+    transition:opacity .25s ease;
+    user-select:none;
+  }
+  body.hide-furigana rt{opacity:0}
+
+  .wrap{max-width:780px;margin:0 auto;padding:0 22px}
+
+  /* ---- header ---- */
+  header.top{padding:56px 0 30px;border-bottom:2px solid var(--ink)}
+  .eyebrow{font-family:var(--disp);font-size:.72rem;letter-spacing:.32em;text-transform:uppercase;color:var(--shu);font-weight:600;margin:0 0 14px}
+  h1.title{font-family:var(--jp);font-weight:900;font-size:clamp(2.1rem,6vw,3.1rem);line-height:1.12;margin:0;letter-spacing:.01em}
+  h1.title .lvl{display:block;font-family:var(--disp);font-weight:500;font-size:clamp(.85rem,2.4vw,1.05rem);letter-spacing:.18em;color:var(--muted);margin-top:12px;text-transform:uppercase}
+  .lede{color:var(--muted);max-width:52ch;margin:18px 0 0;font-size:.98rem}
+
+  /* ---- furigana toggle ---- */
+  .controls{display:flex;align-items:center;gap:12px;margin-top:28px;flex-wrap:wrap}
+  .toggle{
+    appearance:none;border:1.5px solid var(--ink);background:var(--card);
+    font-family:var(--disp);font-weight:600;font-size:.8rem;letter-spacing:.06em;
+    color:var(--ink);padding:9px 16px 9px 14px;border-radius:2px;cursor:pointer;
+    display:inline-flex;align-items:center;gap:9px;transition:.18s ease;
+  }
+  .toggle:hover{background:var(--ink);color:var(--bg)}
+  .toggle:focus-visible{outline:3px solid var(--shu);outline-offset:2px}
+  .toggle .dot{width:9px;height:9px;border-radius:50%;background:var(--shu);box-shadow:0 0 0 0 var(--shu)}
+  body.hide-furigana .toggle .dot{background:var(--muted);opacity:.5}
+  .toggle-note{font-size:.78rem;color:var(--muted)}
+
+  /* ---- chapter index ---- */
+  nav.index{margin:30px 0 8px;display:flex;flex-wrap:wrap;gap:8px}
+  nav.index a{
+    font-family:var(--disp);font-weight:500;font-size:.82rem;text-decoration:none;
+    color:var(--indigo);border:1px solid var(--rule);background:var(--card);
+    padding:6px 11px;border-radius:2px;transition:.15s ease;display:inline-flex;gap:7px;align-items:baseline
+  }
+  nav.index a b{font-weight:700}
+  nav.index a:hover{border-color:var(--shu);color:var(--shu)}
+
+  /* ---- chapter ---- */
+  .chapter{padding:46px 0 8px;border-top:1px solid var(--rule)}
+  .chapter:first-of-type{border-top:none}
+  .ch-head{display:flex;gap:18px;align-items:flex-start}
+  .ch-num{font-family:var(--disp);font-weight:700;font-size:2.4rem;line-height:1;color:var(--shu);min-width:1.6em}
+  .ch-titles h2{margin:0;font-size:1.5rem;font-weight:700;line-height:1.25}
+  .ch-titles .en{color:var(--muted);font-family:var(--disp);font-weight:500;font-size:.92rem;letter-spacing:.04em;margin-top:3px}
+  .goal{margin:14px 0 0;padding:11px 15px;background:var(--shu-soft);border-left:3px solid var(--shu);font-size:.9rem;color:#7a3322;border-radius:0 3px 3px 0}
+
+  /* ---- ST ---- */
+  .st{margin-top:30px}
+  .st-label{display:flex;align-items:baseline;gap:10px;margin-bottom:4px}
+  .st-tag{font-family:var(--disp);font-weight:700;font-size:.72rem;letter-spacing:.12em;color:#fff;background:var(--indigo);padding:3px 8px;border-radius:2px}
+  .st-name{font-weight:700;font-size:1.05rem}
+  .st-name .en{color:var(--muted);font-weight:500;font-size:.85rem;margin-left:6px}
+
+  /* ---- grammar point ---- */
+  .point{background:var(--card);border:1px solid var(--rule);border-radius:4px;padding:18px 20px;margin-top:14px}
+  .pattern{font-size:1.18rem;font-weight:700;color:var(--shu);line-height:1.5}
+  .fn{margin:7px 0 0;font-size:.95rem}
+  .form{margin:9px 0 0;font-size:.86rem;color:var(--muted)}
+  .form .lbl{font-family:var(--disp);font-weight:600;font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--indigo);margin-right:8px}
+  .ex{margin-top:13px;padding-left:14px;border-left:2px solid var(--shu-soft)}
+  .ex + .ex{margin-top:9px}
+  .ex .jp{margin:0;font-size:1.04rem;font-weight:500}
+  .ex .en{margin:2px 0 0;font-size:.85rem;color:var(--muted);font-style:italic}
+
+  /* ---- honorific table ---- */
+  table.keigo{width:100%;border-collapse:collapse;margin-top:13px;font-size:.98rem}
+  table.keigo th{font-family:var(--disp);font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);text-align:left;font-weight:600;padding:0 10px 7px;border-bottom:1.5px solid var(--ink)}
+  table.keigo td{padding:8px 10px;border-bottom:1px solid var(--rule);vertical-align:top}
+  table.keigo td.h{color:var(--shu);font-weight:700}
+
+  /* ---- notes ---- */
+  .notes{margin:48px 0 0;padding:24px;background:var(--indigo);color:#eef1f8;border-radius:5px}
+  .notes h3{font-family:var(--disp);margin:0 0 4px;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:#c7d0ec;font-weight:600}
+  .notes ul{margin:10px 0 0;padding-left:18px}
+  .notes li{margin:9px 0;font-size:.92rem}
+  .notes rt{color:#aab6e0}
+  .notes b{color:#ffd9ce;font-weight:700}
+
+  /* ---- speaking practice ---- */
+  .practice .ch-num{font-size:1.7rem;padding-top:.15em}
+  .drill{background:var(--card);border:1px solid var(--rule);border-radius:4px;padding:18px 20px;margin-top:16px}
+  .drill .scene{display:flex;gap:10px;align-items:baseline;margin-bottom:11px;flex-wrap:wrap}
+  .drill .scene .n{font-family:var(--disp);font-weight:700;color:var(--shu);font-size:1.05rem}
+  .drill .scene .lbl{font-weight:700;font-size:1rem}
+  .drill .scene .where{font-family:var(--disp);font-size:.66rem;letter-spacing:.09em;text-transform:uppercase;color:#fff;background:var(--indigo);padding:3px 8px;border-radius:2px;margin-left:auto}
+  .drill .jp{font-size:1.08rem;line-height:2.15;margin:0}
+  .drill .jp b{color:var(--shu);font-weight:700}
+  .drill .en{margin:13px 0 0;padding-top:12px;border-top:1px dashed var(--rule);font-size:.85rem;color:var(--muted);font-style:italic;line-height:1.7}
+  .drill .forms{margin:13px 0 0;display:flex;flex-wrap:wrap;gap:6px}
+  .drill .forms span{font-size:.71rem;font-family:var(--disp);color:var(--indigo);background:var(--bg);border:1px solid var(--rule);padding:3px 7px;border-radius:2px;white-space:nowrap}
+  .drill .forms span i{color:var(--shu);font-weight:700;font-style:normal;margin-left:4px}
+
+  footer{padding:40px 0 60px;color:var(--muted);font-size:.8rem;text-align:center}
+  footer .top-link{font-family:var(--disp);color:var(--indigo);text-decoration:none;font-weight:600;letter-spacing:.04em}
+  footer .top-link:hover{color:var(--shu)}
+
+  @media (max-width:560px){
+    .ch-num{font-size:1.9rem}
+    .ch-head{gap:12px}
+    .pattern{font-size:1.06rem}
+  }
+  @media (prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto}
+    *{transition:none!important}
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <header class="top">
+    <p class="eyebrow">Grammar Reference · 学習項目</p>
+    <h1 class="title">
+      <ruby>出来<rt>でき</rt></ruby>る<ruby>日本語<rt>にほんご</rt></ruby>
+      <span class="lvl">Shochūkyū — Chapters 1 to 8</span>
+    </h1>
+    <p class="lede">Every grammar item from the syllabus, with what it does, how to build it, and a worked example. Tap the switch to hide the furigana and quiz yourself on the readings.</p>
+    <div class="controls">
+      <button class="toggle" id="furiToggle" aria-pressed="true">
+        <span class="dot" aria-hidden="true"></span><span id="toggleText">Furigana: On</span>
+      </button>
+      <span class="toggle-note">Hide the readings to test yourself.</span>
+    </div>
+    <nav class="index" aria-label="Chapters">
+      <a href="#ch1"><b>1</b> <ruby>新<rt>あたら</rt></ruby>しい<ruby>一歩<rt>いっぽ</rt></ruby></a>
+      <a href="#ch2"><b>2</b> <ruby>楽<rt>たの</rt></ruby>しいショッピング</a>
+      <a href="#ch3"><b>3</b> <ruby>私<rt>わたし</rt></ruby>の<ruby>目標<rt>もくひょう</rt></ruby></a>
+      <a href="#ch4"><b>4</b> <ruby>住<rt>す</rt></ruby>んでいる<ruby>町<rt>まち</rt></ruby></a>
+      <a href="#ch5"><b>5</b> <ruby>大変<rt>たいへん</rt></ruby>な<ruby>1日<rt>いちにち</rt></ruby></a>
+      <a href="#ch6"><b>6</b> <ruby>旅行<rt>りょこう</rt></ruby>に<ruby>行<rt>い</rt></ruby>こう</a>
+      <a href="#ch7"><b>7</b> <ruby>西川<rt>にしかわ</rt></ruby>さんの<ruby>家<rt>いえ</rt></ruby>へ</a>
+      <a href="#ch8"><b>8</b> ありがとう</a>
+      <a href="#practice" style="border-color:var(--shu);color:var(--shu)"><b>話</b> <ruby>練習<rt>れんしゅう</rt></ruby></a>
+    </nav>
+  </header>
+
+  <!-- ============ CHAPTER 1 ============ -->
+  <section class="chapter" id="ch1">
+    <div class="ch-head">
+      <div class="ch-num">1</div>
+      <div class="ch-titles">
+        <h2><ruby>新<rt>あたら</rt></ruby>しい<ruby>一歩<rt>いっぽ</rt></ruby></h2>
+        <div class="en">A New Step</div>
+      </div>
+    </div>
+    <p class="goal">Introduce yourself politely to someone you've just met and make a good impression when inquiring about things.</p>
+
+    <div class="st">
+      <div class="st-label"><span class="st-tag">ST 1</span><span class="st-name"><ruby>探<rt>さが</rt></ruby>す<span class="en">Looking for a part-time job</span></span></div>
+
+      <div class="point">
+        <div class="pattern">いらっしゃいます</div>
+        <p class="fn">Honorific verb covering いる / <ruby>行<rt>い</rt></ruby>く / <ruby>来<rt>く</rt></ruby>る — elevates the listener or a third party.</p>
+        <div class="ex"><p class="jp"><ruby>田中<rt>たなか</rt></ruby>さんは<ruby>今<rt>いま</rt></ruby>、<ruby>教室<rt>きょうしつ</rt></ruby>にいらっしゃいます。</p><p class="en">Mr. Tanaka is in the classroom right now.</p></div>
+      </div>
+
+      <div class="point">
+        <div class="pattern">N と<ruby>申<rt>もう</rt></ruby>します</div>
+        <p class="fn">Humble way to give your name (申す = humble 言う).</p>
+        <div class="ex"><p class="jp">マリアと<ruby>申<rt>もう</rt></ruby>します。よろしくお<ruby>願<rt>ねが</rt></ruby>いします。</p><p class="en">My name is Maria. Nice to meet you.</p></div>
+      </div>
+
+      <div class="point">
+        <div class="pattern">～ので、～</div>
+        <p class="fn">"Because / since" — softer and more objective than から; preferred in polite speech.</p>
+        <p class="form"><span class="lbl">Form</span>Plain form + ので (な-adj / N + な → <ruby>静<rt>しず</rt></ruby>かなので、<ruby>学生<rt>がくせい</rt></ruby>なので).</p>
+        <div class="ex"><p class="jp"><ruby>日本語<rt>にほんご</rt></ruby>が<ruby>話<rt>はな</rt></ruby>せるので、この<ruby>仕事<rt>しごと</rt></ruby>に<ruby>応募<rt>おうぼ</rt></ruby>しました。</p><p class="en">Since I can speak Japanese, I applied for this job.</p></div>
+      </div>
+
+      <div class="point">
+        <div class="pattern"><ruby>参<rt>まい</rt></ruby>りました</div>
+        <p class="fn">Humble past form of 行く / 来る — lowers yourself.</p>
+        <div class="ex"><p class="jp">アルバイトの<ruby>面接<rt>めんせつ</rt></ruby>に<ruby>参<rt>まい</rt></ruby>りました。</p><p class="en">I have come for the part-time job interview.</p></div>
+      </div>
+
+      <div class="point">
+        <div class="pattern"><ruby>可能動詞<rt>かのうどうし</rt></ruby> · Potential verbs</div>
+        <p class="fn">"Can do / be able to." The object often takes が instead of を.</p>
+        <p class="form"><span class="lbl">Form</span>Gr. 1: -u → -eru (<ruby>飲<rt>の</rt></ruby>む→<ruby>飲<rt>の</rt></ruby>める). Gr. 2: -る → -られる (<ruby>食<rt>た</rt></ruby>べる→<ruby>食<rt>た</rt></ruby>べられる). する→できる, <ruby>来<rt>く</rt></ruby>る→<ruby>来<rt>こ</rt></ruby>られる.</p>
+        <div class="ex"><p class="jp"><ruby>私<rt>わたし</rt></ruby>はひらがなが<ruby>読<rt>よ</rt></ruby>めます。</p><p class="en">I can read hiragana.</p></div>
+      </div>
+
+      <div class="point">
+        <div class="pattern">N なら〜</div>
+        <p class="fn">"If it's N / as for N…" — picks up a topic and gives relevant advice about it.</p>
+        <div class="ex"><p class="jp">アルバイトなら、コンビニが<ruby>楽<rt>らく</rt></ruby>ですよ。</p><p class="en">If you're after a part-time job, a convenience store is easy.</p></div>
+      </div>
+    </div>
+
+    <div class="st">
+      <div class="st-label"><span class="st-tag">ST 2</span><span class="st-name"><ruby>新<rt>あたら</rt></ruby>しい<ruby>友達<rt>ともだち</rt></ruby><span class="en">New friends</span></span></div>
+
+      <div class="point">
+        <div class="pattern">V るのが A</div>
+        <p class="fn">Nominalize a verb with の + が + adjective: "Doing V is A." Common with <ruby>好<rt>す</rt></ruby>き / <ruby>嫌<rt>きら</rt></ruby>い / <ruby>上手<rt>じょうず</rt></ruby>.</p>
+        <div class="ex"><p class="jp"><ruby>私<rt>わたし</rt></ruby>は<ruby>歌<rt>うた</rt></ruby>を<ruby>歌<rt>うた</rt></ruby>うのが<ruby>好<rt>す</rt></ruby>きです。</p><p class="en">I like singing.</p></div>
+      </div>
+
+      <div class="point">
+        <div class="pattern">V るのは A</div>
+        <p class="fn">Same nominalization but with は (topic / judgement): "Doing V is A."</p>
+        <div class="ex"><p class="jp"><ruby>毎日<rt>まいにち</rt></ruby><ruby>漢字<rt>かんじ</rt></ruby>を<ruby>勉強<rt>べんきょう</rt></ruby>するのは<ruby>大変<rt>たいへん</rt></ruby>です。</p><p class="en">Studying kanji every day is tough.</p></div>
+      </div>
+
+      <div class="point">
+        <div class="pattern">V るようになります <span style="color:var(--muted);font-size:.8rem">（<ruby>能力<rt>のうりょく</rt></ruby>の<ruby>変化<rt>へんか</rt></ruby>）</span></div>
+        <p class="fn">"Come to be able to V" — a change in ability over time.</p>
+        <p class="form"><span class="lbl">Form</span>Potential / plain form + ようになる.</p>
+        <div class="ex"><p class="jp"><ruby>練習<rt>れんしゅう</rt></ruby>して、<ruby>泳<rt>およ</rt></ruby>げるようになりました。</p><p class="en">I practiced and became able to swim.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CHAPTER 2 ============ -->
+  <section class="chapter" id="ch2">
+    <div class="ch-head">
+      <div class="ch-num">2</div>
+      <div class="ch-titles">
+        <h2><ruby>楽<rt>たの</rt></ruby>しいショッピング</h2>
+        <div class="en">Fun Shopping</div>
+      </div>
+    </div>
+    <p class="goal">Talk about products and menus with friends, and shop while chatting with the staff.</p>
+
+    <div class="st">
+      <div class="st-label"><span class="st-tag">ST 1</span><span class="st-name"><ruby>上手<rt>じょうず</rt></ruby>に<ruby>買<rt>か</rt></ruby>い<ruby>物<rt>もの</rt></ruby><span class="en">Shopping skillfully</span></span></div>
+
+      <div class="point">
+        <div class="pattern">A そうです <span style="color:var(--muted);font-size:.8rem">（<ruby>様態<rt>ようたい</rt></ruby>）</span></div>
+        <p class="fn">"Looks / seems A" based on appearance.</p>
+        <p class="form"><span class="lbl">Form</span>イA: drop い → そう (おいしい→おいしそう). ナA: + そう. Exceptions: いい→よさそう, ない→なさそう.</p>
+        <div class="ex"><p class="jp">このケーキ、おいしそうですね。</p><p class="en">This cake looks delicious.</p></div>
+      </div>
+
+      <div class="point">
+        <div class="pattern">V てみます</div>
+        <p class="fn">"Try doing V (and see what happens)."</p>
+        <div class="ex"><p class="jp">この<ruby>服<rt>ふく</rt></ruby>を<ruby>着<rt>き</rt></ruby>てみます。</p><p class="en">I'll try this on.</p></div>
+      </div>
+
+      <div class="point">
+        <div class="pattern">V てもらえませんか</div>
+        <p class="fn">Polite request: "Could you do V (for me)?"</p>
+        <div class="ex"><p class="jp">もう<ruby>少<rt>すこ</rt></ruby>し<ruby>安<rt>やす</rt></ruby>くしてもらえませんか。</p><p class="en">Could you make it a little cheaper?</p></div>
+      </div>
+
+      <div class="point">
+        <div class="pattern">V にくいです</div>
+        <p class="fn">"Hard / difficult to V."</p>
+        <p class="form"><span class="lbl">Form</span>masu-stem + にくい.</p>
+        <div class="ex"><p class="jp">この<ruby>靴<rt>くつ</rt></ruby>はちょっと<ruby>歩<rt>ある</rt></ruby>きにくいです。</p><p class="en">These shoes are a bit hard to walk in.</p></div>
+      </div>
+
+      <div class="point">
+        <div class="pattern">A すぎます</div>
+        <p class="fn">"Too A."</p>
+        <p class="form"><span class="lbl">Form</span>Drop final い / な, then + すぎる.</p>
+        <div class="ex"><p class="jp">これは<ruby>高<rt>たか</rt></ruby>すぎます。</p><p class="en">This is too expensive.</p></div>
+      </div>
+
+      <div class="point">
+        <div class="pattern">V やすいです</div>
+        <p class="fn">"Easy to V."</p>
+        <p class="form"><span class="lbl">Form</span>masu-stem + やすい.</p>
+        <div class="ex"><p class="jp">このペンは<ruby>書<rt>か</rt></ruby>きやすいです。</p><p class="en">This pen is easy to write with.</p></div>
+      </div>
+    </div>
+
+    <div class="st">
+      <div class="st-label"><span class="st-tag">ST 2</span><span class="st-name"><ruby>一緒<rt>いっしょ</rt></ruby>に<ruby>食事<rt>しょくじ</rt></ruby><span class="en">Eating together</span></span></div>
+
+      <div class="point">
+        <div class="pattern">V てあります</div>
+        <p class="fn">Result of an intentional action remains in place (transitive verb; を often → が).</p>
+        <div class="ex"><p class="jp"><ruby>予約<rt>よやく</rt></ruby>してありますから、<ruby>大丈夫<rt>だいじょうぶ</rt></ruby>です。</p><p class="en">I've made a reservation, so it's fine.</p></div>
+      </div>
+
+      <div class="point">
+        <div class="pattern">～と<ruby>読<rt>よ</rt></ruby>みます</div>
+        <p class="fn">"Is read as ~" — states a reading.</p>
+        <div class="ex"><p class="jp">この<ruby>漢字<rt>かんじ</rt></ruby>は「みず」と<ruby>読<rt>よ</rt></ruby>みます。</p><p class="en">This kanji is read "mizu."</p></div>
+      </div>
+
+      <div class="point">
+        <div class="pattern">～と<ruby>書<rt>か</rt></ruby>いてあります</div>
+        <p class="fn">"It says / it's written that ~."</p>
+        <div class="ex"><p class="jp">メニューに「<ruby>本日<rt>ほんじつ</rt></ruby>のおすすめ」と<ruby>書<rt>か</rt></ruby>いてあります。</p><p class="en">The menu says "Today's recommendation."</p></div>
+      </div>
+
+      <div class="point">
+        <div class="pattern">どういう<ruby>意味<rt>いみ</rt></ruby>ですか / ～という<ruby>意味<rt>いみ</rt></ruby>です</div>
+        <p class="fn">"What does ~ mean? / It means ~."</p>
+        <div class="ex"><p class="jp">「おすすめ」はどういう<ruby>意味<rt>いみ</rt></ruby>ですか。</p><p class="en">What does "osusume" mean?</p></div>
+        <div class="ex"><p class="jp"><ruby>店<rt>みせ</rt></ruby>が<ruby>一番<rt>いちばん</rt></ruby>すすめる<ruby>料理<rt>りょうり</rt></ruby>という<ruby>意味<rt>いみ</rt></ruby>です。</p><p class="en">It means the dish the restaurant recommends most.</p></div>
+      </div>
+
+      <div class="point">
+        <div class="pattern">N にします</div>
+        <p class="fn">"I'll have / I'll go with N" (deciding from options).</p>
+        <div class="ex"><p class="jp"><ruby>私<rt>わたし</rt></ruby>はコーヒーにします。</p><p class="en">I'll have coffee.</p></div>
+      </div>
+
+      <div class="point">
+        <div class="pattern">V すぎです / V すぎます</div>
+        <p class="fn">"Too much V-ing / overdoing it." すぎです comments on the state; すぎます is the action.</p>
+        <p class="form"><span class="lbl">Form</span>masu-stem + すぎ(る).</p>
+        <div class="ex"><p class="jp">ちょっと<ruby>食<rt>た</rt></ruby>べすぎました。</p><p class="en">I ate too much.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CHAPTER 3 ============ -->
+  <section class="chapter" id="ch3">
+    <div class="ch-head">
+      <div class="ch-num">3</div>
+      <div class="ch-titles">
+        <h2><ruby>私<rt>わたし</rt></ruby>の<ruby>目標<rt>もくひょう</rt></ruby></h2>
+        <div class="en">My Goals</div>
+      </div>
+    </div>
+    <p class="goal">Talk about your goals and plans, and ask others for advice about your path.</p>
+
+    <div class="st">
+      <div class="st-label"><span class="st-tag">ST 1</span><span class="st-name">これからの<ruby>計画<rt>けいかく</rt></ruby><span class="en">Plans from here on</span></span></div>
+
+      <div class="point">
+        <div class="pattern">V たら、～ <span style="color:var(--muted);font-size:.8rem">（<ruby>確定条件<rt>かくていじょうけん</rt></ruby>）</span></div>
+        <p class="fn">"When / after V" — a definite future event.</p>
+        <p class="form"><span class="lbl">Form</span>た-form + ら.</p>
+        <div class="ex"><p class="jp"><ruby>日本<rt>にほん</rt></ruby>に<ruby>着<rt>つ</rt></ruby>いたら、<ruby>電話<rt>でんわ</rt></ruby>します。</p><p class="en">When I arrive in Japan, I'll call.</p></div>
+      </div>
+
+      <div class="point">
+        <div class="pattern"><ruby>意向形<rt>いこうけい</rt></ruby> V（よ）うと<ruby>思<rt>おも</rt></ruby>っています</div>
+        <p class="fn">"I'm thinking of / intend to V."</p>
+        <p class="form"><span class="lbl">Form</span>Gr. 1: -u → -ou (<ruby>行<rt>い</rt></ruby>く→<ruby>行<rt>い</rt></ruby>こう). Gr. 2: -る → -よう. する→しよう, <ruby>来<rt>く</rt></ruby>る→<ruby>来<rt>こ</rt></ruby>よう.</p>
+        <div class="ex"><p class="jp"><ruby>来年<rt>らいねん</rt></ruby>、<ruby>留学<rt>りゅうがく</rt></ruby>しようと<ruby>思<rt>おも</rt></ruby>っています。</p><p class="en">I'm thinking of studying abroad next year.</p></div>
+      </div>
+
+      <div class="point">
+        <div class="pattern">V るつもりです / V ないつもりです</div>
+        <p class="fn">"Intend to / intend not to V" — a firmer plan than ～うと思う.</p>
+        <div class="ex"><p class="jp"><ruby>卒業後<rt>そつぎょうご</rt></ruby>は<ruby>国<rt>くに</rt></ruby>に<ruby>帰<rt>かえ</rt></ruby>るつもりです。</p><p class="en">I intend to return home after graduating.</p></div>
+      </div>
+
+      <div class="point">
+        <div class="pattern">〈<ruby>疑問詞<rt>ぎもんし</rt></ruby>〉か、～</div>
+        <p class="fn">Embedded question with a question word: "…what / where / when…"</p>
+        <div class="ex"><p class="jp"><ruby>何<rt>なに</rt></ruby>を<ruby>勉強<rt>べんきょう</rt></ruby>するか、まだ<ruby>決<rt>き</rt></ruby>めていません。</p><p class="en">I haven't decided what to study yet.</p></div>
+      </div>
+
+      <div class="point">
+        <div class="pattern">～かどうか、～</div>
+        <p class="fn">"Whether or not ~" (no question word).</p>
+        <div class="ex"><p class="jp"><ruby>留学<rt>りゅうがく</rt></ruby>するかどうか、<ruby>考<rt>かんが</rt></ruby>えています。</p><p class="en">I'm considering whether or not to study abroad.</p></div>
+      </div>
+    </div>
+
+    <div class="st">
+      <div class="st-label"><span class="st-tag">ST 2</span><span class="st-name"><ruby>夢<rt>ゆめ</rt></ruby>に<ruby>向<rt>む</rt></ruby>かって<span class="en">Toward your dream</span></span></div>
+
+      <div class="point">
+        <div class="pattern">V るために、～ / N のために、～ <span style="color:var(--muted);font-size:.8rem">（<ruby>目的<rt>もくてき</rt></ruby>）</span></div>
+        <p class="fn">"In order to V / for the sake of N" — usually same subject in both clauses.</p>
+        <div class="ex"><p class="jp"><ruby>医者<rt>いしゃ</rt></ruby>になるために、<ruby>勉強<rt>べんきょう</rt></ruby>しています。</p><p class="en">I'm studying in order to become a doctor.</p></div>
+      </div>
+
+      <div class="point">
+        <div class="pattern">～んです / ～んですか / 〈<ruby>疑問詞<rt>ぎもんし</rt></ruby>〉～んですか</div>
+        <p class="fn">Explanatory んです — gives reasons, asks for an explanation, shows interest.</p>
+        <p class="form"><span class="lbl">Form</span>Plain form + んです (な-adj / N + な → <ruby>学生<rt>がくせい</rt></ruby>なんです).</p>
+        <div class="ex"><p class="jp">どうして<ruby>日本<rt>にほん</rt></ruby>に<ruby>来<rt>き</rt></ruby>たんですか。</p><p class="en">Why did you come to Japan? (seeking the reason)</p></div>
+      </div>
+
+      <div class="point">
+        <div class="pattern">V なければなりません</div>
+        <p class="fn">"Must / have to V."</p>
+        <p class="form"><span class="lbl">Form</span>ない-form, drop い → ければなりません.</p>
+        <div class="ex"><p class="jp"><ruby>明日<rt>あした</rt></ruby>までに<ruby>宿題<rt>しゅくだい</rt></ruby>を<ruby>出<rt>だ</rt></ruby>さなければなりません。</p><p class="en">I have to hand in the homework by tomorrow.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CHAPTER 4 ============ -->
+  <section class="chapter" id="ch4">
+    <div class="ch-head">
+      <div class="ch-num">4</div>
+      <div class="ch-titles">
+        <h2><ruby>住<rt>す</rt></ruby>んでいる<ruby>町<rt>まち</rt></ruby>で</h2>
+        <div class="en">In the Town You Live</div>
+      </div>
+    </div>
+    <p class="goal">Exchange local information with others and act on it.</p>
+
+    <div class="st">
+      <div class="st-label"><span class="st-tag">ST 1</span><span class="st-name"><ruby>生活<rt>せいかつ</rt></ruby>を<ruby>楽<rt>たの</rt></ruby>しむ<span class="en">Enjoying daily life</span></span></div>
+
+      <div class="point">
+        <div class="pattern">～んですが、～</div>
+        <p class="fn">Soft preface: "The thing is ~, (so)…" — sets up a request or question gently.</p>
+        <div class="ex"><p class="jp">ちょっと<ruby>聞<rt>き</rt></ruby>きたいんですが、<ruby>駅<rt>えき</rt></ruby>はどこですか。</p><p class="en">I'd like to ask something — where's the station?</p></div>
+      </div>
+
+      <div class="point">
+        <div class="pattern">～なら、～</div>
+        <p class="fn">"If (it's about) ~ / if that's the case" — responds to a topic with advice.</p>
+        <div class="ex"><p class="jp">おいしいラーメンなら、<ruby>駅前<rt>えきまえ</rt></ruby>の<ruby>店<rt>みせ</rt></ruby>がいいですよ。</p><p class="en">For good ramen, the shop by the station is great.</p></div>
+      </div>
+
+      <div class="point">
+        <div class="pattern">V たらいいです</div>
+        <p class="fn">"It would be good to V / you should V" — advice.</p>
+        <p class="form"><span class="lbl">Form</span>た-form + らいい.</p>
+        <div class="ex"><p class="jp"><ruby>困<rt>こま</rt></ruby>ったら、<ruby>先生<rt>せんせい</rt></ruby>に<ruby>聞<rt>き</rt></ruby>いたらいいですよ。</p><p class="en">If you're stuck, you should ask the teacher.</p></div>
+      </div>
+
+      <div class="point">
+        <div class="pattern">V るといいです</div>
+        <p class="fn">"It would be good if / I hope V" — advice or a hopeful wish.</p>
+        <p class="form"><span class="lbl">Form</span>Plain form + といい.</p>
+        <div class="ex"><p class="jp"><ruby>早<rt>はや</rt></ruby>く<ruby>元気<rt>げんき</rt></ruby>になるといいですね。</p><p class="en">I hope you get well soon.</p></div>
+      </div>
+
+      <div class="point">
+        <div class="pattern">N までに～</div>
+        <p class="fn">"By N (a deadline)" — the point by which something must happen (vs. まで = "until").</p>
+        <div class="ex"><p class="jp"><ruby>5時<rt>ごじ</rt></ruby>までにここに<ruby>来<rt>き</rt></ruby>てください。</p><p class="en">Please come here by 5 o'clock.</p></div>
+      </div>
+    </div>
+
+    <div class="st">
+      <div class="st-label"><span class="st-tag">ST 2</span><span class="st-name"><ruby>行<rt>い</rt></ruby>き<ruby>方<rt>かた</rt></ruby>を<ruby>教<rt>おし</rt></ruby>える<span class="en">Giving directions</span></span></div>
+
+      <div class="point">
+        <div class="pattern">V ると、N があります</div>
+        <p class="fn">"When / if you V, there is N" — a natural consequence, ideal for directions.</p>
+        <div class="ex"><p class="jp">まっすぐ<ruby>行<rt>い</rt></ruby>くと、<ruby>右<rt>みぎ</rt></ruby>に<ruby>銀行<rt>ぎんこう</rt></ruby>があります。</p><p class="en">If you go straight, there's a bank on the right.</p></div>
+      </div>
+
+      <div class="point">
+        <div class="pattern">N じゃなくて、〜 / V るんじゃなくて、〜</div>
+        <p class="fn">"Not N but ~ / not V-ing but ~" — corrects or contrasts.</p>
+        <div class="ex"><p class="jp">そこを<ruby>右<rt>みぎ</rt></ruby>じゃなくて、<ruby>左<rt>ひだり</rt></ruby>に<ruby>曲<rt>ま</rt></ruby>がってください。</p><p class="en">Turn left there, not right.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CHAPTER 5 ============ -->
+  <section class="chapter" id="ch5">
+    <div class="ch-head">
+      <div class="ch-num">5</div>
+      <div class="ch-titles">
+        <h2><ruby>大変<rt>たいへん</rt></ruby>な<ruby>1日<rt>いちにち</rt></ruby></h2>
+        <div class="en">A Tough Day</div>
+      </div>
+    </div>
+    <p class="goal">Explain a sudden mishap simply and deal with it.</p>
+
+    <div class="st">
+      <div class="st-label"><span class="st-tag">ST 1</span><span class="st-name"><ruby>困<rt>こま</rt></ruby>ったな……<span class="en">Oh no…</span></span></div>
+
+      <div class="point">
+        <div class="pattern">V てしまいました <span style="color:var(--muted);font-size:.8rem">（<ruby>後悔<rt>こうかい</rt></ruby>）</span></div>
+        <p class="fn">"Ended up V-ing / unfortunately did" — regret or unintended result. Casual: ～ちゃいました.</p>
+        <div class="ex"><p class="jp"><ruby>電車<rt>でんしゃ</rt></ruby>に<ruby>財布<rt>さいふ</rt></ruby>を<ruby>忘<rt>わす</rt></ruby>れてしまいました。</p><p class="en">I went and left my wallet on the train.</p></div>
+      </div>
+
+      <div class="point">
+        <div class="pattern">～かもしれません</div>
+        <p class="fn">"Might / maybe."</p>
+        <p class="form"><span class="lbl">Form</span>Plain form + かもしれません.</p>
+        <div class="ex"><p class="jp"><ruby>午後<rt>ごご</rt></ruby>、<ruby>雨<rt>あめ</rt></ruby>が<ruby>降<rt>ふ</rt></ruby>るかもしれません。</p><p class="en">It might rain this afternoon.</p></div>
+      </div>
+
+      <div class="point">
+        <div class="pattern">V たあとで、～ / N のあとで、～</div>
+        <p class="fn">"After V-ing / after N."</p>
+        <p class="form"><span class="lbl">Form</span>た-form + あとで.</p>
+        <div class="ex"><p class="jp"><ruby>昼<rt>ひる</rt></ruby>ごはんを<ruby>食<rt>た</rt></ruby>べたあとで、<ruby>出<rt>で</rt></ruby>かけます。</p><p class="en">I'll go out after eating lunch.</p></div>
+      </div>
+    </div>
+
+    <div class="st">
+      <div class="st-label"><span class="st-tag">ST 2</span><span class="st-name"><ruby>駅<rt>えき</rt></ruby>で<span class="en">At the station</span></span></div>
+
+      <div class="point">
+        <div class="pattern">V ていただけませんか</div>
+        <p class="fn">Very polite request: "Could you please V for me?" (politer than ～てもらえませんか).</p>
+        <div class="ex"><p class="jp">すみません、<ruby>道<rt>みち</rt></ruby>を<ruby>教<rt>おし</rt></ruby>えていただけませんか。</p><p class="en">Excuse me, could you please tell me the way?</p></div>
+      </div>
+
+      <div class="point">
+        <div class="pattern">～て、～ <span style="color:var(--muted);font-size:.8rem">（<ruby>理由<rt>りゆう</rt></ruby>）</span></div>
+        <p class="fn">te-form giving a reason / cause (the result is often involuntary).</p>
+        <div class="ex"><p class="jp"><ruby>道<rt>みち</rt></ruby>が<ruby>分<rt>わ</rt></ruby>からなくて、<ruby>遅<rt>おく</rt></ruby>れました。</p><p class="en">I didn't know the way, so I was late.</p></div>
+      </div>
+
+      <div class="point">
+        <div class="pattern">V たら、～た <span style="color:var(--muted);font-size:.8rem">（<ruby>発見<rt>はっけん</rt></ruby>）</span></div>
+        <p class="fn">"When I V-ed, (I found that) ~" — a discovery; both clauses past.</p>
+        <div class="ex"><p class="jp"><ruby>家<rt>いえ</rt></ruby>に<ruby>帰<rt>かえ</rt></ruby>ったら、<ruby>誰<rt>だれ</rt></ruby>もいませんでした。</p><p class="en">When I got home, no one was there.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CHAPTER 6 ============ -->
+  <section class="chapter" id="ch6">
+    <div class="ch-head">
+      <div class="ch-num">6</div>
+      <div class="ch-titles">
+        <h2><ruby>旅行<rt>りょこう</rt></ruby>に<ruby>行<rt>い</rt></ruby>こう</h2>
+        <div class="en">Let's Go on a Trip</div>
+      </div>
+    </div>
+    <p class="goal">Gather information and consult others before a trip, and get ready.</p>
+
+    <div class="st">
+      <div class="st-label"><span class="st-tag">ST 1</span><span class="st-name"><ruby>旅行<rt>りょこう</rt></ruby>の<ruby>計画<rt>けいかく</rt></ruby><span class="en">Trip planning</span></span></div>
+
+      <div class="point">
+        <div class="pattern">V ましょうか</div>
+        <p class="fn">"Shall I / shall we V?" — offer help or propose doing together.</p>
+        <div class="ex"><p class="jp"><ruby>荷物<rt>にもつ</rt></ruby>を<ruby>持<rt>も</rt></ruby>ちましょうか。</p><p class="en">Shall I carry your bags?</p></div>
+      </div>
+
+      <div class="point">
+        <div class="pattern">～し、～ <span style="color:var(--muted);font-size:.8rem">（<ruby>並列<rt>へいれつ</rt></ruby>）</span></div>
+        <p class="fn">"And…" — lists qualities or facts in parallel.</p>
+        <p class="form"><span class="lbl">Form</span>Plain form + し.</p>
+        <div class="ex"><p class="jp">この<ruby>町<rt>まち</rt></ruby>は<ruby>静<rt>しず</rt></ruby>かだし、<ruby>自然<rt>しぜん</rt></ruby>も<ruby>多<rt>おお</rt></ruby>いです。</p><p class="en">This town is quiet, and has lots of nature too.</p></div>
+      </div>
+
+      <div class="point">
+        <div class="pattern">～のは～です <span style="color:var(--muted);font-size:.8rem">（<ruby>強調構文<rt>きょうちょうこうぶん</rt></ruby>）</span></div>
+        <p class="fn">Cleft / emphasis — pulls one element to the front: "The one who / what / where… is ~."</p>
+        <div class="ex"><p class="jp"><ruby>私<rt>わたし</rt></ruby>が<ruby>行<rt>い</rt></ruby>きたいのは<ruby>京都<rt>きょうと</rt></ruby>です。</p><p class="en">The place I want to go is Kyoto.</p></div>
+      </div>
+
+      <div class="point">
+        <div class="pattern">～し、～ <span style="color:var(--muted);font-size:.8rem">（<ruby>理由<rt>りゆう</rt></ruby>）</span></div>
+        <p class="fn">Lists multiple reasons: "It's ~, and ~, so…"</p>
+        <div class="ex"><p class="jp"><ruby>安<rt>やす</rt></ruby>いし、おいしいし、この<ruby>店<rt>みせ</rt></ruby>にしましょう。</p><p class="en">It's cheap and tasty, so let's go with this place.</p></div>
+      </div>
+    </div>
+
+    <div class="st">
+      <div class="st-label"><span class="st-tag">ST 2</span><span class="st-name"><ruby>旅行<rt>りょこう</rt></ruby>の<ruby>準備<rt>じゅんび</rt></ruby><span class="en">Trip preparation</span></span></div>
+
+      <div class="point">
+        <div class="pattern">～そうです <span style="color:var(--muted);font-size:.8rem">（<ruby>予測<rt>よそく</rt></ruby>）</span></div>
+        <p class="fn">The 様態 "looks like" form, applied to predicting what will happen.</p>
+        <div class="ex"><p class="jp"><ruby>空<rt>そら</rt></ruby>が<ruby>暗<rt>くら</rt></ruby>いですね。<ruby>雨<rt>あめ</rt></ruby>が<ruby>降<rt>ふ</rt></ruby>りそうです。</p><p class="en">The sky's dark. It looks like it'll rain.</p></div>
+      </div>
+
+      <div class="point">
+        <div class="pattern">V ておきます <span style="color:var(--muted);font-size:.8rem">（<ruby>準備<rt>じゅんび</rt></ruby>）</span></div>
+        <p class="fn">"Do V in advance / in preparation." Casual: ～ときます.</p>
+        <div class="ex"><p class="jp"><ruby>旅行<rt>りょこう</rt></ruby>の<ruby>前<rt>まえ</rt></ruby>にホテルを<ruby>予約<rt>よやく</rt></ruby>しておきます。</p><p class="en">I'll book a hotel before the trip.</p></div>
+      </div>
+
+      <div class="point">
+        <div class="pattern">V てあります <span style="color:var(--muted);font-size:.8rem">（<ruby>完了<rt>かんりょう</rt></ruby>）</span></div>
+        <p class="fn">"Has already been done" — emphasizes a completed, prepared state (cf. Ch. 2).</p>
+        <div class="ex"><p class="jp"><ruby>切符<rt>きっぷ</rt></ruby>はもう<ruby>買<rt>か</rt></ruby>ってあります。</p><p class="en">The tickets have already been bought.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CHAPTER 7 ============ -->
+  <section class="chapter" id="ch7">
+    <div class="ch-head">
+      <div class="ch-num">7</div>
+      <div class="ch-titles">
+        <h2><ruby>西川<rt>にしかわ</rt></ruby>さんの<ruby>家<rt>いえ</rt></ruby>へ</h2>
+        <div class="en">To the Nishikawas' House</div>
+      </div>
+    </div>
+    <p class="goal">Use the right level of politeness when visiting a Japanese home.</p>
+
+    <div class="st">
+      <div class="st-label"><span class="st-tag">ST 1</span><span class="st-name"><ruby>初<rt>はじ</rt></ruby>めての<ruby>訪問<rt>ほうもん</rt></ruby><span class="en">A first visit</span></span></div>
+
+      <div class="point">
+        <div class="pattern"><ruby>特別<rt>とくべつ</rt></ruby>な<ruby>尊敬語<rt>そんけいご</rt></ruby> · Special honorific verbs</div>
+        <p class="fn">Memorize these elevated forms of the <em>listener's</em> actions.</p>
+        <table class="keigo">
+          <thead><tr><th>Plain</th><th>Honorific</th></tr></thead>
+          <tbody>
+            <tr><td>いる・<ruby>行<rt>い</rt></ruby>く・<ruby>来<rt>く</rt></ruby>る</td><td class="h">いらっしゃる</td></tr>
+            <tr><td><ruby>食<rt>た</rt></ruby>べる・<ruby>飲<rt>の</rt></ruby>む</td><td class="h">めしあがる</td></tr>
+            <tr><td><ruby>言<rt>い</rt></ruby>う</td><td class="h">おっしゃる</td></tr>
+            <tr><td>する</td><td class="h">なさる</td></tr>
+            <tr><td><ruby>見<rt>み</rt></ruby>る</td><td class="h">ごらんになる</td></tr>
+            <tr><td>くれる</td><td class="h">くださる</td></tr>
+            <tr><td><ruby>知<rt>し</rt></ruby>っている</td><td class="h">ご<ruby>存<rt>ぞん</rt></ruby>じだ</td></tr>
+          </tbody>
+        </table>
+        <div class="ex"><p class="jp"><ruby>先生<rt>せんせい</rt></ruby>は<ruby>何時<rt>なんじ</rt></ruby>にいらっしゃいますか。</p><p class="en">What time will the teacher be coming?</p></div>
+      </div>
+
+      <div class="point">
+        <div class="pattern">お V になります</div>
+        <p class="fn">General honorific pattern that raises the subject.</p>
+        <p class="form"><span class="lbl">Form</span>お + masu-stem + になる.</p>
+        <div class="ex"><p class="jp"><ruby>社長<rt>しゃちょう</rt></ruby>はもうお<ruby>帰<rt>かえ</rt></ruby>りになりました。</p><p class="en">The president has already gone home.</p></div>
+      </div>
+
+      <div class="point">
+        <div class="pattern"><ruby>尊敬動詞<rt>そんけいどうし</rt></ruby> · Honorific verbs</div>
+        <p class="fn">The respectful-form pattern V られる can also express respect, used alongside the special verbs above.</p>
+        <div class="ex"><p class="jp"><ruby>先生<rt>せんせい</rt></ruby>が<ruby>来<rt>こ</rt></ruby>られます。</p><p class="en">The teacher is coming.</p></div>
+      </div>
+
+      <div class="point">
+        <div class="pattern">お V します / ご N します</div>
+        <p class="fn">Humble pattern — lowers your own action.</p>
+        <p class="form"><span class="lbl">Form</span>お + masu-stem + する (native verbs); ご + N + する (Sino-Japanese nouns).</p>
+        <div class="ex"><p class="jp"><ruby>荷物<rt>にもつ</rt></ruby>をお<ruby>持<rt>も</rt></ruby>ちします。</p><p class="en">I'll carry your luggage.</p></div>
+        <div class="ex"><p class="jp"><ruby>道<rt>みち</rt></ruby>をご<ruby>案内<rt>あんない</rt></ruby>します。</p><p class="en">I'll show you the way.</p></div>
+      </div>
+    </div>
+
+    <div class="st">
+      <div class="st-label"><span class="st-tag">ST 2</span><span class="st-name"><ruby>一緒<rt>いっしょ</rt></ruby>に<ruby>作<rt>つく</rt></ruby>りましょう<span class="en">Let's cook together</span></span></div>
+
+      <div class="point">
+        <div class="pattern">イA く V / ナA・N に V <span style="color:var(--muted);font-size:.8rem">（<ruby>形容詞<rt>けいようし</rt></ruby>の<ruby>副詞的<rt>ふくしてき</rt></ruby><ruby>用法<rt>ようほう</rt></ruby>）</span></div>
+        <p class="fn">Adjectives modifying verbs (adverbial use).</p>
+        <p class="form"><span class="lbl">Form</span>イA: い → く (<ruby>早<rt>はや</rt></ruby>く). ナA / N: + に (<ruby>静<rt>しず</rt></ruby>かに / <ruby>上手<rt>じょうず</rt></ruby>に).</p>
+        <div class="ex"><p class="jp"><ruby>野菜<rt>やさい</rt></ruby>を<ruby>小<rt>ちい</rt></ruby>さく<ruby>切<rt>き</rt></ruby>ってください。</p><p class="en">Please cut the vegetables small.</p></div>
+      </div>
+
+      <div class="point">
+        <div class="pattern">V ている<ruby>間<rt>あいだ</rt></ruby>に、～</div>
+        <p class="fn">"While V-ing" — something happens within that span.</p>
+        <div class="ex"><p class="jp"><ruby>母<rt>はは</rt></ruby>が<ruby>寝<rt>ね</rt></ruby>ている<ruby>間<rt>あいだ</rt></ruby>に、<ruby>料理<rt>りょうり</rt></ruby>を<ruby>作<rt>つく</rt></ruby>りました。</p><p class="en">While my mother was asleep, I made the food.</p></div>
+      </div>
+
+      <div class="point">
+        <div class="pattern">イA くします / ナA・N にします</div>
+        <p class="fn">"Make it A / change it into A" (causing a change).</p>
+        <p class="form"><span class="lbl">Form</span>イA: → くする. ナA / N: → にする.</p>
+        <div class="ex"><p class="jp"><ruby>音<rt>おと</rt></ruby>をもう<ruby>少<rt>すこ</rt></ruby>し<ruby>大<rt>おお</rt></ruby>きくしてください。</p><p class="en">Please make the volume a little louder.</p></div>
+        <div class="ex"><p class="jp"><ruby>部屋<rt>へや</rt></ruby>をきれいにしました。</p><p class="en">I made the room clean.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CHAPTER 8 ============ -->
+  <section class="chapter" id="ch8">
+    <div class="ch-head">
+      <div class="ch-num">8</div>
+      <div class="ch-titles">
+        <h2>ありがとう</h2>
+        <div class="en">Thank You</div>
+      </div>
+    </div>
+    <p class="goal">Express gratitude for things people have done for you.</p>
+
+    <div class="st">
+      <div class="st-label"><span class="st-tag">ST 1</span><span class="st-name">うれしい<ruby>出来事<rt>できごと</rt></ruby><span class="en">Happy events</span></span></div>
+      <p class="form" style="margin-top:10px"><span class="lbl">Key</span>The giving / receiving verbs — track the <b style="color:var(--shu)">direction</b> of the favor.</p>
+
+      <div class="point">
+        <div class="pattern">V てあげます</div>
+        <p class="fn">You / someone does a favor <em>outward</em> (for someone else). Can sound condescending toward superiors.</p>
+        <div class="ex"><p class="jp"><ruby>友達<rt>ともだち</rt></ruby>に<ruby>本<rt>ほん</rt></ruby>を<ruby>貸<rt>か</rt></ruby>してあげました。</p><p class="en">I lent my friend a book (as a favor).</p></div>
+      </div>
+
+      <div class="point">
+        <div class="pattern">V てもらいます</div>
+        <p class="fn">You <em>receive</em> a favor; the doer is marked with に. Focus on the receiver.</p>
+        <div class="ex"><p class="jp"><ruby>友達<rt>ともだち</rt></ruby>に<ruby>宿題<rt>しゅくだい</rt></ruby>を<ruby>手伝<rt>てつだ</rt></ruby>ってもらいました。</p><p class="en">I had my friend help me with homework.</p></div>
+      </div>
+
+      <div class="point">
+        <div class="pattern">V てくれます</div>
+        <p class="fn">Someone does a favor <em>inward</em> (for you / your in-group); the doer is marked with が.</p>
+        <div class="ex"><p class="jp"><ruby>友達<rt>ともだち</rt></ruby>が<ruby>宿題<rt>しゅくだい</rt></ruby>を<ruby>手伝<rt>てつだ</rt></ruby>ってくれました。</p><p class="en">My friend helped me with homework.</p></div>
+      </div>
+    </div>
+
+    <div class="st">
+      <div class="st-label"><span class="st-tag">ST 2</span><span class="st-name">お<ruby>世話<rt>せわ</rt></ruby>になりました<span class="en">Thanks for your help</span></span></div>
+      <p class="form" style="margin-top:10px"><span class="lbl">Key</span>The polite (keigo) versions of the above, for superiors.</p>
+
+      <div class="point">
+        <div class="pattern">いただきます</div>
+        <p class="fn">Humble form of もらう (to receive).</p>
+        <div class="ex"><p class="jp"><ruby>先生<rt>せんせい</rt></ruby>にプレゼントをいただきました。</p><p class="en">I received a present from my teacher.</p></div>
+      </div>
+
+      <div class="point">
+        <div class="pattern">くださいます</div>
+        <p class="fn">Honorific form of くれる (someone gives to me).</p>
+        <div class="ex"><p class="jp"><ruby>先生<rt>せんせい</rt></ruby>がプレゼントをくださいました。</p><p class="en">My teacher gave me a present.</p></div>
+      </div>
+
+      <div class="point">
+        <div class="pattern">V ていただきます</div>
+        <p class="fn">Humble "have a superior do V for me" (polite ～てもらう). Doer marked with に.</p>
+        <div class="ex"><p class="jp"><ruby>先生<rt>せんせい</rt></ruby>に<ruby>日本語<rt>にほんご</rt></ruby>を<ruby>教<rt>おし</rt></ruby>えていただきました。</p><p class="en">I had my teacher teach me Japanese.</p></div>
+      </div>
+
+      <div class="point">
+        <div class="pattern">V てくださいます</div>
+        <p class="fn">Honorific "a superior does V for me" (polite ～てくれる). Doer marked with が.</p>
+        <div class="ex"><p class="jp"><ruby>先生<rt>せんせい</rt></ruby>が<ruby>日本語<rt>にほんご</rt></ruby>を<ruby>教<rt>おし</rt></ruby>えてくださいました。</p><p class="en">My teacher taught me Japanese.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SPEAKING PRACTICE ============ -->
+  <section class="chapter practice" id="practice">
+    <div class="ch-head">
+      <div class="ch-num">話</div>
+      <div class="ch-titles">
+        <h2>スピーキング<ruby>練習<rt>れんしゅう</rt></ruby></h2>
+        <div class="en">Speaking Practice · 1–2 min recommendations</div>
+      </div>
+    </div>
+    <p class="goal">Five casual, keigo-free monologues that each recommend a place or area. Aim for a smooth 90 seconds, then read them again with the furigana toggled off. Bold = a Ch. 1–8 form in action.</p>
+
+    <div class="drill">
+      <div class="scene"><span class="n">1</span><span class="lbl">Recommending a day trip to a friend</span><span class="where">Kamakura</span></div>
+      <p class="jp"><ruby>週末<rt>しゅうまつ</rt></ruby>、どこかに<ruby>行<rt>い</rt></ruby>きたい<b>なら</b>、<ruby>鎌倉<rt>かまくら</rt></ruby>がおすすめだよ。<ruby>東京<rt>とうきょう</rt></ruby>から<ruby>電車<rt>でんしゃ</rt></ruby>で<ruby>一時間<rt>いちじかん</rt></ruby>ぐらいで<b><ruby>行<rt>い</rt></ruby>けるし</b>、<ruby>海<rt>うみ</rt></ruby>も<ruby>山<rt>やま</rt></ruby>もある<b>し</b>、<ruby>一日<rt>いちにち</rt></ruby>で<ruby>楽<rt>たの</rt></ruby>しめる<b>んだ</b>。<ruby>駅<rt>えき</rt></ruby>を<ruby>出<rt>で</rt></ruby>て、まっすぐ<b><ruby>歩<rt>ある</rt></ruby>くと</b>、<ruby>大<rt>おお</rt></ruby>きいお<ruby>寺<rt>てら</rt></ruby>が<b>あるよ</b>。お<ruby>寺<rt>てら</rt></ruby>を<b><ruby>見<rt>み</rt></ruby>るのが</b><ruby>好<rt>す</rt></ruby>きなら、<ruby>絶対<rt>ぜったい</rt></ruby>に<b><ruby>行<rt>い</rt></ruby>ったらいいよ</b>。<ruby>有名<rt>ゆうめい</rt></ruby>な<ruby>大仏<rt>だいぶつ</rt></ruby>も<b><ruby>見<rt>み</rt></ruby>られる</b>んだ。<ruby>坂<rt>さか</rt></ruby>が<ruby>多<rt>おお</rt></ruby>く<b>て</b>、ヒールだと<b><ruby>歩<rt>ある</rt></ruby>きにくい</b>から、<b><ruby>歩<rt>ある</rt></ruby>きやすい</b><ruby>靴<rt>くつ</rt></ruby>で<ruby>行<rt>い</rt></ruby>ったらいいよ。お<ruby>昼<rt>ひる</rt></ruby>は、しらす<ruby>丼<rt>どん</rt></ruby>を<b><ruby>食<rt>た</rt></ruby>べてみて</b>。すごくおいしいよ。<ruby>週末<rt>しゅうまつ</rt></ruby>はすごく<ruby>込<rt>こ</rt></ruby>むから、<ruby>朝<rt>あさ</rt></ruby><ruby>早<rt>はや</rt></ruby>く<ruby>行<rt>い</rt></ruby>ったらいいと<ruby>思<rt>おも</rt></ruby>う。<ruby>人<rt>ひと</rt></ruby>が<b><ruby>多<rt>おお</rt></ruby>すぎて</b>、<ruby>午後<rt>ごご</rt></ruby>は<ruby>疲<rt>つか</rt></ruby>れる<b>かもしれない</b>。<ruby>今度<rt>こんど</rt></ruby>の<ruby>日曜日<rt>にちようび</rt></ruby>、<ruby>一緒<rt>いっしょ</rt></ruby>に<b><ruby>行<rt>い</rt></ruby>きましょうか</b>。</p>
+      <p class="en">If you want to go somewhere this weekend, I recommend Kamakura. You can get there from Tokyo in about an hour by train, it has both sea and mountains, and you can enjoy it in a single day. Come out of the station, go straight, and there's a big temple. If you like looking at temples, you should definitely go. You can also see the famous Great Buddha. There are a lot of slopes and heels are hard to walk in, so go in easy-to-walk-in shoes. For lunch, try the shirasu rice bowl — it's really good. It gets really crowded on weekends, so it's best to go early. There are too many people, so you might get tired in the afternoon. Shall we go together next Sunday?</p>
+      <div class="forms"><span>Nなら<i>1</i></span><span>可能動詞<i>1</i></span><span>VるのがＡ<i>1</i></span><span>～し、～<i>6</i></span><span>～んです<i>3</i></span><span>Vると、Nがあります<i>4</i></span><span>Vたらいいです<i>4</i></span><span>Vにくい／やすい<i>2</i></span><span>～て（理由）<i>5</i></span><span>Vてみます<i>2</i></span><span>Ａすぎます<i>2</i></span><span>～かもしれません<i>5</i></span><span>Vましょうか<i>6</i></span></div>
+    </div>
+
+    <div class="drill">
+      <div class="scene"><span class="n">2</span><span class="lbl">Recommending where to travel back home</span><span class="where">USA · Arizona / NY</span></div>
+      <p class="jp">アメリカに<ruby>旅行<rt>りょこう</rt></ruby>する<b>なら</b>、<ruby>行<rt>い</rt></ruby>きたい<ruby>場所<rt>ばしょ</rt></ruby>で<ruby>全然<rt>ぜんぜん</rt></ruby><ruby>違<rt>ちが</rt></ruby>うよ。<ruby>自然<rt>しぜん</rt></ruby>が<b><ruby>好<rt>す</rt></ruby>きなら</b>、アリゾナがおすすめ。グランドキャニオンは<ruby>本当<rt>ほんとう</rt></ruby>に<ruby>大<rt>おお</rt></ruby>きく<b>て</b>、<ruby>写真<rt>しゃしん</rt></ruby>で<ruby>見<rt>み</rt></ruby>るより、ずっとすごい<b>んだ</b>。<ruby>夏<rt>なつ</rt></ruby>は<b><ruby>暑<rt>あつ</rt></ruby>すぎる</b>から、<ruby>春<rt>はる</rt></ruby>か<ruby>秋<rt>あき</rt></ruby>に<b><ruby>行<rt>い</rt></ruby>ったらいいよ</b>。<ruby>車<rt>くるま</rt></ruby>がないと<b><ruby>回<rt>まわ</rt></ruby>りにくい</b>から、レンタカーを<b><ruby>予約<rt>よやく</rt></ruby>しておくといい</b>。でも、にぎやかな<ruby>町<rt>まち</rt></ruby>が<ruby>好<rt>す</rt></ruby>きなら、ニューヨークのほうが<b><ruby>楽<rt>たの</rt></ruby>しめる</b>と<ruby>思<rt>おも</rt></ruby>う。<ruby>電車<rt>でんしゃ</rt></ruby>であちこち<b><ruby>行<rt>い</rt></ruby>けるし</b>、<ruby>美術館<rt>びじゅつかん</rt></ruby>もたくさんある<b>し</b>。<ruby>僕<rt>ぼく</rt></ruby>が<b><ruby>一番<rt>いちばん</rt></ruby><ruby>好<rt>す</rt></ruby>きなのは</b>、セントラルパークを<ruby>散歩<rt>さんぽ</rt></ruby>すること<b>なんだ</b>。<ruby>今度<rt>こんど</rt></ruby>アメリカに<b><ruby>来<rt>き</rt></ruby>たら</b>、<ruby>案内<rt>あんない</rt></ruby>するよ。</p>
+      <p class="en">If you're traveling to America, it's totally different depending on where you want to go. If you like nature, I recommend Arizona. The Grand Canyon is really huge — way more amazing than seeing it in photos. Summer is too hot, so it's best to go in spring or fall. It's hard to get around without a car, so it's good to book a rental car in advance. But if you like a lively city, I think you'd enjoy New York more. You can get everywhere by train, and there are tons of museums. What I like best is taking a walk in Central Park. Next time you come to America, I'll show you around.</p>
+      <div class="forms"><span>Nなら<i>1</i></span><span>VるのがＡ（好き）<i>1</i></span><span>～て（理由）<i>5</i></span><span>～んです<i>3</i></span><span>Ａすぎます<i>2</i></span><span>Vたらいいです<i>4</i></span><span>Vにくい<i>2</i></span><span>Vておきます<i>6</i></span><span>Vるといいです<i>4</i></span><span>可能動詞<i>1</i></span><span>～し、～<i>6</i></span><span>～のは～です<i>6</i></span><span>Vたら（確定条件）<i>3</i></span></div>
+    </div>
+
+    <div class="drill">
+      <div class="scene"><span class="n">3</span><span class="lbl">Talking up a new spot to a friend</span><span class="where">A café</span></div>
+      <p class="jp"><ruby>駅<rt>えき</rt></ruby>の<ruby>近<rt>ちか</rt></ruby>くに、<ruby>新<rt>あたら</rt></ruby>しいカフェができた<b>んだ</b>けど、もう<ruby>行<rt>い</rt></ruby>った？すごく<ruby>静<rt>しず</rt></ruby>かで、<b><ruby>勉強<rt>べんきょう</rt></ruby>しやすい</b>んだ。コーヒーも<b><ruby>飲<rt>の</rt></ruby>みやすいし</b>、ケーキも<b>おいしそう</b>だったから、<ruby>今度<rt>こんど</rt></ruby><b><ruby>食<rt>た</rt></ruby>べてみようと<ruby>思<rt>おも</rt></ruby>ってる</b>。<ruby>窓側<rt>まどがわ</rt></ruby>の<ruby>席<rt>せき</rt></ruby>に<b><ruby>座<rt>すわ</rt></ruby>ると</b>、きれいな<ruby>公園<rt>こうえん</rt></ruby>が<b><ruby>見<rt>み</rt></ruby>えるよ</b>。お<ruby>昼<rt>ひる</rt></ruby>は<ruby>混<rt>こ</rt></ruby>む<b>かもしれない</b>から、<ruby>早<rt>はや</rt></ruby>めに<b><ruby>行<rt>い</rt></ruby>ったらいい</b>。Wi-Fiもある<b>し</b>、<ruby>電源<rt>でんげん</rt></ruby>も<b><ruby>使<rt>つか</rt></ruby>えるから</b>、<ruby>仕事<rt>しごと</rt></ruby>もできるよ。<ruby>週末<rt>しゅうまつ</rt></ruby>、<ruby>一緒<rt>いっしょ</rt></ruby>に<b><ruby>行<rt>い</rt></ruby>ってみない</b>？<ruby>席<rt>せき</rt></ruby>を<b><ruby>取<rt>と</rt></ruby>っておくよ</b>。</p>
+      <p class="en">A new café opened near the station — have you been yet? It's really quiet and easy to study in. The coffee is easy to drink, and the cake looked delicious, so I'm thinking of trying it next time. If you sit at a window seat, you can see a pretty park. It might get crowded at lunch, so it's best to go early. There's Wi-Fi and you can use the power outlets too, so you can work there. Want to go together this weekend? I'll grab us a table.</p>
+      <div class="forms"><span>～んです<i>3</i></span><span>Vやすい<i>2</i></span><span>～し、～<i>6</i></span><span>Ａそうです（様態）<i>2</i></span><span>Vてみます＋意向形<i>2·3</i></span><span>Vると、～が見えます<i>4</i></span><span>～かもしれません<i>5</i></span><span>Vたらいいです<i>4</i></span><span>可能動詞<i>1</i></span><span>Vておきます<i>6</i></span></div>
+    </div>
+
+    <div class="drill">
+      <div class="scene"><span class="n">4</span><span class="lbl">Selling someone on your neighborhood</span><span class="where">Your hometown</span></div>
+      <p class="jp"><ruby>僕<rt>ぼく</rt></ruby>が<ruby>住<rt>す</rt></ruby>んでいる<ruby>町<rt>まち</rt></ruby>、すごく<b><ruby>住<rt>す</rt></ruby>みやすい</b>から、<ruby>引<rt>ひ</rt></ruby>っ<ruby>越<rt>こ</rt></ruby>す<b>なら</b>、この<ruby>辺<rt>へん</rt></ruby>がおすすめだよ。<ruby>駅<rt>えき</rt></ruby>から<ruby>歩<rt>ある</rt></ruby>いて<ruby>五分<rt>ごふん</rt></ruby>ぐらいだ<b>し</b>、スーパーもコンビニも<ruby>近<rt>ちか</rt></ruby>い<b>し</b>、<ruby>生活<rt>せいかつ</rt></ruby>がすごく<ruby>便利<rt>べんり</rt></ruby><b>なんだ</b>。<ruby>駅<rt>えき</rt></ruby>を<ruby>出<rt>で</rt></ruby>て、<b><ruby>右<rt>みぎ</rt></ruby>じゃなくて</b>、<ruby>左<rt>ひだり</rt></ruby>に<b><ruby>行<rt>い</rt></ruby>くと</b>、<ruby>大<rt>おお</rt></ruby>きい<ruby>公園<rt>こうえん</rt></ruby>が<b>あるよ</b>。<ruby>朝<rt>あさ</rt></ruby>、そこで<b><ruby>走<rt>はし</rt></ruby>れるようになって</b>から、<ruby>前<rt>まえ</rt></ruby>より<ruby>元気<rt>げんき</rt></ruby>になった<b>んだ</b>。<ruby>家賃<rt>やちん</rt></ruby>はちょっと<b><ruby>高<rt>たか</rt></ruby>すぎる</b><b>かもしれない</b>けど、<b><ruby>住<rt>す</rt></ruby>んでみると</b>、<ruby>本当<rt>ほんとう</rt></ruby>にいい<ruby>町<rt>まち</rt></ruby>だよ。<ruby>今度<rt>こんど</rt></ruby>、<ruby>部屋<rt>へや</rt></ruby>を<ruby>探<rt>さが</rt></ruby>すなら、<ruby>一緒<rt>いっしょ</rt></ruby>に<ruby>見<rt>み</rt></ruby>に<b><ruby>行<rt>い</rt></ruby>こう</b>。</p>
+      <p class="en">The town I live in is really easy to live in, so if you're moving, I recommend this area. It's about a five-minute walk from the station, the supermarket and convenience store are both close, and daily life is super convenient. Come out of the station, go left — not right — and there's a big park. Ever since I became able to run there in the mornings, I've gotten healthier than before. The rent might be a little too high, but once you live here, it's a really nice town. Next time you're looking for a place, let's go see some together.</p>
+      <div class="forms"><span>Vやすい<i>2</i></span><span>Nなら<i>1·4</i></span><span>～し、～<i>6</i></span><span>～んです<i>3</i></span><span>Nじゃなくて、〜<i>4</i></span><span>Vると、Nがあります<i>4</i></span><span>Vるようになります<i>1</i></span><span>Ａすぎます<i>2</i></span><span>～かもしれません<i>5</i></span><span>Vてみます<i>2</i></span><span>意向形<i>3</i></span></div>
+    </div>
+
+    <div class="drill">
+      <div class="scene"><span class="n">5</span><span class="lbl">Pointing a friend to a lively street</span><span class="where">A shopping street</span></div>
+      <p class="jp"><ruby>買<rt>か</rt></ruby>い<ruby>物<rt>もの</rt></ruby>する<b>なら</b>、うちの<ruby>近<rt>ちか</rt></ruby>くの<ruby>商店街<rt>しょうてんがい</rt></ruby>が<ruby>楽<rt>たの</rt></ruby>しいよ。<ruby>古<rt>ふる</rt></ruby>い<ruby>店<rt>みせ</rt></ruby>が<ruby>多<rt>おお</rt></ruby>く<b>て</b>、<ruby>歩<rt>ある</rt></ruby>いているだけでも<ruby>楽<rt>たの</rt></ruby>しい<b>んだ</b>。<ruby>安<rt>やす</rt></ruby>い<b>し</b>、<ruby>店<rt>みせ</rt></ruby>の<ruby>人<rt>ひと</rt></ruby>も<ruby>親切<rt>しんせつ</rt></ruby>だ<b>し</b>、いつ<ruby>行<rt>い</rt></ruby>っても<ruby>気持<rt>きも</rt></ruby>ちがいい。<ruby>八百屋<rt>やおや</rt></ruby>のおじさんに「これ、<b>どういう<ruby>意味<rt>いみ</rt></ruby>？</b>」って<b><ruby>聞<rt>き</rt></ruby>いたら</b>、いろいろ<b><ruby>教<rt>おし</rt></ruby>えてくれるよ</b>。<ruby>週末<rt>しゅうまつ</rt></ruby>は、お<ruby>祭<rt>まつ</rt></ruby>りがある<b>かもしれない</b>から、<ruby>行<rt>い</rt></ruby>く<ruby>前<rt>まえ</rt></ruby>に<b><ruby>調<rt>しら</rt></ruby>べておいたらいい</b>。<b><ruby>一番<rt>いちばん</rt></ruby>おすすめなのは</b>、<ruby>角<rt>かど</rt></ruby>のたい<ruby>焼<rt>や</rt></ruby>き<ruby>屋<rt>や</rt></ruby>さん<b>なんだ</b>。いつも<ruby>行列<rt>ぎょうれつ</rt></ruby>ができてるけど、<ruby>待<rt>ま</rt></ruby>つ<ruby>価値<rt>かち</rt></ruby>があるよ。<ruby>今度<rt>こんど</rt></ruby>の<ruby>土曜日<rt>どようび</rt></ruby>、<ruby>買<rt>か</rt></ruby>い<ruby>物<rt>もの</rt></ruby>に<b><ruby>行<rt>い</rt></ruby>かない</b>？</p>
+      <p class="en">If you're going shopping, the shopping street near my place is fun. There are lots of old shops, and just walking around is enjoyable. It's cheap, the shopkeepers are kind, and it feels good no matter when you go. If you ask the old guy at the greengrocer "what does this mean?", he'll teach you all sorts of things. There might be a festival on the weekend, so it's good to look it up before you go. What I recommend most is the taiyaki shop on the corner. There's always a line, but it's worth the wait. Want to go shopping this Saturday?</p>
+      <div class="forms"><span>Nなら<i>1</i></span><span>～て（理由）<i>5</i></span><span>～んです<i>3</i></span><span>～し、～<i>6</i></span><span>どういう意味ですか<i>2</i></span><span>Vたら（確定条件）<i>3</i></span><span>Vてくれます<i>8</i></span><span>～かもしれません<i>5</i></span><span>Vておきます＋Vたらいいです<i>6·4</i></span><span>～のは～です<i>6</i></span><span>Vない？（誘い）<i>—</i></span></div>
+    </div>
+  </section>
+
+  <!-- ============ NOTES ============ -->
+  <div class="notes">
+    <h3>Watch these crossovers</h3>
+    <ul>
+      <li><b>～たら</b> shows up three ways: definite future "when" (Ch. 3), discovery "when…(found)" (Ch. 5), and inside advice <ruby>～<rt> </rt></ruby>たらいい (Ch. 4). Same form, different jobs.</li>
+      <li><b>～そうです（<ruby>様態<rt>ようたい</rt></ruby>・<ruby>予測<rt>よそく</rt></ruby>）</b> (Ch. 2, Ch. 6) = <em>looks like</em>, from appearance. Don't confuse it with the hearsay ～そうです ("I heard that…") that attaches to the plain form and comes later.</li>
+      <li><b>～てあります</b> appears in both Ch. 2 and Ch. 6 — an intentional result that remains, and "already prepared."</li>
+      <li><b><ruby>授受<rt>じゅじゅ</rt></ruby> (giving / receiving)</b> in Ch. 8 is the heavy one: drill the plain trio (あげる / もらう / くれる) until the direction is automatic, <em>then</em> layer the keigo trio on top.</li>
+    </ul>
+  </div>
+
+  <footer>
+    Built from the 学習項目 column · できる日本語 初中級 本冊 · <a class="top-link" href="#top">↑ Back to top</a>
+  </footer>
+</div>
+
+<script>
+  (function(){
+    var btn=document.getElementById('furiToggle');
+    var txt=document.getElementById('toggleText');
+    btn.addEventListener('click',function(){
+      var hidden=document.body.classList.toggle('hide-furigana');
+      btn.setAttribute('aria-pressed',String(!hidden));
+      txt.textContent=hidden?'Furigana: Off':'Furigana: On';
+    });
+  })();
+</script>
+</body>
+</html>
