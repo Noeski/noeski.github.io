@@ -1,0 +1,4954 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>できる日本語 初中級 — チャレンジ スクリプト集 (第9課〜第15課)</title>
+<style>
+  :root {
+    --bg: #ffffff;
+    --surface: #fafafa;
+    --surface-2: #f5f5f5;
+    --text: #1a1a1a;
+    --text-soft: #444;
+    --text-muted: #767676;
+    --accent: #b8392e;
+    --rule: #e5e5e5;
+    --rule-soft: #f0f0f0;
+    --kana-color: #555;
+    --en-color: #3a3a3a;
+    --font-base: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", "Hiragino Sans", "Yu Gothic", "Meiryo", sans-serif;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-base);
+    line-height: 1.65;
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+    font-size: 16px;
+  }
+
+  .chapter-nav {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: rgba(255, 255, 255, 0.96);
+    backdrop-filter: saturate(180%) blur(10px);
+    -webkit-backdrop-filter: saturate(180%) blur(10px);
+    border-bottom: 1px solid var(--rule);
+  }
+  .chapter-nav-inner {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 14px 20px;
+    display: flex;
+    gap: 8px;
+    overflow-x: auto;
+    scrollbar-width: thin;
+    scrollbar-color: var(--rule) transparent;
+  }
+  .chapter-nav-inner::-webkit-scrollbar { height: 6px; }
+  .chapter-nav-inner::-webkit-scrollbar-thumb { background: var(--rule); border-radius: 3px; }
+  .chapter-nav-inner::-webkit-scrollbar-track { background: transparent; }
+
+  .ch-btn {
+    flex: 0 0 auto;
+    display: inline-flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1px;
+    padding: 8px 14px;
+    background: transparent;
+    border: 1px solid var(--rule);
+    border-radius: 8px;
+    font-family: inherit;
+    color: var(--text-soft);
+    cursor: pointer;
+    transition: all 0.15s ease;
+    text-align: left;
+    line-height: 1.25;
+    min-width: 0;
+  }
+  .ch-btn:hover {
+    border-color: var(--text-muted);
+    color: var(--text);
+    background: var(--surface);
+  }
+  .ch-btn.active {
+    background: var(--text);
+    border-color: var(--text);
+    color: var(--bg);
+  }
+  .ch-btn.active .ch-btn-num,
+  .ch-btn.active .ch-btn-en { color: rgba(255, 255, 255, 0.7); }
+  .ch-btn-num {
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    color: var(--accent);
+    text-transform: uppercase;
+  }
+  .ch-btn-jp { font-size: 0.92rem; font-weight: 600; white-space: nowrap; }
+  .ch-btn-en { font-size: 0.7rem; color: var(--text-muted); font-weight: 400; white-space: nowrap; }
+
+  main { max-width: 820px; margin: 0 auto; padding: 50px 40px 80px; }
+
+  .chapter { display: none; animation: fadeIn 0.25s ease-out; }
+  .chapter.active { display: block; }
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(6px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .chapter-tabs {
+    display: flex;
+    gap: 4px;
+    margin-bottom: 32px;
+    border-bottom: 1px solid var(--rule);
+    padding-bottom: 0;
+  }
+  .tab-btn {
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid transparent;
+    padding: 12px 20px;
+    font-family: inherit;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    cursor: pointer;
+    transition: color 0.15s ease, border-color 0.15s ease;
+    margin-bottom: -1px;
+  }
+  .tab-btn:hover { color: var(--text); }
+  .tab-btn.active { color: var(--text); border-bottom-color: var(--accent); }
+  .tab-pane { display: none; }
+  .tab-pane.active { display: block; animation: fadeIn 0.2s ease-out; }
+
+  .chapter-head {
+    margin-bottom: 40px;
+    padding-bottom: 24px;
+    border-bottom: 2px solid var(--text);
+  }
+  .chapter-mark {
+    display: inline-block;
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+    margin-bottom: 12px;
+    text-transform: uppercase;
+  }
+  .chapter-title-jp { font-size: 2rem; font-weight: 700; line-height: 1.2; color: var(--text); margin-bottom: 6px; }
+  .chapter-title-en { font-size: 1.1rem; color: var(--text-muted); font-weight: 400; }
+
+  .st-block { margin-bottom: 56px; }
+  .st-header {
+    display: flex; flex-wrap: wrap; align-items: center; gap: 16px;
+    margin-bottom: 28px; padding-bottom: 14px;
+    border-bottom: 1px solid var(--rule);
+  }
+  .st-label {
+    display: inline-flex; align-items: center; justify-content: center;
+    min-width: 42px; height: 28px; padding: 0 10px;
+    background: var(--text); color: var(--bg);
+    font-size: 0.78rem; font-weight: 700; letter-spacing: 0.05em;
+    border-radius: 4px;
+  }
+  .st-titles { flex: 1; min-width: 0; }
+  .st-jp { font-size: 1.25rem; font-weight: 600; color: var(--text); line-height: 1.3; }
+  .st-en { font-size: 0.95rem; color: var(--text-muted); margin-top: 2px; font-weight: 400; }
+  .st-source { font-size: 0.78rem; color: var(--text-muted); text-align: right; line-height: 1.4; }
+
+  .exchange-head { margin: 32px 0 16px; display: flex; align-items: center; gap: 12px; }
+  .exchange-head::after { content: ''; flex: 1; height: 1px; background: var(--rule); }
+  .ex-num { font-size: 0.92rem; font-weight: 600; color: var(--accent); letter-spacing: 0.02em; }
+
+  .line {
+    margin: 18px 0; padding: 14px 18px;
+    border-left: 3px solid var(--rule); background: var(--surface);
+    border-radius: 0 6px 6px 0;
+    transition: border-left-color 0.2s ease;
+  }
+  .line:hover { border-left-color: var(--accent); }
+  .speaker-jp {
+    font-size: 0.78rem; font-weight: 700; letter-spacing: 0.08em;
+    color: var(--accent); text-transform: uppercase; margin-bottom: 6px;
+  }
+  .jp-kanji { font-size: 1.05rem; line-height: 1.7; color: var(--text); margin-bottom: 4px; font-weight: 500; }
+  .jp-kana { font-size: 0.95rem; line-height: 1.7; color: var(--kana-color); margin-bottom: 6px; font-weight: 400; }
+  .en { font-size: 0.98rem; line-height: 1.55; color: var(--en-color); padding-left: 2px; }
+  .en-spk { font-weight: 600; color: var(--text); margin-right: 4px; }
+  .ellipsis { text-align: center; font-size: 1.3rem; color: var(--text-muted); margin: 16px 0; letter-spacing: 0.4em; }
+
+  .vocab-section { margin-bottom: 40px; }
+  .vocab-section-title {
+    font-size: 1.1rem; font-weight: 700;
+    padding: 10px 16px;
+    background: var(--text); color: var(--bg);
+    border-radius: 6px; margin-bottom: 16px;
+    letter-spacing: 0.02em;
+  }
+  .vocab-table {
+    display: grid;
+    grid-template-columns: 1fr;
+    border: 1px solid var(--rule);
+    border-radius: 8px;
+    overflow: hidden;
+    background: var(--bg);
+  }
+  .vocab-row {
+    display: grid;
+    grid-template-columns: 1.4fr 1.4fr 2fr;
+    gap: 16px;
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--rule-soft);
+    transition: background 0.12s ease;
+  }
+  .vocab-row:last-child { border-bottom: none; }
+  .vocab-row:hover { background: var(--surface); }
+  .vocab-jp { font-size: 1rem; font-weight: 600; color: var(--text); line-height: 1.45; }
+  .vocab-kana { font-size: 0.92rem; color: var(--kana-color); line-height: 1.45; }
+  .vocab-en { font-size: 0.92rem; color: var(--en-color); line-height: 1.45; }
+
+  @media (max-width: 720px) {
+    main { padding: 30px 20px 60px; }
+    .chapter-nav-inner { padding: 10px 14px; }
+    .ch-btn { padding: 7px 12px; }
+    .ch-btn-jp { font-size: 0.85rem; }
+    .chapter-title-jp { font-size: 1.6rem; }
+    .st-jp { font-size: 1.1rem; }
+    .st-source { width: 100%; text-align: left; }
+    .line { padding: 12px 14px; }
+    .tab-btn { padding: 10px 14px; font-size: 0.9rem; }
+    .vocab-row { grid-template-columns: 1fr; gap: 4px; padding: 14px 14px; }
+    .vocab-kana { font-size: 0.88rem; }
+    .vocab-en { font-size: 0.9rem; padding-top: 2px; }
+    .vocab-section-title { font-size: 1rem; padding: 8px 12px; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="chapter-nav" aria-label="Chapter selector">
+  <div class="chapter-nav-inner">
+<button class="ch-btn active" data-target="9"><span class="ch-btn-num">第9課</span><span class="ch-btn-jp">アルバイト先で</span><span class="ch-btn-en">At My Part-Time Job</span></button>
+<button class="ch-btn" data-target="10"><span class="ch-btn-num">第10課</span><span class="ch-btn-jp">旅行に行って</span><span class="ch-btn-en">On the Trip</span></button>
+<button class="ch-btn" data-target="11"><span class="ch-btn-num">第11課</span><span class="ch-btn-jp">地域社会の中で</span><span class="ch-btn-en">In the Local Community</span></button>
+<button class="ch-btn" data-target="12"><span class="ch-btn-num">第12課</span><span class="ch-btn-jp">私の健康法</span><span class="ch-btn-en">My Health Regimen</span></button>
+<button class="ch-btn" data-target="13"><span class="ch-btn-num">第13課</span><span class="ch-btn-jp">親の気持ち・子の気持ち</span><span class="ch-btn-en">Parents&#x27; Feelings, Children&#x27;s Feelings</span></button>
+<button class="ch-btn" data-target="14"><span class="ch-btn-num">第14課</span><span class="ch-btn-jp">イベント・行事</span><span class="ch-btn-en">Events and Occasions</span></button>
+<button class="ch-btn" data-target="15"><span class="ch-btn-num">第15課</span><span class="ch-btn-jp">気になるニュース</span><span class="ch-btn-en">News That Interests Me</span></button>
+  </div>
+</nav>
+
+<main>
+<article class="chapter active" data-chapter="9">
+  <div class="chapter-tabs" role="tablist">
+    <button class="tab-btn active" data-tab="dialogues" data-ch="9">Dialogues</button>
+    <button class="tab-btn" data-tab="vocabulary" data-ch="9">Vocabulary</button>
+  </div>
+  <div class="tab-pane dialogues-pane active" data-pane="dialogues">
+<header class="chapter-head">
+  <div class="chapter-mark">第9課</div>
+  <h2 class="chapter-title-jp">アルバイト先で</h2>
+  <p class="chapter-title-en">At My Part-Time Job</p>
+</header>
+<section class="st-block">
+  <div class="st-header">
+    <span class="st-label">ST1</span>
+    <div class="st-titles">
+      <h3 class="st-jp">アルバイト先のルール</h3>
+      <p class="st-en">The Rules at Your Part-Time Job</p>
+    </div>
+    <span class="st-source">本冊 120ページ スクリプト</span>
+  </div>
+<div class="exchange-head"><span class="ex-num">1 (126)</span></div>
+<article class="line">
+  <div class="speaker-jp">店長</div>
+  <p class="jp-kanji">パクさん。ちょっといい？</p>
+  <p class="jp-kana">てんちょう：パクさん。ちょっといい？</p>
+  <p class="en"><span class="en-spk">Manager:</span> Park, got a minute?</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">パク</div>
+  <p class="jp-kanji">はい。</p>
+  <p class="jp-kana">パク：はい。</p>
+  <p class="en"><span class="en-spk">Park:</span> Yes.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">店長</div>
+  <p class="jp-kanji">来週からここで働いてもらうチンさんです。</p>
+  <p class="jp-kana">てんちょう：らいしゅうからここではたらいてもらうチンさんです。</p>
+  <p class="en"><span class="en-spk">Manager:</span> This is Chin, who&#x27;ll be working here starting next week.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">チン</div>
+  <p class="jp-kanji">はじめまして。チンと申します。よろしくお願いします。</p>
+  <p class="jp-kana">チン：はじめまして。チンともうします。よろしくおねがいします。</p>
+  <p class="en"><span class="en-spk">Chin:</span> Nice to meet you. My name is Chin. Pleased to meet you.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">パク</div>
+  <p class="jp-kanji">パクです。よろしくお願いします。</p>
+  <p class="jp-kana">パク：パクです。よろしくおねがいします。</p>
+  <p class="en"><span class="en-spk">Park:</span> I&#x27;m Park. Nice to meet you.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">店長</div>
+  <p class="jp-kanji">パクさん、チンさんにここのルールをいろいろ教えてあげてください。</p>
+  <p class="jp-kana">てんちょう：パクさん、チンさんにここのルールをいろいろおしえてあげてください。</p>
+  <p class="en"><span class="en-spk">Manager:</span> Park, please teach Chin all the rules here.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">パク</div>
+  <p class="jp-kanji">わかりました。まず、店へ来たときですが、ここでタイムカードを押すことになっています。忘れないでくださいね。</p>
+  <p class="jp-kana">パク：わかりました。まず、みせへきたときですが、ここでタイムカードをおすことになっています。わすれないでくださいね。</p>
+  <p class="en"><span class="en-spk">Park:</span> Got it. First, when you come to the store, you&#x27;re supposed to punch the time card here. Don&#x27;t forget.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">チン</div>
+  <p class="jp-kanji">はい。わかりました。</p>
+  <p class="jp-kana">チン：はい。わかりました。</p>
+  <p class="en"><span class="en-spk">Chin:</span> Yes. Understood.</p>
+</article>
+<div class="exchange-head"><span class="ex-num">2 (127)</span></div>
+<article class="line">
+  <div class="speaker-jp">パク</div>
+  <p class="jp-kanji">それからこの制服を着てください。</p>
+  <p class="jp-kana">パク：それからこのせいふくをきてください。</p>
+  <p class="en"><span class="en-spk">Park:</span> Then, please wear this uniform.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">チン</div>
+  <p class="jp-kanji">はい。</p>
+  <p class="jp-kana">チン：はい。</p>
+  <p class="en"><span class="en-spk">Chin:</span> Okay.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">パク</div>
+  <p class="jp-kanji">他に何か質問がありますか。</p>
+  <p class="jp-kana">パク：ほかになにかしつもんがありますか。</p>
+  <p class="en"><span class="en-spk">Park:</span> Any other questions?</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">チン</div>
+  <p class="jp-kanji">髪はこれでいいですか。</p>
+  <p class="jp-kana">チン：かみはこれでいいですか。</p>
+  <p class="en"><span class="en-spk">Chin:</span> Is my hair okay like this?</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">パク</div>
+  <p class="jp-kanji">あ、調理場では髪の毛が料理に入らないように、この帽子をかぶってください。</p>
+  <p class="jp-kana">パク：あ、ちょうりばではかみのけがりょうりにはいらないように、このぼうしをかぶってください。</p>
+  <p class="en"><span class="en-spk">Park:</span> Ah, in the kitchen, so that your hair doesn&#x27;t get into the food, please wear this cap.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">チン</div>
+  <p class="jp-kanji">はい。</p>
+  <p class="jp-kana">チン：はい。</p>
+  <p class="en"><span class="en-spk">Chin:</span> Okay.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">パク</div>
+  <p class="jp-kanji">シフトの希望は前の月の15日までに出すことになっています。</p>
+  <p class="jp-kana">パク：シフトのきぼうはまえのつきの15にちまでにだすことになっています。</p>
+  <p class="en"><span class="en-spk">Park:</span> Shift requests are supposed to be submitted by the 15th of the previous month.</p>
+</article>
+<div class="exchange-head"><span class="ex-num">3-1 (128)</span></div>
+<article class="line">
+  <div class="speaker-jp">チン</div>
+  <p class="jp-kanji">あのう、急に用事ができたとき、シフトを変えてもらうことができますか。</p>
+  <p class="jp-kana">チン：あのう、きゅうにようじができたとき、シフトをかえてもらうことができますか。</p>
+  <p class="en"><span class="en-spk">Chin:</span> Um, when something suddenly comes up, is it possible to have my shift changed?</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">パク</div>
+  <p class="jp-kanji">3日前までに店長に言えば、アルバイトの日を変えてもらえますよ。</p>
+  <p class="jp-kana">パク：3にちまえにてんちょうにいえば、アルバイトのひをかえてもらえますよ。</p>
+  <p class="en"><span class="en-spk">Park:</span> If you tell the manager 3 days beforehand, you can get your workday changed.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">チン</div>
+  <p class="jp-kanji">そうですか。</p>
+  <p class="jp-kana">チン：そうですか。</p>
+  <p class="en"><span class="en-spk">Chin:</span> I see.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">パク</div>
+  <p class="jp-kanji">他に何か質問がありますか。</p>
+  <p class="jp-kana">パク：ほかになにかしつもんがありますか。</p>
+  <p class="en"><span class="en-spk">Park:</span> Any other questions?</p>
+</article>
+<div class="exchange-head"><span class="ex-num">3-2 (129)</span></div>
+<article class="line">
+  <div class="speaker-jp">チン</div>
+  <p class="jp-kanji">いいえ、大丈夫です。</p>
+  <p class="jp-kana">チン：いいえ、だいじょうぶです。</p>
+  <p class="en"><span class="en-spk">Chin:</span> No, I&#x27;m good.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">パク</div>
+  <p class="jp-kanji">そうですか。じゃ、何かわからないことがあれば、すぐ聞いてくださいね。</p>
+  <p class="jp-kana">パク：そうですか。じゃ、なにかわからないことがあれば、すぐきいてくださいね。</p>
+  <p class="en"><span class="en-spk">Park:</span> Alright. Then if there&#x27;s anything you don&#x27;t understand, just ask right away.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">チン</div>
+  <p class="jp-kanji">はい。ありがとうございます。</p>
+  <p class="jp-kana">チン：はい。ありがとうございます。</p>
+  <p class="en"><span class="en-spk">Chin:</span> Yes. Thank you.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">パク</div>
+  <p class="jp-kanji">じゃ、一緒に頑張りましょう。お客さんが来たら、大きい声であいさつするようにしてくださいね。</p>
+  <p class="jp-kana">パク：じゃ、いっしょにがんばりましょう。おきゃくさんがきたら、おおきいこえであいさつするようにしてくださいね。</p>
+  <p class="en"><span class="en-spk">Park:</span> Let&#x27;s do our best together. When customers come, please make sure to greet them in a loud voice.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">チン</div>
+  <p class="jp-kanji">はい。</p>
+  <p class="jp-kana">チン：はい。</p>
+  <p class="en"><span class="en-spk">Chin:</span> Yes.</p>
+</article>
+</section>
+<section class="st-block">
+  <div class="st-header">
+    <span class="st-label">ST2</span>
+    <div class="st-titles">
+      <h3 class="st-jp">楽しいアルバイト</h3>
+      <p class="st-en">A Fun Part-Time Job</p>
+    </div>
+    <span class="st-source">本冊 126ページ スクリプト</span>
+  </div>
+<div class="exchange-head"><span class="ex-num">1 (132)</span></div>
+<article class="line">
+  <div class="speaker-jp">パク</div>
+  <p class="jp-kanji">いらっしゃいませ。何名様ですか。</p>
+  <p class="jp-kana">パク：いらっしゃいませ。なんめいさまですか。</p>
+  <p class="en"><span class="en-spk">Park:</span> Welcome. How many people?</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">客</div>
+  <p class="jp-kanji">4人です。</p>
+  <p class="jp-kana">きゃく：4にんです。</p>
+  <p class="en"><span class="en-spk">Customer:</span> Four.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">パク</div>
+  <p class="jp-kanji">すぐご案内します。こちらでお待ちください。</p>
+  <p class="jp-kana">パク：すぐごあんないします。こちらでおまちください。</p>
+  <p class="en"><span class="en-spk">Park:</span> I&#x27;ll show you to a table right away. Please wait here.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">パク</div>
+  <p class="jp-kanji">あ、お皿が落ちそうですよ。</p>
+  <p class="jp-kana">パク：あ、おさらがおちそうですよ。</p>
+  <p class="en"><span class="en-spk">Park:</span> Oh, the plates look like they&#x27;re about to fall.</p>
+</article>
+<div class="exchange-head"><span class="ex-num">2 (133)</span></div>
+<article class="line">
+  <div class="speaker-jp">チン</div>
+  <p class="jp-kanji">あっ！</p>
+  <p class="jp-kana">チン：あっ！</p>
+  <p class="en"><span class="en-spk">Chin:</span> Ah!</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">パク</div>
+  <p class="jp-kanji">ふう。そのお皿はこっちの棚に置きましょう。</p>
+  <p class="jp-kana">パク：ふう。そのおさらはこっちのたなにおきましょう。</p>
+  <p class="en"><span class="en-spk">Park:</span> Phew. Let&#x27;s put those plates on this shelf.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">チン</div>
+  <p class="jp-kanji">冷蔵庫からビールを出しましょうか。</p>
+  <p class="jp-kana">チン：れいぞうこからビールをだしましょうか。</p>
+  <p class="en"><span class="en-spk">Chin:</span> Shall I take the beer out of the fridge?</p>
+</article>
+<div class="exchange-head"><span class="ex-num">3 (134)</span></div>
+<article class="line">
+  <div class="speaker-jp">ロハン</div>
+  <p class="jp-kanji">あ、まだ冷蔵庫に入れておいてください。あとで出しますから。</p>
+  <p class="jp-kana">ロハン：あ、まだれいぞうこにいれておいてください。あとでだしますから。</p>
+  <p class="en"><span class="en-spk">Rohan:</span> Ah, please leave it in the fridge for now. I&#x27;ll take it out later.</p>
+</article>
+<div class="exchange-head"><span class="ex-num">4 (135)</span></div>
+<article class="line">
+  <div class="speaker-jp">ロハン</div>
+  <p class="jp-kanji">パクさん、今、お客さんが少ないから、一緒に昼ご飯食べない？</p>
+  <p class="jp-kana">ロハン：パクさん、いま、おきゃくさんがすくないから、いっしょにひるごはんたべない？</p>
+  <p class="en"><span class="en-spk">Rohan:</span> Park, there aren&#x27;t many customers right now, want to have lunch together?</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">パク</div>
+  <p class="jp-kanji">いいね。食べよう。</p>
+  <p class="jp-kana">パク：いいね。たべよう。</p>
+  <p class="en"><span class="en-spk">Park:</span> Sure. Let&#x27;s eat.</p>
+</article>
+<div class="exchange-head"><span class="ex-num">5 (136)</span></div>
+<article class="line">
+  <div class="speaker-jp">ロハン</div>
+  <p class="jp-kanji">チンさんも一緒にどう？</p>
+  <p class="jp-kana">ロハン：チンさんもいっしょにどう？</p>
+  <p class="en"><span class="en-spk">Rohan:</span> Chin, how about joining us?</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">チン</div>
+  <p class="jp-kanji">あ、すみません。私はこのお皿を洗ってしまいますから、お先にどうぞ。</p>
+  <p class="jp-kana">チン：あ、すみません。わたしはこのおさらをあらってしまいますから、おさきにどうぞ。</p>
+  <p class="en"><span class="en-spk">Chin:</span> Ah, sorry. I&#x27;m going to finish washing these plates, so please go ahead.</p>
+</article>
+<div class="exchange-head"><span class="ex-num">6</span></div>
+<article class="line">
+  <div class="speaker-jp">チン</div>
+  <p class="jp-kanji">あのう、申し訳ないんですが、もしできたら、来週の木曜日のアルバイトを代わってもらえませんか。</p>
+  <p class="jp-kana">チン：あのう、もうしわけないんですが、もしできたら、らいしゅうのもくようびのアルバイトをかわってもらえませんか。</p>
+  <p class="en"><span class="en-spk">Chin:</span> Um, I&#x27;m really sorry, but if possible, could you swap my part-time shift for next Thursday?</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">パク</div>
+  <p class="jp-kanji">木曜日ですか。すみません、木曜日はちょっと……。家族が日本へ来ることになっているんです。</p>
+  <p class="jp-kana">パク：もくようびですか。すみません、もくようびはちょっと……。かぞくがにほんへくることになっているんです。</p>
+  <p class="en"><span class="en-spk">Park:</span> Thursday? Sorry, Thursday is a bit... My family is scheduled to come to Japan.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">チン</div>
+  <p class="jp-kanji">そうですか。</p>
+  <p class="jp-kana">チン：そうですか。</p>
+  <p class="en"><span class="en-spk">Chin:</span> I see.</p>
+</article>
+</section>
+  </div>
+  <div class="tab-pane vocab-pane" data-pane="vocabulary">
+<div class="vocab-content">
+<section class="vocab-section">
+  <h3 class="vocab-section-title">話読聞書</h3>
+  <div class="vocab-table">
+    <div class="vocab-row">
+      <div class="vocab-jp">大切さ</div>
+      <div class="vocab-kana">たいせつさ</div>
+      <div class="vocab-en">importance</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">恥ずかしい</div>
+      <div class="vocab-kana">はずかしい</div>
+      <div class="vocab-en">embarrassing</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">ですから</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">therefore</div>
+    </div>
+  </div>
+</section>
+<section class="vocab-section">
+  <h3 class="vocab-section-title">1 アルバイト先のルール</h3>
+  <div class="vocab-table">
+    <div class="vocab-row">
+      <div class="vocab-jp">一度</div>
+      <div class="vocab-kana">いちど</div>
+      <div class="vocab-en">once, one time</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">裏</div>
+      <div class="vocab-kana">うら</div>
+      <div class="vocab-en">rear</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">オーブン</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">oven</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">温度</div>
+      <div class="vocab-kana">おんど</div>
+      <div class="vocab-en">temperature</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">紙</div>
+      <div class="vocab-kana">かみ</div>
+      <div class="vocab-en">paper</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">髪の毛</div>
+      <div class="vocab-kana">かみのけ</div>
+      <div class="vocab-en">hair</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">代わり</div>
+      <div class="vocab-kana">かわり</div>
+      <div class="vocab-en">in place of</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">シフト</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">shift</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">シール</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">sticker, seal</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">スタッフ</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">staff</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">スニーカー</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">sneakers</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">隅</div>
+      <div class="vocab-kana">すみ</div>
+      <div class="vocab-en">corner</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">洗剤</div>
+      <div class="vocab-kana">せんざい</div>
+      <div class="vocab-en">detergent, cleanser</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">タイムカード</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">time card</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">誰か</div>
+      <div class="vocab-kana">だれか</div>
+      <div class="vocab-en">someone</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">調理場</div>
+      <div class="vocab-kana">ちょうりば</div>
+      <div class="vocab-en">cooking place, kitchen (of a restaurant)</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">月</div>
+      <div class="vocab-kana">つき</div>
+      <div class="vocab-en">month</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">前の月</div>
+      <div class="vocab-kana">まえのつき</div>
+      <div class="vocab-en">the previous month</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">都合</div>
+      <div class="vocab-kana">つごう</div>
+      <div class="vocab-en">schedule</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">伝票</div>
+      <div class="vocab-kana">でんぴょう</div>
+      <div class="vocab-en">order slip</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">道具</div>
+      <div class="vocab-kana">どうぐ</div>
+      <div class="vocab-en">tool</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">表</div>
+      <div class="vocab-kana">ひょう</div>
+      <div class="vocab-en">table, chart</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">ホール</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">hall</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">毎月</div>
+      <div class="vocab-kana">まいつき</div>
+      <div class="vocab-en">every month</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">マニュアル</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">manual</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">床</div>
+      <div class="vocab-kana">ゆか</div>
+      <div class="vocab-en">floor</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">汚れ</div>
+      <div class="vocab-kana">よごれ</div>
+      <div class="vocab-en">dirtiness</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">予定</div>
+      <div class="vocab-kana">よてい</div>
+      <div class="vocab-en">schedule, plan</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">ルール</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">rule</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">~様 (例:お客様)</div>
+      <div class="vocab-kana">~さま (れい:おきゃくさま)</div>
+      <div class="vocab-en">sir, madam (more respectful than san; used with customers, etc.)</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">上がる</div>
+      <div class="vocab-kana">あがる</div>
+      <div class="vocab-en">rise</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">空く</div>
+      <div class="vocab-kana">あく</div>
+      <div class="vocab-en">become empty, vacant</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">押す</div>
+      <div class="vocab-kana">おす</div>
+      <div class="vocab-en">punch</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">タイムカードを押す。</div>
+      <div class="vocab-kana">タイムカードをおす。</div>
+      <div class="vocab-en">punch a time card</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">乾く</div>
+      <div class="vocab-kana">かわく</div>
+      <div class="vocab-en">dry</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">代わる</div>
+      <div class="vocab-kana">かわる</div>
+      <div class="vocab-en">replace</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">アルバイトを代わる。</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">replace someone&#x27;s shift</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">断る</div>
+      <div class="vocab-kana">ことわる</div>
+      <div class="vocab-en">turn down, deny</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">しまう</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">put away</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">滑る</div>
+      <div class="vocab-kana">すべる</div>
+      <div class="vocab-en">slide</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">出す</div>
+      <div class="vocab-kana">だす</div>
+      <div class="vocab-en">take out, come out</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">ごみを出す。</div>
+      <div class="vocab-kana">ごみをだす。</div>
+      <div class="vocab-en">take out the garbage</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">運ぶ</div>
+      <div class="vocab-kana">はこぶ</div>
+      <div class="vocab-en">carry</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">拭く</div>
+      <div class="vocab-kana">ふく</div>
+      <div class="vocab-en">wipe</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">干す</div>
+      <div class="vocab-kana">ほす</div>
+      <div class="vocab-en">hang out to dry</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">呼ぶ</div>
+      <div class="vocab-kana">よぶ</div>
+      <div class="vocab-en">call</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">渡す</div>
+      <div class="vocab-kana">わたす</div>
+      <div class="vocab-en">hand over</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">上げる</div>
+      <div class="vocab-kana">あげる</div>
+      <div class="vocab-en">raise</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">下げる</div>
+      <div class="vocab-kana">さげる</div>
+      <div class="vocab-en">lower</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">片付ける</div>
+      <div class="vocab-kana">かたづける</div>
+      <div class="vocab-en">clean up</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">着替える</div>
+      <div class="vocab-kana">きがえる</div>
+      <div class="vocab-en">change clothes</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">足りる</div>
+      <div class="vocab-kana">たりる</div>
+      <div class="vocab-en">be enough</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">つける</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">attach, put on</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">アクセサリーをつける。</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">put on jewelry</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">並べる</div>
+      <div class="vocab-kana">ならべる</div>
+      <div class="vocab-en">line up</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">燃える</div>
+      <div class="vocab-kana">もえる</div>
+      <div class="vocab-en">burn</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">あいさつ・する</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">greet</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">おしゃべり・する</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">talk, chat</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">チェック・する</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">check</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">邪魔 (な)</div>
+      <div class="vocab-kana">じゃま (な)</div>
+      <div class="vocab-en">distraction, hindrance</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">丁寧 (な)</div>
+      <div class="vocab-kana">ていねい (な)</div>
+      <div class="vocab-en">polite</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">しっかり</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">properly, adequately</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">絶対に</div>
+      <div class="vocab-kana">ぜったいに</div>
+      <div class="vocab-en">absolutely</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">はっきり</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">clearly</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">大きな</div>
+      <div class="vocab-kana">おおきな</div>
+      <div class="vocab-en">large</div>
+    </div>
+  </div>
+</section>
+<section class="vocab-section">
+  <h3 class="vocab-section-title">2 楽しいアルバイト</h3>
+  <div class="vocab-table">
+    <div class="vocab-row">
+      <div class="vocab-jp">お手洗い</div>
+      <div class="vocab-kana">おてあらい</div>
+      <div class="vocab-en">washroom, toilet</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">ガス</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">gas</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">ガソリン</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">gasoline</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">そのまま</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">as is, without change</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">バター</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">butter</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">引き出し</div>
+      <div class="vocab-kana">ひきだし</div>
+      <div class="vocab-en">drawer</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">ひも</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">string</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">袋</div>
+      <div class="vocab-kana">ふくろ</div>
+      <div class="vocab-en">bag, pouch</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">瓶</div>
+      <div class="vocab-kana">びん</div>
+      <div class="vocab-en">bottle, jar</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">モップ</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">mop</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">~袋 (例:ごみ袋)</div>
+      <div class="vocab-kana">~ふくろ (れい:ごみぶくろ)</div>
+      <div class="vocab-en">~ bag (example: garbage bag)</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">決まる</div>
+      <div class="vocab-kana">きまる</div>
+      <div class="vocab-en">decide</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">届く</div>
+      <div class="vocab-kana">とどく</div>
+      <div class="vocab-en">reach</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">かける</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">rest on, sit</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">こちらのいすにおかけください。</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">&quot;Please have a seat here.&quot;</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">切れる</div>
+      <div class="vocab-kana">きれる</div>
+      <div class="vocab-en">run out of</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">焦げる</div>
+      <div class="vocab-kana">こげる</div>
+      <div class="vocab-en">get burned</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">確かめる</div>
+      <div class="vocab-kana">たしかめる</div>
+      <div class="vocab-en">make sure, confirm</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">破れる</div>
+      <div class="vocab-kana">やぶれる</div>
+      <div class="vocab-en">break</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">休憩・する</div>
+      <div class="vocab-kana">きゅうけい・する</div>
+      <div class="vocab-en">take a break</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">注意・する</div>
+      <div class="vocab-kana">ちゅうい・する</div>
+      <div class="vocab-en">pay attention</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">ご注意ください。</div>
+      <div class="vocab-kana">ごちゅういください。</div>
+      <div class="vocab-en">&quot;Pay attention.&quot;</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">少々</div>
+      <div class="vocab-kana">しょうしょう</div>
+      <div class="vocab-en">a little bit</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">お先にどうぞ</div>
+      <div class="vocab-kana">おさきにどうぞ</div>
+      <div class="vocab-en">Please go ahead</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">ご自由に</div>
+      <div class="vocab-kana">ごじゆうに</div>
+      <div class="vocab-en">Please feel free</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">申し訳ないんですが</div>
+      <div class="vocab-kana">もうしわけないんですが</div>
+      <div class="vocab-en">I am sorry, but ...</div>
+    </div>
+  </div>
+</section>
+<section class="vocab-section">
+  <h3 class="vocab-section-title">もう一度聞こう</h3>
+  <div class="vocab-table">
+    <div class="vocab-row">
+      <div class="vocab-jp">気をつける</div>
+      <div class="vocab-kana">きをつける</div>
+      <div class="vocab-en">be careful</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">最初に</div>
+      <div class="vocab-kana">さいしょに</div>
+      <div class="vocab-en">first of all</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">先に</div>
+      <div class="vocab-kana">さきに</div>
+      <div class="vocab-en">before, in front, in first</div>
+    </div>
+  </div>
+</section>
+</div>
+  </div>
+</article>
+<article class="chapter" data-chapter="10">
+  <div class="chapter-tabs" role="tablist">
+    <button class="tab-btn active" data-tab="dialogues" data-ch="10">Dialogues</button>
+    <button class="tab-btn" data-tab="vocabulary" data-ch="10">Vocabulary</button>
+  </div>
+  <div class="tab-pane dialogues-pane active" data-pane="dialogues">
+<header class="chapter-head">
+  <div class="chapter-mark">第10課</div>
+  <h2 class="chapter-title-jp">旅行に行って</h2>
+  <p class="chapter-title-en">On the Trip</p>
+</header>
+<section class="st-block">
+  <div class="st-header">
+    <span class="st-label">ST1</span>
+    <div class="st-titles">
+      <h3 class="st-jp">ハプニング！</h3>
+      <p class="st-en">Mishaps!</p>
+    </div>
+    <span class="st-source">本冊 136ページ スクリプト</span>
+  </div>
+<div class="exchange-head"><span class="ex-num">1-1 (143)</span></div>
+<article class="line">
+  <div class="speaker-jp">パク</div>
+  <p class="jp-kanji">ワンさん、遅かったね。大丈夫？</p>
+  <p class="jp-kana">パク：ワンさん、おそかったね。だいじょうぶ？</p>
+  <p class="en"><span class="en-spk">Park:</span> Wang, you were late. Everything okay?</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">ワン</div>
+  <p class="jp-kanji">うん、トイレの前でおばあさんにタクシー乗り場への行き方を聞かれたんだ。それで、時間がかかっちゃった。ごめんね。</p>
+  <p class="jp-kana">ワン：うん、トイレのまえでおばあさんにタクシーのりばへのいきかたをきかれたんだ。それで、じかんがかかっちゃった。ごめんね。</p>
+  <p class="en"><span class="en-spk">Wang:</span> Yeah, an old lady in front of the restroom asked me how to get to the taxi stand. That&#x27;s why it took me a while. Sorry.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">パク</div>
+  <p class="jp-kanji">ううん。じゃ、駅へ行こう。ナタポンさんとマルコさんが待っているよ。</p>
+  <p class="jp-kana">パク：ううん。じゃ、えきへいこう。ナタポンさんとマルコさんがまっているよ。</p>
+  <p class="en"><span class="en-spk">Park:</span> No worries. Then let&#x27;s head to the station. Natapon and Marco are waiting.</p>
+</article>
+<div class="exchange-head"><span class="ex-num">1-2 (144)</span></div>
+<article class="line">
+  <div class="speaker-jp">パク</div>
+  <p class="jp-kanji">あ、痛い。</p>
+  <p class="jp-kana">パク：あ、いたい。</p>
+  <p class="en"><span class="en-spk">Park:</span> Ouch.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">女の人</div>
+  <p class="jp-kanji">あ、すみません。</p>
+  <p class="jp-kana">おんなのひと：あ、すみません。</p>
+  <p class="en"><span class="en-spk">Woman:</span> Oh, I&#x27;m sorry.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">パク</div>
+  <p class="jp-kanji">いいえ。</p>
+  <p class="jp-kana">パク：いいえ。</p>
+  <p class="en"><span class="en-spk">Park:</span> It&#x27;s okay.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">ワン</div>
+  <p class="jp-kanji">……どうしたの？</p>
+  <p class="jp-kana">ワン：……どうしたの？</p>
+  <p class="en"><span class="en-spk">Wang:</span> ...What happened?</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">パク</div>
+  <p class="jp-kanji">足を踏まれた。</p>
+  <p class="jp-kana">パク：あしをふまれた。</p>
+  <p class="en"><span class="en-spk">Park:</span> My foot got stepped on.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">ワン</div>
+  <p class="jp-kanji">大丈夫？</p>
+  <p class="jp-kana">ワン：だいじょうぶ？</p>
+  <p class="en"><span class="en-spk">Wang:</span> You okay?</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">パク</div>
+  <p class="jp-kanji">うん、ちょっと痛いけど、大丈夫。</p>
+  <p class="jp-kana">パク：うん、ちょっといたいけど、だいじょうぶ。</p>
+  <p class="en"><span class="en-spk">Park:</span> Yeah, it hurts a bit, but I&#x27;m okay.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">マルコ</div>
+  <p class="jp-kanji">ワンさん、パクさん、こっち、こっち。</p>
+  <p class="jp-kana">マルコ：ワンさん、パクさん、こっち、こっち。</p>
+  <p class="en"><span class="en-spk">Marco:</span> Wang, Park, over here, over here.</p>
+</article>
+<div class="exchange-head"><span class="ex-num">2-1 (145)</span></div>
+<article class="line">
+  <div class="speaker-jp">パク・ワン</div>
+  <p class="jp-kanji">待った？</p>
+  <p class="jp-kana">パク・ワン：まった？</p>
+  <p class="en"><span class="en-spk">Park &amp; Wang:</span> Did you wait long?</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">ナタポン</div>
+  <p class="jp-kanji">ううん、大丈夫だよ。もうすぐ電車が出発するから、行こう。あれ？ICカードをタッチしたのに、入れない。</p>
+  <p class="jp-kana">ナタポン：ううん、だいじょうぶだよ。もうすぐでんしゃがしゅっぱつするから、いこう。あれ？アイシーカードをタッチしたのに、はいれない。</p>
+  <p class="en"><span class="en-spk">Natapon:</span> No, it&#x27;s fine. The train leaves soon, so let&#x27;s go. Huh? I tapped my IC card, but I can&#x27;t get through.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">パク</div>
+  <p class="jp-kanji">え？カードにお金、入ってる？</p>
+  <p class="jp-kana">パク：え？カードにおかね、はいってる？</p>
+  <p class="en"><span class="en-spk">Park:</span> What? Is there money on your card?</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">ナタポン</div>
+  <p class="jp-kanji">うん、来るとき入れたから、まだある。</p>
+  <p class="jp-kana">ナタポン：うん、くるときいれたから、まだある。</p>
+  <p class="en"><span class="en-spk">Natapon:</span> Yeah, I topped it up on the way, so it should still be there.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">パク</div>
+  <p class="jp-kanji">そっか……。</p>
+  <p class="jp-kana">パク：そっか……。</p>
+  <p class="en"><span class="en-spk">Park:</span> I see...</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">ナタポン</div>
+  <p class="jp-kanji">ちょっと駅員さんに聞いてみる。あのう、すみません。カードをタッチしたんですが、入れなかったんです。</p>
+  <p class="jp-kana">ナタポン：ちょっとえきいんさんにきいてみる。あのう、すみません。カードをタッチしたんですが、はいれなかったんです。</p>
+  <p class="en"><span class="en-spk">Natapon:</span> I&#x27;ll ask the station attendant. Um, excuse me. I tapped my card but couldn&#x27;t get through.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">駅員</div>
+  <p class="jp-kanji">そうですか。ちょっとカードを見せてください。</p>
+  <p class="jp-kana">えきいん：そうですか。ちょっとカードをみせてください。</p>
+  <p class="en"><span class="en-spk">Attendant:</span> I see. Please show me your card.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">ナタポン</div>
+  <p class="jp-kanji">はい。</p>
+  <p class="jp-kana">ナタポン：はい。</p>
+  <p class="en"><span class="en-spk">Natapon:</span> Yes.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">駅員</div>
+  <p class="jp-kanji">……ICカードは問題ありませんね。申し訳ありません。こちらからお入りください。</p>
+  <p class="jp-kana">えきいん：……アイシーカードはもんだいありませんね。もうしわけありません。こちらからおはいりください。</p>
+  <p class="en"><span class="en-spk">Attendant:</span> ...There&#x27;s no problem with your IC card. I&#x27;m sorry about that. Please enter through here.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">ナタポン</div>
+  <p class="jp-kanji">ありがとうございます。</p>
+  <p class="jp-kana">ナタポン：ありがとうございます。</p>
+  <p class="en"><span class="en-spk">Natapon:</span> Thank you.</p>
+</article>
+<div class="exchange-head"><span class="ex-num">2-2 (146)</span></div>
+<article class="line">
+  <div class="speaker-jp">マルコ</div>
+  <p class="jp-kanji">あ、ごめん。スマホのバッテリーがなくなりそう。ちょっと切符を買ってくるね。</p>
+  <p class="jp-kana">マルコ：あ、ごめん。スマホのバッテリーがなくなりそう。ちょっときっぷをかってくるね。</p>
+  <p class="en"><span class="en-spk">Marco:</span> Ah, sorry. My phone&#x27;s battery is about to die. I&#x27;ll go buy a ticket.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">ワン</div>
+  <p class="jp-kanji">わかった。</p>
+  <p class="jp-kana">ワン：わかった。</p>
+  <p class="en"><span class="en-spk">Wang:</span> Got it.</p>
+</article>
+<div class="ellipsis">⋮</div>
+<article class="line">
+  <div class="speaker-jp">ワン</div>
+  <p class="jp-kanji">マルコさん、切符買えた？</p>
+  <p class="jp-kana">ワン：マルコさん、きっぷかえた？</p>
+  <p class="en"><span class="en-spk">Wang:</span> Marco, did you get the ticket?</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">マルコ</div>
+  <p class="jp-kanji">うん、買った。……あっ！</p>
+  <p class="jp-kana">マルコ：うん、かった。……あっ！</p>
+  <p class="en"><span class="en-spk">Marco:</span> Yeah, I got it. ...Oh!</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">ワン</div>
+  <p class="jp-kanji">どうしたの？</p>
+  <p class="jp-kana">ワン：どうしたの？</p>
+  <p class="en"><span class="en-spk">Wang:</span> What&#x27;s wrong?</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">マルコ</div>
+  <p class="jp-kanji">山川駅まで330円なのに、380円の切符を買っちゃった。</p>
+  <p class="jp-kana">マルコ：やまかわえきまで330えんなのに、380えんのきっぷをかっちゃった。</p>
+  <p class="en"><span class="en-spk">Marco:</span> It&#x27;s 330 yen to Yamakawa Station, but I bought a 380-yen ticket.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">ワン</div>
+  <p class="jp-kanji">えー！じゃ、窓口でどうしたらいいか聞いてみる？</p>
+  <p class="jp-kana">ワン：えー！じゃ、まどぐちでどうしたらいいかきいてみる？</p>
+  <p class="en"><span class="en-spk">Wang:</span> Oh no! Should we ask at the ticket window what to do?</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">マルコ</div>
+  <p class="jp-kanji">うん。あのう、すみません。切符を買うとき、間違えてしまったんですが……。</p>
+  <p class="jp-kana">マルコ：うん。あのう、すみません。きっぷをかうとき、まちがえてしまったんですが……。</p>
+  <p class="en"><span class="en-spk">Marco:</span> Yeah. Um, excuse me. I made a mistake when buying the ticket...</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">駅員</div>
+  <p class="jp-kanji">じゃ、これで、もう一度買ってください。</p>
+  <p class="jp-kana">えきいん：じゃ、これで、もういちどかってください。</p>
+  <p class="en"><span class="en-spk">Attendant:</span> Then please use this to buy one again.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">マルコ</div>
+  <p class="jp-kanji">わかりました。ありがとうございました。</p>
+  <p class="jp-kana">マルコ：わかりました。ありがとうございました。</p>
+  <p class="en"><span class="en-spk">Marco:</span> Understood. Thank you.</p>
+</article>
+<div class="exchange-head"><span class="ex-num">3-1 (147)</span></div>
+<article class="line">
+  <div class="speaker-jp">パク</div>
+  <p class="jp-kanji">あれ？電車が止まったね。</p>
+  <p class="jp-kana">パク：あれ？でんしゃがとまったね。</p>
+  <p class="en"><span class="en-spk">Park:</span> Huh? The train stopped.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">ナタポン</div>
+  <p class="jp-kanji">うん。</p>
+  <p class="jp-kana">ナタポン：うん。</p>
+  <p class="en"><span class="en-spk">Natapon:</span> Yeah.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">マルコ</div>
+  <p class="jp-kanji">あっ、あそこ。人がたくさん集まってるよ。ちょっと行って、見てくる。</p>
+  <p class="jp-kana">マルコ：あっ、あそこ。ひとがたくさんあつまってるよ。ちょっといって、みてくる。</p>
+  <p class="en"><span class="en-spk">Marco:</span> Oh, over there. A lot of people are gathering. I&#x27;ll go check it out.</p>
+</article>
+<div class="ellipsis">⋮</div>
+<article class="line">
+  <div class="speaker-jp">ワン</div>
+  <p class="jp-kanji">どうだった？</p>
+  <p class="jp-kana">ワン：どうだった？</p>
+  <p class="en"><span class="en-spk">Wang:</span> How was it?</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">マルコ</div>
+  <p class="jp-kanji">事故があったみたいだよ。</p>
+  <p class="jp-kana">マルコ：じこがあったみたいだよ。</p>
+  <p class="en"><span class="en-spk">Marco:</span> It seems there was an accident.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">パク</div>
+  <p class="jp-kanji">えっ、本当？</p>
+  <p class="jp-kana">パク：えっ、ほんとう？</p>
+  <p class="en"><span class="en-spk">Park:</span> What, really?</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">ワン</div>
+  <p class="jp-kanji">早くアナウンスがあったらいいのに……。</p>
+  <p class="jp-kana">ワン：はやくアナウンスがあったらいいのに……。</p>
+  <p class="en"><span class="en-spk">Wang:</span> I wish they&#x27;d announce something soon...</p>
+</article>
+<div class="exchange-head"><span class="ex-num">3-2 (148)</span></div>
+<article class="line">
+  <div class="speaker-jp">知らない人</div>
+  <p class="jp-kanji">何かあったんですか。</p>
+  <p class="jp-kana">しらないひと：なにかあったんですか。</p>
+  <p class="en"><span class="en-spk">Stranger:</span> Did something happen?</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">マルコ</div>
+  <p class="jp-kanji">あー、よくわからないんですが、次の駅の近くで事故があったようですよ。</p>
+  <p class="jp-kana">マルコ：あー、よくわからないんですが、つぎのえきのちかくでじこがあったようですよ。</p>
+  <p class="en"><span class="en-spk">Marco:</span> Ah, I&#x27;m not really sure, but it seems there was an accident near the next station.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">知らない人</div>
+  <p class="jp-kanji">あ、そうですか。困りましたね。</p>
+  <p class="jp-kana">しらないひと：あ、そうですか。こまりましたね。</p>
+  <p class="en"><span class="en-spk">Stranger:</span> Oh, I see. That&#x27;s troublesome.</p>
+</article>
+</section>
+<section class="st-block">
+  <div class="st-header">
+    <span class="st-label">ST2</span>
+    <div class="st-titles">
+      <h3 class="st-jp">ガイドブックを片手に</h3>
+      <p class="st-en">Guidebook in Hand</p>
+    </div>
+    <span class="st-source">本冊 142ページ スクリプト</span>
+  </div>
+<div class="exchange-head"><span class="ex-num">1 (154)</span></div>
+<article class="line">
+  <div class="speaker-jp">パク</div>
+  <p class="jp-kanji">ナタポンさん。もうペンギンショー、始まった？</p>
+  <p class="jp-kana">パク：ナタポンさん。もうペンギンショー、はじまった？</p>
+  <p class="en"><span class="en-spk">Park:</span> Natapon, has the penguin show started already?</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">ナタポン</div>
+  <p class="jp-kanji">ううん、今から始まるところだよ。</p>
+  <p class="jp-kana">ナタポン：ううん、いまからはじまるところだよ。</p>
+  <p class="en"><span class="en-spk">Natapon:</span> No, it&#x27;s just about to start.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">パク</div>
+  <p class="jp-kanji">ああ、間に合ってよかった。</p>
+  <p class="jp-kana">パク：ああ、まにあってよかった。</p>
+  <p class="en"><span class="en-spk">Park:</span> Ah, I&#x27;m glad I made it in time.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">アナウンス</div>
+  <p class="jp-kanji">間もなくペンギンショーが始まります。……</p>
+  <p class="jp-kana">アナウンス：まもなくペンギンショーがはじまります。……</p>
+  <p class="en"><span class="en-spk">Announcement:</span> The penguin show will begin shortly. ...</p>
+</article>
+<div class="exchange-head"><span class="ex-num">2 (155)</span></div>
+<article class="line">
+  <div class="speaker-jp">マルコ</div>
+  <p class="jp-kanji">あ、ペンギンが出てきた。</p>
+  <p class="jp-kana">マルコ：あ、ペンギンがでてきた。</p>
+  <p class="en"><span class="en-spk">Marco:</span> Ah, the penguins came out.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">パク</div>
+  <p class="jp-kanji">本当だ。かわいい。写真、写真……。</p>
+  <p class="jp-kana">パク：ほんとうだ。かわいい。しゃしん、しゃしん……。</p>
+  <p class="en"><span class="en-spk">Park:</span> Really. Cute. Photo, photo...</p>
+</article>
+<div class="exchange-head"><span class="ex-num">3</span></div>
+<article class="line">
+  <div class="speaker-jp">ナタポン</div>
+  <p class="jp-kanji">あ、ペンギンたちが階段を上っていくよ。</p>
+  <p class="jp-kana">ナタポン：あ、ペンギンたちがかいだんをのぼっていくよ。</p>
+  <p class="en"><span class="en-spk">Natapon:</span> Oh, the penguins are climbing the stairs.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">パク</div>
+  <p class="jp-kanji">わあ、かわいい。みんなで歩いてる。</p>
+  <p class="jp-kana">パク：わあ、かわいい。みんなであるいてる。</p>
+  <p class="en"><span class="en-spk">Park:</span> Wow, cute. They&#x27;re all walking together.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">ナタポン</div>
+  <p class="jp-kanji">うん。</p>
+  <p class="jp-kana">ナタポン：うん。</p>
+  <p class="en"><span class="en-spk">Natapon:</span> Yeah.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">マルコ</div>
+  <p class="jp-kanji">あ、水の中に入った。</p>
+  <p class="jp-kana">マルコ：あ、みずのなかにはいった。</p>
+  <p class="en"><span class="en-spk">Marco:</span> Ah, they went into the water.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">ワン</div>
+  <p class="jp-kanji">泳ぐのが速いね。あ、水の中から出てきて、魚をもらってるよ。</p>
+  <p class="jp-kana">ワン：およぐのがはやいね。あ、みずのなかからでてきて、さかなをもらってるよ。</p>
+  <p class="en"><span class="en-spk">Wang:</span> They swim fast. Oh, they came out of the water and are getting fish.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">マルコ</div>
+  <p class="jp-kanji">わあ、本当だ。</p>
+  <p class="jp-kana">マルコ：わあ、ほんとうだ。</p>
+  <p class="en"><span class="en-spk">Marco:</span> Wow, really.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">パク</div>
+  <p class="jp-kanji">ああ、動物園、おもしろかった。</p>
+  <p class="jp-kana">パク：ああ、どうぶつえん、おもしろかった。</p>
+  <p class="en"><span class="en-spk">Park:</span> Ah, the zoo was fun.</p>
+</article>
+<div class="exchange-head"><span class="ex-num">4 (157)</span></div>
+<article class="line">
+  <div class="speaker-jp">ナタポン</div>
+  <p class="jp-kanji">あ、あっちにサルがいる。</p>
+  <p class="jp-kana">ナタポン：あ、あっちにサルがいる。</p>
+  <p class="en"><span class="en-spk">Natapon:</span> Ah, there are monkeys over there.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">パク</div>
+  <p class="jp-kanji">あ、見て、見て。先月、サルの赤ちゃんが生まれたと書いてあるよ。</p>
+  <p class="jp-kana">パク：あ、みて、みて。せんげつ、サルのあかちゃんがうまれたとかいてあるよ。</p>
+  <p class="en"><span class="en-spk">Park:</span> Oh, look, look. It says a baby monkey was born last month.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">マルコ</div>
+  <p class="jp-kanji">え？どこにいる？</p>
+  <p class="jp-kana">マルコ：え？どこにいる？</p>
+  <p class="en"><span class="en-spk">Marco:</span> Huh? Where is it?</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">ワン</div>
+  <p class="jp-kanji">あ、あそこ。あそこにいるよ。かわいいね。</p>
+  <p class="jp-kana">ワン：あ、あそこ。あそこにいるよ。かわいいね。</p>
+  <p class="en"><span class="en-spk">Wang:</span> Ah, over there. There it is. Cute.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">マルコ</div>
+  <p class="jp-kanji">うん、おいしそうにミルクを飲んでる。</p>
+  <p class="jp-kana">マルコ：うん、おいしそうにミルクをのんでる。</p>
+  <p class="en"><span class="en-spk">Marco:</span> Yeah, it&#x27;s drinking milk like it&#x27;s really tasty.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">ナタポン</div>
+  <p class="jp-kanji">本当だ。</p>
+  <p class="jp-kana">ナタポン：ほんとうだ。</p>
+  <p class="en"><span class="en-spk">Natapon:</span> Really.</p>
+</article>
+<div class="exchange-head"><span class="ex-num">5 (158)</span></div>
+<article class="line">
+  <div class="speaker-jp">ナタポン</div>
+  <p class="jp-kanji">あれ？あの建物は何？</p>
+  <p class="jp-kana">ナタポン：あれ？あのたてものはなに？</p>
+  <p class="en"><span class="en-spk">Natapon:</span> Huh? What&#x27;s that building?</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">ワン</div>
+  <p class="jp-kanji">あ、ちょっと待って。あれは博物館だよ。</p>
+  <p class="jp-kana">ワン：あ、ちょっとまって。あれははくぶつかんだよ。</p>
+  <p class="en"><span class="en-spk">Wang:</span> Ah, wait a sec. That&#x27;s a museum.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">ナタポン</div>
+  <p class="jp-kanji">へえ、ヨーロッパの建物みたい。</p>
+  <p class="jp-kana">ナタポン：へえ、ヨーロッパのたてものみたい。</p>
+  <p class="en"><span class="en-spk">Natapon:</span> Oh, it looks like a European building.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">ワン</div>
+  <p class="jp-kanji">古そうだね。</p>
+  <p class="jp-kana">ワン：ふるそうだね。</p>
+  <p class="en"><span class="en-spk">Wang:</span> Looks old.</p>
+</article>
+<div class="exchange-head"><span class="ex-num">6 (159)</span></div>
+<article class="line">
+  <div class="speaker-jp">ナタポン</div>
+  <p class="jp-kanji">いつ頃建てられたの？</p>
+  <p class="jp-kana">ナタポン：いつごろたてられたの？</p>
+  <p class="en"><span class="en-spk">Natapon:</span> When was it built?</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">パク</div>
+  <p class="jp-kanji">……ええと、今から110年前に建てられたそうだよ。ここは昔、銀行だったと書いてあるよ。</p>
+  <p class="jp-kana">パク：……ええと、いまから110ねんまえにたてられたそうだよ。ここはむかし、ぎんこうだったとかいてあるよ。</p>
+  <p class="en"><span class="en-spk">Park:</span> ...Um, it says it was built 110 years ago. It also says this used to be a bank.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">ナタポン</div>
+  <p class="jp-kanji">へえ。</p>
+  <p class="jp-kana">ナタポン：へえ。</p>
+  <p class="en"><span class="en-spk">Natapon:</span> Oh.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">ワン</div>
+  <p class="jp-kanji">パクさーん。ここで写真を撮ろう。</p>
+  <p class="jp-kana">ワン：パクさーん。ここでしゃしんをとろう。</p>
+  <p class="en"><span class="en-spk">Wang:</span> Park! Let&#x27;s take a photo here.</p>
+</article>
+</section>
+  </div>
+  <div class="tab-pane vocab-pane" data-pane="vocabulary">
+<div class="vocab-content">
+<section class="vocab-section">
+  <h3 class="vocab-section-title">話読聞書</h3>
+  <div class="vocab-table">
+    <div class="vocab-row">
+      <div class="vocab-jp">あめ</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">candy, sweets</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">王様</div>
+      <div class="vocab-kana">おうさま</div>
+      <div class="vocab-en">king</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">クルミ</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">walnut</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">ゴマ</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">sesame</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">誰でも</div>
+      <div class="vocab-kana">だれでも</div>
+      <div class="vocab-en">anyone</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">伸ばす</div>
+      <div class="vocab-kana">のばす</div>
+      <div class="vocab-en">stretch, extend</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">巻く</div>
+      <div class="vocab-kana">まく</div>
+      <div class="vocab-en">wind up, wrap around</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">丸い</div>
+      <div class="vocab-kana">まるい</div>
+      <div class="vocab-en">round</div>
+    </div>
+  </div>
+</section>
+<section class="vocab-section">
+  <h3 class="vocab-section-title">1 ハプニング!</h3>
+  <div class="vocab-table">
+    <div class="vocab-row">
+      <div class="vocab-jp">アイスクリーム</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">ice cream</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">おじいさん</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">an old man</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">近所のおじいさん</div>
+      <div class="vocab-kana">きんじょのおじいさん</div>
+      <div class="vocab-en">an old man in the neighbourhood</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">おばあさん</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">an old woman</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">近所のおばあさん</div>
+      <div class="vocab-kana">きんじょのおばあさん</div>
+      <div class="vocab-en">an old woman in the neighbourhood</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">おにぎり</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">rice ball</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">蚊</div>
+      <div class="vocab-kana">か</div>
+      <div class="vocab-en">mosquito</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">係</div>
+      <div class="vocab-kana">かかり</div>
+      <div class="vocab-en">person in charge</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">シカ</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">deer</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">シングル</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">single</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">ツイン</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">twin</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">展望台</div>
+      <div class="vocab-kana">てんぼうだい</div>
+      <div class="vocab-en">viewing platform</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">泥棒</div>
+      <div class="vocab-kana">どろぼう</div>
+      <div class="vocab-en">thief, burglar</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">バッテリー</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">battery (esp. rechargeable battery)</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">フロント</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">front desk</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">ポーチ</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">pouch</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">ライブ</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">live (concert, broadcast)</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">ロック</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">rock</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">かむ</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">chew</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">配る</div>
+      <div class="vocab-kana">くばる</div>
+      <div class="vocab-en">distribute</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">刺す</div>
+      <div class="vocab-kana">さす</div>
+      <div class="vocab-en">bite, sting, stick with</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">誘う</div>
+      <div class="vocab-kana">さそう</div>
+      <div class="vocab-en">invite, take out</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">頼む</div>
+      <div class="vocab-kana">たのむ</div>
+      <div class="vocab-en">ask, request</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">踏む</div>
+      <div class="vocab-kana">ふむ</div>
+      <div class="vocab-en">step on</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">ぶつかる</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">hit, run against</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">けんか・する</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">argue</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">撮影・する</div>
+      <div class="vocab-kana">さつえい・する</div>
+      <div class="vocab-en">take a picture, record video</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">充電・する</div>
+      <div class="vocab-kana">じゅうでん・する</div>
+      <div class="vocab-en">charge (a battery)</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">招待・する</div>
+      <div class="vocab-kana">しょうたい・する</div>
+      <div class="vocab-en">invite, ask</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">タッチ・する</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">touch, tap (a screen)</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">注意・する</div>
+      <div class="vocab-kana">ちゅうい・する</div>
+      <div class="vocab-en">advise, admonish</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">係の人に注意される。</div>
+      <div class="vocab-kana">かかりのひとにちゅういされる。</div>
+      <div class="vocab-en">be given notice by the staff</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">通訳・する</div>
+      <div class="vocab-kana">つうやく・する</div>
+      <div class="vocab-en">interpret (translate orally)</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">発売・する</div>
+      <div class="vocab-kana">はつばい・する</div>
+      <div class="vocab-en">sell</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">うまい</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">taste good, delicious</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">いっぱい</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">full</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">あれ?</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">What?</div>
+    </div>
+  </div>
+</section>
+<section class="vocab-section">
+  <h3 class="vocab-section-title">2 ガイドブックを片手に</h3>
+  <div class="vocab-table">
+    <div class="vocab-row">
+      <div class="vocab-jp">赤ちゃん</div>
+      <div class="vocab-kana">あかちゃん</div>
+      <div class="vocab-en">baby</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">あっち</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">(over) there (informal)</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">鉛筆</div>
+      <div class="vocab-kana">えんぴつ</div>
+      <div class="vocab-en">pencil</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">多く</div>
+      <div class="vocab-kana">おおく</div>
+      <div class="vocab-en">many</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">お化け屋敷</div>
+      <div class="vocab-kana">おばけやしき</div>
+      <div class="vocab-en">haunted house</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">おやき</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">oyaki (Japanese dumpling popular in Nagano prefecture)</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">会場</div>
+      <div class="vocab-kana">かいじょう</div>
+      <div class="vocab-en">meeting place, conference hall</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">カタカナ</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">Japanese katakana script</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">工場</div>
+      <div class="vocab-kana">こうじょう</div>
+      <div class="vocab-en">factory</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">国際</div>
+      <div class="vocab-kana">こくさい</div>
+      <div class="vocab-en">international</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">子ども</div>
+      <div class="vocab-kana">こども</div>
+      <div class="vocab-en">child, kid</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">近所の子ども</div>
+      <div class="vocab-kana">きんじょのこども</div>
+      <div class="vocab-en">neighborhood child</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">柔道</div>
+      <div class="vocab-kana">じゅうどう</div>
+      <div class="vocab-en">judo</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">世界</div>
+      <div class="vocab-kana">せかい</div>
+      <div class="vocab-en">world</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">月</div>
+      <div class="vocab-kana">つき</div>
+      <div class="vocab-en">moon</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">月を見る。</div>
+      <div class="vocab-kana">つきをみる。</div>
+      <div class="vocab-en">see the moon</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">電池</div>
+      <div class="vocab-kana">でんち</div>
+      <div class="vocab-en">battery (esp. dry cell battery)</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">トラ</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">tiger</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">博物館</div>
+      <div class="vocab-kana">はくぶつかん</div>
+      <div class="vocab-en">museum</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">プロ</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">pro, professional</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">ミルク</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">milk</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">麦</div>
+      <div class="vocab-kana">むぎ</div>
+      <div class="vocab-en">wheat, barley, flour</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">向こう</div>
+      <div class="vocab-kana">むこう</div>
+      <div class="vocab-en">over there, the opposite (other) side</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">モデル</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">model</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">屋根</div>
+      <div class="vocab-kana">やね</div>
+      <div class="vocab-en">roof</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">ヨーロッパ</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">Europe</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">~時代 (例:江戸時代)</div>
+      <div class="vocab-kana">~じだい (れい:えどじだい)</div>
+      <div class="vocab-en">~ period (example: Edo period)</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">~中 (例:世界中)</div>
+      <div class="vocab-kana">~じゅう (れい:せかいじゅう)</div>
+      <div class="vocab-en">all over ~, throughout ~ (example: all over the world)</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">~箱 (例:弁当箱)</div>
+      <div class="vocab-kana">~ばこ (れい:べんとうばこ)</div>
+      <div class="vocab-en">~ box (example: bento box)</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">行う</div>
+      <div class="vocab-kana">おこなう</div>
+      <div class="vocab-en">perform</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">造る</div>
+      <div class="vocab-kana">つくる</div>
+      <div class="vocab-en">create, build</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">開く</div>
+      <div class="vocab-kana">ひらく</div>
+      <div class="vocab-en">open, hold</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">コンサートが開かれる。</div>
+      <div class="vocab-kana">コンサートがひらかれる。</div>
+      <div class="vocab-en">hold a concert</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">向かう</div>
+      <div class="vocab-kana">むかう</div>
+      <div class="vocab-en">leave for, face (a certain direction)</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">生きる</div>
+      <div class="vocab-kana">いきる</div>
+      <div class="vocab-en">live, to be alive</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">生まれる</div>
+      <div class="vocab-kana">うまれる</div>
+      <div class="vocab-en">be born</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">建てる</div>
+      <div class="vocab-kana">たてる</div>
+      <div class="vocab-en">build</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">逃げる</div>
+      <div class="vocab-kana">にげる</div>
+      <div class="vocab-en">run away, escape</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">設計・する</div>
+      <div class="vocab-kana">せっけい・する</div>
+      <div class="vocab-en">design, plan</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">発見・する</div>
+      <div class="vocab-kana">はっけん・する</div>
+      <div class="vocab-en">find, discover</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">発明・する</div>
+      <div class="vocab-kana">はつめい・する</div>
+      <div class="vocab-en">invent</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">~によって</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">due to ~</div>
+    </div>
+  </div>
+</section>
+<section class="vocab-section">
+  <h3 class="vocab-section-title">もう一度聞こう</h3>
+  <div class="vocab-table">
+    <div class="vocab-row">
+      <div class="vocab-jp">遠く</div>
+      <div class="vocab-kana">とおく</div>
+      <div class="vocab-en">far away</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">乗り場</div>
+      <div class="vocab-kana">のりば</div>
+      <div class="vocab-en">platform, gate, loading zone</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">ロープウエー</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">ropeway</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">ちょうど</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">exactly, precisely</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">お待たせ</div>
+      <div class="vocab-kana">おまたせ</div>
+      <div class="vocab-en">&quot;Sorry to keep you waiting&quot;</div>
+    </div>
+  </div>
+</section>
+</div>
+  </div>
+</article>
+<article class="chapter" data-chapter="11">
+  <div class="chapter-tabs" role="tablist">
+    <button class="tab-btn active" data-tab="dialogues" data-ch="11">Dialogues</button>
+    <button class="tab-btn" data-tab="vocabulary" data-ch="11">Vocabulary</button>
+  </div>
+  <div class="tab-pane dialogues-pane active" data-pane="dialogues">
+<header class="chapter-head">
+  <div class="chapter-mark">第11課</div>
+  <h2 class="chapter-title-jp">地域社会の中で</h2>
+  <p class="chapter-title-en">In the Local Community</p>
+</header>
+<section class="st-block">
+  <div class="st-header">
+    <span class="st-label">ST1</span>
+    <div class="st-titles">
+      <h3 class="st-jp">慣れてくると</h3>
+      <p class="st-en">As You Get Used to It</p>
+    </div>
+    <span class="st-source">本冊 152ページ スクリプト</span>
+  </div>
+<div class="exchange-head"><span class="ex-num">1 (164)</span></div>
+<article class="line">
+  <div class="speaker-jp">佐藤</div>
+  <p class="jp-kanji">ああ、カルロスさん、お帰りなさい。日本の生活にはもう慣れた？</p>
+  <p class="jp-kana">さとう：ああ、カルロスさん、おかえりなさい。にほんのせいかつにはもうなれた？</p>
+  <p class="en"><span class="en-spk">Sato:</span> Ah, Carlos, welcome back. Have you gotten used to life in Japan yet?</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">カルロス</div>
+  <p class="jp-kanji">こんにちは。はい、だいたい慣れましたが、料理が大変です。</p>
+  <p class="jp-kana">カルロス：こんにちは。はい、だいたいなれましたが、りょうりがたいへんです。</p>
+  <p class="en"><span class="en-spk">Carlos:</span> Hello. Yes, I&#x27;ve mostly gotten used to it, but cooking is tough.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">佐藤</div>
+  <p class="jp-kanji">ああ、自分で作ってるの？</p>
+  <p class="jp-kana">さとう：ああ、じぶんでつくってるの？</p>
+  <p class="en"><span class="en-spk">Sato:</span> Ah, you cook for yourself?</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">カルロス</div>
+  <p class="jp-kanji">はい。国では作りませんでしたが、日本へ来てからは作るようになりました。</p>
+  <p class="jp-kana">カルロス：はい。くにではつくりませんでしたが、にほんへきてからはつくるようになりました。</p>
+  <p class="en"><span class="en-spk">Carlos:</span> Yes. I didn&#x27;t cook back home, but since coming to Japan, I&#x27;ve started cooking.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">佐藤</div>
+  <p class="jp-kanji">それは大変だね。</p>
+  <p class="jp-kana">さとう：それはたいへんだね。</p>
+  <p class="en"><span class="en-spk">Sato:</span> That must be tough.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">カルロス</div>
+  <p class="jp-kanji">そうだ。ちょっとお聞きしたいことがあるんですが、いいですか。</p>
+  <p class="jp-kana">カルロス：そうだ。ちょっとおききしたいことがあるんですが、いいですか。</p>
+  <p class="en"><span class="en-spk">Carlos:</span> Oh, right. There&#x27;s something I&#x27;d like to ask, is that okay?</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">佐藤</div>
+  <p class="jp-kanji">何？</p>
+  <p class="jp-kana">さとう：なに？</p>
+  <p class="en"><span class="en-spk">Sato:</span> What?</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">カルロス</div>
+  <p class="jp-kanji">国ではいろいろなスポーツをしていましたが、日本へ来てからはあまりスポーツをしなくなりました。できれば、サッカーをしたいんですが、どこかご存じですか。</p>
+  <p class="jp-kana">カルロス：くにではいろいろなスポーツをしていましたが、にほんへきてからはあまりスポーツをしなくなりました。できれば、サッカーをしたいんですが、どこかごぞんじですか。</p>
+  <p class="en"><span class="en-spk">Carlos:</span> I used to play various sports back home, but since coming to Japan I hardly do any sports. If possible I&#x27;d like to play soccer — do you know anywhere?</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">佐藤</div>
+  <p class="jp-kanji">うーん。あ、この地域のサッカークラブの人を紹介してあげようか。</p>
+  <p class="jp-kana">さとう：うーん。あ、このちいきのサッカークラブのひとをしょうかいしてあげようか。</p>
+  <p class="en"><span class="en-spk">Sato:</span> Hmm. Ah, shall I introduce you to someone from the local soccer club?</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">カルロス</div>
+  <p class="jp-kanji">本当ですか。ぜひ、お願いします。</p>
+  <p class="jp-kana">カルロス：ほんとうですか。ぜひ、おねがいします。</p>
+  <p class="en"><span class="en-spk">Carlos:</span> Really? Yes, please.</p>
+</article>
+<div class="exchange-head"><span class="ex-num">2 (165)</span></div>
+<article class="line">
+  <div class="speaker-jp">八百屋</div>
+  <p class="jp-kanji">いらっしゃい。ああ、ワンさん。こんにちは。</p>
+  <p class="jp-kana">やおや：いらっしゃい。ああ、ワンさん。こんにちは。</p>
+  <p class="en"><span class="en-spk">Grocer:</span> Welcome. Ah, Wang. Hello.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">ワン</div>
+  <p class="jp-kanji">こんにちは。これ、ください。</p>
+  <p class="jp-kana">ワン：こんにちは。これ、ください。</p>
+  <p class="en"><span class="en-spk">Wang:</span> Hello. I&#x27;ll have this, please.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">八百屋</div>
+  <p class="jp-kanji">はいよっ。ワンさん、アルバイトはどう？楽しい？</p>
+  <p class="jp-kana">やおや：はいよっ。ワンさん、アルバイトはどう？たのしい？</p>
+  <p class="en"><span class="en-spk">Grocer:</span> Sure. Wang, how&#x27;s the part-time job? Fun?</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">ワン</div>
+  <p class="jp-kanji">うーん、まあまあです。アルバイトを始めたばかりなので、まだ仕事に慣れません。敬語もうまく使えませんし。</p>
+  <p class="jp-kana">ワン：うーん、まあまあです。アルバイトをはじめたばかりなので、まだしごとになれません。けいごもうまくつかえませんし。</p>
+  <p class="en"><span class="en-spk">Wang:</span> Hmm, so-so. I just started the job so I&#x27;m not used to the work yet. And I can&#x27;t use polite language well either.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">八百屋</div>
+  <p class="jp-kanji">ああ、そうなんだ。大変だね。今日も今からアルバイト？</p>
+  <p class="jp-kana">やおや：ああ、そうなんだ。たいへんだね。きょうもいまからアルバイト？</p>
+  <p class="en"><span class="en-spk">Grocer:</span> Ah, I see. That&#x27;s rough. Are you off to work now too?</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">ワン</div>
+  <p class="jp-kanji">はい。</p>
+  <p class="jp-kana">ワン：はい。</p>
+  <p class="en"><span class="en-spk">Wang:</span> Yes.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">八百屋</div>
+  <p class="jp-kanji">頑張ってね。いってらっしゃい。</p>
+  <p class="jp-kana">やおや：がんばってね。いってらっしゃい。</p>
+  <p class="en"><span class="en-spk">Grocer:</span> Good luck. Take care.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">ワン</div>
+  <p class="jp-kanji">いってきます。</p>
+  <p class="jp-kana">ワン：いってきます。</p>
+  <p class="en"><span class="en-spk">Wang:</span> I&#x27;m off.</p>
+</article>
+<div class="exchange-head"><span class="ex-num">3</span></div>
+<article class="line">
+  <div class="speaker-jp">田中</div>
+  <p class="jp-kanji">ナタポンさん、お帰りなさい。勉強はどう？</p>
+  <p class="jp-kana">たなか：ナタポンさん、おかえりなさい。べんきょうはどう？</p>
+  <p class="en"><span class="en-spk">Tanaka:</span> Natapon, welcome back. How&#x27;s your study going?</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">ナタポン</div>
+  <p class="jp-kanji">こんにちは。アルバイトをしながら勉強しているので、毎日とても疲れます。</p>
+  <p class="jp-kana">ナタポン：こんにちは。アルバイトをしながらべんきょうしているので、まいにちとてもつかれます。</p>
+  <p class="en"><span class="en-spk">Natapon:</span> Hello. I&#x27;m studying while working part-time, so I&#x27;m really tired every day.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">田中</div>
+  <p class="jp-kanji">それは大変だねえ。体に気をつけてね。あ、来週野球の試合だよね。応援に行くね。</p>
+  <p class="jp-kana">たなか：それはたいへんだねえ。からだにきをつけてね。あ、らいしゅうやきゅうのしあいだよね。おうえんにいくね。</p>
+  <p class="en"><span class="en-spk">Tanaka:</span> That&#x27;s tough. Take care of yourself. Oh, your baseball game is next week, right? I&#x27;ll go cheer for you.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">ナタポン</div>
+  <p class="jp-kanji">はい。ありがとうございます。</p>
+  <p class="jp-kana">ナタポン：はい。ありがとうございます。</p>
+  <p class="en"><span class="en-spk">Natapon:</span> Yes. Thank you.</p>
+</article>
+</section>
+<section class="st-block">
+  <div class="st-header">
+    <span class="st-label">ST2</span>
+    <div class="st-titles">
+      <h3 class="st-jp">スポーツチームに入って</h3>
+      <p class="st-en">Joining a Sports Team</p>
+    </div>
+    <span class="st-source">本冊 156ページ スクリプト</span>
+  </div>
+<div class="exchange-head"><span class="ex-num">1 (169)</span></div>
+<article class="line">
+  <div class="speaker-jp">監督</div>
+  <p class="jp-kanji">じゃあ、みんな練習始めるぞ。</p>
+  <p class="jp-kana">かんとく：じゃあ、みんなれんしゅうはじめるぞ。</p>
+  <p class="en"><span class="en-spk">Coach:</span> Alright, everyone, let&#x27;s start practice.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">みんな</div>
+  <p class="jp-kanji">はーい。</p>
+  <p class="jp-kana">みんな：はーい。</p>
+  <p class="en"><span class="en-spk">Everyone:</span> Okay!</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">監督</div>
+  <p class="jp-kanji">あれ、佐藤さんは？</p>
+  <p class="jp-kana">かんとく：あれ、さとうさんは？</p>
+  <p class="en"><span class="en-spk">Coach:</span> Huh, where&#x27;s Sato?</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">ナタポン</div>
+  <p class="jp-kanji">佐藤さんは今日、仕事があるから休むと言っていましたよ。</p>
+  <p class="jp-kana">ナタポン：さとうさんはきょう、しごとがあるからやすむといっていましたよ。</p>
+  <p class="en"><span class="en-spk">Natapon:</span> Sato said he has work today so he&#x27;ll be absent.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">監督</div>
+  <p class="jp-kanji">ああ、そうだったな。よし、じゃあ、始めよう。回れ！回れ！</p>
+  <p class="jp-kana">かんとく：ああ、そうだったな。よし、じゃあ、はじめよう。まわれ！まわれ！</p>
+  <p class="en"><span class="en-spk">Coach:</span> Ah, right. Alright, let&#x27;s start. Run! Run!</p>
+</article>
+<div class="exchange-head"><span class="ex-num">2 (170)</span></div>
+<article class="line">
+  <div class="speaker-jp">ナタポン・応援の人</div>
+  <p class="jp-kanji">ワーワー。走れー！</p>
+  <p class="jp-kana">ナタポン・おうえんのひと：ワーワー。はしれー！</p>
+  <p class="en"><span class="en-spk">Natapon &amp; Fans:</span> Yay! Run!</p>
+</article>
+<div class="exchange-head"><span class="ex-num">3 (171)</span></div>
+<article class="line">
+  <div class="speaker-jp">応援の人</div>
+  <p class="jp-kanji">落とすな！</p>
+  <p class="jp-kana">おうえんのひと：おとすな！</p>
+  <p class="en"><span class="en-spk">Fan:</span> Don&#x27;t drop it!</p>
+</article>
+<div class="exchange-head"><span class="ex-num">4 (172)</span></div>
+<article class="line">
+  <div class="speaker-jp">ナタポン</div>
+  <p class="jp-kanji">田中さんが見に来ると言っていましたが、来ていますか。</p>
+  <p class="jp-kana">ナタポン：たなかさんがみにくるといっていましたが、きていますか。</p>
+  <p class="en"><span class="en-spk">Natapon:</span> Tanaka said she&#x27;d come watch — is she here?</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">チームメイト</div>
+  <p class="jp-kanji">ああ、来ているよ。ほら、あそこ。</p>
+  <p class="jp-kana">チームメイト：ああ、きているよ。ほら、あそこ。</p>
+  <p class="en"><span class="en-spk">Teammate:</span> Ah, she&#x27;s here. Look, over there.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">ナタポン</div>
+  <p class="jp-kanji">え、どこですか。</p>
+  <p class="jp-kana">ナタポン：え、どこですか。</p>
+  <p class="en"><span class="en-spk">Natapon:</span> Huh, where?</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">チームメイト</div>
+  <p class="jp-kanji">ほら、あそこ。観客席でお弁当を食べながら、ご主人と話しているよ。</p>
+  <p class="jp-kana">チームメイト：ほら、あそこ。かんきゃくせきでおべんとうをたべながら、ごしゅじんとはなしているよ。</p>
+  <p class="en"><span class="en-spk">Teammate:</span> Look, over there. In the spectator seats, eating a bento while talking with her husband.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">ナタポン</div>
+  <p class="jp-kanji">本当だ。</p>
+  <p class="jp-kana">ナタポン：ほんとうだ。</p>
+  <p class="en"><span class="en-spk">Natapon:</span> There she is.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">チームメイト</div>
+  <p class="jp-kanji">あっ、打てー！……やったー走れー！行けー！</p>
+  <p class="jp-kana">チームメイト：あっ、うてー！……やったーはしれー！いけー！</p>
+  <p class="en"><span class="en-spk">Teammate:</span> Ah, hit it! ...Alright, run! Go!</p>
+</article>
+</section>
+  </div>
+  <div class="tab-pane vocab-pane" data-pane="vocabulary">
+<div class="vocab-content">
+<section class="vocab-section">
+  <h3 class="vocab-section-title">話読聞書</h3>
+  <div class="vocab-table">
+    <div class="vocab-row">
+      <div class="vocab-jp">おじさん</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">uncle, mister (polite term used to refer to middle-aged men)</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">苦労</div>
+      <div class="vocab-kana">くろう</div>
+      <div class="vocab-en">trouble, burden</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">八百屋</div>
+      <div class="vocab-kana">やおや</div>
+      <div class="vocab-en">vegetable vendor, green grocery</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">話しかける</div>
+      <div class="vocab-kana">はなしかける</div>
+      <div class="vocab-en">talk to, speak to</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">親しい</div>
+      <div class="vocab-kana">したしい</div>
+      <div class="vocab-en">familiar, intimate</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">何度も</div>
+      <div class="vocab-kana">なんども</div>
+      <div class="vocab-en">over and over again, many times</div>
+    </div>
+  </div>
+</section>
+<section class="vocab-section">
+  <h3 class="vocab-section-title">1 慣れてくると</h3>
+  <div class="vocab-table">
+    <div class="vocab-row">
+      <div class="vocab-jp">彼女</div>
+      <div class="vocab-kana">かのじょ</div>
+      <div class="vocab-en">girlfriend</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">彼</div>
+      <div class="vocab-kana">かれ</div>
+      <div class="vocab-en">boyfriend</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">国の彼女/彼に会いたい。</div>
+      <div class="vocab-kana">くにのかのじょ/かれにあいたい。</div>
+      <div class="vocab-en">&quot;I miss my girlfriend/boyfriend back home.&quot;</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">記者</div>
+      <div class="vocab-kana">きしゃ</div>
+      <div class="vocab-en">journalist, reporter</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">興味</div>
+      <div class="vocab-kana">きょうみ</div>
+      <div class="vocab-en">interest</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">敬語</div>
+      <div class="vocab-kana">けいご</div>
+      <div class="vocab-en">respectful language</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">こと</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">matters about ~, things about ~</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">将来のこと</div>
+      <div class="vocab-kana">しょうらいのこと</div>
+      <div class="vocab-en">things about the future</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">地域</div>
+      <div class="vocab-kana">ちいき</div>
+      <div class="vocab-en">region, area, zone, locality</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">違い</div>
+      <div class="vocab-kana">ちがい</div>
+      <div class="vocab-en">difference</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">物価</div>
+      <div class="vocab-kana">ぶっか</div>
+      <div class="vocab-en">prices of commodities</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">文化</div>
+      <div class="vocab-kana">ぶんか</div>
+      <div class="vocab-en">culture</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">ボランティア</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">volunteer</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">無理</div>
+      <div class="vocab-kana">むり</div>
+      <div class="vocab-en">overdo, take something too far</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">~代 (例:食事代)</div>
+      <div class="vocab-kana">~だい (れい:しょくじだい)</div>
+      <div class="vocab-en">~ charges, ~ fees (example: dining charges)</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">持つ</div>
+      <div class="vocab-kana">もつ</div>
+      <div class="vocab-en">have, hold</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">興味を持つ。</div>
+      <div class="vocab-kana">きょうみをもつ。</div>
+      <div class="vocab-en">have an interest</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">学ぶ</div>
+      <div class="vocab-kana">まなぶ</div>
+      <div class="vocab-en">learn, study</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">折れる</div>
+      <div class="vocab-kana">おれる</div>
+      <div class="vocab-en">break</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">答える</div>
+      <div class="vocab-kana">こたえる</div>
+      <div class="vocab-en">answer, respond</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">育てる</div>
+      <div class="vocab-kana">そだてる</div>
+      <div class="vocab-en">raise (a child), bring up</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">インタビュー・する</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">interview</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">外食・する</div>
+      <div class="vocab-kana">がいしょく・する</div>
+      <div class="vocab-en">dine out, eat out</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">研究・する</div>
+      <div class="vocab-kana">けんきゅう・する</div>
+      <div class="vocab-en">research</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">故障・する</div>
+      <div class="vocab-kana">こしょう・する</div>
+      <div class="vocab-en">get out of order, break down</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">節約・する</div>
+      <div class="vocab-kana">せつやく・する</div>
+      <div class="vocab-en">economize, be thrifty</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">あんまり</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">not much, not very</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">だいたい</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">mostly, most of the time</div>
+    </div>
+  </div>
+</section>
+<section class="vocab-section">
+  <h3 class="vocab-section-title">2 スポーツチームに入って</h3>
+  <div class="vocab-table">
+    <div class="vocab-row">
+      <div class="vocab-jp">運転手</div>
+      <div class="vocab-kana">うんてんしゅ</div>
+      <div class="vocab-en">driver</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">駅前</div>
+      <div class="vocab-kana">えきまえ</div>
+      <div class="vocab-en">in front of the train station</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">具合</div>
+      <div class="vocab-kana">ぐあい</div>
+      <div class="vocab-en">condition, health</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">今夜</div>
+      <div class="vocab-kana">こんや</div>
+      <div class="vocab-en">tonight</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">打つ</div>
+      <div class="vocab-kana">うつ</div>
+      <div class="vocab-en">hit</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">回る</div>
+      <div class="vocab-kana">まわる</div>
+      <div class="vocab-en">go around</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">諦める</div>
+      <div class="vocab-kana">あきらめる</div>
+      <div class="vocab-en">give up</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">投げる</div>
+      <div class="vocab-kana">なげる</div>
+      <div class="vocab-en">throw</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">出張・する</div>
+      <div class="vocab-kana">しゅっちょう・する</div>
+      <div class="vocab-en">go on a business trip</div>
+    </div>
+  </div>
+</section>
+<section class="vocab-section">
+  <h3 class="vocab-section-title">もう一度聞こう</h3>
+  <div class="vocab-table">
+    <div class="vocab-row">
+      <div class="vocab-jp">機会</div>
+      <div class="vocab-kana">きかい</div>
+      <div class="vocab-en">chance, opportunity</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">地域</div>
+      <div class="vocab-kana">ちいき</div>
+      <div class="vocab-en">area, region</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">~君</div>
+      <div class="vocab-kana">~くん</div>
+      <div class="vocab-en">(suffix for boy&#x27;s names that indicates respect and familiarity)</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">シュート・する</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">shoot</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">お帰りなさい</div>
+      <div class="vocab-kana">おかえりなさい</div>
+      <div class="vocab-en">&quot;Welcome home.&quot;</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">よし</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">good, come on</div>
+    </div>
+  </div>
+</section>
+</div>
+  </div>
+</article>
+<article class="chapter" data-chapter="12">
+  <div class="chapter-tabs" role="tablist">
+    <button class="tab-btn active" data-tab="dialogues" data-ch="12">Dialogues</button>
+    <button class="tab-btn" data-tab="vocabulary" data-ch="12">Vocabulary</button>
+  </div>
+  <div class="tab-pane dialogues-pane active" data-pane="dialogues">
+<header class="chapter-head">
+  <div class="chapter-mark">第12課</div>
+  <h2 class="chapter-title-jp">私の健康法</h2>
+  <p class="chapter-title-en">My Health Regimen</p>
+</header>
+<section class="st-block">
+  <div class="st-header">
+    <span class="st-label">ST1</span>
+    <div class="st-titles">
+      <h3 class="st-jp">体調不良</h3>
+      <p class="st-en">Feeling Unwell</p>
+    </div>
+    <span class="st-source">本冊 164ページ スクリプト</span>
+  </div>
+<div class="exchange-head"><span class="ex-num">1 (177)</span></div>
+<article class="line">
+  <div class="speaker-jp">パク</div>
+  <p class="jp-kanji">ふう……。</p>
+  <p class="jp-kana">パク：ふう……。</p>
+  <p class="en"><span class="en-spk">Park:</span> Sigh...</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">山口</div>
+  <p class="jp-kanji">あ、パクさん、おはよう。どうしたの？元気がないね。</p>
+  <p class="jp-kana">やまぐち：あ、パクさん、おはよう。どうしたの？げんきがないね。</p>
+  <p class="en"><span class="en-spk">Yamaguchi:</span> Ah, Park, morning. What&#x27;s wrong? You seem down.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">パク</div>
+  <p class="jp-kanji">うん。頭がガンガンする。昨日、飲みすぎちゃった。</p>
+  <p class="jp-kana">パク：うん。あたまがガンガンする。きのう、のみすぎちゃった。</p>
+  <p class="en"><span class="en-spk">Park:</span> Yeah. My head is pounding. I drank too much yesterday.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">山口</div>
+  <p class="jp-kanji">えっ、そうなんだ。どのくらい飲んだの？</p>
+  <p class="jp-kana">やまぐち：えっ、そうなんだ。どのくらいのんだの？</p>
+  <p class="en"><span class="en-spk">Yamaguchi:</span> Oh, really? How much did you drink?</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">パク</div>
+  <p class="jp-kanji">友達とワイン3本ぐらい。</p>
+  <p class="jp-kana">パク：ともだちとワイン3ぼんぐらい。</p>
+  <p class="en"><span class="en-spk">Park:</span> Around 3 bottles of wine with friends.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">山口</div>
+  <p class="jp-kanji">えっ、3本も飲んだの？それじゃ、二日酔いになるよ。</p>
+  <p class="jp-kana">やまぐち：えっ、3ぼんものんだの？それじゃ、ふつかよいになるよ。</p>
+  <p class="en"><span class="en-spk">Yamaguchi:</span> What, 3 bottles? Then of course you&#x27;d get a hangover.</p>
+</article>
+<div class="exchange-head"><span class="ex-num">2 (178)</span></div>
+<article class="line">
+  <div class="speaker-jp">パク</div>
+  <p class="jp-kanji">ふあー、眠い。2時間しか寝ていないんだ。</p>
+  <p class="jp-kana">パク：ふあー、ねむい。2じかんしかねていないんだ。</p>
+  <p class="en"><span class="en-spk">Park:</span> Ugh, I&#x27;m sleepy. I only got 2 hours of sleep.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">山口</div>
+  <p class="jp-kanji">え、そうなの？</p>
+  <p class="jp-kana">やまぐち：え、そうなの？</p>
+  <p class="en"><span class="en-spk">Yamaguchi:</span> Huh, really?</p>
+</article>
+<div class="exchange-head"><span class="ex-num">3 (179)</span></div>
+<article class="line">
+  <div class="speaker-jp">山口</div>
+  <p class="jp-kanji">まだ8時だから、もうちょっと寝たらどう？</p>
+  <p class="jp-kana">やまぐち：まだ8じだから、もうちょっとねたらどう？</p>
+  <p class="en"><span class="en-spk">Yamaguchi:</span> It&#x27;s only 8, why don&#x27;t you sleep a bit more?</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">パク</div>
+  <p class="jp-kanji">うん。でも、これから友達と約束があるんだ。</p>
+  <p class="jp-kana">パク：うん。でも、これからともだちとやくそくがあるんだ。</p>
+  <p class="en"><span class="en-spk">Park:</span> Yeah. But I have plans with a friend after this.</p>
+</article>
+<div class="exchange-head"><span class="ex-num">4</span></div>
+<article class="line">
+  <div class="speaker-jp">パク</div>
+  <p class="jp-kanji">うっ、気持ちが悪い。胃がムカムカする。</p>
+  <p class="jp-kana">パク：うっ、きもちがわるい。いがムカムカする。</p>
+  <p class="en"><span class="en-spk">Park:</span> Ugh, I feel sick. My stomach is queasy.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">山口</div>
+  <p class="jp-kanji">大丈夫？水、飲む？はい。</p>
+  <p class="jp-kana">やまぐち：だいじょうぶ？みず、のむ？はい。</p>
+  <p class="en"><span class="en-spk">Yamaguchi:</span> You okay? Want some water? Here.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">パク</div>
+  <p class="jp-kanji">ありがとう。</p>
+  <p class="jp-kana">パク：ありがとう。</p>
+  <p class="en"><span class="en-spk">Park:</span> Thanks.</p>
+</article>
+<div class="exchange-head"><span class="ex-num">5 (180)</span></div>
+<article class="line">
+  <div class="speaker-jp">山口</div>
+  <p class="jp-kanji">今日は、どこへも行かないで、部屋で休んだほうがいいよ。</p>
+  <p class="jp-kana">やまぐち：きょうは、どこへもいかないで、へやでやすんだほうがいいよ。</p>
+  <p class="en"><span class="en-spk">Yamaguchi:</span> Today, you should just stay in your room and rest without going anywhere.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">パク</div>
+  <p class="jp-kanji">そうだね。そうするね。</p>
+  <p class="jp-kana">パク：そうだね。そうするね。</p>
+  <p class="en"><span class="en-spk">Park:</span> Yeah. I&#x27;ll do that.</p>
+</article>
+<div class="exchange-head"><span class="ex-num">6 (181)</span></div>
+<article class="line">
+  <div class="speaker-jp">山口</div>
+  <p class="jp-kanji">パクさん、もう大丈夫？</p>
+  <p class="jp-kana">やまぐち：パクさん、もうだいじょうぶ？</p>
+  <p class="en"><span class="en-spk">Yamaguchi:</span> Park, feeling better?</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">パク</div>
+  <p class="jp-kanji">うん、山口さん、ありがとう。</p>
+  <p class="jp-kana">パク：うん、やまぐちさん、ありがとう。</p>
+  <p class="en"><span class="en-spk">Park:</span> Yeah. Thanks, Yamaguchi.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">山口</div>
+  <p class="jp-kanji">グレープフルーツ切ったけど、食べる？</p>
+  <p class="jp-kana">やまぐち：グレープフルーツきったけど、たべる？</p>
+  <p class="en"><span class="en-spk">Yamaguchi:</span> I cut up some grapefruit — want some?</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">パク</div>
+  <p class="jp-kanji">ありがとう。</p>
+  <p class="jp-kana">パク：ありがとう。</p>
+  <p class="en"><span class="en-spk">Park:</span> Thanks.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">山口</div>
+  <p class="jp-kanji">二日酔いのときは、すっぱい物を食べるといいらしいよ。</p>
+  <p class="jp-kana">やまぐち：ふつかよいのときは、すっぱいものをたべるといいらしいよ。</p>
+  <p class="en"><span class="en-spk">Yamaguchi:</span> They say sour foods are good when you have a hangover.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">パク</div>
+  <p class="jp-kanji">じゃ、いただきます。うーん。すっぱいけど、おいしい。</p>
+  <p class="jp-kana">パク：じゃ、いただきます。うーん。すっぱいけど、おいしい。</p>
+  <p class="en"><span class="en-spk">Park:</span> Then I&#x27;ll dig in. Mmm. Sour, but tasty.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">山口</div>
+  <p class="jp-kanji">よかった。</p>
+  <p class="jp-kana">やまぐち：よかった。</p>
+  <p class="en"><span class="en-spk">Yamaguchi:</span> Glad to hear it.</p>
+</article>
+<div class="exchange-head"><span class="ex-num">7 (182)</span></div>
+<article class="line">
+  <div class="speaker-jp">パク</div>
+  <p class="jp-kanji">山口さん、コーヒー飲む？</p>
+  <p class="jp-kana">パク：やまぐちさん、コーヒーのむ？</p>
+  <p class="en"><span class="en-spk">Park:</span> Yamaguchi, want some coffee?</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">山口</div>
+  <p class="jp-kanji">ありがとう。</p>
+  <p class="jp-kana">やまぐち：ありがとう。</p>
+  <p class="en"><span class="en-spk">Yamaguchi:</span> Thanks.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">パク</div>
+  <p class="jp-kanji">あ、砂糖とミルクは？</p>
+  <p class="jp-kana">パク：あ、さとうとミルクは？</p>
+  <p class="en"><span class="en-spk">Park:</span> Ah, sugar and milk?</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">山口</div>
+  <p class="jp-kanji">私は何も入れない。</p>
+  <p class="jp-kana">やまぐち：わたしはなにもいれない。</p>
+  <p class="en"><span class="en-spk">Yamaguchi:</span> I don&#x27;t add anything.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">パク</div>
+  <p class="jp-kanji">えっ？何も入れないで飲むの？</p>
+  <p class="jp-kana">パク：えっ？なにもいれないでのむの？</p>
+  <p class="en"><span class="en-spk">Park:</span> Huh? You drink it without anything?</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">山口</div>
+  <p class="jp-kanji">うん。そのほうが好きなんだ。</p>
+  <p class="jp-kana">やまぐち：うん。そのほうがすきなんだ。</p>
+  <p class="en"><span class="en-spk">Yamaguchi:</span> Yeah. I like it that way.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">パク</div>
+  <p class="jp-kanji">へえ。</p>
+  <p class="jp-kana">パク：へえ。</p>
+  <p class="en"><span class="en-spk">Park:</span> Huh.</p>
+</article>
+</section>
+<section class="st-block">
+  <div class="st-header">
+    <span class="st-label">ST2</span>
+    <div class="st-titles">
+      <h3 class="st-jp">毎日、元気に！</h3>
+      <p class="st-en">Every Day, Feel Good!</p>
+    </div>
+    <span class="st-source">本冊 170ページ スクリプト</span>
+  </div>
+<div class="exchange-head"><span class="ex-num">1 (185)</span></div>
+<article class="line">
+  <div class="speaker-jp">ワン</div>
+  <p class="jp-kanji">パクさん、それは何？</p>
+  <p class="jp-kana">ワン：パクさん、それはなに？</p>
+  <p class="en"><span class="en-spk">Wang:</span> Park, what&#x27;s that?</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">パク</div>
+  <p class="jp-kanji">これはジューサー。</p>
+  <p class="jp-kana">パク：これはジューサー。</p>
+  <p class="en"><span class="en-spk">Park:</span> This is a juicer.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">ワン</div>
+  <p class="jp-kanji">じゅーさー？</p>
+  <p class="jp-kana">ワン：じゅーさー？</p>
+  <p class="en"><span class="en-spk">Wang:</span> Juicer?</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">パク</div>
+  <p class="jp-kanji">うん。野菜ジュースを作るのに使うよ。</p>
+  <p class="jp-kana">パク：うん。やさいジュースをつくるのにつかうよ。</p>
+  <p class="en"><span class="en-spk">Park:</span> Yeah. I use it to make vegetable juice.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">ワン</div>
+  <p class="jp-kanji">へえ。</p>
+  <p class="jp-kana">ワン：へえ。</p>
+  <p class="en"><span class="en-spk">Wang:</span> Oh.</p>
+</article>
+<div class="exchange-head"><span class="ex-num">2 (186)</span></div>
+<article class="line">
+  <div class="speaker-jp">ワン</div>
+  <p class="jp-kanji">パクさんは自分で野菜ジュースを作るの？</p>
+  <p class="jp-kana">ワン：パクさんはじぶんでやさいジュースをつくるの？</p>
+  <p class="en"><span class="en-spk">Wang:</span> You make vegetable juice yourself?</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">パク</div>
+  <p class="jp-kanji">うん。この頃風邪をひきやすいから、自分で作りたくて。</p>
+  <p class="jp-kana">パク：うん。このごろかぜをひきやすいから、じぶんでつくりたくて。</p>
+  <p class="en"><span class="en-spk">Park:</span> Yeah. I catch colds easily these days, so I wanted to make it myself.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">ワン</div>
+  <p class="jp-kanji">そうなんだ。</p>
+  <p class="jp-kana">ワン：そうなんだ。</p>
+  <p class="en"><span class="en-spk">Wang:</span> I see.</p>
+</article>
+<div class="exchange-head"><span class="ex-num">3 (187)</span></div>
+<article class="line">
+  <div class="speaker-jp">ワン</div>
+  <p class="jp-kanji">風邪をひきやすいなら、体を温めるといいよ。首や足を温かくすると風邪をひきにくくなるよ。</p>
+  <p class="jp-kana">ワン：かぜをひきやすいなら、からだをあたためるといいよ。くびやあしをあたたかくするとかぜをひきにくくなるよ。</p>
+  <p class="en"><span class="en-spk">Wang:</span> If you catch colds easily, you should warm up your body. Keeping your neck and feet warm makes it harder to catch colds.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">パク</div>
+  <p class="jp-kanji">へえ、やってみる。</p>
+  <p class="jp-kana">パク：へえ、やってみる。</p>
+  <p class="en"><span class="en-spk">Park:</span> Oh, I&#x27;ll try that.</p>
+</article>
+<div class="exchange-head"><span class="ex-num">4 (188)</span></div>
+<article class="line">
+  <div class="speaker-jp">パク</div>
+  <p class="jp-kanji">メアリーさんは健康のために何かしている？</p>
+  <p class="jp-kana">パク：メアリーさんはけんこうのためになにかしている？</p>
+  <p class="en"><span class="en-spk">Park:</span> Mary, do you do anything for your health?</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">メアリー</div>
+  <p class="jp-kanji">私はできるだけ毎日運動するようにしているよ。</p>
+  <p class="jp-kana">メアリー：わたしはできるだけまいにちうんどうするようにしているよ。</p>
+  <p class="en"><span class="en-spk">Mary:</span> I try to exercise every day as much as I can.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">パク</div>
+  <p class="jp-kanji">すごいね。</p>
+  <p class="jp-kana">パク：すごいね。</p>
+  <p class="en"><span class="en-spk">Park:</span> That&#x27;s impressive.</p>
+</article>
+<div class="exchange-head"><span class="ex-num">5</span></div>
+<article class="line">
+  <div class="speaker-jp">ワン</div>
+  <p class="jp-kanji">ねえ、パクさんも何か運動を始めてみたら？</p>
+  <p class="jp-kana">ワン：ねえ、パクさんもなにかうんどうをはじめてみたら？</p>
+  <p class="en"><span class="en-spk">Wang:</span> Hey, why don&#x27;t you start some kind of exercise too?</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">パク</div>
+  <p class="jp-kanji">うーん。</p>
+  <p class="jp-kana">パク：うーん。</p>
+  <p class="en"><span class="en-spk">Park:</span> Hmm.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">メアリー</div>
+  <p class="jp-kanji">そうだよ。一緒に朝、ジョギングしようよ。気持ちもいいし、体の調子もよくなるし……。ね、一緒に走ろうよ！</p>
+  <p class="jp-kana">メアリー：そうだよ。いっしょにあさ、ジョギングしようよ。きもちもいいし、からだのちょうしもよくなるし……。ね、いっしょにはしろうよ！</p>
+  <p class="en"><span class="en-spk">Mary:</span> Yeah. Let&#x27;s go jogging together in the mornings. It feels good, and your body will feel better too... Come on, let&#x27;s run together!</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">パク</div>
+  <p class="jp-kanji">そっか。そうだね。じゃ、明日から朝、走ることにする！</p>
+  <p class="jp-kana">パク：そっか。そうだね。じゃ、あしたからあさ、はしることにする！</p>
+  <p class="en"><span class="en-spk">Park:</span> I see. Alright. Then starting tomorrow morning, I&#x27;ll run!</p>
+</article>
+</section>
+  </div>
+  <div class="tab-pane vocab-pane" data-pane="vocabulary">
+<div class="vocab-content">
+<section class="vocab-section">
+  <h3 class="vocab-section-title">話読聞書</h3>
+  <div class="vocab-table">
+    <div class="vocab-row">
+      <div class="vocab-jp">インスタント</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">instant</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">食品</div>
+      <div class="vocab-kana">しょくひん</div>
+      <div class="vocab-en">food</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">残す</div>
+      <div class="vocab-kana">のこす</div>
+      <div class="vocab-en">leave, save</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">残る</div>
+      <div class="vocab-kana">のこる</div>
+      <div class="vocab-en">be left remaining</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">冷凍・する</div>
+      <div class="vocab-kana">れいとう・する</div>
+      <div class="vocab-en">freeze</div>
+    </div>
+  </div>
+</section>
+<section class="vocab-section">
+  <h3 class="vocab-section-title">1 体調不良</h3>
+  <div class="vocab-table">
+    <div class="vocab-row">
+      <div class="vocab-jp">胃</div>
+      <div class="vocab-kana">い</div>
+      <div class="vocab-en">stomach</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">痛み</div>
+      <div class="vocab-kana">いたみ</div>
+      <div class="vocab-en">pain</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">うがい</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">gargling</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">元気</div>
+      <div class="vocab-kana">げんき</div>
+      <div class="vocab-en">healthy, lively, spirited</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">氷</div>
+      <div class="vocab-kana">こおり</div>
+      <div class="vocab-en">ice</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">湿布</div>
+      <div class="vocab-kana">しっぷ</div>
+      <div class="vocab-en">cold (hot) compress</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">ジム</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">gym, gymnasium</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">疲れ</div>
+      <div class="vocab-kana">つかれ</div>
+      <div class="vocab-en">fatigue, tiredness</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">ドレッシング</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">dressing</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">様子</div>
+      <div class="vocab-kana">ようす</div>
+      <div class="vocab-en">appearance</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">~金 (例:入会金)</div>
+      <div class="vocab-kana">~きん (れい:にゅうかいきん)</div>
+      <div class="vocab-en">~ fee, ~ charge (example: admission fee)</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">さす</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">hold over one&#x27;s head</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">傘をさす。</div>
+      <div class="vocab-kana">かさをさす。</div>
+      <div class="vocab-en">open an umbrella</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">酔う</div>
+      <div class="vocab-kana">よう</div>
+      <div class="vocab-en">get drunk, feel sick (at the stomach)</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">取れる</div>
+      <div class="vocab-kana">とれる</div>
+      <div class="vocab-en">relieve, break free from</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">アドバイス・する</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">give advice, advise</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">入会・する</div>
+      <div class="vocab-kana">にゅうかい・する</div>
+      <div class="vocab-en">join, become a member of a group</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">ガンガン</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">pounding, throbbing (state where it feels as if the pain in your head is making a loud sound)</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">パンパン</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">tense, full (state where it feels as if your muscles are being stretched tightly)</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">フラフラ</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">groggy, dizzy, woozy (state where you cannot gather any energy, are weary, or your body is unsteady)</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">ムカムカ</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">nauseous, queasy (state where you feel like you are going to vomit due to overeating, overdrinking, or another cause)</div>
+    </div>
+  </div>
+</section>
+<section class="vocab-section">
+  <h3 class="vocab-section-title">2 毎日、元気に!</h3>
+  <div class="vocab-table">
+    <div class="vocab-row">
+      <div class="vocab-jp">栄養</div>
+      <div class="vocab-kana">えいよう</div>
+      <div class="vocab-en">nutrition</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">肩</div>
+      <div class="vocab-kana">かた</div>
+      <div class="vocab-en">shoulder</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">首</div>
+      <div class="vocab-kana">くび</div>
+      <div class="vocab-en">neck</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">カロリー</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">calorie</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">健康</div>
+      <div class="vocab-kana">けんこう</div>
+      <div class="vocab-en">health, fitness</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">この頃</div>
+      <div class="vocab-kana">このごろ</div>
+      <div class="vocab-en">these days, nowadays</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">ジューサー</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">juicer</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">ショウガ</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">ginger</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">ストレス</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">stress</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">体脂肪</div>
+      <div class="vocab-kana">たいしぼう</div>
+      <div class="vocab-en">body fat</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">ネックストレッチャー</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">neck brace, neck collar</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">バランス</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">balance</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">ビタミンC</div>
+      <div class="vocab-kana">ビタミンシー</div>
+      <div class="vocab-en">vitamin C</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">ヘルスケア</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">healthcare, fitness</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">マッサージ器</div>
+      <div class="vocab-kana">マッサージき</div>
+      <div class="vocab-en">massage machine</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">~計 (例:温度計)</div>
+      <div class="vocab-kana">~けい (れい:おんどけい)</div>
+      <div class="vocab-en">~ meter (example: thermometer)</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">~不足 (例:運動不足)</div>
+      <div class="vocab-kana">~ぶそく (れい:うんどうぶそく)</div>
+      <div class="vocab-en">deficiency in ~, not enough ~ (example: not enough exercise)</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">~率 (例:出席率)</div>
+      <div class="vocab-kana">~りつ (れい:しゅっせきりつ)</div>
+      <div class="vocab-en">~ rate, ~ ratio, ~ percentage (example: attendance rate)</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">動かす</div>
+      <div class="vocab-kana">うごかす</div>
+      <div class="vocab-en">move, set in motion</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">こる</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">become stiff</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">たまる</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">build up</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">取る</div>
+      <div class="vocab-kana">とる</div>
+      <div class="vocab-en">break free from, relieve</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">疲れを取る。</div>
+      <div class="vocab-kana">つかれをとる。</div>
+      <div class="vocab-en">relieve one&#x27;s fatigue</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">眠る</div>
+      <div class="vocab-kana">ねむる</div>
+      <div class="vocab-en">sleep</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">測る</div>
+      <div class="vocab-kana">はかる</div>
+      <div class="vocab-en">measure</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">太る</div>
+      <div class="vocab-kana">ふとる</div>
+      <div class="vocab-en">gain weight, get fat</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">痩せる</div>
+      <div class="vocab-kana">やせる</div>
+      <div class="vocab-en">lose weight, become thin</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">冷える</div>
+      <div class="vocab-kana">ひえる</div>
+      <div class="vocab-en">chill, get cold</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">計算・する</div>
+      <div class="vocab-kana">けいさん・する</div>
+      <div class="vocab-en">calculate</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">ダイエット・する</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">diet</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">マッサージ・する</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">massage</div>
+    </div>
+  </div>
+</section>
+<section class="vocab-section">
+  <h3 class="vocab-section-title">もう一度聞こう</h3>
+  <div class="vocab-table">
+    <div class="vocab-row">
+      <div class="vocab-jp">キャラクター</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">(fictional) character, personality</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">グレープフルーツ</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">grapefruit</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">二日酔い</div>
+      <div class="vocab-kana">ふつかよい</div>
+      <div class="vocab-en">hangover</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">管理・する</div>
+      <div class="vocab-kana">かんり・する</div>
+      <div class="vocab-en">manage, administer</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">成長・する</div>
+      <div class="vocab-kana">せいちょう・する</div>
+      <div class="vocab-en">grow, develop</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">気にする</div>
+      <div class="vocab-kana">きにする</div>
+      <div class="vocab-en">feel uneasy, be worried (about)</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">気をつける</div>
+      <div class="vocab-kana">きをつける</div>
+      <div class="vocab-en">be careful</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">ほとんど</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">hardly</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">~とも</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">both</div>
+    </div>
+  </div>
+</section>
+</div>
+  </div>
+</article>
+<article class="chapter" data-chapter="13">
+  <div class="chapter-tabs" role="tablist">
+    <button class="tab-btn active" data-tab="dialogues" data-ch="13">Dialogues</button>
+    <button class="tab-btn" data-tab="vocabulary" data-ch="13">Vocabulary</button>
+  </div>
+  <div class="tab-pane dialogues-pane active" data-pane="dialogues">
+<header class="chapter-head">
+  <div class="chapter-mark">第13課</div>
+  <h2 class="chapter-title-jp">親の気持ち・子の気持ち</h2>
+  <p class="chapter-title-en">Parents&#x27; Feelings, Children&#x27;s Feelings</p>
+</header>
+<section class="st-block">
+  <div class="st-header">
+    <span class="st-label">ST1</span>
+    <div class="st-titles">
+      <h3 class="st-jp">町で見かけた子どもたち</h3>
+      <p class="st-en">Children I Saw in Town</p>
+    </div>
+    <span class="st-source">本冊 178ページ スクリプト</span>
+  </div>
+<div class="exchange-head"><span class="ex-num">1 (194)</span></div>
+<article class="line">
+  <div class="speaker-jp">マルコ</div>
+  <p class="jp-kanji">あ、あそこ。人がたくさん集まってるね。あれ、何？</p>
+  <p class="jp-kana">マルコ：あ、あそこ。ひとがたくさんあつまってるね。あれ、なに？</p>
+  <p class="en"><span class="en-spk">Marco:</span> Ah, over there. There&#x27;s a big crowd. What&#x27;s that?</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">パク</div>
+  <p class="jp-kanji">ああ、塾だよ。子どもを待ってるの。ほら、子どもたちが出てきたよ。</p>
+  <p class="jp-kana">パク：ああ、じゅくだよ。こどもをまってるの。ほら、こどもたちがでてきたよ。</p>
+  <p class="en"><span class="en-spk">Park:</span> Ah, it&#x27;s a cram school. They&#x27;re waiting for the kids. Look, the kids are coming out.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">マルコ</div>
+  <p class="jp-kanji">わあ、小さい子どももたくさんいるね。</p>
+  <p class="jp-kana">マルコ：わあ、ちいさいこどももたくさんいるね。</p>
+  <p class="en"><span class="en-spk">Marco:</span> Wow, there are a lot of little kids too.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">パク</div>
+  <p class="jp-kanji">そうだね。</p>
+  <p class="jp-kana">パク：そうだね。</p>
+  <p class="en"><span class="en-spk">Park:</span> Yeah.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">マルコ</div>
+  <p class="jp-kanji">私が親だったら、小さいときはもっと子どもを遊ばせるけど……。</p>
+  <p class="jp-kana">マルコ：わたしがおやだったら、ちいさいときはもっとこどもをあそばせるけど……。</p>
+  <p class="en"><span class="en-spk">Marco:</span> If I were their parent, I&#x27;d let them play more when they&#x27;re young...</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">パク</div>
+  <p class="jp-kanji">そっか。でも、あの子のお父さん、お母さんはあの子の将来のために、いろいろ習わせてるんだと思うよ。</p>
+  <p class="jp-kana">パク：そっか。でも、あのこのおとうさん、おかあさんはあのこのしょうらいのために、いろいろならわせてるんだとおもうよ。</p>
+  <p class="en"><span class="en-spk">Park:</span> I see. But those kids&#x27; parents are probably having them learn all sorts of things for their future.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">マルコ</div>
+  <p class="jp-kanji">そうだけど……。</p>
+  <p class="jp-kana">マルコ：そうだけど……。</p>
+  <p class="en"><span class="en-spk">Marco:</span> That&#x27;s true, but...</p>
+</article>
+<div class="exchange-head"><span class="ex-num">2 (195)</span></div>
+<article class="line">
+  <div class="speaker-jp">パク</div>
+  <p class="jp-kanji">あ、あそこを見て。子どもたちが道に絵を描いて遊んでるよ。</p>
+  <p class="jp-kana">パク：あ、あそこをみて。こどもたちがみちにえをかいてあそんでるよ。</p>
+  <p class="en"><span class="en-spk">Park:</span> Ah, look over there. The kids are playing by drawing on the road.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">マルコ</div>
+  <p class="jp-kanji">本当だ。この間は、公園で子どもたちが野球をやってるのを見たよ。</p>
+  <p class="jp-kana">マルコ：ほんとうだ。このあいだは、こうえんでこどもたちがやきゅうをやってるのをみたよ。</p>
+  <p class="en"><span class="en-spk">Marco:</span> Really. The other day, I saw kids playing baseball in the park.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">パク</div>
+  <p class="jp-kanji">へえ。</p>
+  <p class="jp-kana">パク：へえ。</p>
+  <p class="en"><span class="en-spk">Park:</span> Oh.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">マルコ</div>
+  <p class="jp-kanji">遅くまで、とても頑張っていた。</p>
+  <p class="jp-kana">マルコ：おそくまで、とてもがんばっていた。</p>
+  <p class="en"><span class="en-spk">Marco:</span> They were really giving it their all until late.</p>
+</article>
+<div class="exchange-head"><span class="ex-num">3 (196)</span></div>
+<article class="line">
+  <div class="speaker-jp">マルコ</div>
+  <p class="jp-kanji">私も子どもの頃は、よく友達とサッカーをしていたよ。</p>
+  <p class="jp-kana">マルコ：わたしもこどものころは、よくともだちとサッカーをしていたよ。</p>
+  <p class="en"><span class="en-spk">Marco:</span> When I was a kid, I used to play soccer with friends a lot too.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">パク</div>
+  <p class="jp-kanji">そうなんだ。</p>
+  <p class="jp-kana">パク：そうなんだ。</p>
+  <p class="en"><span class="en-spk">Park:</span> I see.</p>
+</article>
+<div class="exchange-head"><span class="ex-num">4</span></div>
+<article class="line">
+  <div class="speaker-jp">マルコ</div>
+  <p class="jp-kanji">勉強も大切だけど、やっぱり子どもは外で元気に遊んだほうがいいと思う。</p>
+  <p class="jp-kana">マルコ：べんきょうもたいせつだけど、やっぱりこどもはそとでげんきにあそんだほうがいいとおもう。</p>
+  <p class="en"><span class="en-spk">Marco:</span> Studying is important too, but I still think kids should play outside energetically.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">パク</div>
+  <p class="jp-kanji">それもそうだね。</p>
+  <p class="jp-kana">パク：それもそうだね。</p>
+  <p class="en"><span class="en-spk">Park:</span> That&#x27;s true too.</p>
+</article>
+</section>
+<section class="st-block">
+  <div class="st-header">
+    <span class="st-label">ST2</span>
+    <div class="st-titles">
+      <h3 class="st-jp">思い出すと</h3>
+      <p class="st-en">When I Think Back</p>
+    </div>
+    <span class="st-source">本冊 182ページ スクリプト</span>
+  </div>
+<div class="exchange-head"><span class="ex-num">1 (200)</span></div>
+<article class="line">
+  <div class="speaker-jp">パク</div>
+  <p class="jp-kanji">これ、山口さんのお母さん？</p>
+  <p class="jp-kana">パク：これ、やまぐちさんのおかあさん？</p>
+  <p class="en"><span class="en-spk">Park:</span> Is this your mom, Yamaguchi?</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">山口</div>
+  <p class="jp-kanji">うん、そうだよ。</p>
+  <p class="jp-kana">やまぐち：うん、そうだよ。</p>
+  <p class="en"><span class="en-spk">Yamaguchi:</span> Yeah, that&#x27;s her.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">パク</div>
+  <p class="jp-kanji">へえ。優しそうな人だね。</p>
+  <p class="jp-kana">パク：へえ。やさしそうなひとだね。</p>
+  <p class="en"><span class="en-spk">Park:</span> Oh. She looks kind.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">山口</div>
+  <p class="jp-kanji">うーん、私が子どもの頃は厳しかったよ。毎日テレビばかり見てたから、よく叱られた。</p>
+  <p class="jp-kana">やまぐち：うーん、わたしがこどものころはきびしかったよ。まいにちテレビばかりみてたから、よくしかられた。</p>
+  <p class="en"><span class="en-spk">Yamaguchi:</span> Hmm, she was strict when I was a kid. I used to watch TV every day so I got scolded a lot.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">パク</div>
+  <p class="jp-kanji">へえ。</p>
+  <p class="jp-kana">パク：へえ。</p>
+  <p class="en"><span class="en-spk">Park:</span> Oh.</p>
+</article>
+<div class="exchange-head"><span class="ex-num">2 (201)</span></div>
+<article class="line">
+  <div class="speaker-jp">山口</div>
+  <p class="jp-kanji">毎日勉強させられたし、掃除や料理も手伝わされた。</p>
+  <p class="jp-kana">やまぐち：まいにちべんきょうさせられたし、そうじやりょうりもてつだわされた。</p>
+  <p class="en"><span class="en-spk">Yamaguchi:</span> I was made to study every day, and made to help with cleaning and cooking too.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">パク</div>
+  <p class="jp-kanji">へえ。</p>
+  <p class="jp-kana">パク：へえ。</p>
+  <p class="en"><span class="en-spk">Park:</span> Oh.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">山口</div>
+  <p class="jp-kanji">そのときは大変で、お母さんの気持ちがわからなかったけど、今は自分で何でもできるようになって、よかったと思ってる。</p>
+  <p class="jp-kana">やまぐち：そのときはたいへんで、おかあさんのきもちがわからなかったけど、いまはじぶんでなんでもできるようになって、よかったとおもってる。</p>
+  <p class="en"><span class="en-spk">Yamaguchi:</span> It was tough back then and I didn&#x27;t understand my mom&#x27;s feelings, but now I can do everything myself and I&#x27;m glad.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">パク</div>
+  <p class="jp-kanji">そっか。</p>
+  <p class="jp-kana">パク：そっか。</p>
+  <p class="en"><span class="en-spk">Park:</span> I see.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">山口</div>
+  <p class="jp-kanji">今になってあのときのお母さんの気持ちを考えると、とても感謝してるよ。</p>
+  <p class="jp-kana">やまぐち：いまになってあのときのおかあさんのきもちをかんがえると、とてもかんしゃしてるよ。</p>
+  <p class="en"><span class="en-spk">Yamaguchi:</span> Now when I think about my mom&#x27;s feelings back then, I&#x27;m really grateful.</p>
+</article>
+<div class="exchange-head"><span class="ex-num">3 (202)</span></div>
+<article class="line">
+  <div class="speaker-jp">山口</div>
+  <p class="jp-kanji">パクさんのうちはどうだった？</p>
+  <p class="jp-kana">やまぐち：パクさんのうちはどうだった？</p>
+  <p class="en"><span class="en-spk">Yamaguchi:</span> How was it at your house, Park?</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">パク</div>
+  <p class="jp-kanji">私の両親も教育には熱心だったけど、そんなに厳しくなかった。やりたいことはだいたいさせてくれたよ。小学生のときは水泳を習わせてもらったし、高校生のときは友達と旅行に行かせてもらった。</p>
+  <p class="jp-kana">パク：わたしのりょうしんもきょういくにはねっしんだったけど、そんなにきびしくなかった。やりたいことはだいたいさせてくれたよ。しょうがくせいのときはすいえいをならわせてもらったし、こうこうせいのときはともだちとりょこうにいかせてもらった。</p>
+  <p class="en"><span class="en-spk">Park:</span> My parents were also enthusiastic about education, but they weren&#x27;t that strict. They mostly let me do what I wanted. In elementary school they let me learn swimming, and in high school they let me travel with friends.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">山口</div>
+  <p class="jp-kanji">へえ。そうなんだ。</p>
+  <p class="jp-kana">やまぐち：へえ。そうなんだ。</p>
+  <p class="en"><span class="en-spk">Yamaguchi:</span> Oh, really.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">パク</div>
+  <p class="jp-kanji">私も子どもには好きなことをさせたいと思っているんだ。</p>
+  <p class="jp-kana">パク：わたしもこどもにはすきなことをさせたいとおもっているんだ。</p>
+  <p class="en"><span class="en-spk">Park:</span> I also want to let my kids do what they like.</p>
+</article>
+</section>
+  </div>
+  <div class="tab-pane vocab-pane" data-pane="vocabulary">
+<div class="vocab-content">
+<section class="vocab-section">
+  <h3 class="vocab-section-title">話読聞書</h3>
+  <div class="vocab-table">
+    <div class="vocab-row">
+      <div class="vocab-jp">自然</div>
+      <div class="vocab-kana">しぜん</div>
+      <div class="vocab-en">nature</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">釣る</div>
+      <div class="vocab-kana">つる</div>
+      <div class="vocab-en">fish</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">手に入れる</div>
+      <div class="vocab-kana">てにいれる</div>
+      <div class="vocab-en">obtain, acquire</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">不利 (な)</div>
+      <div class="vocab-kana">ふり (な)</div>
+      <div class="vocab-en">disadvantageous</div>
+    </div>
+  </div>
+</section>
+<section class="vocab-section">
+  <h3 class="vocab-section-title">1 町で見かけた子どもたち</h3>
+  <div class="vocab-table">
+    <div class="vocab-row">
+      <div class="vocab-jp">男の子</div>
+      <div class="vocab-kana">おとこのこ</div>
+      <div class="vocab-en">boy</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">親</div>
+      <div class="vocab-kana">おや</div>
+      <div class="vocab-en">parent</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">父親</div>
+      <div class="vocab-kana">ちちおや</div>
+      <div class="vocab-en">father</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">母親</div>
+      <div class="vocab-kana">ははおや</div>
+      <div class="vocab-en">mother</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">家事</div>
+      <div class="vocab-kana">かじ</div>
+      <div class="vocab-en">housework</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">ゲームセンター</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">game center</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">コーチ</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">coach</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">頃</div>
+      <div class="vocab-kana">ころ</div>
+      <div class="vocab-en">when I was ~</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">塾</div>
+      <div class="vocab-kana">じゅく</div>
+      <div class="vocab-en">after-school cram school</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">数学</div>
+      <div class="vocab-kana">すうがく</div>
+      <div class="vocab-en">mathematics, math</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">~キロ</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">~ kilometers, ~ kilograms</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">~ずつ (例:20個ずつ)</div>
+      <div class="vocab-kana">~ずつ (れい:20こずつ)</div>
+      <div class="vocab-en">~ each, ~ per (example: 20 each)</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">騒ぐ</div>
+      <div class="vocab-kana">さわぐ</div>
+      <div class="vocab-en">be noisy, act up</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">世話・する</div>
+      <div class="vocab-kana">せわ・する</div>
+      <div class="vocab-en">take care of</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">偉い</div>
+      <div class="vocab-kana">えらい</div>
+      <div class="vocab-en">great, excellent, well done</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">自由 (な)</div>
+      <div class="vocab-kana">じゆう (な)</div>
+      <div class="vocab-en">free, at will</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">必ず</div>
+      <div class="vocab-kana">かならず</div>
+      <div class="vocab-en">by all means, certainly</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">やっぱり</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">after all</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">遅くまで</div>
+      <div class="vocab-kana">おそくまで</div>
+      <div class="vocab-en">(doing something) until late</div>
+    </div>
+  </div>
+</section>
+<section class="vocab-section">
+  <h3 class="vocab-section-title">2 思い出すと</h3>
+  <div class="vocab-table">
+    <div class="vocab-row">
+      <div class="vocab-jp">海外</div>
+      <div class="vocab-kana">かいがい</div>
+      <div class="vocab-en">overseas</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">教育</div>
+      <div class="vocab-kana">きょういく</div>
+      <div class="vocab-en">education</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">曲</div>
+      <div class="vocab-kana">きょく</div>
+      <div class="vocab-en">song track</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">化粧品</div>
+      <div class="vocab-kana">けしょうひん</div>
+      <div class="vocab-en">cosmetics</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">手伝い</div>
+      <div class="vocab-kana">てつだい</div>
+      <div class="vocab-en">help, assistance, assistant</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">習い事</div>
+      <div class="vocab-kana">ならいごと</div>
+      <div class="vocab-en">lessons (violin lessons, ballet lessons, etc.)</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">~会 (例:発表会)</div>
+      <div class="vocab-kana">~かい (れい:はっぴょうかい)</div>
+      <div class="vocab-en">~ meet(ing), ~ session ~ presentation (used for events like recitals, school concerts, etc.)</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">叱る</div>
+      <div class="vocab-kana">しかる</div>
+      <div class="vocab-en">scold</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">泣く</div>
+      <div class="vocab-kana">なく</div>
+      <div class="vocab-en">cry</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">残す</div>
+      <div class="vocab-kana">のこす</div>
+      <div class="vocab-en">leave, save</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">やる</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">do</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">宿題をやる。</div>
+      <div class="vocab-kana">しゅくだいをやる。</div>
+      <div class="vocab-en">do my homework</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">褒める</div>
+      <div class="vocab-kana">ほめる</div>
+      <div class="vocab-en">praise</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">やめる</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">quit, stop, give up</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">発表・する</div>
+      <div class="vocab-kana">はっぴょう・する</div>
+      <div class="vocab-en">announce</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">厳しい</div>
+      <div class="vocab-kana">きびしい</div>
+      <div class="vocab-en">strict, severe</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">嫌 (な)</div>
+      <div class="vocab-kana">いや (な)</div>
+      <div class="vocab-en">disagreeable, unpleasant</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">熱心 (な)</div>
+      <div class="vocab-kana">ねっしん (な)</div>
+      <div class="vocab-en">eager, enthusiastic, devoted</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">何でも</div>
+      <div class="vocab-kana">なんでも</div>
+      <div class="vocab-en">anything</div>
+    </div>
+  </div>
+</section>
+<section class="vocab-section">
+  <h3 class="vocab-section-title">もう一度聞こう</h3>
+  <div class="vocab-table">
+    <div class="vocab-row">
+      <div class="vocab-jp">おもちゃ</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">toy</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">祖母</div>
+      <div class="vocab-kana">そぼ</div>
+      <div class="vocab-en">grandmother</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">僕</div>
+      <div class="vocab-kana">ぼく</div>
+      <div class="vocab-en">I, me (informal, used primarily by young men)</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">役に立つ</div>
+      <div class="vocab-kana">やくにたつ</div>
+      <div class="vocab-en">be useful</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">ちゃんと</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">properly</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">仕方がない</div>
+      <div class="vocab-kana">しかたがない</div>
+      <div class="vocab-en">no choice, have no alternative</div>
+    </div>
+  </div>
+</section>
+</div>
+  </div>
+</article>
+<article class="chapter" data-chapter="14">
+  <div class="chapter-tabs" role="tablist">
+    <button class="tab-btn active" data-tab="dialogues" data-ch="14">Dialogues</button>
+    <button class="tab-btn" data-tab="vocabulary" data-ch="14">Vocabulary</button>
+  </div>
+  <div class="tab-pane dialogues-pane active" data-pane="dialogues">
+<header class="chapter-head">
+  <div class="chapter-mark">第14課</div>
+  <h2 class="chapter-title-jp">イベント・行事</h2>
+  <p class="chapter-title-en">Events and Occasions</p>
+</header>
+<section class="st-block">
+  <div class="st-header">
+    <span class="st-label">ST1</span>
+    <div class="st-titles">
+      <h3 class="st-jp">私の国・町の行事</h3>
+      <p class="st-en">Events in My Country/Town</p>
+    </div>
+    <span class="st-source">本冊 190ページ スクリプト</span>
+  </div>
+<div class="exchange-head"><span class="ex-num">1 (208)</span></div>
+<article class="line">
+  <div class="speaker-jp">ナタポン</div>
+  <p class="jp-kanji">木村さん、今日は着物を着ている子どもがたくさんいますね。</p>
+  <p class="jp-kana">ナタポン：きむらさん、きょうはきものをきているこどもがたくさんいますね。</p>
+  <p class="en"><span class="en-spk">Natapon:</span> Kimura, there are a lot of children wearing kimono today.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">木村</div>
+  <p class="jp-kanji">ああ、七五三ですよ。</p>
+  <p class="jp-kana">きむら：ああ、しちごさんですよ。</p>
+  <p class="en"><span class="en-spk">Kimura:</span> Ah, it&#x27;s Shichi-Go-San.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">ナタポン</div>
+  <p class="jp-kanji">しちごさん？しちごさんって何ですか。</p>
+  <p class="jp-kana">ナタポン：しちごさん？しちごさんってなんですか。</p>
+  <p class="en"><span class="en-spk">Natapon:</span> Shichi-Go-San? What&#x27;s Shichi-Go-San?</p>
+</article>
+<div class="exchange-head"><span class="ex-num">2 (209)</span></div>
+<article class="line">
+  <div class="speaker-jp">木村</div>
+  <p class="jp-kanji">七五三というのは、神社やお寺へ行って、子どもの健康を祈る行事ですよ。</p>
+  <p class="jp-kana">きむら：しちごさんというのは、じんじゃやおてらへいって、こどものけんこうをいのるぎょうじですよ。</p>
+  <p class="en"><span class="en-spk">Kimura:</span> Shichi-Go-San is an event where you go to a shrine or temple to pray for children&#x27;s health.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">ナタポン</div>
+  <p class="jp-kanji">へえ。</p>
+  <p class="jp-kana">ナタポン：へえ。</p>
+  <p class="en"><span class="en-spk">Natapon:</span> Oh.</p>
+</article>
+<div class="exchange-head"><span class="ex-num">3 (210)</span></div>
+<article class="line">
+  <div class="speaker-jp">ナタポン</div>
+  <p class="jp-kanji">でも、どうして七五三っていうんですか。</p>
+  <p class="jp-kana">ナタポン：でも、どうしてしちごさんっていうんですか。</p>
+  <p class="en"><span class="en-spk">Natapon:</span> But why is it called Shichi-Go-San (seven-five-three)?</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">木村</div>
+  <p class="jp-kanji">女の子は3歳と7歳、男の子は3歳と5歳のときに祝うので、七五三と言われています。あの大きい袋に入っているのは長いあめです。千歳あめと言います。あのあめを食べると、長生きすると言われているんです。</p>
+  <p class="jp-kana">きむら：おんなのこは3さいと7さい、おとこのこは3さいと5さいのときにいわうので、しちごさんといわれています。あのおおきいふくろにはいっているのはながいあめです。ちとせあめといいます。あのあめをたべると、ながいきするといわれているんです。</p>
+  <p class="en"><span class="en-spk">Kimura:</span> It&#x27;s called Shichi-Go-San because girls are celebrated at ages 3 and 7, and boys at ages 3 and 5. What&#x27;s in those big bags is a long candy called chitose-ame. It&#x27;s said that eating that candy will give you a long life.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">ナタポン</div>
+  <p class="jp-kanji">おもしろいですね。</p>
+  <p class="jp-kana">ナタポン：おもしろいですね。</p>
+  <p class="en"><span class="en-spk">Natapon:</span> How interesting.</p>
+</article>
+<div class="exchange-head"><span class="ex-num">4-1 (211)</span></div>
+<article class="line">
+  <div class="speaker-jp">木村</div>
+  <p class="jp-kanji">ナタポンさんの国にも、七五三のような行事がありますか。</p>
+  <p class="jp-kana">きむら：ナタポンさんのくににも、しちごさんのようなぎょうじがありますか。</p>
+  <p class="en"><span class="en-spk">Kimura:</span> Natapon, does your country also have events like Shichi-Go-San?</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">ナタポン</div>
+  <p class="jp-kanji">そうですね。1月にワン・デックという日があります。</p>
+  <p class="jp-kana">ナタポン：そうですね。1がつにワン・デックというひがあります。</p>
+  <p class="en"><span class="en-spk">Natapon:</span> Let&#x27;s see. In January we have a day called Wan Dek.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">木村</div>
+  <p class="jp-kanji">わん・でっく？</p>
+  <p class="jp-kana">きむら：わん・でっく？</p>
+  <p class="en"><span class="en-spk">Kimura:</span> Wan Dek?</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">ナタポン</div>
+  <p class="jp-kanji">はい。日本語で子どもの日という意味で、子どもたちはおもちゃをもらったり、お菓子を食べたりします。</p>
+  <p class="jp-kana">ナタポン：はい。にほんごでこどものひといういみで、こどもたちはおもちゃをもらったり、おかしをたべたりします。</p>
+  <p class="en"><span class="en-spk">Natapon:</span> Yes. It means Children&#x27;s Day in Japanese, and children get toys and eat sweets.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">木村</div>
+  <p class="jp-kanji">へえ。</p>
+  <p class="jp-kana">きむら：へえ。</p>
+  <p class="en"><span class="en-spk">Kimura:</span> Oh.</p>
+</article>
+<div class="exchange-head"><span class="ex-num">4-2</span></div>
+<article class="line">
+  <div class="speaker-jp">木村</div>
+  <p class="jp-kanji">あ、ナタポンさん、おいしいタイ料理の店を知っていますか。</p>
+  <p class="jp-kana">きむら：あ、ナタポンさん、おいしいタイりょうりのみせをしっていますか。</p>
+  <p class="en"><span class="en-spk">Kimura:</span> Ah, Natapon, do you know any good Thai restaurants?</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">ナタポン</div>
+  <p class="jp-kanji">あ、ありますよ。わかば駅の近くにあるサワディーです。パッタイがおいしいんです。</p>
+  <p class="jp-kana">ナタポン：あ、ありますよ。わかばえきのちかくにあるサワディーです。パッタイがおいしいんです。</p>
+  <p class="en"><span class="en-spk">Natapon:</span> Ah, yes. It&#x27;s called Sawadee, near Wakaba Station. Their pad thai is delicious.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">木村</div>
+  <p class="jp-kanji">ぱったい？</p>
+  <p class="jp-kana">きむら：ぱったい？</p>
+  <p class="en"><span class="en-spk">Kimura:</span> Pad thai?</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">ナタポン</div>
+  <p class="jp-kanji">あ、パッタイというのは、焼きそばのような料理で、タイでよく食べます。</p>
+  <p class="jp-kana">ナタポン：あ、パッタイというのは、やきそばのようなりょうりで、タイでよくたべます。</p>
+  <p class="en"><span class="en-spk">Natapon:</span> Ah, pad thai is a dish like yakisoba that&#x27;s commonly eaten in Thailand.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">木村</div>
+  <p class="jp-kanji">そうですか。ぜひ食べてみたいです。</p>
+  <p class="jp-kana">きむら：そうですか。ぜひたべてみたいです。</p>
+  <p class="en"><span class="en-spk">Kimura:</span> Really. I definitely want to try it.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">ナタポン</div>
+  <p class="jp-kanji">今度みんなで行きましょう。</p>
+  <p class="jp-kana">ナタポン：こんどみんなでいきましょう。</p>
+  <p class="en"><span class="en-spk">Natapon:</span> Let&#x27;s all go together sometime.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">木村</div>
+  <p class="jp-kanji">はい！</p>
+  <p class="jp-kana">きむら：はい！</p>
+  <p class="en"><span class="en-spk">Kimura:</span> Yes!</p>
+</article>
+</section>
+<section class="st-block">
+  <div class="st-header">
+    <span class="st-label">ST2</span>
+    <div class="st-titles">
+      <h3 class="st-jp">贈り物の習慣</h3>
+      <p class="st-en">Gift-Giving Customs</p>
+    </div>
+    <span class="st-source">本冊 194ページ スクリプト</span>
+  </div>
+<div class="exchange-head"><span class="ex-num">1 (215)</span></div>
+<article class="line">
+  <div class="speaker-jp">ワン</div>
+  <p class="jp-kanji">アンナさんに何をあげようかな。</p>
+  <p class="jp-kana">ワン：アンナさんになにをあげようかな。</p>
+  <p class="en"><span class="en-spk">Wang:</span> I wonder what to give Anna.</p>
+</article>
+<div class="exchange-head"><span class="ex-num">2 (216)</span></div>
+<article class="line">
+  <div class="speaker-jp">ワン</div>
+  <p class="jp-kanji">アンナさんの誕生日プレゼント、どうしよう。何にする？</p>
+  <p class="jp-kana">ワン：アンナさんのたんじょうびプレゼント、どうしよう。なににする？</p>
+  <p class="en"><span class="en-spk">Wang:</span> What should we do about Anna&#x27;s birthday present? What should we get?</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">山口</div>
+  <p class="jp-kanji">そうだね。どうしようか。</p>
+  <p class="jp-kana">やまぐち：そうだね。どうしようか。</p>
+  <p class="en"><span class="en-spk">Yamaguchi:</span> Yeah. What should we do?</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">パク</div>
+  <p class="jp-kanji">あ、時計なんかどう？</p>
+  <p class="jp-kana">パク：あ、とけいなんかどう？</p>
+  <p class="en"><span class="en-spk">Park:</span> Ah, how about a watch or something?</p>
+</article>
+<div class="exchange-head"><span class="ex-num">3 (217)</span></div>
+<article class="line">
+  <div class="speaker-jp">パク</div>
+  <p class="jp-kanji">アンナさん、目覚まし時計をほしがっていたよ。</p>
+  <p class="jp-kana">パク：アンナさん、めざましどけいをほしがっていたよ。</p>
+  <p class="en"><span class="en-spk">Park:</span> Anna said she wanted an alarm clock.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">山口</div>
+  <p class="jp-kanji">そうなんだ。じゃ、目覚まし時計にする？</p>
+  <p class="jp-kana">やまぐち：そうなんだ。じゃ、めざましどけいにする？</p>
+  <p class="en"><span class="en-spk">Yamaguchi:</span> Oh really. Then should we go with an alarm clock?</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">ワン</div>
+  <p class="jp-kanji">えっ？</p>
+  <p class="jp-kana">ワン：えっ？</p>
+  <p class="en"><span class="en-spk">Wang:</span> What?</p>
+</article>
+<div class="exchange-head"><span class="ex-num">4 (218)</span></div>
+<article class="line">
+  <div class="speaker-jp">ワン</div>
+  <p class="jp-kanji">日本では時計をプレゼントしてもいいの？</p>
+  <p class="jp-kana">ワン：にほんではとけいをプレゼントしてもいいの？</p>
+  <p class="en"><span class="en-spk">Wang:</span> Is it okay to give a clock as a gift in Japan?</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">山口</div>
+  <p class="jp-kanji">うん、中国ではしないの？</p>
+  <p class="jp-kana">やまぐち：うん、ちゅうごくではしないの？</p>
+  <p class="en"><span class="en-spk">Yamaguchi:</span> Yeah, is it not done in China?</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">ワン</div>
+  <p class="jp-kanji">うん。中国語では時計という言葉と「終わり」という言葉の発音が同じだからだよ。</p>
+  <p class="jp-kana">ワン：うん。ちゅうごくごではとけいということばと「おわり」ということばのはつおんがおなじだからだよ。</p>
+  <p class="en"><span class="en-spk">Wang:</span> Yeah. In Chinese, the word for clock has the same pronunciation as the word for &quot;end.&quot;</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">パク</div>
+  <p class="jp-kanji">へえ。</p>
+  <p class="jp-kana">パク：へえ。</p>
+  <p class="en"><span class="en-spk">Park:</span> Oh.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">山口</div>
+  <p class="jp-kanji">そうなんだ。でも、日本では大丈夫だよ。</p>
+  <p class="jp-kana">やまぐち：そうなんだ。でも、にほんではだいじょうぶだよ。</p>
+  <p class="en"><span class="en-spk">Yamaguchi:</span> I see. But in Japan it&#x27;s fine.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">ワン</div>
+  <p class="jp-kanji">そっか。じゃ、時計にする？</p>
+  <p class="jp-kana">ワン：そっか。じゃ、とけいにする？</p>
+  <p class="en"><span class="en-spk">Wang:</span> I see. Then let&#x27;s go with a clock?</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">パク</div>
+  <p class="jp-kanji">うん。</p>
+  <p class="jp-kana">パク：うん。</p>
+  <p class="en"><span class="en-spk">Park:</span> Yeah.</p>
+</article>
+</section>
+  </div>
+  <div class="tab-pane vocab-pane" data-pane="vocabulary">
+<div class="vocab-content">
+<section class="vocab-section">
+  <h3 class="vocab-section-title">話読聞書</h3>
+  <div class="vocab-table">
+    <div class="vocab-row">
+      <div class="vocab-jp">作品</div>
+      <div class="vocab-kana">さくひん</div>
+      <div class="vocab-en">work (picture/painting, etc.)</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">奨学金</div>
+      <div class="vocab-kana">しょうがくきん</div>
+      <div class="vocab-en">scholarship</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">漫画家</div>
+      <div class="vocab-kana">まんがか</div>
+      <div class="vocab-en">cartoonist</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">~部</div>
+      <div class="vocab-kana">~ぶ</div>
+      <div class="vocab-en">~ department, ~ section</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">活動・する</div>
+      <div class="vocab-kana">かつどう・する</div>
+      <div class="vocab-en">be active, operate</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">支援・する</div>
+      <div class="vocab-kana">しえん・する</div>
+      <div class="vocab-en">support</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">ヒット・する</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">be a hit</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">放送・する</div>
+      <div class="vocab-kana">ほうそう・する</div>
+      <div class="vocab-en">broadcast, air</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">連載・する</div>
+      <div class="vocab-kana">れんさい・する</div>
+      <div class="vocab-en">appear serially (in a publication)</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">素晴らしい</div>
+      <div class="vocab-kana">すばらしい</div>
+      <div class="vocab-en">magnificent, incredible</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">メジャー (な)</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">major</div>
+    </div>
+  </div>
+</section>
+<section class="vocab-section">
+  <h3 class="vocab-section-title">1 私の国・町の行事</h3>
+  <div class="vocab-table">
+    <div class="vocab-row">
+      <div class="vocab-jp">遊び</div>
+      <div class="vocab-kana">あそび</div>
+      <div class="vocab-en">game, play</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">ウナギ</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">eel</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">大勢</div>
+      <div class="vocab-kana">おおぜい</div>
+      <div class="vocab-en">crowd, in large numbers</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">おせち料理</div>
+      <div class="vocab-kana">おせちりょうり</div>
+      <div class="vocab-en">traditional New Year&#x27;s food (primarily food eaten to celebrate the New Year)</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">おもちゃ</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">toy</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">女の子</div>
+      <div class="vocab-kana">おんなのこ</div>
+      <div class="vocab-en">girl</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">数</div>
+      <div class="vocab-kana">かず</div>
+      <div class="vocab-en">number</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">(お)金持ち</div>
+      <div class="vocab-kana">(お)かねもち</div>
+      <div class="vocab-en">rich person</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">カボチャ</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">pumpkin</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">空手</div>
+      <div class="vocab-kana">からて</div>
+      <div class="vocab-en">karate</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">ギョーザ</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">dumpling, potstickers</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">行事</div>
+      <div class="vocab-kana">ぎょうじ</div>
+      <div class="vocab-en">event, occasion</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">大みそか</div>
+      <div class="vocab-kana">おおみそか</div>
+      <div class="vocab-en">new year&#x27;s eve</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">お盆</div>
+      <div class="vocab-kana">おぼん</div>
+      <div class="vocab-en">obon festival</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">敬老の日</div>
+      <div class="vocab-kana">けいろうのひ</div>
+      <div class="vocab-en">Respect-for-the-Aged Day (A national holiday held on the 3rd month of September for revering the elderly and wishing them a long life)</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">七五三</div>
+      <div class="vocab-kana">しちごさん</div>
+      <div class="vocab-en">Seven-Five-Three Festival (Festival celebrating the growth of children for boys when they are three and five years old and for girls when they are three and seven years old)</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">(お)正月</div>
+      <div class="vocab-kana">(お)しょうがつ</div>
+      <div class="vocab-en">New Year&#x27;s holidays</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">成人の日</div>
+      <div class="vocab-kana">せいじんのひ</div>
+      <div class="vocab-en">Coming of Age Day (a national holiday held on the 2nd Monday in January to congratulate those who have reached legal adulthood)</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">節分</div>
+      <div class="vocab-kana">せつぶん</div>
+      <div class="vocab-en">Traditional end of winter (Held the day before the traditional beginning of spring (around February 3). On the evening of this day, beans are thrown around the house to ward off evil)</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">冬至</div>
+      <div class="vocab-kana">とうじ</div>
+      <div class="vocab-en">winter solstice</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">土用の丑の日</div>
+      <div class="vocab-kana">どようのうしのひ</div>
+      <div class="vocab-en">Midsummer Day of the Ox</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">ひなまつり</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">Doll Festival (Festival held on March 3 for celebrating the growth of young girls)</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">ごちそう</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">big meal, feast</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">新年</div>
+      <div class="vocab-kana">しんねん</div>
+      <div class="vocab-en">New Year&#x27;s Day</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">将棋</div>
+      <div class="vocab-kana">しょうぎ</div>
+      <div class="vocab-en">shogi (Japanese chess)</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">スイカ</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">watermelon</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">(お)赤飯</div>
+      <div class="vocab-kana">(お)せきはん</div>
+      <div class="vocab-en">festive red rice</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">先祖</div>
+      <div class="vocab-kana">せんぞ</div>
+      <div class="vocab-en">ancestor</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">山車</div>
+      <div class="vocab-kana">だし</div>
+      <div class="vocab-en">parade float</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">チェス</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">chess</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">テコンドー</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">tae kwon do</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">年</div>
+      <div class="vocab-kana">とし</div>
+      <div class="vocab-en">age, year</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">新しい年</div>
+      <div class="vocab-kana">あたらしいとし</div>
+      <div class="vocab-en">a new year, the coming year</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">パクさんの年</div>
+      <div class="vocab-kana">パクさんのとし</div>
+      <div class="vocab-en">Pak&#x27;s age</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">布</div>
+      <div class="vocab-kana">ぬの</div>
+      <div class="vocab-en">fabric</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">年賀状</div>
+      <div class="vocab-kana">ねんがじょう</div>
+      <div class="vocab-en">new year&#x27;s greeting card</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">はがき</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">postcard</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">風呂敷</div>
+      <div class="vocab-kana">ふろしき</div>
+      <div class="vocab-en">cloth for wrapping things</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">招き猫</div>
+      <div class="vocab-kana">まねきねこ</div>
+      <div class="vocab-en">Welcoming cat (Statue of a cat with its front paw beckoning customers that is used as a decoration for storefronts and other locations)</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">豆</div>
+      <div class="vocab-kana">まめ</div>
+      <div class="vocab-en">bean</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">ミカン</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">tangerine</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">焼き鳥</div>
+      <div class="vocab-kana">やきとり</div>
+      <div class="vocab-en">yakitori (skewered grilled chicken)</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">ユズ</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">yuzu (Chinese lemon)</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">夢</div>
+      <div class="vocab-kana">ゆめ</div>
+      <div class="vocab-en">dream (during sleep)</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">昨日、悪い夢を見た。</div>
+      <div class="vocab-kana">きのう、わるいゆめをみた。</div>
+      <div class="vocab-en">&quot;I had a bad dream yesterday.&quot;</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">ランドセル</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">satchel, school backpack for elementary school</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">~県 (例:長崎県)</div>
+      <div class="vocab-kana">~けん (れい:ながさきけん)</div>
+      <div class="vocab-en">~ prefecture (example: Nagasaki prefecture)</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">祈る</div>
+      <div class="vocab-kana">いのる</div>
+      <div class="vocab-en">pray</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">祝う</div>
+      <div class="vocab-kana">いわう</div>
+      <div class="vocab-en">celebrate, mark an occasion of, congratulate on</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">踊る</div>
+      <div class="vocab-kana">おどる</div>
+      <div class="vocab-en">dance</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">飾る</div>
+      <div class="vocab-kana">かざる</div>
+      <div class="vocab-en">decorate, put up a decoration</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">包む</div>
+      <div class="vocab-kana">つつむ</div>
+      <div class="vocab-en">wrap up, roll up</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">お祝い・する</div>
+      <div class="vocab-kana">おいわい・する</div>
+      <div class="vocab-en">celebrate</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">感謝・する</div>
+      <div class="vocab-kana">かんしゃ・する</div>
+      <div class="vocab-en">thank, express appreciation</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">成長・する</div>
+      <div class="vocab-kana">せいちょう・する</div>
+      <div class="vocab-en">grow, develop</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">長生き・する</div>
+      <div class="vocab-kana">ながいき・する</div>
+      <div class="vocab-en">live a long life</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">夏バテ・する</div>
+      <div class="vocab-kana">なつバテ・する</div>
+      <div class="vocab-en">suffer from the summer heat</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">特別 (な)</div>
+      <div class="vocab-kana">とくべつ (な)</div>
+      <div class="vocab-en">Special</div>
+    </div>
+  </div>
+</section>
+<section class="vocab-section">
+  <h3 class="vocab-section-title">2 贈り物の習慣</h3>
+  <div class="vocab-table">
+    <div class="vocab-row">
+      <div class="vocab-jp">イヤホン</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">earphones</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">置物</div>
+      <div class="vocab-kana">おきもの</div>
+      <div class="vocab-en">ornament</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">火事</div>
+      <div class="vocab-kana">かじ</div>
+      <div class="vocab-en">fire</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">カメ</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">turtle, tortoise</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">菊</div>
+      <div class="vocab-kana">きく</div>
+      <div class="vocab-en">chrysanthemum</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">くし</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">hair comb</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">5円玉</div>
+      <div class="vocab-kana">5えんだま</div>
+      <div class="vocab-en">five yen coin</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">食器</div>
+      <div class="vocab-kana">しょっき</div>
+      <div class="vocab-en">dishes, tableware</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">シンボル</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">symbol</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">ストーブ</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">stove, space heater</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">(お)葬式</div>
+      <div class="vocab-kana">(お)そうしき</div>
+      <div class="vocab-en">funeral ceremony</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">涙</div>
+      <div class="vocab-kana">なみだ</div>
+      <div class="vocab-en">tears</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">ハンカチ</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">handkerchief</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">日傘</div>
+      <div class="vocab-kana">ひがさ</div>
+      <div class="vocab-en">parasol, sunshade</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">(お)見舞い</div>
+      <div class="vocab-kana">(お)みまい</div>
+      <div class="vocab-en">visit a sick person</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">みんな</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">everyone</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">ライター</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">lighter</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">~祝い (例:結婚祝い)</div>
+      <div class="vocab-kana">~いわい (れい:けっこんいわい)</div>
+      <div class="vocab-en">in celebration of ~ (example: wedding present)</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">贈る</div>
+      <div class="vocab-kana">おくる</div>
+      <div class="vocab-en">give a gift</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">増える</div>
+      <div class="vocab-kana">ふえる</div>
+      <div class="vocab-en">increase, grow in number</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">発音・する</div>
+      <div class="vocab-kana">はつおん・する</div>
+      <div class="vocab-en">pronounce</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">連想・する</div>
+      <div class="vocab-kana">れんそう・する</div>
+      <div class="vocab-en">make an association of ideas</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">恥ずかしい</div>
+      <div class="vocab-kana">はずかしい</div>
+      <div class="vocab-en">embarrassing</div>
+    </div>
+  </div>
+</section>
+<section class="vocab-section">
+  <h3 class="vocab-section-title">もう一度聞こう</h3>
+  <div class="vocab-table">
+    <div class="vocab-row">
+      <div class="vocab-jp">鬼</div>
+      <div class="vocab-kana">おに</div>
+      <div class="vocab-en">demon, devil</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">提灯</div>
+      <div class="vocab-kana">ちょうちん</div>
+      <div class="vocab-en">paper lantern</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">ハロウィン</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">Halloween</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">そういう</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">that kind of ~, like that, such</div>
+    </div>
+  </div>
+</section>
+</div>
+  </div>
+</article>
+<article class="chapter" data-chapter="15">
+  <div class="chapter-tabs" role="tablist">
+    <button class="tab-btn active" data-tab="dialogues" data-ch="15">Dialogues</button>
+    <button class="tab-btn" data-tab="vocabulary" data-ch="15">Vocabulary</button>
+  </div>
+  <div class="tab-pane dialogues-pane active" data-pane="dialogues">
+<header class="chapter-head">
+  <div class="chapter-mark">第15課</div>
+  <h2 class="chapter-title-jp">気になるニュース</h2>
+  <p class="chapter-title-en">News That Interests Me</p>
+</header>
+<section class="st-block">
+  <div class="st-header">
+    <span class="st-label">ST1</span>
+    <div class="st-titles">
+      <h3 class="st-jp">発表の準備</h3>
+      <p class="st-en">Preparing the Presentation</p>
+    </div>
+    <span class="st-source">本冊 202ページ スクリプト</span>
+  </div>
+<div class="exchange-head"><span class="ex-num">1 (223)</span></div>
+<article class="line">
+  <div class="speaker-jp">ワン</div>
+  <p class="jp-kanji">ねえねえ、ナタポンさん、パクさん、何について発表する？</p>
+  <p class="jp-kana">ワン：ねえねえ、ナタポンさん、パクさん、なにについてはっぴょうする？</p>
+  <p class="en"><span class="en-spk">Wang:</span> Hey, Natapon, Park, what should we present about?</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">ナタポン</div>
+  <p class="jp-kanji">そうだねえ。何がいいかな。</p>
+  <p class="jp-kana">ナタポン：そうだねえ。なにがいいかな。</p>
+  <p class="en"><span class="en-spk">Natapon:</span> Hmm. What would be good.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">パク</div>
+  <p class="jp-kanji">あ、テレビで見たんだけど、クマが山から下りてきて畑の野菜を全部食べちゃったんだって。</p>
+  <p class="jp-kana">パク：あ、テレビでみたんだけど、クマがやまからおりてきてはたけのやさいをぜんぶたべちゃったんだって。</p>
+  <p class="en"><span class="en-spk">Park:</span> Ah, I saw on TV that bears came down from the mountains and ate all the vegetables in a field.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">ワン</div>
+  <p class="jp-kanji">あ、私も見た。山にクマの食べる木の実が少なくなってるんだってね。</p>
+  <p class="jp-kana">ワン：あ、わたしもみた。やまにクマのたべるきのみがすくなくなってるんだってね。</p>
+  <p class="en"><span class="en-spk">Wang:</span> Ah, I saw that too. Apparently there are fewer nuts and berries for bears to eat in the mountains.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">ナタポン</div>
+  <p class="jp-kanji">へえ、おもしろそう。</p>
+  <p class="jp-kana">ナタポン：へえ、おもしろそう。</p>
+  <p class="en"><span class="en-spk">Natapon:</span> Oh, sounds interesting.</p>
+</article>
+<div class="exchange-head"><span class="ex-num">2 (224)</span></div>
+<article class="line">
+  <div class="speaker-jp">ナタポン</div>
+  <p class="jp-kanji">じゃ、クマのニュースについて調べて発表するのはどう？</p>
+  <p class="jp-kana">ナタポン：じゃ、クマのニュースについてしらべてはっぴょうするのはどう？</p>
+  <p class="en"><span class="en-spk">Natapon:</span> Then how about we research and present about the bear news?</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">パク</div>
+  <p class="jp-kanji">うん。</p>
+  <p class="jp-kana">パク：うん。</p>
+  <p class="en"><span class="en-spk">Park:</span> Yeah.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">ワン</div>
+  <p class="jp-kanji">いいね。</p>
+  <p class="jp-kana">ワン：いいね。</p>
+  <p class="en"><span class="en-spk">Wang:</span> Sounds good.</p>
+</article>
+<div class="exchange-head"><span class="ex-num">3</span></div>
+<article class="line">
+  <div class="speaker-jp">ナタポン</div>
+  <p class="jp-kanji">じゃ、インターネットで調べてみよう。</p>
+  <p class="jp-kana">ナタポン：じゃ、インターネットでしらべてみよう。</p>
+  <p class="en"><span class="en-spk">Natapon:</span> Then let&#x27;s look it up on the internet.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">パク</div>
+  <p class="jp-kanji">うん。でも、発表するならインターネットで調べるだけじゃなくて、図書館へも行ってみない？</p>
+  <p class="jp-kana">パク：うん。でも、はっぴょうするならインターネットでしらべるだけじゃなくて、としょかんへもいってみない？</p>
+  <p class="en"><span class="en-spk">Park:</span> Yeah. But if we&#x27;re presenting, why don&#x27;t we go to the library too, not just search online?</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">ワン</div>
+  <p class="jp-kanji">うん、いいね。</p>
+  <p class="jp-kana">ワン：うん、いいね。</p>
+  <p class="en"><span class="en-spk">Wang:</span> Yeah, good idea.</p>
+</article>
+<div class="exchange-head"><span class="ex-num">4 (225)</span></div>
+<article class="line">
+  <div class="speaker-jp">ワン</div>
+  <p class="jp-kanji">あ、でも、さくら図書館の本は市民じゃないと借りられないと思うよ。</p>
+  <p class="jp-kana">ワン：あ、でも、さくらとしょかんのほんはしみんじゃないとかりられないとおもうよ。</p>
+  <p class="en"><span class="en-spk">Wang:</span> Ah, but I think you can&#x27;t borrow books from Sakura Library unless you&#x27;re a resident.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">パク</div>
+  <p class="jp-kanji">大丈夫だよ。私、さくら市に住んでるから。それに、さくら市にある学校の学生は借りられるよ。</p>
+  <p class="jp-kana">パク：だいじょうぶだよ。わたし、さくらしにすんでるから。それに、さくらしにあるがっこうのがくせいはかりられるよ。</p>
+  <p class="en"><span class="en-spk">Park:</span> It&#x27;s okay. I live in Sakura City. Plus, students at schools in Sakura City can also borrow.</p>
+</article>
+<article class="line">
+  <div class="speaker-jp">ナタポン</div>
+  <p class="jp-kanji">そっか。じゃ、行ってみよう。</p>
+  <p class="jp-kana">ナタポン：そっか。じゃ、いってみよう。</p>
+  <p class="en"><span class="en-spk">Natapon:</span> I see. Then let&#x27;s go.</p>
+</article>
+</section>
+<section class="st-block">
+  <div class="st-header">
+    <span class="st-label">ST2</span>
+    <div class="st-titles">
+      <h3 class="st-jp">みんなの前で発表</h3>
+      <p class="st-en">Presenting in Front of Everyone</p>
+    </div>
+    <span class="st-source">本冊 206ページ スクリプト</span>
+  </div>
+<div class="exchange-head"><span class="ex-num">1 (229)</span></div>
+<article class="line">
+  <div class="speaker-jp">パク</div>
+  <p class="jp-kanji">それでは今から私たちが調べたニュースについて発表します。まずこの写真を見てください。最近人の住んでいるところへクマが出てくるニュースをよく見ます。新聞によると、クマが出てくるようになったのは、約20年前だそうです。その頃からクマの食べる物が少なくなってきました。</p>
+  <p class="jp-kana">パク：それではいまからわたしたちがしらべたニュースについてはっぴょうします。まずこのしゃしんをみてください。さいきんひとのすんでいるところへクマがでてくるニュースをよくみます。しんぶんによると、クマがでてくるようになったのは、やく20ねんまえだそうです。そのころからクマのたべるものがすくなくなってきました。</p>
+  <p class="en"><span class="en-spk">Park:</span> Now we&#x27;ll present about the news we researched. First, please look at this photo. Recently we often see news about bears appearing in places where people live. According to newspapers, bears started appearing about 20 years ago. Since around that time, food for bears has been decreasing.</p>
+</article>
+<div class="exchange-head"><span class="ex-num">2 (230)</span></div>
+<article class="line">
+  <div class="speaker-jp">ワン</div>
+  <p class="jp-kanji">クマの食べる物が減ったために、クマが人の住んでいるところへ出てくるようになったそうです。それに、人が山の世話をしなくなったために、クマは人が住んでいるところの近くまで来るようになって、そこにおいしい食べ物があることを知ってしまいました。</p>
+  <p class="jp-kana">ワン：クマのたべるものがへったために、クマがひとのすんでいるところへでてくるようになったそうです。それに、ひとがやまのせわをしなくなったために、クマはひとがすんでいるところのちかくまでくるようになって、そこにおいしいたべものがあることをしってしまいました。</p>
+  <p class="en"><span class="en-spk">Wang:</span> Because the food for bears has decreased, bears have started coming out to places where people live. Also, because people no longer take care of the mountains, bears have started coming near where people live and have learned that there is delicious food there.</p>
+</article>
+<div class="exchange-head"><span class="ex-num">3</span></div>
+<article class="line">
+  <div class="speaker-jp">ナタポン</div>
+  <p class="jp-kanji">調べたことから、食べ物が足りないだけじゃなくて、人の生活が変わったために、クマが人の近くに来るということがわかりました。人の住んでいるところへ出てくるクマは、これからも増えていくと思います。クマが出てこないように山の木を切ったり植えたりして、きちんと山の世話をすることが必要だと思います。これで発表を終わります。ありがとうございました。</p>
+  <p class="jp-kana">ナタポン：しらべたことから、たべものがたりないだけじゃなくて、ひとのせいかつがかわったために、クマがひとのちかくにくるということがわかりました。ひとのすんでいるところへでてくるクマは、これからもふえていくとおもいます。クマがでてこないようにやまのきをきったりうえたりして、きちんとやまのせわをすることがひつようだとおもいます。これではっぴょうをおわります。ありがとうございました。</p>
+  <p class="en"><span class="en-spk">Natapon:</span> From our research, we found that bears come near people not only because there isn&#x27;t enough food, but also because people&#x27;s lifestyles have changed. I think bears appearing in places where people live will continue to increase. To prevent bears from coming out, we need to properly take care of the mountains by cutting and planting trees. That concludes our presentation. Thank you.</p>
+</article>
+</section>
+  </div>
+  <div class="tab-pane vocab-pane" data-pane="vocabulary">
+<div class="vocab-content">
+<section class="vocab-section">
+  <h3 class="vocab-section-title">話読聞書</h3>
+  <div class="vocab-table">
+    <div class="vocab-row">
+      <div class="vocab-jp">自信</div>
+      <div class="vocab-kana">じしん</div>
+      <div class="vocab-en">confidence</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">知り合い</div>
+      <div class="vocab-kana">しりあい</div>
+      <div class="vocab-en">acquaintance</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">大成功</div>
+      <div class="vocab-kana">だいせいこう</div>
+      <div class="vocab-en">great success</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">取り組む</div>
+      <div class="vocab-kana">とりくむ</div>
+      <div class="vocab-en">deal with, engage in, work on</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">積極的 (な)</div>
+      <div class="vocab-kana">せっきょくてき (な)</div>
+      <div class="vocab-en">proactive, positive</div>
+    </div>
+  </div>
+</section>
+<section class="vocab-section">
+  <h3 class="vocab-section-title">1 発表の準備</h3>
+  <div class="vocab-table">
+    <div class="vocab-row">
+      <div class="vocab-jp">大雨</div>
+      <div class="vocab-kana">おおあめ</div>
+      <div class="vocab-en">heavy rain</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">英会話</div>
+      <div class="vocab-kana">えいかいわ</div>
+      <div class="vocab-en">English conversation</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">回数</div>
+      <div class="vocab-kana">かいすう</div>
+      <div class="vocab-en">number of times</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">グラフ</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">graph</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">グループ</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">group</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">原因</div>
+      <div class="vocab-kana">げんいん</div>
+      <div class="vocab-en">cause</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">事件</div>
+      <div class="vocab-kana">じけん</div>
+      <div class="vocab-en">incident, case, event</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">事情</div>
+      <div class="vocab-kana">じじょう</div>
+      <div class="vocab-en">situation, circumstances, conditions</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">食料品</div>
+      <div class="vocab-kana">しょくりょうひん</div>
+      <div class="vocab-en">food items</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">女性</div>
+      <div class="vocab-kana">じょせい</div>
+      <div class="vocab-en">female</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">男性</div>
+      <div class="vocab-kana">だんせい</div>
+      <div class="vocab-en">male</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">地球</div>
+      <div class="vocab-kana">ちきゅう</div>
+      <div class="vocab-en">the Earth</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">テーマ</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">theme, topic, subject matter (from the German word thema)</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">貿易</div>
+      <div class="vocab-kana">ぼうえき</div>
+      <div class="vocab-en">foreign trade</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">問題</div>
+      <div class="vocab-kana">もんだい</div>
+      <div class="vocab-en">problem, issue</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">洋服</div>
+      <div class="vocab-kana">ようふく</div>
+      <div class="vocab-en">(Western-style) clothing</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">レコード</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">record</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">~化 (例:温暖化)</div>
+      <div class="vocab-kana">~か (れい:おんだんか)</div>
+      <div class="vocab-en">change into ~ (example: global warming)</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">~倍</div>
+      <div class="vocab-kana">~ばい</div>
+      <div class="vocab-en">by ~ times</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">飼う</div>
+      <div class="vocab-kana">かう</div>
+      <div class="vocab-en">raise (a pet or other animal)</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">下がる</div>
+      <div class="vocab-kana">さがる</div>
+      <div class="vocab-en">fall, drop</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">値段が下がる。</div>
+      <div class="vocab-kana">ねだんがさがる。</div>
+      <div class="vocab-en">the price drops</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">咲く</div>
+      <div class="vocab-kana">さく</div>
+      <div class="vocab-en">blossom</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">過ごす</div>
+      <div class="vocab-kana">すごす</div>
+      <div class="vocab-en">spend time</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">植える</div>
+      <div class="vocab-kana">うえる</div>
+      <div class="vocab-en">to plant</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">比べる</div>
+      <div class="vocab-kana">くらべる</div>
+      <div class="vocab-en">compare</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">アンケート・する</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">take a survey</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">お願い・する</div>
+      <div class="vocab-kana">おねがい・する</div>
+      <div class="vocab-en">ask, beg (when politely requesting someone to do something for you)</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">増加・する</div>
+      <div class="vocab-kana">ぞうか・する</div>
+      <div class="vocab-en">increase</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">輸入・する</div>
+      <div class="vocab-kana">ゆにゅう・する</div>
+      <div class="vocab-en">import</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">来日・する</div>
+      <div class="vocab-kana">らいにち・する</div>
+      <div class="vocab-en">visit Japan</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">流行・する</div>
+      <div class="vocab-kana">りゅうこう・する</div>
+      <div class="vocab-en">become fashionable, popular</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">気になる</div>
+      <div class="vocab-kana">きになる</div>
+      <div class="vocab-en">worry about, care about, be interested in, feel like doing</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">汚い</div>
+      <div class="vocab-kana">きたない</div>
+      <div class="vocab-en">dirty</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">温暖 (な)</div>
+      <div class="vocab-kana">おんだん (な)</div>
+      <div class="vocab-en">warm</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">直接</div>
+      <div class="vocab-kana">ちょくせつ</div>
+      <div class="vocab-en">direct</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">ほとんど</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">hardly</div>
+    </div>
+  </div>
+</section>
+<section class="vocab-section">
+  <h3 class="vocab-section-title">2 みんなの前で発表</h3>
+  <div class="vocab-table">
+    <div class="vocab-row">
+      <div class="vocab-jp">インフルエンザ</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">flu, influenza</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">円高</div>
+      <div class="vocab-kana">えんだか</div>
+      <div class="vocab-en">strong yen, yen appreciation</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">円安</div>
+      <div class="vocab-kana">えんやす</div>
+      <div class="vocab-en">weak yen, yen depreciation</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">気温</div>
+      <div class="vocab-kana">きおん</div>
+      <div class="vocab-en">air temperature</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">立入禁止</div>
+      <div class="vocab-kana">たちいりきんし</div>
+      <div class="vocab-en">entry prohibited</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">南極</div>
+      <div class="vocab-kana">なんきょく</div>
+      <div class="vocab-en">south pole</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">北極</div>
+      <div class="vocab-kana">ほっきょく</div>
+      <div class="vocab-en">north pole</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">ポスター</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">poster</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">進む</div>
+      <div class="vocab-kana">すすむ</div>
+      <div class="vocab-en">move forward, advance</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">研究が進む。</div>
+      <div class="vocab-kana">けんきゅうがすすむ。</div>
+      <div class="vocab-en">&quot;The research moves forward.&quot;</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">減る</div>
+      <div class="vocab-kana">へる</div>
+      <div class="vocab-en">decrease, reduce in number</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">溶ける</div>
+      <div class="vocab-kana">とける</div>
+      <div class="vocab-en">melt</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">欠席・する</div>
+      <div class="vocab-kana">けっせき・する</div>
+      <div class="vocab-en">be absent, not attend</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">輸出・する</div>
+      <div class="vocab-kana">ゆしゅつ・する</div>
+      <div class="vocab-en">export</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">危険 (な)</div>
+      <div class="vocab-kana">きけん (な)</div>
+      <div class="vocab-en">dangerous, hazardous</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">大変</div>
+      <div class="vocab-kana">たいへん</div>
+      <div class="vocab-en">very</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">どんどん</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">more and more</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">しかし</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">however, but</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">~によると</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">according to ~</div>
+    </div>
+  </div>
+</section>
+<section class="vocab-section">
+  <h3 class="vocab-section-title">もう一度聞こう</h3>
+  <div class="vocab-table">
+    <div class="vocab-row">
+      <div class="vocab-jp">行き先</div>
+      <div class="vocab-kana">いきさき</div>
+      <div class="vocab-en">destination</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">結果</div>
+      <div class="vocab-kana">けっか</div>
+      <div class="vocab-en">results</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">サイト</div>
+      <div class="vocab-kana">&mdash;</div>
+      <div class="vocab-en">website</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">全体</div>
+      <div class="vocab-kana">ぜんたい</div>
+      <div class="vocab-en">overall</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">僕</div>
+      <div class="vocab-kana">ぼく</div>
+      <div class="vocab-en">I, me (informal, used primarily by young men)</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">前</div>
+      <div class="vocab-kana">まえ</div>
+      <div class="vocab-en">before</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">気楽 (な)</div>
+      <div class="vocab-kana">きらく (な)</div>
+      <div class="vocab-en">carefree</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">不安 (な)</div>
+      <div class="vocab-kana">ふあん (な)</div>
+      <div class="vocab-en">unease</div>
+    </div>
+    <div class="vocab-row">
+      <div class="vocab-jp">約~</div>
+      <div class="vocab-kana">やく~</div>
+      <div class="vocab-en">about, approximately</div>
+    </div>
+  </div>
+</section>
+</div>
+  </div>
+</article>
+</main>
+
+<script>
+  (function() {
+    const buttons = document.querySelectorAll('.ch-btn');
+    const chapters = document.querySelectorAll('.chapter');
+    const firstCh = 9, lastCh = 15;
+
+    function showChapter(num) {
+      chapters.forEach(c => c.classList.toggle('active', c.dataset.chapter === String(num)));
+      buttons.forEach(b => b.classList.toggle('active', b.dataset.target === String(num)));
+      const activeBtn = document.querySelector('.ch-btn.active');
+      if (activeBtn) {
+        activeBtn.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+      }
+      history.replaceState(null, '', '#ch' + num);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    buttons.forEach(btn => {
+      btn.addEventListener('click', () => showChapter(btn.dataset.target));
+    });
+
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const chapter = btn.closest('.chapter');
+        const tabName = btn.dataset.tab;
+        chapter.querySelectorAll('.tab-btn').forEach(b => b.classList.toggle('active', b.dataset.tab === tabName));
+        chapter.querySelectorAll('.tab-pane').forEach(p => p.classList.toggle('active', p.dataset.pane === tabName));
+      });
+    });
+
+    const m = window.location.hash.match(/^#ch(\d+)$/);
+    if (m) {
+      const n = parseInt(m[1], 10);
+      if (n >= firstCh && n <= lastCh) showChapter(n);
+    }
+  })();
+</script>
+
+</body>
+</html>
