@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>できる日本語 初中級 — Study Guide (Ch. 9–15)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Zen+Kaku+Gothic+New:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+  :root{--bg:#faf8f1;--grid:rgba(43,58,103,.055);--ink:#1f2740;--indigo:#2b3a67;--shu:#c8462c;--shu-soft:#f4e3dc;--muted:#6a7187;--rule:#e4ddcb;--card:#fffdf7;
+    --jp:"Zen Kaku Gothic New",-apple-system,"Hiragino Kaku Gothic ProN","Yu Gothic",sans-serif;--disp:"Space Grotesk",var(--jp);}
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;font-family:var(--jp);color:var(--ink);background-color:var(--bg);
+    background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);
+    background-size:26px 26px;line-height:1.75;-webkit-font-smoothing:antialiased;}
+  ruby rt{font-size:.5em;font-weight:500;color:var(--indigo);letter-spacing:.02em;transition:opacity .25s ease;user-select:none}
+  body.hide-furigana rt{opacity:0}
+  .wrap{max-width:780px;margin:0 auto;padding:0 22px}
+  header.top{padding:56px 0 30px;border-bottom:2px solid var(--ink)}
+  .eyebrow{font-family:var(--disp);font-size:.72rem;letter-spacing:.32em;text-transform:uppercase;color:var(--shu);font-weight:600;margin:0 0 14px}
+  h1.title{font-weight:900;font-size:clamp(2.1rem,6vw,3.1rem);line-height:1.12;margin:0;letter-spacing:.01em}
+  h1.title .lvl{display:block;font-family:var(--disp);font-weight:500;font-size:clamp(.85rem,2.4vw,1.05rem);letter-spacing:.18em;color:var(--muted);margin-top:12px;text-transform:uppercase}
+  .lede{color:var(--muted);max-width:52ch;margin:18px 0 0;font-size:.98rem}
+  .controls{display:flex;align-items:center;gap:12px;margin-top:28px;flex-wrap:wrap}
+  .toggle{appearance:none;border:1.5px solid var(--ink);background:var(--card);font-family:var(--disp);font-weight:600;font-size:.8rem;letter-spacing:.06em;color:var(--ink);padding:9px 16px 9px 14px;border-radius:2px;cursor:pointer;display:inline-flex;align-items:center;gap:9px;transition:.18s ease}
+  .toggle:hover{background:var(--ink);color:var(--bg)}
+  .toggle:focus-visible{outline:3px solid var(--shu);outline-offset:2px}
+  .toggle .dot{width:9px;height:9px;border-radius:50%;background:var(--shu)}
+  body.hide-furigana .toggle .dot{background:var(--muted);opacity:.5}
+  .toggle-note{font-size:.78rem;color:var(--muted)}
+  nav.index{margin:30px 0 8px;display:flex;flex-wrap:wrap;gap:8px}
+  nav.index a{font-family:var(--disp);font-weight:500;font-size:.82rem;text-decoration:none;color:var(--indigo);border:1px solid var(--rule);background:var(--card);padding:6px 11px;border-radius:2px;transition:.15s ease;display:inline-flex;gap:7px;align-items:baseline}
+  nav.index a b{font-weight:700}
+  nav.index a:hover{border-color:var(--shu);color:var(--shu)}
+  nav.index a rt{font-size:.4em}
+  .chapter{padding:46px 0 8px;border-top:1px solid var(--rule)}
+  .chapter:first-of-type{border-top:none}
+  .ch-head{display:flex;gap:18px;align-items:flex-start}
+  .ch-num{font-family:var(--disp);font-weight:700;font-size:2.4rem;line-height:1;color:var(--shu);min-width:1.6em}
+  .ch-titles h2{margin:0;font-size:1.5rem;font-weight:700;line-height:1.25}
+  .ch-titles h2 rt{font-size:.42em}
+  .ch-titles .en{color:var(--muted);font-family:var(--disp);font-weight:500;font-size:.92rem;letter-spacing:.04em;margin-top:3px}
+  .goal{margin:14px 0 0;padding:11px 15px;background:var(--shu-soft);border-left:3px solid var(--shu);font-size:.9rem;color:#7a3322;border-radius:0 3px 3px 0}
+  .st{margin-top:30px}
+  .st-label{display:flex;align-items:baseline;gap:10px;margin-bottom:4px}
+  .st-tag{font-family:var(--disp);font-weight:700;font-size:.72rem;letter-spacing:.12em;color:#fff;background:var(--indigo);padding:3px 8px;border-radius:2px;white-space:nowrap}
+  .st-name{font-weight:700;font-size:1.05rem}
+  .st-name rt{font-size:.42em}
+  .st-name .en{color:var(--muted);font-weight:500;font-size:.85rem;margin-left:6px}
+  .point{background:var(--card);border:1px solid var(--rule);border-radius:4px;padding:18px 20px;margin-top:14px}
+  .pattern{font-size:1.18rem;font-weight:700;color:var(--shu);line-height:1.5}
+  .pattern rt{font-size:.4em;color:var(--shu)}
+  .pattern .nu{color:var(--muted);font-size:.8rem;font-weight:500}
+  .pattern .nu rt{color:var(--muted)}
+  .fn{margin:7px 0 0;font-size:.95rem}
+  .form{margin:9px 0 0;font-size:.86rem;color:var(--muted)}
+  .form .lbl{font-family:var(--disp);font-weight:600;font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--indigo);margin-right:8px}
+  .form rt{color:var(--muted)}
+  .ex{margin-top:13px;padding-left:14px;border-left:2px solid var(--shu-soft)}
+  .ex + .ex{margin-top:9px}
+  .ex .jp{margin:0;font-size:1.04rem;font-weight:500}
+  .ex .en{margin:2px 0 0;font-size:.85rem;color:var(--muted);font-style:italic}
+  .notes{margin:48px 0 0;padding:24px;background:var(--indigo);color:#eef1f8;border-radius:5px}
+  .notes h3{font-family:var(--disp);margin:0 0 4px;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:#c7d0ec;font-weight:600}
+  .notes ul{margin:10px 0 0;padding-left:18px}
+  .notes li{margin:9px 0;font-size:.92rem}
+  .notes rt{color:#aab6e0}
+  .notes b{color:#ffd9ce;font-weight:700}
+  footer{padding:40px 0 60px;color:var(--muted);font-size:.8rem;text-align:center}
+  footer .top-link{font-family:var(--disp);color:var(--indigo);text-decoration:none;font-weight:600;letter-spacing:.04em}
+  footer .top-link:hover{color:var(--shu)}
+  @media (max-width:560px){.ch-num{font-size:1.9rem}.ch-head{gap:12px}.pattern{font-size:1.06rem}}
+  @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+</style>
+</head>
+<body>
+<div class="wrap" id="top">
+  <header class="top">
+    <p class="eyebrow">Grammar Reference · 学習項目</p>
+    <h1 class="title"><ruby>出来<rt>でき</rt></ruby>る<ruby>日本語<rt>にほんご</rt></ruby><span class="lvl">Shochūkyū — Chapters 9 to 15</span></h1>
+    <p class="lede">Every grammar item from the syllabus, with what it does, how to build it, and a worked example. Tap the switch to hide the furigana and quiz yourself on the readings.</p>
+    <div class="controls">
+      <button class="toggle" id="furiToggle" aria-pressed="true"><span class="dot" aria-hidden="true"></span><span id="toggleText">Furigana: On</span></button>
+      <span class="toggle-note">Hide the readings to test yourself.</span>
+    </div>
+    <nav class="index" aria-label="Chapters">
+      <a href="#ch9"><b>9</b> アルバイト<ruby>先<rt>さき</rt></ruby>で</a>
+      <a href="#ch10"><b>10</b> <ruby>旅行<rt>りょこう</rt></ruby>に<ruby>行<rt>い</rt></ruby>って</a>
+      <a href="#ch11"><b>11</b> <ruby>地域社会<rt>ちいきしゃかい</rt></ruby>の<ruby>中<rt>なか</rt></ruby>で</a>
+      <a href="#ch12"><b>12</b> <ruby>私<rt>わたし</rt></ruby>の<ruby>健康法<rt>けんこうほう</rt></ruby></a>
+      <a href="#ch13"><b>13</b> <ruby>親<rt>おや</rt></ruby>の<ruby>気持<rt>きも</rt></ruby>ち・<ruby>子<rt>こ</rt></ruby>の<ruby>気持<rt>きも</rt></ruby>ち</a>
+      <a href="#ch14"><b>14</b> イベント・<ruby>行事<rt>ぎょうじ</rt></ruby></a>
+      <a href="#ch15"><b>15</b> <ruby>気<rt>き</rt></ruby>になるニュース</a>
+    </nav>
+  </header>
+
+  <section class="chapter" id="ch9">
+    <div class="ch-head"><div class="ch-num">9</div>
+      <div class="ch-titles"><h2>アルバイト<ruby>先<rt>さき</rt></ruby>で</h2><div class="en">At the Part-time Job</div></div></div>
+    <p class="goal">Converse considerately with the people around you so the group can work together pleasantly.</p>
+    <div class="st"><div class="st-label"><span class="st-tag">ST 1</span><span class="st-name">アルバイト<ruby>先<rt>さき</rt></ruby>のルール<span class="en">Workplace rules</span></span></div>
+      <div class="point"><div class="pattern">Ｖることになっています／Ｖないことになっています <span class="nu">（<ruby>規則<rt>きそく</rt></ruby>）</span></div><p class="fn">Expresses a <em>rule</em> or established arrangement — "it's been decided / you're supposed to." Not your own choice.</p><p class="form"><span class="lbl">Form</span>Vる／Vない + ことになっています.</p><div class="ex"><p class="jp"><ruby>店<rt>みせ</rt></ruby>では、<ruby>日本語<rt>にほんご</rt></ruby>を<ruby>話<rt>はな</rt></ruby>すことになっています。</p><p class="en">At the shop, we're supposed to speak Japanese.</p></div><div class="ex"><p class="jp"><ruby>仕事中<rt>しごとちゅう</rt></ruby>は、スマホを<ruby>使<rt>つか</rt></ruby>わないことになっています。</p><p class="en">During work, we're not supposed to use our phones.</p></div></div>
+      <div class="point"><div class="pattern">Ｖるように、～／Ｖないように、～</div><p class="fn">"So that (something will / won't happen)" — states a goal, often with potential or non-volitional verbs.</p><p class="form"><span class="lbl">Form</span>Vる／Vない + ように.</p><div class="ex"><p class="jp"><ruby>忘<rt>わす</rt></ruby>れないように、メモします。</p><p class="en">I take notes so I won't forget.</p></div><div class="ex"><p class="jp"><ruby>早<rt>はや</rt></ruby>く<ruby>覚<rt>おぼ</rt></ruby>えられるように、<ruby>毎日<rt>まいにち</rt></ruby><ruby>練習<rt>れんしゅう</rt></ruby>します。</p><p class="en">I practice daily so I can memorize quickly.</p></div></div>
+      <div class="point"><div class="pattern"><ruby>条件形<rt>じょうけんけい</rt></ruby> · The ば-conditional</div><p class="fn">"If" — the ば conditional, for general or hypothetical conditions.</p><p class="form"><span class="lbl">Form</span>Gr.1: -u→-eba (<ruby>書<rt>か</rt></ruby>く→<ruby>書<rt>か</rt></ruby>けば). Gr.2: -る→-れば (<ruby>食<rt>た</rt></ruby>べる→<ruby>食<rt>た</rt></ruby>べれば). する→すれば, <ruby>来<rt>く</rt></ruby>る→<ruby>来<rt>く</rt></ruby>れば. イA: <ruby>高<rt>たか</rt></ruby>い→<ruby>高<rt>たか</rt></ruby>ければ.</p><div class="ex"><p class="jp"><ruby>分<rt>わ</rt></ruby>からないことがあれば、<ruby>聞<rt>き</rt></ruby>いてください。</p><p class="en">If there's anything you don't understand, please ask.</p></div></div>
+      <div class="point"><div class="pattern">Ｖるようにしてください／Ｖないようにしてください</div><p class="fn">"Please make an effort to (not) do" — a request to try / make a habit of something.</p><p class="form"><span class="lbl">Form</span>Vる／Vない + ようにしてください.</p><div class="ex"><p class="jp"><ruby>毎日<rt>まいにち</rt></ruby>、<ruby>手<rt>て</rt></ruby>を<ruby>洗<rt>あら</rt></ruby>うようにしてください。</p><p class="en">Please make sure to wash your hands every day.</p></div><div class="ex"><p class="jp"><ruby>遅<rt>おく</rt></ruby>れないようにしてください。</p><p class="en">Please try not to be late.</p></div></div></div>
+    <div class="st"><div class="st-label"><span class="st-tag">ST 2</span><span class="st-name"><ruby>楽<rt>たの</rt></ruby>しいアルバイト<span class="en">An enjoyable job</span></span></div>
+      <div class="point"><div class="pattern">おＶください／ごＮください</div><p class="fn">Polite honorific request: "Please (do)." Used toward customers or superiors.</p><p class="form"><span class="lbl">Form</span>お + masu-stem + ください; ご + Sino-Japanese noun + ください.</p><div class="ex"><p class="jp">こちらに<ruby>お座<rt>すわ</rt></ruby>りください。</p><p class="en">Please sit here.</p></div><div class="ex"><p class="jp"><ruby>少々<rt>しょうしょう</rt></ruby>お<ruby>待<rt>ま</rt></ruby>ちください。</p><p class="en">Please wait a moment.</p></div></div>
+      <div class="point"><div class="pattern">Ｖそうです <span class="nu">（<ruby>直前<rt>ちょくぜん</rt></ruby>の<ruby>様態<rt>ようたい</rt></ruby>）</span></div><p class="fn">"Looks like it's about to happen" — an imminent action, judged from appearance.</p><p class="form"><span class="lbl">Form</span>masu-stem + そう.</p><div class="ex"><p class="jp"><ruby>荷物<rt>にもつ</rt></ruby>が<ruby>落<rt>お</rt></ruby>ちそうです。</p><p class="en">The luggage looks like it's about to fall.</p></div><div class="ex"><p class="jp">ボタンが<ruby>取<rt>と</rt></ruby>れそうですよ。</p><p class="en">A button looks like it's about to come off.</p></div></div>
+      <div class="point"><div class="pattern">Ｖておきます <span class="nu">（<ruby>放置<rt>ほうち</rt></ruby>）</span></div><p class="fn">"Leave (something) as it is" — the "leave alone" sense of ～ておく (cf. the "in advance" sense, ch. 6).</p><p class="form"><span class="lbl">Form</span>Vて + おく.</p><div class="ex"><p class="jp"><ruby>窓<rt>まど</rt></ruby>は、<ruby>開<rt>あ</rt></ruby>けておいてください。</p><p class="en">Please leave the window open.</p></div><div class="ex"><p class="jp">そのままにしておきます。</p><p class="en">I'll leave it as it is.</p></div></div>
+      <div class="point"><div class="pattern">Ｖ（よ）う · plain volitional</div><p class="fn">Plain "let's / I'll" — the casual form of Vましょう, also used with と思う.</p><p class="form"><span class="lbl">Form</span>Gr.1: -u→-ou (<ruby>行<rt>い</rt></ruby>く→<ruby>行<rt>い</rt></ruby>こう). Gr.2: -る→-よう (<ruby>食<rt>た</rt></ruby>べる→<ruby>食<rt>た</rt></ruby>べよう). する→しよう, <ruby>来<rt>く</rt></ruby>る→<ruby>来<rt>こ</rt></ruby>よう.</p><div class="ex"><p class="jp">ちょっと<ruby>休<rt>やす</rt></ruby>もう。</p><p class="en">Let's take a little break.</p></div></div>
+      <div class="point"><div class="pattern">Ｖてしまいます <span class="nu">（<ruby>完了<rt>かんりょう</rt></ruby>）</span></div><p class="fn">"Finish completely / get it all done" — the completion sense of ～てしまう (cf. regret, ch. 5).</p><p class="form"><span class="lbl">Form</span>Vて + しまう. Casual: ～ちゃう.</p><div class="ex"><p class="jp"><ruby>今日中<rt>きょうじゅう</rt></ruby>に、この<ruby>仕事<rt>しごと</rt></ruby>をやってしまいます。</p><p class="en">I'll finish this work by end of day.</p></div></div>
+      <div class="point"><div class="pattern">Ｖることになっています <span class="nu">（<ruby>予定<rt>よてい</rt></ruby>）</span></div><p class="fn">"Be scheduled / arranged to" — a fixed plan (the schedule sense, vs. the rule sense in ST1).</p><p class="form"><span class="lbl">Form</span>Vる + ことになっています.</p><div class="ex"><p class="jp"><ruby>三時<rt>さんじ</rt></ruby>にお<ruby>客<rt>きゃく</rt></ruby>さんが<ruby>来<rt>く</rt></ruby>ることになっています。</p><p class="en">A customer is scheduled to come at 3.</p></div></div></div>
+  </section>
+
+  <section class="chapter" id="ch10">
+    <div class="ch-head"><div class="ch-num">10</div>
+      <div class="ch-titles"><h2><ruby>旅行<rt>りょこう</rt></ruby>に<ruby>行<rt>い</rt></ruby>って</h2><div class="en">Having Gone on a Trip</div></div></div>
+    <p class="goal">Tell others about mishaps or your current situation on a trip, and simply describe the scenery and buildings you see.</p>
+    <div class="st"><div class="st-label"><span class="st-tag">ST 1</span><span class="st-name">ハプニング！<span class="en">A mishap!</span></span></div>
+      <div class="point"><div class="pattern"><ruby>受身<rt>うけみ</rt></ruby> · Passive</div><p class="fn">Passive voice — "(something) is done to me," often with an adversative "suffering" nuance. Agent takes に.</p><p class="form"><span class="lbl">Form</span>Gr.1: -a + れる (<ruby>踏<rt>ふ</rt></ruby>む→<ruby>踏<rt>ふ</rt></ruby>まれる). Gr.2: -られる (<ruby>見<rt>み</rt></ruby>る→<ruby>見<rt>み</rt></ruby>られる). する→される, <ruby>来<rt>く</rt></ruby>る→<ruby>来<rt>こ</rt></ruby>られる.</p><div class="ex"><p class="jp"><ruby>電車<rt>でんしゃ</rt></ruby>で、<ruby>足<rt>あし</rt></ruby>を<ruby>踏<rt>ふ</rt></ruby>まれました。</p><p class="en">I got my foot stepped on in the train.</p></div><div class="ex"><p class="jp"><ruby>弟<rt>おとうと</rt></ruby>に、ケーキを<ruby>食<rt>た</rt></ruby>べられました。</p><p class="en">My little brother ate my cake (on me).</p></div></div>
+      <div class="point"><div class="pattern">～のに、～</div><p class="fn">"Even though / although" — a result contrary to expectation, often with dissatisfaction.</p><p class="form"><span class="lbl">Form</span>Plain form + のに (な-adj／N + な → <ruby>静<rt>しず</rt></ruby>かなのに).</p><div class="ex"><p class="jp"><ruby>薬<rt>くすり</rt></ruby>を<ruby>飲<rt>の</rt></ruby>んだのに、まだ<ruby>痛<rt>いた</rt></ruby>いです。</p><p class="en">Even though I took medicine, it still hurts.</p></div></div>
+      <div class="point"><div class="pattern">～みたいです <span class="nu">（<ruby>様態<rt>ようたい</rt></ruby>）</span></div><p class="fn">"It seems / looks like" — a guess based on what you observe (casual, spoken).</p><p class="form"><span class="lbl">Form</span>Plain form + みたい (N・な-adj + みたい).</p><div class="ex"><p class="jp"><ruby>誰<rt>だれ</rt></ruby>かいるみたいです。</p><p class="en">It seems like someone's there.</p></div></div>
+      <div class="point"><div class="pattern">～ようです <span class="nu">（<ruby>様態<rt>ようたい</rt></ruby>）</span></div><p class="fn">"It seems / appears" — a guess from evidence; more formal than みたい.</p><p class="form"><span class="lbl">Form</span>Plain form + よう (N + の + よう, な-adj + な + よう).</p><div class="ex"><p class="jp"><ruby>熱<rt>ねつ</rt></ruby>があるようです。</p><p class="en">It seems I have a fever.</p></div></div></div>
+    <div class="st"><div class="st-label"><span class="st-tag">ST 2</span><span class="st-name">ガイドブックを<ruby>片手<rt>かたて</rt></ruby>に<span class="en">Guidebook in hand</span></span></div>
+      <div class="point"><div class="pattern">Ｖるところです／Ｖているところです／Ｖたところです</div><p class="fn">The stage of an action — about to do / in the middle of doing / just finished doing.</p><p class="form"><span class="lbl">Form</span>Vる／Vている／Vた + ところです.</p><div class="ex"><p class="jp"><ruby>今<rt>いま</rt></ruby>から<ruby>出<rt>で</rt></ruby>かけるところです。</p><p class="en">I'm just about to head out.</p></div><div class="ex"><p class="jp"><ruby>今<rt>いま</rt></ruby>、<ruby>着<rt>つ</rt></ruby>いたところです。</p><p class="en">I've just arrived.</p></div></div>
+      <div class="point"><div class="pattern">Ｖてきます</div><p class="fn">"Go and (do) and come back," or a change approaching the present (movement / time toward the speaker).</p><p class="form"><span class="lbl">Form</span>Vて + きます.</p><div class="ex"><p class="jp">ちょっとコンビニに<ruby>行<rt>い</rt></ruby>ってきます。</p><p class="en">I'll just pop to the convenience store (and be back).</p></div><div class="ex"><p class="jp"><ruby>寒<rt>さむ</rt></ruby>くなってきました。</p><p class="en">It's gotten cold (up to now).</p></div></div>
+      <div class="point"><div class="pattern">Ｖていきます</div><p class="fn">"(Do) and go off," or continuation onward into the future (movement / time away from the speaker).</p><p class="form"><span class="lbl">Form</span>Vて + いきます.</p><div class="ex"><p class="jp">お<ruby>弁当<rt>べんとう</rt></ruby>を<ruby>持<rt>も</rt></ruby>っていきます。</p><p class="en">I'll take a lunchbox with me.</p></div></div>
+      <div class="point"><div class="pattern">ＡそうにＶ</div><p class="fn">"(Do) V in an A-looking way" — the adverbial form of Aそう (appearance) modifying a verb.</p><p class="form"><span class="lbl">Form</span>Aそう + に + V.</p><div class="ex"><p class="jp"><ruby>子供<rt>こども</rt></ruby>たちが<ruby>楽<rt>たの</rt></ruby>しそうに<ruby>遊<rt>あそ</rt></ruby>んでいます。</p><p class="en">The children are playing happily.</p></div></div>
+      <div class="point"><div class="pattern">～みたいです <span class="nu">（<ruby>比況<rt>ひきょう</rt></ruby>）</span></div><p class="fn">"Like / as if" — resemblance or simile (X is like Y).</p><p class="form"><span class="lbl">Form</span>N + みたい / みたいに.</p><div class="ex"><p class="jp">あの<ruby>雲<rt>くも</rt></ruby>は、<ruby>動物<rt>どうぶつ</rt></ruby>みたいです。</p><p class="en">That cloud is like an animal.</p></div></div>
+      <div class="point"><div class="pattern"><ruby>受身<rt>うけみ</rt></ruby> <span class="nu">（<ruby>無生物主語<rt>むせいぶつしゅご</rt></ruby>）</span></div><p class="fn">Passive with an inanimate subject — common in objective or written description.</p><p class="form"><span class="lbl">Form</span>(inanimate N) + は／が + passive verb.</p><div class="ex"><p class="jp">このお<ruby>寺<rt>てら</rt></ruby>は、<ruby>千年前<rt>せんねんまえ</rt></ruby>に<ruby>建<rt>た</rt></ruby>てられました。</p><p class="en">This temple was built a thousand years ago.</p></div><div class="ex"><p class="jp">オリンピックは、<ruby>四年<rt>よねん</rt></ruby>ごとに<ruby>行<rt>おこな</rt></ruby>われます。</p><p class="en">The Olympics are held every four years.</p></div></div></div>
+  </section>
+
+  <section class="chapter" id="ch11">
+    <div class="ch-head"><div class="ch-num">11</div>
+      <div class="ch-titles"><h2><ruby>地域社会<rt>ちいきしゃかい</rt></ruby>の<ruby>中<rt>なか</rt></ruby>で</h2><div class="en">In the Local Community</div></div></div>
+    <p class="goal">Talk with local people about your recent life and current troubles, and take part in community activities.</p>
+    <div class="st"><div class="st-label"><span class="st-tag">ST 1</span><span class="st-name"><ruby>慣<rt>な</rt></ruby>れてくると<span class="en">As you get used to it</span></span></div>
+      <div class="point"><div class="pattern">Ｖるようになります <span class="nu">（<ruby>習慣<rt>しゅうかん</rt></ruby>の<ruby>変化<rt>へんか</rt></ruby>）</span></div><p class="fn">"Come to (do) / start (doing) regularly" — a change in habit over time (cf. change in ability, ch. 1).</p><p class="form"><span class="lbl">Form</span>Vる + ようになる.</p><div class="ex"><p class="jp"><ruby>最近<rt>さいきん</rt></ruby>、<ruby>自炊<rt>じすい</rt></ruby>するようになりました。</p><p class="en">Lately I've started cooking for myself.</p></div></div>
+      <div class="point"><div class="pattern">Ｖなくなります</div><p class="fn">"Stop (doing) / come to no longer (do)" — a negative change.</p><p class="form"><span class="lbl">Form</span>Vない → Vなくなる.</p><div class="ex"><p class="jp"><ruby>最近<rt>さいきん</rt></ruby>、テレビを<ruby>見<rt>み</rt></ruby>なくなりました。</p><p class="en">Lately I've stopped watching TV.</p></div></div>
+      <div class="point"><div class="pattern">Ｖたばかりです</div><p class="fn">"Just (did)" — very recently finished.</p><p class="form"><span class="lbl">Form</span>Vた + ばかり.</p><div class="ex"><p class="jp"><ruby>日本<rt>にほん</rt></ruby>に<ruby>来<rt>き</rt></ruby>たばかりで、まだ<ruby>慣<rt>な</rt></ruby>れていません。</p><p class="en">I just came to Japan, so I'm not used to it yet.</p></div></div>
+      <div class="point"><div class="pattern">Ｖながら、～</div><p class="fn">"While (doing)" — two actions by one person at once.</p><p class="form"><span class="lbl">Form</span>masu-stem + ながら.</p><div class="ex"><p class="jp"><ruby>音楽<rt>おんがく</rt></ruby>を<ruby>聞<rt>き</rt></ruby>きながら、<ruby>勉強<rt>べんきょう</rt></ruby>します。</p><p class="en">I study while listening to music.</p></div></div></div>
+    <div class="st"><div class="st-label"><span class="st-tag">ST 2</span><span class="st-name">スポーツチームに<ruby>入<rt>はい</rt></ruby>って<span class="en">Joining a sports team</span></span></div>
+      <div class="point"><div class="pattern">～と<ruby>言<rt>い</rt></ruby>っていました</div><p class="fn">"(Someone) said that ~" — reporting what another person said.</p><p class="form"><span class="lbl">Form</span>[quote, plain form] + と言っていました.</p><div class="ex"><p class="jp"><ruby>田中<rt>たなか</rt></ruby>さんは、<ruby>明日<rt>あした</rt></ruby><ruby>来<rt>こ</rt></ruby>ないと<ruby>言<rt>い</rt></ruby>っていました。</p><p class="en">Tanaka-san said he isn't coming tomorrow.</p></div></div>
+      <div class="point"><div class="pattern"><ruby>命令形<rt>めいれいけい</rt></ruby> · Imperative</div><p class="fn">Blunt command — "Do it!" Used in cheering, signs, and rough male speech.</p><p class="form"><span class="lbl">Form</span>Gr.1: -u→-e (<ruby>走<rt>はし</rt></ruby>る→<ruby>走<rt>はし</rt></ruby>れ). Gr.2: -ろ (<ruby>食<rt>た</rt></ruby>べる→<ruby>食<rt>た</rt></ruby>べろ). する→しろ, <ruby>来<rt>く</rt></ruby>る→<ruby>来<rt>こ</rt></ruby>い.</p><div class="ex"><p class="jp"><ruby>頑張<rt>がんば</rt></ruby>れ！</p><p class="en">Go for it! / Do your best!</p></div></div>
+      <div class="point"><div class="pattern"><ruby>禁止<rt>きんし</rt></ruby> · Prohibition ～な</div><p class="fn">Negative command — "Don't (do)!"</p><p class="form"><span class="lbl">Form</span>Vる (dictionary form) + な.</p><div class="ex"><p class="jp"><ruby>負<rt>ま</rt></ruby>けるな！</p><p class="en">Don't lose!</p></div></div>
+      <div class="point"><div class="pattern">Ｖながら、～ <span class="nu">（<ruby>同時進行<rt>どうじしんこう</rt></ruby>）</span></div><p class="fn">"While (doing)" — same form as ST1, stressing two simultaneous ongoing actions.</p><p class="form"><span class="lbl">Form</span>masu-stem + ながら.</p><div class="ex"><p class="jp"><ruby>応援<rt>おうえん</rt></ruby>しながら、<ruby>試合<rt>しあい</rt></ruby>を<ruby>見<rt>み</rt></ruby>ます。</p><p class="en">I watch the game while cheering.</p></div></div></div>
+  </section>
+
+  <section class="chapter" id="ch12">
+    <div class="ch-head"><div class="ch-num">12</div>
+      <div class="ch-titles"><h2><ruby>私<rt>わたし</rt></ruby>の<ruby>健康法<rt>けんこうほう</rt></ruby></h2><div class="en">My Health Routine</div></div></div>
+    <p class="goal">Exchange information with those around you about staying healthy and coping when you feel unwell.</p>
+    <div class="st"><div class="st-label"><span class="st-tag">ST 1</span><span class="st-name"><ruby>体調不良<rt>たいちょうふりょう</rt></ruby><span class="en">Feeling unwell</span></span></div>
+      <div class="point"><div class="pattern">［～<ruby>個<rt>こ</rt></ruby>、～<ruby>時間<rt>じかん</rt></ruby>、～<ruby>杯<rt>はい</rt></ruby>…］も～</div><p class="fn">"As many/much as ~" — stresses a larger quantity than expected.</p><p class="form"><span class="lbl">Form</span>[number + counter] + も.</p><div class="ex"><p class="jp">コーヒーを<ruby>五杯<rt>ごはい</rt></ruby>も<ruby>飲<rt>の</rt></ruby>みました。</p><p class="en">I drank as many as five cups of coffee.</p></div></div>
+      <div class="point"><div class="pattern">［～<ruby>個<rt>こ</rt></ruby>、～<ruby>時間<rt>じかん</rt></ruby>…／Ｎ］しか～ない</div><p class="fn">"Only ~ (and no more)" — stresses a smaller quantity than expected; takes a negative.</p><p class="form"><span class="lbl">Form</span>[quantity／N] + しか + negative.</p><div class="ex"><p class="jp"><ruby>三時間<rt>さんじかん</rt></ruby>しか<ruby>寝<rt>ね</rt></ruby>ていません。</p><p class="en">I've only slept three hours.</p></div></div>
+      <div class="point"><div class="pattern">Ｖたらどうですか</div><p class="fn">"Why don't you (do)? / How about (doing)?" — a suggestion.</p><p class="form"><span class="lbl">Form</span>Vた + らどうですか.</p><div class="ex"><p class="jp"><ruby>病院<rt>びょういん</rt></ruby>に<ruby>行<rt>い</rt></ruby>ったらどうですか。</p><p class="en">Why don't you go to the hospital?</p></div></div>
+      <div class="point"><div class="pattern">Ｖないで、～</div><p class="fn">"Without (doing) X, (do) Y" — the main action happens with X left undone.</p><p class="form"><span class="lbl">Form</span>Vない + で.</p><div class="ex"><p class="jp"><ruby>朝<rt>あさ</rt></ruby>ごはんを<ruby>食<rt>た</rt></ruby>べないで、<ruby>学校<rt>がっこう</rt></ruby>に<ruby>行<rt>い</rt></ruby>きました。</p><p class="en">I went to school without eating breakfast.</p></div></div>
+      <div class="point"><div class="pattern">～らしいです <span class="nu">（<ruby>伝聞<rt>でんぶん</rt></ruby>）</span></div><p class="fn">"I hear that / apparently ~" — information from an outside source.</p><p class="form"><span class="lbl">Form</span>Plain form + らしい (N・な-adj + らしい).</p><div class="ex"><p class="jp"><ruby>田中<rt>たなか</rt></ruby>さんは、<ruby>風邪<rt>かぜ</rt></ruby>をひいたらしいです。</p><p class="en">I hear Tanaka-san caught a cold.</p></div></div>
+      <div class="point"><div class="pattern">Ｖて、～／Ｖないで、～ <span class="nu">（<ruby>付帯状況<rt>ふたいじょうきょう</rt></ruby>）</span></div><p class="fn">"(Doing / not doing) X, (do) Y" — the manner or accompanying state of the main action.</p><p class="form"><span class="lbl">Form</span>Vて / Vないで.</p><div class="ex"><p class="jp">めがねをかけて、<ruby>本<rt>ほん</rt></ruby>を<ruby>読<rt>よ</rt></ruby>みます。</p><p class="en">I read with my glasses on.</p></div><div class="ex"><p class="jp"><ruby>電気<rt>でんき</rt></ruby>をつけないで、<ruby>寝<rt>ね</rt></ruby>ます。</p><p class="en">I sleep without turning the light on.</p></div></div></div>
+    <div class="st"><div class="st-label"><span class="st-tag">ST 2</span><span class="st-name"><ruby>毎日<rt>まいにち</rt></ruby>、<ruby>元気<rt>げんき</rt></ruby>に！<span class="en">Healthy every day!</span></span></div>
+      <div class="point"><div class="pattern">Ｖるのに～／Ｎに～ <span class="nu">（<ruby>目的<rt>もくてき</rt></ruby>・<ruby>用途<rt>ようと</rt></ruby>）</span></div><p class="fn">"For (the purpose of) / to (do)" — the use something is put to.</p><p class="form"><span class="lbl">Form</span>Vる + のに; N + に.</p><div class="ex"><p class="jp">この<ruby>道具<rt>どうぐ</rt></ruby>は、パンを<ruby>切<rt>き</rt></ruby>るのに<ruby>使<rt>つか</rt></ruby>います。</p><p class="en">This tool is used for cutting bread.</p></div></div>
+      <div class="point"><div class="pattern">Ｖやすいです <span class="nu">（<ruby>傾向<rt>けいこう</rt></ruby>・<ruby>性質<rt>せいしつ</rt></ruby>）</span></div><p class="fn">"Tends to / is prone to (do)" — a tendency or property (cf. "easy to," ch. 2).</p><p class="form"><span class="lbl">Form</span>masu-stem + やすい.</p><div class="ex"><p class="jp"><ruby>白<rt>しろ</rt></ruby>い<ruby>服<rt>ふく</rt></ruby>は、<ruby>汚<rt>よご</rt></ruby>れやすいです。</p><p class="en">White clothes get dirty easily.</p></div></div>
+      <div class="point"><div class="pattern">Ｖにくいです <span class="nu">（<ruby>傾向<rt>けいこう</rt></ruby>・<ruby>性質<rt>せいしつ</rt></ruby>）</span></div><p class="fn">"Is hard to / resists (doing)" — a property or tendency (cf. "difficult to," ch. 2).</p><p class="form"><span class="lbl">Form</span>masu-stem + にくい.</p><div class="ex"><p class="jp">このコップは、<ruby>割<rt>わ</rt></ruby>れにくいです。</p><p class="en">This cup is hard to break (durable).</p></div></div>
+      <div class="point"><div class="pattern">Ｖるようにしています／Ｖないようにしています</div><p class="fn">"Make a point of (not) (doing)" — an ongoing effort or habit you keep up.</p><p class="form"><span class="lbl">Form</span>Vる／Vない + ようにしています.</p><div class="ex"><p class="jp"><ruby>毎日<rt>まいにち</rt></ruby>、<ruby>野菜<rt>やさい</rt></ruby>を<ruby>食<rt>た</rt></ruby>べるようにしています。</p><p class="en">I make a point of eating vegetables every day.</p></div></div>
+      <div class="point"><div class="pattern">Ｖることにします／Ｖないことにします</div><p class="fn">"Decide to / decide not to (do)" — your own decision.</p><p class="form"><span class="lbl">Form</span>Vる／Vない + ことにします.</p><div class="ex"><p class="jp"><ruby>明日<rt>あした</rt></ruby>から、<ruby>毎朝<rt>まいあさ</rt></ruby><ruby>散歩<rt>さんぽ</rt></ruby>することにします。</p><p class="en">I've decided to take a walk every morning from tomorrow.</p></div></div></div>
+  </section>
+
+  <section class="chapter" id="ch13">
+    <div class="ch-head"><div class="ch-num">13</div>
+      <div class="ch-titles"><h2><ruby>親<rt>おや</rt></ruby>の<ruby>気持<rt>きも</rt></ruby>ち・<ruby>子<rt>こ</rt></ruby>の<ruby>気持<rt>きも</rt></ruby>ち</h2><div class="en">A Parent's Heart, a Child's Heart</div></div></div>
+    <p class="goal">When something catches your eye on TV or in town, give your opinion and share your own related experiences.</p>
+    <div class="st"><div class="st-label"><span class="st-tag">ST 1</span><span class="st-name"><ruby>町<rt>まち</rt></ruby>で<ruby>見<rt>み</rt></ruby>かけた<ruby>子<rt>こ</rt></ruby>どもたち<span class="en">Kids I saw in town</span></span></div>
+      <div class="point"><div class="pattern"><ruby>使役動詞<rt>しえきどうし</rt></ruby> · Causative</div><p class="fn">"Make / let (someone) do." The person is marked を (make) or に (let).</p><p class="form"><span class="lbl">Form</span>Gr.1: -a + せる (<ruby>行<rt>い</rt></ruby>く→<ruby>行<rt>い</rt></ruby>かせる). Gr.2: -させる (<ruby>食<rt>た</rt></ruby>べる→<ruby>食<rt>た</rt></ruby>べさせる). する→させる, <ruby>来<rt>く</rt></ruby>る→<ruby>来<rt>こ</rt></ruby>させる.</p><div class="ex"><p class="jp"><ruby>母<rt>はは</rt></ruby>は、<ruby>子供<rt>こども</rt></ruby>に<ruby>野菜<rt>やさい</rt></ruby>を<ruby>食<rt>た</rt></ruby>べさせます。</p><p class="en">The mother makes her child eat vegetables.</p></div></div>
+      <div class="point"><div class="pattern">［Ｖ］のを<ruby>見<rt>み</rt></ruby>ました</div><p class="fn">"Saw (someone) doing ~" — witnessing an action.</p><p class="form"><span class="lbl">Form</span>[plain V] + のを + 見る／聞く.</p><div class="ex"><p class="jp"><ruby>子供<rt>こども</rt></ruby>が<ruby>公園<rt>こうえん</rt></ruby>で<ruby>遊<rt>あそ</rt></ruby>んでいるのを<ruby>見<rt>み</rt></ruby>ました。</p><p class="en">I saw a child playing in the park.</p></div></div>
+      <div class="point"><div class="pattern">Ｖていました <span class="nu">（<ruby>過去<rt>かこ</rt></ruby>の<ruby>習慣<rt>しゅうかん</rt></ruby>）</span></div><p class="fn">"Used to (do)" — a past habit over some period.</p><p class="form"><span class="lbl">Form</span>Vて + いました.</p><div class="ex"><p class="jp"><ruby>子供<rt>こども</rt></ruby>のころ、<ruby>毎日<rt>まいにち</rt></ruby>ピアノを<ruby>練習<rt>れんしゅう</rt></ruby>していました。</p><p class="en">As a child, I practiced piano every day.</p></div></div></div>
+    <div class="st"><div class="st-label"><span class="st-tag">ST 2</span><span class="st-name"><ruby>思<rt>おも</rt></ruby>い<ruby>出<rt>だ</rt></ruby>すと<span class="en">Looking back</span></span></div>
+      <div class="point"><div class="pattern">ＮばかりＶています／Ｖてばかりいます</div><p class="fn">"Do nothing but ~ / always just (doing)" — excessive, exclusive action (often critical).</p><p class="form"><span class="lbl">Form</span>N + ばかり + V; Vて + ばかりいる.</p><div class="ex"><p class="jp"><ruby>弟<rt>おとうと</rt></ruby>は、ゲームばかりしています。</p><p class="en">My little brother does nothing but play games.</p></div></div>
+      <div class="point"><div class="pattern"><ruby>使役受身<rt>しえきうけみ</rt></ruby> · Causative-passive</div><p class="fn">"Be made to (do)" — forced to do something, usually unwillingly.</p><p class="form"><span class="lbl">Form</span>Gr.1: -a + される／せられる (<ruby>待<rt>ま</rt></ruby>つ→<ruby>待<rt>ま</rt></ruby>たされる). Gr.2: -させられる. する→させられる, <ruby>来<rt>く</rt></ruby>る→<ruby>来<rt>こ</rt></ruby>させられる.</p><div class="ex"><p class="jp"><ruby>子供<rt>こども</rt></ruby>のころ、ピアノを<ruby>練習<rt>れんしゅう</rt></ruby>させられました。</p><p class="en">As a child, I was made to practice piano.</p></div></div>
+      <div class="point"><div class="pattern">Ｖせてくれます／Ｖせてもらいます</div><p class="fn">"Let me (do) / have (someone) let me (do)" — causative plus giving / receiving (permission).</p><p class="form"><span class="lbl">Form</span>causative て-form + くれる／もらう.</p><div class="ex"><p class="jp"><ruby>父<rt>ちち</rt></ruby>は、<ruby>私<rt>わたし</rt></ruby>に<ruby>車<rt>くるま</rt></ruby>を<ruby>運転<rt>うんてん</rt></ruby>させてくれました。</p><p class="en">My father let me drive the car.</p></div></div></div>
+  </section>
+
+  <section class="chapter" id="ch14">
+    <div class="ch-head"><div class="ch-num">14</div>
+      <div class="ch-titles"><h2>イベント・<ruby>行事<rt>ぎょうじ</rt></ruby></h2><div class="en">Events & Occasions</div></div></div>
+    <p class="goal">Explain your country's or town's events and customs so the Japanese people around you can get to know them.</p>
+    <div class="st"><div class="st-label"><span class="st-tag">ST 1</span><span class="st-name"><ruby>私<rt>わたし</rt></ruby>の<ruby>国<rt>くに</rt></ruby>・<ruby>町<rt>まち</rt></ruby>の<ruby>行事<rt>ぎょうじ</rt></ruby><span class="en">My country's/town's events</span></span></div>
+      <div class="point"><div class="pattern">Ｎって<ruby>何<rt>なん</rt></ruby>ですか</div><p class="fn">"What is ~?" — a casual way to ask what something is.</p><p class="form"><span class="lbl">Form</span>N + って + 何ですか.</p><div class="ex"><p class="jp">「お<ruby>盆<rt>ぼん</rt></ruby>」って<ruby>何<rt>なん</rt></ruby>ですか。</p><p class="en">What is "Obon"?</p></div></div>
+      <div class="point"><div class="pattern">Ｎというのは～</div><p class="fn">"~ is / ~ means..." — defining or explaining a term.</p><p class="form"><span class="lbl">Form</span>N + というのは + ~.</p><div class="ex"><p class="jp">お<ruby>盆<rt>ぼん</rt></ruby>というのは、<ruby>夏<rt>なつ</rt></ruby>の<ruby>行事<rt>ぎょうじ</rt></ruby>です。</p><p class="en">"Obon" is a summer event.</p></div></div>
+      <div class="point"><div class="pattern">～と<ruby>言<rt>い</rt></ruby>われています</div><p class="fn">"It is said that ~" — a widely-held belief (passive of 言う).</p><p class="form"><span class="lbl">Form</span>Plain form + と言われています.</p><div class="ex"><p class="jp">この<ruby>温泉<rt>おんせん</rt></ruby>は、<ruby>体<rt>からだ</rt></ruby>にいいと<ruby>言<rt>い</rt></ruby>われています。</p><p class="en">This hot spring is said to be good for you.</p></div></div>
+      <div class="point"><div class="pattern">ＮのようなＮ</div><p class="fn">"An N like / such as N" — giving an example.</p><p class="form"><span class="lbl">Form</span>N + のような + N.</p><div class="ex"><p class="jp"><ruby>京都<rt>きょうと</rt></ruby>のような<ruby>古<rt>ふる</rt></ruby>い<ruby>町<rt>まち</rt></ruby>が<ruby>好<rt>す</rt></ruby>きです。</p><p class="en">I like old towns like Kyoto.</p></div></div></div>
+    <div class="st"><div class="st-label"><span class="st-tag">ST 2</span><span class="st-name"><ruby>贈<rt>おく</rt></ruby>り<ruby>物<rt>もの</rt></ruby>の<ruby>習慣<rt>しゅうかん</rt></ruby><span class="en">Gift-giving customs</span></span></div>
+      <div class="point"><div class="pattern">～かな／Ｖようかな</div><p class="fn">"I wonder ~ / maybe I'll ~" — wondering to yourself; considering doing something.</p><p class="form"><span class="lbl">Form</span>Plain form + かな; volitional + かな.</p><div class="ex"><p class="jp"><ruby>何<rt>なに</rt></ruby>をあげたらいいかな。</p><p class="en">I wonder what I should give.</p></div><div class="ex"><p class="jp">これにしようかな。</p><p class="en">Maybe I'll go with this one.</p></div></div>
+      <div class="point"><div class="pattern">Ｎなんかどうですか</div><p class="fn">"How about something like N?" — a soft suggestion (なんか = "like / for instance").</p><p class="form"><span class="lbl">Form</span>N + なんかどうですか.</p><div class="ex"><p class="jp">プレゼントは、お<ruby>花<rt>はな</rt></ruby>なんかどうですか。</p><p class="en">For a present, how about flowers or something?</p></div></div>
+      <div class="point"><div class="pattern">Ａがっています</div><p class="fn">"(A third person) shows signs of feeling A" — describing others' feelings/desires you can't directly know.</p><p class="form"><span class="lbl">Form</span>A (drop い／な) + がる; ～たい → ～たがる.</p><div class="ex"><p class="jp"><ruby>妹<rt>いもうと</rt></ruby>は、<ruby>犬<rt>いぬ</rt></ruby>を<ruby>飼<rt>か</rt></ruby>いたがっています。</p><p class="en">My little sister wants to keep a dog.</p></div></div>
+      <div class="point"><div class="pattern">～からです</div><p class="fn">"It's because ~" — giving a reason as an explanation or answer.</p><p class="form"><span class="lbl">Form</span>Plain form + からです.</p><div class="ex"><p class="jp"><ruby>日本<rt>にほん</rt></ruby>に<ruby>来<rt>き</rt></ruby>たのは、アニメが<ruby>好<rt>す</rt></ruby>きだからです。</p><p class="en">The reason I came to Japan is that I like anime.</p></div></div></div>
+  </section>
+
+  <section class="chapter" id="ch15">
+    <div class="ch-head"><div class="ch-num">15</div>
+      <div class="ch-titles"><h2><ruby>気<rt>き</rt></ruby>になるニュース</h2><div class="en">News That Catches Your Eye</div></div></div>
+    <p class="goal">Share news and topics that interest you — what you've questioned, researched, and thought about — and discuss them.</p>
+    <div class="st"><div class="st-label"><span class="st-tag">ST 1</span><span class="st-name"><ruby>発表<rt>はっぴょう</rt></ruby>の<ruby>準備<rt>じゅんび</rt></ruby><span class="en">Preparing a presentation</span></span></div>
+      <div class="point"><div class="pattern">～んだって</div><p class="fn">"I hear that / apparently ~" — casual reported speech (spoken んです + って).</p><p class="form"><span class="lbl">Form</span>Plain form + んだって (N・な-adj + なんだって).</p><div class="ex"><p class="jp">あの<ruby>店<rt>みせ</rt></ruby>、<ruby>閉<rt>し</rt></ruby>まったんだって。</p><p class="en">Apparently that shop closed.</p></div></div>
+      <div class="point"><div class="pattern">Ｖるのはどうですか</div><p class="fn">"How about (doing) ~?" — proposing an idea or plan.</p><p class="form"><span class="lbl">Form</span>Vる + のはどうですか.</p><div class="ex"><p class="jp">このテーマについて<ruby>調<rt>しら</rt></ruby>べるのはどうですか。</p><p class="en">How about researching this topic?</p></div></div>
+      <div class="point"><div class="pattern">～だけじゃなくて、～も～</div><p class="fn">"Not only ~ but also ~."</p><p class="form"><span class="lbl">Form</span>N + だけじゃなくて、~ も (also plain form + だけじゃなくて).</p><div class="ex"><p class="jp"><ruby>子供<rt>こども</rt></ruby>だけじゃなくて、<ruby>大人<rt>おとな</rt></ruby>も<ruby>楽<rt>たの</rt></ruby>しめます。</p><p class="en">Not only children but adults can enjoy it too.</p></div></div>
+      <div class="point"><div class="pattern">～ないと、～</div><p class="fn">"If you don't ~, (it won't do)" — expresses necessity; the consequence is often left unsaid.</p><p class="form"><span class="lbl">Form</span>Vない + と.</p><div class="ex"><p class="jp"><ruby>早<rt>はや</rt></ruby>く<ruby>準備<rt>じゅんび</rt></ruby>しないと、<ruby>間<rt>ま</rt></ruby>に<ruby>合<rt>あ</rt></ruby>いません。</p><p class="en">If we don't prepare soon, we won't make it in time.</p></div></div></div>
+    <div class="st"><div class="st-label"><span class="st-tag">ST 2</span><span class="st-name">みんなの<ruby>前<rt>まえ</rt></ruby>で<ruby>発表<rt>はっぴょう</rt></ruby><span class="en">Presenting to everyone</span></span></div>
+      <div class="point"><div class="pattern">Ｖてきました</div><p class="fn">"Have come to ~ / have been ~ing up to now" — a change or continuation from the past to the present.</p><p class="form"><span class="lbl">Form</span>Vて + きました.</p><div class="ex"><p class="jp"><ruby>最近<rt>さいきん</rt></ruby>、<ruby>観光客<rt>かんこうきゃく</rt></ruby>が<ruby>増<rt>ふ</rt></ruby>えてきました。</p><p class="en">Recently, the number of tourists has been increasing.</p></div></div>
+      <div class="point"><div class="pattern">～ために、～ <span class="nu">（<ruby>原因<rt>げんいん</rt></ruby>）</span></div><p class="fn">"Because of / due to ~" — a cause (often of an undesirable result); more formal.</p><p class="form"><span class="lbl">Form</span>Plain form + ために (N + の + ために).</p><div class="ex"><p class="jp"><ruby>台風<rt>たいふう</rt></ruby>のために、<ruby>電車<rt>でんしゃ</rt></ruby>が<ruby>止<rt>と</rt></ruby>まりました。</p><p class="en">Due to the typhoon, the trains stopped.</p></div></div>
+      <div class="point"><div class="pattern">Ｖていきます</div><p class="fn">"Will keep (doing)" — continuation from now onward into the future.</p><p class="form"><span class="lbl">Form</span>Vて + いきます.</p><div class="ex"><p class="jp">これからも、<ruby>日本語<rt>にほんご</rt></ruby>を<ruby>勉強<rt>べんきょう</rt></ruby>していきます。</p><p class="en">I'll keep studying Japanese from here on too.</p></div></div></div>
+  </section>
+
+  <div class="notes">
+    <h3>Watch these threads across 9–15</h3>
+    <ul>
+      <li><b>The guessing family</b> — <ruby>～みたい<rt> </rt></ruby>／～よう (ch.10) = you infer it yourself from evidence; <b>～らしい</b> (ch.12) and <b>～んだって</b> (ch.15) = you heard it from somewhere. Don't mix "I reckon" with "I'm told."</li>
+      <li><b>～てくる／～ていく</b> hit twice: spatial "go & come back / take away" (ch.10) and time "has been ~ing / will keep ~ing" (ch.15). Same shape, direction in space <em>or</em> time.</li>
+      <li><b>The causative chain</b> builds up: <ruby>受身<rt>うけみ</rt></ruby> (ch.10) → <ruby>使役<rt>しえき</rt></ruby> "make/let" (ch.13) → <ruby>使役受身<rt>しえきうけみ</rt></ruby> "be made to" (ch.13). Learn them in that order — each stacks on the last.</li>
+      <li><b>～ように</b> is everywhere: purpose ～ように (ch.9), the request ～ようにしてください (ch.9), the habit ～ようにしています (ch.12), and the change ～ようになります (ch.11). Keep なる (a change) apart from する (an effort).</li>
+      <li><b>Old forms, new jobs</b> — ～ておく (ch.6 "in advance" → ch.9 "leave as is"), ～てしまう (ch.5 regret → ch.9 completion), Vやすい／にくい (ch.2 easy/hard → ch.12 tendency). The form is familiar; the nuance is the lesson.</li>
+    </ul>
+  </div>
+  <footer>Built from the 学習項目 column · できる日本語 初中級 本冊 · <a class="top-link" href="#top">↑ Back to top</a></footer>
+</div>
+<script>
+  (function(){
+    var btn=document.getElementById('furiToggle'),txt=document.getElementById('toggleText');
+    btn.addEventListener('click',function(){
+      var hidden=document.body.classList.toggle('hide-furigana');
+      btn.setAttribute('aria-pressed',String(!hidden));
+      txt.textContent=hidden?'Furigana: Off':'Furigana: On';
+    });
+  })();
+</script>
+</body>
+</html>
